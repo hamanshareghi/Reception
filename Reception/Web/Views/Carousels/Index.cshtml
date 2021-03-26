@@ -1,0 +1,62 @@
+﻿@using Common.Library
+@model IEnumerable<Model.Entities.Carousel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+    <h1 class="card-title">اسلایدرها</h1>
+    <hr />
+    <p>
+        <a asp-action="Create" class="btn btn-success">اسلایدر جدید</a>
+    </p>
+    <table class="table table-bordered table-responsive table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.InsertDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Caption)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ImageName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LinkPage)
+                </th>
+
+
+                <th>دستورات</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.InsertDate.ToShamsi()
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Caption)
+                    </td>
+                    <td>
+                        <img src="~/img/Carousel/@item.ImageName" class="img-thumbnail w-25" alt="@item.Caption" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LinkPage)
+                    </td>
+
+
+                    <td>
+                        <a asp-action="Edit" class="btn btn-warning" asp-route-id="@item.Id"><i class="far fa-edit"></i></a>
+                        <a asp-action="Details" class="btn btn-info" asp-route-id="@item.Id"><i class="fas fa-info-circle"></i></a>
+                        <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+

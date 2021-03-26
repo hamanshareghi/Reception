@@ -1,0 +1,28 @@
+﻿@model Model.Entities.Brand
+<div class="container">
+    <h1 class="card-title">شرح</h1>
+    <hr />
+    <div>
+
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Image)
+            </dt>
+            <dd class="col-sm-10">
+                <img src="~/img/Brand/@Model.Image" alt="@Model.Title" />
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" class="btn btn-warning" asp-route-id="@Model.BrandId">ویرایش برند</a>
+        <a asp-action="Index" class="btn btn-info">بازگشت به لیست</a>
+    </div>
+
+</div>
+   

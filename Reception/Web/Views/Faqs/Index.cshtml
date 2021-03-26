@@ -1,0 +1,55 @@
+﻿@using Common.Library
+@model IEnumerable<Model.Entities.Faq>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="card-title">سوالات متداول</h1>
+<hr />
+<p>
+    <a asp-action="Create" class="btn btn-success">سوال جدید</a>
+</p>
+<table class="table table-responsive table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FaqTitle)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.FaqAnswer)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.InsertDate)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>*@
+            <th>دستورات</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FaqTitle)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.FaqAnswer)
+            </td>*@
+            <td>
+                <p class="text-info font-weight-semi-bold">@item.InsertDate.ToShamsi()</p>
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>*@
+            <td>
+                <a asp-action="Edit" class="btn btn-warning" asp-route-id="@item.FaqId"><i class="far fa-edit"></i></a>
+                <a asp-action="Details" class="btn btn-info" asp-route-id="@item.FaqId"><i class="fas fa-info-circle"></i></a>
+                <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.FaqId"><i class="fas fa-trash"></i></a>
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

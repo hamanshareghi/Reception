@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Model.Entities.OneData>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="card-title">اطلاعات</h1>
+<hr />
+<p>
+    <a asp-area="Admin" asp-controller="OneDatas" asp-action="Create" class="btn btn-success">اطلاعات جدید</a>
+</p>
+<table class="table table-responsive table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SiteAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SiteRules)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Privacy)
+            </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SiteAddress)
+            </td>
+            <td>
+                @Html.Raw(item.SiteRules)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Privacy)
+            </td>*@
+            <td>
+                <a asp-action="Edit" class="btn btn-warning" asp-route-id="@item.Id"><i class="far fa-edit"></i></a>
+                <a asp-action="Details" class="btn btn-info" asp-route-id="@item.Id"><i class="fas fa-info-circle"></i></a>
+                <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id"><i class="fas fa-trash"></i></a>
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

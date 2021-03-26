@@ -1,0 +1,50 @@
+﻿@using Common.Library
+@model Model.Entities.Video
+
+<div class="container">
+    <div>
+        <h4 class="card-title">شرح</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Link)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Link)
+            </dd>
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.Raw(Model.Description)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.InsertDate)
+            </dt>
+            <dd class="col-sm-10">
+                @Model.InsertDate.ToShamsi()
+            </dd>
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.UpDateTime)
+            </dt>
+            <dd class="col-sm-10">
+                @Model.UpDateTime?.ToShamsi()
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" class="btn btn-warning" asp-route-id="@Model.VideoId">ویرایش فیلم</a>
+        <a asp-action="Index" class="btn btn-info">بازگشت به لیست</a>
+    </div>
+</div>
+
+
+

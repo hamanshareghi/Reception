@@ -1,0 +1,62 @@
+﻿@using Common.Library
+@model Model.Entities.Rule
+<div class="container">
+    <h3 class="card-title">آیا از حذف اطمینان دارید؟</h3>
+    <div>
+        <h4 class="card-title">حذف روش</h4>
+
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Sale)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.Raw(@Model.Sale)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Send)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.Raw(@Model.Send)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Use)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.Raw(@Model.Use)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Payment)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.Raw(@Model.Payment)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Privacy)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.Raw(@Model.Privacy)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.InsertDate)
+            </dt>
+            <dd class="col-sm-10">
+                @Model.InsertDate.ToShamsi()
+            </dd>
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.UpDateTime)
+            </dt>
+            <dd class="col-sm-10">
+                @Model.UpDateTime?.ToShamsi()
+            </dd>
+        </dl>
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="Id" />
+            <input type="submit" value="حذف اطلاعات" class="btn btn-danger" />
+            <a asp-action="Index" class="btn btn-info">بازگشت به لیست</a>
+
+        </form>
+    </div>
+</div>
+

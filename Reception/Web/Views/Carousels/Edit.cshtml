@@ -1,0 +1,48 @@
+﻿@model Model.Entities.Carousel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="container">
+    <h1 class="card-title">ویرایش اسلایدر</h1>
+
+    <hr />
+    <div class="row">
+        <div class="col-md-10 mx-auto">
+            <form asp-area="Admin" asp-controller="Carousels" asp-action="Edit" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="InsertDate" />
+                <input type="hidden" asp-for="ImageName" />
+
+                <div class="form-group">
+                    <label asp-for="Caption" class="control-label"></label>
+                    <input asp-for="Caption" class="form-control" />
+                    <span asp-validation-for="Caption" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ImageName" class="control-label"></label>
+                    <input name="imgUp" type="file" asp-for="ImageName" class="form-control" />
+                    <span asp-validation-for="ImageName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LinkPage" class="control-label"></label>
+                    <input asp-for="LinkPage" class="form-control" />
+                    <span asp-validation-for="LinkPage" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="ثبت تغییرات" class="btn btn-warning" />
+                    <a asp-action="Index" class="btn btn-info">بازگشت به لیست</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

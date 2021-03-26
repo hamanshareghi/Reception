@@ -1,0 +1,53 @@
+﻿@model Model.Entities.Faq
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container">
+    <h1 class="card-title">سوال جدید</h1>
+    <hr />
+    <div class="row">
+        <div class="col-md-12 mx-auto">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="FaqTitle" class="control-label"></label>
+                    <input asp-for="FaqTitle" class="form-control" />
+                    <span asp-validation-for="FaqTitle" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FaqAnswer" class="control-label"></label>
+                    <textarea id="editor" asp-for="FaqAnswer" class="form-control"></textarea>
+                    <span asp-validation-for="FaqAnswer" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="ثبت سوالات" class="btn btn-success" />
+                    <a asp-action="Index" class="btn btn-info">بازگشت به لیست</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/lib/ckeditor5/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#editor' ), {
+                // The language code is defined in the https://en.wikipedia.org/wiki/ISO_639-1 standard.
+                language: 'fa'
+            } )
+            .then( editor => {
+                console.log( editor );
+            } )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
+}

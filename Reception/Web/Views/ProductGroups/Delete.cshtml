@@ -1,0 +1,47 @@
+﻿@model Model.Entities.ProductGroup
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="container">
+    <h1 class="card-title">حذف گروه</h1>
+    <h3 class="alert alert-info">آیا از حذف این گروه محصول اطمینان دارید؟</h3>
+    <div>
+
+        <hr />
+        <dl class="row">
+            @*<dt class = "col-sm-2">
+                    @Html.DisplayNameFor(model => model.Company)
+                </dt>
+                <dd class = "col-sm-10">
+                    @Html.DisplayFor(model => model.Company.Title)
+                </dd >*@
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.GroupName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.GroupName)
+            </dd>
+            @*<dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Image)
+                </dt>
+                <dd class="col-sm-10">
+                    <img src="~/img/ProductGroup/Group/@Model.Image" class="img-thumbnail" alt="@Model.GroupName"/>
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Banner)
+                </dt>
+                <dd class="col-sm-10">
+                    <img src="~/img/ProductGroup/Banner/@Model.Banner" class="img-thumbnail" alt="@Model.GroupName"/>
+                </dd>*@
+        </dl>
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="ProductGroupId" />
+            <input type="submit" value="حذف گروه" class="btn btn-danger" />
+            <a asp-action="Index" class="btn btn-info">بازگشت به لیست</a>
+        </form>
+    </div>
+</div>
+

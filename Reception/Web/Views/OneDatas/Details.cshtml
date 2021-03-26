@@ -1,0 +1,48 @@
+﻿@model Model.Entities.OneData
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container">
+    <h1 class="card-title">شرح اطلاعات</h1>
+
+    <div>
+
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.SiteAddress)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.Raw(Model.SiteAddress)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Introduction)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.Raw(Model.Introduction)
+            </dd>
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.SiteRules)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.Raw(Model.SiteRules)
+            </dd>
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Privacy)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.Raw(Model.Privacy)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" class="btn btn-warning" asp-route-id="@Model.Id">ویرایش اطلاعات</a>
+        <a asp-action="Index" class="btn btn-info">بازگشت به لیست</a>
+    </div>
+
+</div>
+

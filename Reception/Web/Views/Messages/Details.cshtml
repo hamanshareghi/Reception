@@ -1,0 +1,38 @@
+﻿@model Model.Entities.Message
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<div class="container">
+    <h1 class="card-title">شرح پیام</h1>
+
+    <div>
+
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Text)
+            </dt>
+            <dd>
+                @Html.Raw(Model.Text)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Image)
+            </dt>
+            <dd>
+                <img class="img-thumbnail" src="/img/Messages/@Model.Image" alt="@Model.Title" />
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" class="btn btn-warning" asp-route-id="@Model.Id">ویرایش پیام</a>
+        <a asp-action="Index" class="btn btn-info">بازگشت به لیست</a>
+    </div>
+</div>
+

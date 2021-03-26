@@ -1,0 +1,50 @@
+﻿@model Model.Entities.OneData
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="container">
+    <h1 class="card-title">حذف اطلاعات</h1>
+
+    <h3>آیا از حذف اطلاعات اطمینان دارید؟</h3>
+    <div>
+
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.SiteAddress)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.Raw(Model.SiteAddress)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Introduction)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.Raw(Model.Introduction)
+            </dd>
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.SiteRules)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.Raw(Model.SiteRules)
+            </dd>
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Privacy)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.Raw(Model.Privacy)
+            </dd>
+        </dl>
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="Id" />
+            <input type="submit" value="حذف اطلاعات" class="btn btn-danger" />
+            <a asp-action="Index" class="btn btn-info">بازگشت به لیست</a>
+        </form>
+    </div>
+</div>
+

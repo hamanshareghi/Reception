@@ -1,0 +1,58 @@
+﻿@model Data.ViewModels.Account.RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+
+}
+<div class="container">
+    <div class="row mx-auto">
+
+        <div class="card card-custom">
+
+            <!--begin::Form-->
+            <form asp-area="" asp-controller="Account" asp-action="Register" method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="card-body">
+                    <div class="form-group mb-8">
+                        <div class="alert alert-custom alert-default" role="alert">
+                            <div class="alert-icon"><i class="flaticon-warning text-primary"></i></div>
+                            <div class="alert-text">
+                                نام کاربری شما شماره موبایل شما میباشد و لطفا برای  جلوگیری از دسترسی افراد غیر از سیستم پسورد گذاری قوی استفاده کنید .
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="UserName">موبایل</label>
+                        <input type="tel" asp-for="UserName" class="form-control" placeholder="موبایل را وارد کنید" />
+                        <span class="form-text text-muted">ما هرگز موبایل شما را با هیچ کس دیگری به اشتراک نمی گذاریم.</span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Password">کلمه عبور</label>
+                        <input type="password" class="form-control" asp-for="Password" placeholder="کلمه عبور" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="RePassword">تکرار کلمه عبور</label>
+                        <input type="password" class="form-control" asp-for="RePassword" placeholder="تکرار کلمه عبور" />
+                    </div>
+
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary mr-2">ثبت نام در سایت</button>
+                    <a asp-area="" asp-controller="Account" asp-action="Login" class="btn btn-secondary">ورود به سایت</a>
+                </div>
+            </form>
+            <!--end::Form-->
+        </div>
+
+    </div>
+
+</div>
+
+@section Footer
+{
+    <partial name="_Footer" />
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+}

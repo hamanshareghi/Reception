@@ -1,0 +1,47 @@
+﻿@model Model.Entities.Carousel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container">
+    <h1 class="card-title">اسلایدر جدید</h1>
+
+    <hr />
+    <div class="row">
+        <div class="col-md-10 mx-auto">
+            <form asp-area="Admin" asp-controller="Carousels" asp-action="Create" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Caption" class="control-label"></label>
+                    <input asp-for="Caption" class="form-control" />
+                    <span asp-validation-for="Caption" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ImageName" class="control-label"></label>
+                    <input type="file" name="imgUp" asp-for="ImageName" class="form-control" />
+                    <span asp-validation-for="ImageName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LinkPage" class="control-label"></label>
+                    <input asp-for="LinkPage" class="form-control" />
+                    <span asp-validation-for="LinkPage" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="ثبت اطلاعات" class="btn btn-success" />
+                    <a asp-action="Index" class="btn btn-info">بازگشت به لیست</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

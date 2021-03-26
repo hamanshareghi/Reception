@@ -1,0 +1,87 @@
+﻿@model Model.Entities.Rule
+
+<div class="container">
+    <h4 class="card-title">قوانین جدید</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-10 mx-auto">
+            <form asp-area="Admin" asp-controller="Rules" asp-action="Create" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Sale" class="control-label"></label>
+                    <textarea asp-for="Sale" class="form-control" id="editorSale"></textarea>
+                    <span asp-validation-for="Sale" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Send" class="control-label"></label>
+                    <textarea asp-for="Send" class="form-control" id="editorSend"></textarea>
+                    <span asp-validation-for="Send" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Use" class="control-label"></label>
+                    <textarea asp-for="Use" class="form-control" id="editorUse"></textarea>`
+                    <span asp-validation-for="Use" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Privacy" class="control-label"></label>
+                    <textarea asp-for="Privacy" class="form-control" id="editorPrivacy"></textarea>
+                    <span asp-validation-for="Privacy" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Payment" class="control-label"></label>
+                    <textarea asp-for="Payment" class="form-control" id="editorPayment"></textarea>
+                    <span asp-validation-for="Payment" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="ثبت اطلاعات" class="btn btn-success" />
+                    <a asp-action="Index" class="btn btn-info">بازگشت به لیست</a>
+
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+
+@section Scripts
+{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script src="~/lib/ckeditor/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('editorSale', {
+            customConfig: '/lib/ckeditor/Config.js',
+            toolbar: 'Full'
+        });
+    </script>
+    <script>
+        CKEDITOR.replace('editorSend', {
+            customConfig: '/lib/ckeditor/Config.js',
+            toolbar: 'Full'
+        });
+    </script>
+    <script>
+        CKEDITOR.replace('editorUse', {
+            customConfig: '/lib/ckeditor/Config.js',
+            toolbar: 'Full'
+        });
+    </script>
+    <script>
+        CKEDITOR.replace('editorPayment', {
+            customConfig: '/lib/ckeditor/Config.js',
+            toolbar: 'Full'
+        });
+    </script>
+    <script>
+        CKEDITOR.replace('editorPrivacy', {
+            customConfig: '/lib/ckeditor/Config.js',
+            toolbar: 'Full'
+        });
+    </script>
+}
+
+

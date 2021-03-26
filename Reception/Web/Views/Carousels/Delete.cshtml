@@ -1,0 +1,41 @@
+﻿@model Model.Entities.Carousel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+<div class="container">
+    <h1 class="card-title">حذف اسلایدر</h1>
+
+    <h3>آیا از حذف اسلایدر اطمینان دارید؟</h3>
+    <div>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Caption)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Caption)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ImageName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ImageName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.LinkPage)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.LinkPage)
+            </dd>
+
+        </dl>
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="Id" />
+            <input type="submit" value="حذف اسلایدر" class="btn btn-danger" />
+            <a asp-action="Index" class="btn btn-info">بازگشت به لیست</a>
+        </form>
+    </div>
+
+</div>

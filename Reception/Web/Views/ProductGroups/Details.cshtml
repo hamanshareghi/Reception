@@ -1,0 +1,33 @@
+﻿@model Model.Entities.ProductGroup
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container">
+    <h4 class="card-title">گروه محصول </h4>
+
+    <div>
+
+        <dl class="row">
+            @*<dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Company)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Company.Title)
+                </dd>*@
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.GroupName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.GroupName)
+            </dd>
+
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" class="btn btn-warning" asp-route-id="@Model.ProductGroupId">ویرایش گروه محصول</a>
+        <a asp-action="Index" class="btn btn-info">بازگشت به لیست</a>
+    </div>
+</div>
+
