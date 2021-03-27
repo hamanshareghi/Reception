@@ -1,8 +1,0 @@
-{
-  "runtimeOptions": {
-    "additionalProbingPaths": [
-      "C:\\Users\\Swan\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\Swan\\.nuget\\packages"
-    ]
-  }
-}
