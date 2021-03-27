@@ -238,3 +238,13 @@ D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Web.pdb
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Web.genruntimeconfig.cache
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Views\Customer\EditCustomer.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Views\Customer\Delete.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Views\Receptions\Create.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Views\Receptions\Delete.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Views\Receptions\Details.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Views\Receptions\Edit.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Views\Receptions\Index.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Views\CostDefine\Create.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Views\CostDefine\Delete.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Views\CostDefine\Details.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Views\CostDefine\Edit.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Views\CostDefine\Index.cshtml.g.cs

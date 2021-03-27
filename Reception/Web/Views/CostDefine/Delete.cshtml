@@ -1,0 +1,28 @@
+﻿@using Common.Library
+@model Model.Entities.CostDefine
+
+
+
+<div class="container">
+    <h1>حذف</h1>
+
+    <h3>آیا از حذف گروه هزینه اطمینان دارید؟</h3>
+    <div>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+        </dl>
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="CostDefineId" />
+            <input type="submit" value="Delete" class="btn btn-danger" />
+            <a asp-action="Index" class="btn btn-info">بازگشت به لیست</a>
+        </form>
+    </div>
+</div>

@@ -51,6 +51,8 @@ namespace Web
             services.AddScoped<IDefect, DefectService>();
             services.AddScoped<IService, ServicesService>();
             services.AddScoped<IStatus, StatusService>();
+            services.AddScoped<IReception, ReceptionService>();
+            services.AddScoped<ICostDefine, CostDefineService>();
 
 
             #region Authorization
