@@ -50,6 +50,7 @@ namespace Web
             services.AddScoped<IVideo, VideoService>();
             services.AddScoped<IDefect, DefectService>();
             services.AddScoped<IService, ServicesService>();
+            services.AddScoped<IStatus, StatusService>();
 
 
             #region Authorization

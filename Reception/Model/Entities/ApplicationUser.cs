@@ -13,7 +13,7 @@ namespace Model.Entities
 
         [Display(Name = "مشتری")]
         [MaxLength(50, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
-        public Status CustomerKind { get; set; }
+        public Customer CustomerKind { get; set; }
 
         [Display(Name = "تماس")]
         [MaxLength(400, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
@@ -40,9 +40,12 @@ namespace Model.Entities
 
     }
 
-    public enum ReceptionStatus
+
+
+    public enum Customer
     {
         Customer = 1,
         Colleague = 2
     }
+
 }

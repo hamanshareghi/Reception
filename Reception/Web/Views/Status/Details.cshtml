@@ -1,0 +1,27 @@
+﻿@model Model.Entities.Status
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container">
+    <div>
+        <h4>شرح وضعیت</h4>
+
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" class="btn btn-warning" asp-route-id="@Model.StatusId">ویرایش</a>
+        <a asp-action="Index" class="btn btn-info">بازگشت به لیست</a>
+    </div>
+</div>
+
+

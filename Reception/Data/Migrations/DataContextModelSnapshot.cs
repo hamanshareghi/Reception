@@ -220,7 +220,8 @@ namespace Data.Migrations
                         .HasMaxLength(400)
                         .HasColumnType("nvarchar(400)");
 
-                    b.Property<int?>("CustomerKindStatusId")
+                    b.Property<int>("CustomerKind")
+                        .HasMaxLength(50)
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -275,8 +276,6 @@ namespace Data.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CustomerKindStatusId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -668,9 +667,6 @@ namespace Data.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
-                    b.Property<string>("Image")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("InsertDate")
                         .HasColumnType("datetime2");
 
@@ -1031,15 +1027,6 @@ namespace Data.Migrations
                     b.Navigation("Shipping");
 
                     b.Navigation("Status");
-                });
-
-            modelBuilder.Entity("Model.Entities.ApplicationUser", b =>
-                {
-                    b.HasOne("Model.Entities.Status", "CustomerKind")
-                        .WithMany()
-                        .HasForeignKey("CustomerKindStatusId");
-
-                    b.Navigation("CustomerKind");
                 });
 
             modelBuilder.Entity("Model.Entities.Cost", b =>
