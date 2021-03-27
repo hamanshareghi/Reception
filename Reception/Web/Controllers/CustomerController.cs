@@ -86,5 +86,78 @@ namespace Web.Controllers
             var model = _userManager.Users.ToList();
             return View(model);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> EditCustomer(string Id)
+        {
+            var model = await _userManager.FindByIdAsync(Id);
+            EditCustomerViewModel result = new EditCustomerViewModel()
+            {
+                Contact = model.PhoneNumber,
+                Description = model.Description,
+                FullName = model.FullName,
+                Address = model.Address,
+                Email = model.Email
+            };
+            return View(result);
+        }
+
+        public async Task<IActionResult> EditCustomer(EditCustomerViewModel model)
+        {
+
+            if (ModelState.IsValid)
+            {
+                var result = await _userManager.FindByIdAsync(model.Id);
+                result.Description = model.Description;
+                result.Contact = model.Contact;
+                result.Address = model.Address;
+                result.Position = "Customer";
+                result.FullName = model.FullName;
+                result.Email = model.Email;
+                result.PhoneNumber = model.Contact;
+
+                var editResult =await _userManager.UpdateAsync(result);
+                if (editResult.Succeeded)
+                {
+                    return RedirectToAction("Index", "Customer");
+                }
+                
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(string Id)
+        {
+            var model = await _userManager.FindByIdAsync(Id);
+            DeleteCustomerViewModel result = new DeleteCustomerViewModel()
+            {
+                Id = model.Id,
+                Contact = model.PhoneNumber,
+                Description = model.Description,
+                FullName = model.FullName,
+                Address = model.Address,
+                Email = model.Email
+            };
+            return View(result);
+           
+        }
+
+        public async Task<IActionResult> Delete(DeleteCustomerViewModel model)
+        {
+
+            if (ModelState.IsValid)
+            {
+                var result = await _userManager.FindByIdAsync(model.Id);
+               var deleteResult = await _userManager.DeleteAsync(result);
+                if (deleteResult.Succeeded)
+                {
+                    return RedirectToAction("Index", "Customer");
+                }
+
+            }
+            return View();
+        }
+
     }
 }
