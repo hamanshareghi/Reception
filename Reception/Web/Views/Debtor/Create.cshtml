@@ -1,0 +1,38 @@
+﻿@model Model.Entities.Debtor
+
+<h4 class="card-title">بدهکار</h4>
+<hr />
+<div class="row">
+    <div class="col-md-10 mx-auto">
+        <form asp-area="Admin" asp-controller="Debtor" asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+              <div class="form-group">
+                <label asp-for="UserId" class="control-label"></label>
+                <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="PayStatus" class="control-label"></label>
+                <input asp-for="PayStatus" class="form-control" />
+                <span asp-validation-for="PayStatus" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input type="file" name="imgUp" asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <input type="submit" value="ثبت اطلاعات" class="btn btn-success" />
+                <a asp-action="Index" class="btn btn-info">بازگشت به لیست</a>
+
+            </div>
+        </form>
+    </div>
+</div>

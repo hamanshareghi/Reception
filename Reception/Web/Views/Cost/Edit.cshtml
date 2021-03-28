@@ -1,0 +1,65 @@
+﻿@model Model.Entities.Cost
+
+<div class="container">
+    <h4>ویرایش هزینه </h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-10 mx-auto">
+            <form asp-action="Edit" asp-controller="Cost" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="CostDefineId" />
+
+
+                <div class="form-group">
+                    <label asp-for="CostDefineId" class="control-label"></label>
+                    <select asp-for="CostDefineId" class="form-control" asp-items="ViewBag.CostDefineId"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Price" class="control-label"></label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                @*<div class="form-group">
+                    <label asp-for="UserId" class="control-label"></label>
+                    <input asp-for="UserId" class="form-control" />
+                    <span asp-validation-for="UserId" class="text-danger"></span>
+                </div>*@
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label"></label>
+                    <textarea asp-for="Description" class="form-control" id="editor" ></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="ثبت تغییرات" class="btn btn-warning" />
+                    <a asp-action="Index" class="btn btn-info">بازگشت به لیست</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+@section Scripts
+{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script src="~/lib/ckeditor5/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'), {
+                // The language code is defined in the https://en.wikipedia.org/wiki/ISO_639-1 standard.
+                language: 'fa'
+            })
+            .then(editor => {
+                console.log(editor);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+
+}
+
+

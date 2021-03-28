@@ -1,0 +1,61 @@
+﻿@using Common.Library
+@model IEnumerable<Model.Entities.Cost>
+
+
+<h1> هزینه</h1>
+<hr />
+<p>
+    <a asp-action="Create" class="btn btn-success">هزینه جدید</a>
+</p>
+<table class="table table-bordered table-striped table-responsive">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CostDefineId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InsertDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserId)
+            </th>
+
+            <th>دستورات</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CostDefine.Name)
+            </td>
+            <td>
+                <p class="font-weight-bold text-dark">
+                    @item.Price.ToString("#,0") تومان
+                </p>
+            </td>
+            <td>
+                <p class="text-primary">
+                    @item.InsertDate.ToShamsiDot()
+                </p>
+                
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+
+            <td>
+                <a asp-action="Edit" class="btn btn-warning" asp-route-id="@item.CostId"><i class="far fa-edit"></i></a>
+                <a asp-action="Details" class="btn btn-info" asp-route-id="@item.CostId"><i class="fas fa-info-circle"></i></a>
+                <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.CostId"><i class="fas fa-trash"></i></a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+

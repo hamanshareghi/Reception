@@ -53,7 +53,9 @@ namespace Web
             services.AddScoped<IStatus, StatusService>();
             services.AddScoped<IReception, ReceptionService>();
             services.AddScoped<ICostDefine, CostDefineService>();
+            services.AddScoped<ICost, CostService>();
             services.AddScoped<ILeave, LeaveService>();
+            services.AddScoped<IShipping, ShippingService>();
 
 
             #region Authorization

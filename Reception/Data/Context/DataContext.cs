@@ -37,6 +37,7 @@ namespace Data.Context
         public DbSet<DeviceDefect> DeviceDefects { get; set; }
         public DbSet<DeviceImage> DeviceImages { get; set; }
         public DbSet<Leave> Leaves { get; set; }
+        public DbSet<Debtor> Debtors { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -51,7 +52,6 @@ namespace Data.Context
 
             modelBuilder.Entity<Action>()
                 .HasQueryFilter(u => !u.IsDelete);
-
             modelBuilder.Entity<Brand>()
                 .HasQueryFilter(u => !u.IsDelete);
             modelBuilder.Entity<Carousel>()
@@ -60,7 +60,6 @@ namespace Data.Context
                 .HasQueryFilter(u => !u.IsDelete);
             modelBuilder.Entity<CostDefine>()
                 .HasQueryFilter(u => !u.IsDelete);
-
             modelBuilder.Entity<Defect>()
                 .HasQueryFilter(u => !u.IsDelete);
             modelBuilder.Entity<Faq>()
@@ -89,6 +88,9 @@ namespace Data.Context
                 .HasQueryFilter(u => !u.IsDelete);
             modelBuilder.Entity<Leave>()
                 .HasQueryFilter(u => !u.IsDelete);
+            modelBuilder.Entity<Debtor>()
+                .HasQueryFilter(u => !u.IsDelete);
+
             base.OnModelCreating(modelBuilder);
         }
     }
