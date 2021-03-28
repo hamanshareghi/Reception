@@ -15,13 +15,21 @@ namespace Model.Entities
         public int DebtorId { get; set; }
         [Display(Name = "کاربر")]
         public string UserId { get; set; }
+
         [Display(Name = "عنوان")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(300, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
         public string Title { get; set; }
+
+        [Display(Name = "مبلغ")]
+        [DataType(DataType.Currency)]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        public int Price { get; set; }
+
         [Display(Name = "شرح")]
         [MaxLength(300, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
         public string Description { get; set; }
+
         [Display(Name = "وضعیت")]
         public PayStatus PayStatus { get; set; }
 

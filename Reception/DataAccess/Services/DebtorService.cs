@@ -40,12 +40,16 @@ namespace DataAccess.Services
 
         public Task<List<Debtor>> GetAll()
         {
-            return _context.Debtors.ToListAsync();
+            return _context.Debtors
+                .Include(s=>s.User)
+                .ToListAsync();
         }
 
         public Task<Debtor> GetById(int id)
         {
-            return _context.Debtors.FirstOrDefaultAsync(s => s.DebtorId == id);
+            return _context.Debtors
+                .Include(s => s.User)
+                .FirstOrDefaultAsync(s => s.DebtorId == id);
         }
 
         public void Update(Debtor debtor)

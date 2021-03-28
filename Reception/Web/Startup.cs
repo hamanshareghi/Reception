@@ -56,6 +56,7 @@ namespace Web
             services.AddScoped<ICost, CostService>();
             services.AddScoped<ILeave, LeaveService>();
             services.AddScoped<IShipping, ShippingService>();
+            services.AddScoped<IDebtor, DebtorService>();
 
 
             #region Authorization
