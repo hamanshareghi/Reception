@@ -544,6 +544,45 @@ namespace Data.Migrations
                     b.ToTable("Faqs");
                 });
 
+            modelBuilder.Entity("Model.Entities.Leave", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("Confirmation")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("InsertDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("UpDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Leaves");
+                });
+
             modelBuilder.Entity("Model.Entities.Message", b =>
                 {
                     b.Property<int>("Id")
@@ -1070,6 +1109,15 @@ namespace Data.Migrations
                     b.Navigation("Reception");
                 });
 
+            modelBuilder.Entity("Model.Entities.Leave", b =>
+                {
+                    b.HasOne("Model.Entities.ApplicationUser", "User")
+                        .WithMany("Leaves")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Model.Entities.Product", b =>
                 {
                     b.HasOne("Model.Entities.Brand", "Brand")
@@ -1126,6 +1174,8 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Model.Entities.ApplicationUser", b =>
                 {
+                    b.Navigation("Leaves");
+
                     b.Navigation("Receptions");
 
                     b.Navigation("Tickets");

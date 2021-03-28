@@ -36,6 +36,7 @@ namespace Data.Context
 
         public DbSet<DeviceDefect> DeviceDefects { get; set; }
         public DbSet<DeviceImage> DeviceImages { get; set; }
+        public DbSet<Leave> Leaves { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -85,6 +86,8 @@ namespace Data.Context
             modelBuilder.Entity<DeviceDefect>()
                 .HasQueryFilter(u => !u.IsDelete);
             modelBuilder.Entity<DeviceImage>()
+                .HasQueryFilter(u => !u.IsDelete);
+            modelBuilder.Entity<Leave>()
                 .HasQueryFilter(u => !u.IsDelete);
             base.OnModelCreating(modelBuilder);
         }
