@@ -1,19 +1,23 @@
 ﻿@model Data.ViewModels.Account.CreateModel
 <div class="container">
-    <div class="bg-primary m-1 p-1 text-white"><h4>Create User</h4></div>
+    <div class="alert alert-info m-1 p-1 text-white"><h4>کاربرجدید</h4></div>
     <div asp-validation-summary=" All" class="text-danger"></div>
     <form asp-action="Create" method="post">
         <div class="form-group">
-            <label asp-for="Email"></label>
-            <input asp-for="Email" class="form-control" />
+            <label asp-for="FullName"></label>
+            <input asp-for="FullName" class="form-control" />
         </div>
         <div class="form-group">
-            <label asp-for="UserName"></label>
-            <input asp-for="UserName" class="form-control" />
+            <label asp-for="Email"></label>
+            <input asp-for="Email" class="form-control"/>
+        </div>
+        <div class="form-group">
+            <label asp-for="PhoneNumber"></label>
+            <input asp-for="PhoneNumber" class="form-control"/>
         </div>
         <div class="form-group">
             <label asp-for="Password"></label>
-            <input asp-for="Password" class="form-control" />
+            <input asp-for="Password" class="form-control"/>
         </div>
 
 
@@ -21,8 +25,8 @@
             <label asp-for="Roles"></label>
             <select asp-for="Roles" class="form-control" asp-items="ViewBag.Roles"></select>
         </div>
-        <button type="submit" class="btn btn-primary">Create</button>
-        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+        <button type="submit" class="btn btn-success">ثبت کاربرجدید</button>
+        <a asp-action="Index" class="btn btn-secondary">انصراف</a>
     </form>
 </div>
 

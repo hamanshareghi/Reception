@@ -123,7 +123,7 @@ namespace Web.Controllers
         public async Task<IActionResult> SignOut()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Login", "Authorize",new {area="Public"});
+            return RedirectToAction("Login", "Account");
         }
     }
 }

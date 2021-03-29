@@ -5,6 +5,7 @@ using Data.ViewModels.Account;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Model.Entities;
 
 namespace Web.Controllers
@@ -33,7 +34,11 @@ namespace Web.Controllers
             roleManager = roleMgr;
         }
 
-        public ViewResult Index() => View(userManager.Users);
+        public async Task<IActionResult> Index()
+        { 
+           return View(await userManager.Users.ToListAsync());
+        }
+            
 
         public ViewResult Create()
         {
@@ -49,9 +54,12 @@ namespace Web.Controllers
             {
                 ApplicationUser user = new ApplicationUser
                 {
-                    UserName = model.UserName,
+                    UserName = model.PhoneNumber,
+                    PhoneNumber = model.PhoneNumber,
+                    Contact = model.PhoneNumber,
                     Email = model.Email,
-
+                    FullName = model.FullName,
+                    EmailConfirmed = true,
                     
                 };
                 IdentityResult result = await userManager.CreateAsync(user, model.Password);

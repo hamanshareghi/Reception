@@ -8,15 +8,17 @@
 
 <div class="text-danger" asp-validation-summary="ModelOnly"></div>
 
-<table class="table table-sm table-bordered">
+<table class="table table-sm table-bordered table-striped table-responsive">
     <tr>
         <th>ID</th>
-        <th>Email</th>
-        <th>UserName</th>
+        <th>نام کامل</th>
+        <th>ایمیل</th>
+        <th>موبایل</th>
+        <th>نام کاربری</th>
 
-        <th>Commands</th>
+        <th>دستورات</th>
     </tr>
-    @if (Model.Any())
+    @if (!Model.Any())
     {
         <tr>
             <td colspan="5" class="text-center">No User Accounts</td>
@@ -28,17 +30,19 @@
         {
             <tr>
                 <td>@user.Id</td>
+                <td>@user.FullName</td>
                 <td>@user.Email</td>
+                <td>@user.PhoneNumber</td>
                 <td>@user.UserName</td>
 
                 <td>
                     <form asp-action="Delete" asp-route-id="@user.Id" method="post">
-                        <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@user.Id">Edit</a>
-                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                        <a class="btn btn-sm btn-warning" asp-action="Edit" asp-route-id="@user.Id">ویرایش</a>
+                        <button type="submit" class="btn btn-sm btn-danger">حذف</button>
                     </form>
                 </td>
             </tr>
         }
     }
 </table>
-<a class="btn btn-primary" asp-action="Create">Create</a>
+<a class="btn btn-success" asp-action="Create">ثبت کاربر جدید</a>
