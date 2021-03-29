@@ -127,7 +127,7 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Model.Entities.Action", b =>
                 {
-                    b.Property<int>("ActionId")
+                    b.Property<int>("DutyId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -162,7 +162,7 @@ namespace Data.Migrations
                     b.Property<DateTime?>("UpDateTime")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("ActionId");
+                    b.HasKey("DutyId");
 
                     b.HasIndex("ReceptionId");
 

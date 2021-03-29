@@ -526,7 +526,7 @@ namespace Data.Migrations
                 name: "Action",
                 columns: table => new
                 {
-                    ActionId = table.Column<int>(type: "int", nullable: false)
+                    DutyId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ReceptionId = table.Column<int>(type: "int", nullable: false),
                     ServiceId = table.Column<int>(type: "int", nullable: false),
@@ -541,7 +541,7 @@ namespace Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Action", x => x.ActionId);
+                    table.PrimaryKey("PK_Action", x => x.DutyId);
                     table.ForeignKey(
                         name: "FK_Action_Receptions_ReceptionId",
                         column: x => x.ReceptionId,

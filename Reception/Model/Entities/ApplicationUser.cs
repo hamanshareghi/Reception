@@ -37,6 +37,8 @@ namespace Model.Entities
         public ICollection<Ticket> Tickets { get; set; }
         public ICollection<Leave> Leaves { get; set; }
         public ICollection<Debtor> Debtors { get; set; }
+        public ICollection<RequestDevice> RequestDevices { get; set; }
+
 
         #endregion
 

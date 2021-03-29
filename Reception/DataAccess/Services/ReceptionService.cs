@@ -23,7 +23,7 @@ namespace DataAccess.Services
             return _context.Receptions
                 .Include(r => r.Customer)
                 .Include(r => r.Product)
-                .Include(s=>s.Actions)
+                .Include(s=>s.Duties)
                 .Include(s=>s.DeviceDefects)
                 .Include(s=>s.DeviceImages)
                 .ToListAsync();
@@ -34,7 +34,7 @@ namespace DataAccess.Services
             return _context.Receptions
                 .Include(r => r.Customer)
                 .Include(r => r.Product)
-                .Include(s => s.Actions)
+                .Include(s => s.Duties)
                 .Include(s => s.DeviceDefects)
                 .Include(s => s.DeviceImages)
                 .FirstOrDefaultAsync(s=>s.ReceptionId == id);

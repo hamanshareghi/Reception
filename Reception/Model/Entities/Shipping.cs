@@ -34,7 +34,7 @@ namespace Model.Entities
 
         #region Relation
 
-        public ICollection<Action> Actions { get; set; }
+        public ICollection<Duty> Duties { get; set; }
 
         #endregion
     }

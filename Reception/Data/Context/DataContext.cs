@@ -34,10 +34,12 @@ namespace Data.Context
         public DbSet<Video> Videos { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
 
+        public DbSet<Duty> Duties { get; set; }
         public DbSet<DeviceDefect> DeviceDefects { get; set; }
         public DbSet<DeviceImage> DeviceImages { get; set; }
         public DbSet<Leave> Leaves { get; set; }
         public DbSet<Debtor> Debtors { get; set; }
+        public DbSet<RequestDevice> RequestDevices { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -50,7 +52,7 @@ namespace Data.Context
                 fk.DeleteBehavior = DeleteBehavior.Restrict;
 
 
-            modelBuilder.Entity<Action>()
+            modelBuilder.Entity<Duty>()
                 .HasQueryFilter(u => !u.IsDelete);
             modelBuilder.Entity<Brand>()
                 .HasQueryFilter(u => !u.IsDelete);
@@ -89,6 +91,10 @@ namespace Data.Context
             modelBuilder.Entity<Leave>()
                 .HasQueryFilter(u => !u.IsDelete);
             modelBuilder.Entity<Debtor>()
+                .HasQueryFilter(u => !u.IsDelete);
+            modelBuilder.Entity<RequestDevice>()
+                .HasQueryFilter(u => !u.IsDelete);
+            modelBuilder.Entity<Duty>()
                 .HasQueryFilter(u => !u.IsDelete);
 
             base.OnModelCreating(modelBuilder);

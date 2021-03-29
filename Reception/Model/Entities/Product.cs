@@ -48,6 +48,7 @@ namespace Model.Entities
 
 
         public ICollection<Reception> Receptions { get; set; }
+        public ICollection<RequestDevice> RequestDevices { get; set; }
 
         #endregion
     }

@@ -9,10 +9,10 @@ using Model.Entities.Common;
 
 namespace Model.Entities
 {
-    public class Action : BaseEntityNotId
+    public class Duty : BaseEntityNotId
     {
         [Key]
-        public int ActionId { get; set; }
+        public int DutyId { get; set; }
 
         [Display(Name = "پذیرش")]
         public int ReceptionId { get; set; }

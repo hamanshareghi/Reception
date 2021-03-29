@@ -1,0 +1,84 @@
+﻿@model Model.Entities.Duty
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container">
+    <h1 class="alert alert-success">ثبت خدمات جدید</h1>
+
+    <hr />
+    <div class="row">
+        <div class="col-md-12 mx-auto">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+                <div class="dropdown bootstrap-select form-control mb-5">
+                    <label asp-for="ReceptionId" class="control-label"></label>
+                    <select class="form-control selectpicker" asp-for="ReceptionId" data-live-search="true" tabindex="null" asp-items="ViewBag.ReceptionId">
+                    </select>
+                </div>
+                <div class="dropdown bootstrap-select form-control mb-5">
+                    <label asp-for="ServiceId" class="control-label"></label>
+                    <select class="form-control selectpicker" asp-for="ServiceId" data-live-search="true" tabindex="null" asp-items="ViewBag.ServiceId">
+                    </select>
+                </div>
+                <div class="dropdown bootstrap-select form-control mb-5">
+                    <label asp-for="ShippingId" class="control-label"></label>
+                    <select class="form-control selectpicker" asp-for="ShippingId" data-live-search="true" tabindex="null" asp-items="ViewBag.ShippingId">
+                    </select>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                        <label asp-for="Price" class="control-label"></label>
+                        <input asp-for="Price" class="form-control" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                        <label asp-for="ActionDate" class="control-label"></label>
+                        <input asp-for="ActionDate" class="form-control" />
+                        <span asp-validation-for="ActionDate" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="dropdown bootstrap-select form-control mb-5">
+                    <label asp-for="StatusId" class="control-label"></label>
+                    <select class="form-control selectpicker" asp-for="StatusId" data-live-search="true" tabindex="null" asp-items="ViewBag.StatusId">
+                    </select>
+                </div>
+                <div class="form-group ">
+                    <label asp-for="Description" class="control-label"></label>
+                    <textarea asp-for="Description" class="form-control" id="editor"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="ثبت خدمات جدید" class="btn btn-success" />
+                    <a asp-action="Index" class="btn btn-info">بازگشت به لیست</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/lib/ckeditor5/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'), {
+                // The language code is defined in the https://en.wikipedia.org/wiki/ISO_639-1 standard.
+                language: 'fa'
+            })
+            .then(editor => {
+                console.log(editor);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+}

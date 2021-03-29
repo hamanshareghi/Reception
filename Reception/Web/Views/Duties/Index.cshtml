@@ -1,0 +1,88 @@
+﻿@using Common.Library
+@model IEnumerable<Model.Entities.Duty>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>لیست خدمات</h1>
+<hr />
+<p>
+    <a asp-action="Create" class="btn btn-success">خدمات جدید</a>
+</p>
+<table class="table table-bordered table-striped table-responsive">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Reception)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reception.Customer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reception.Product)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Service)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActionDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Shipping)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+
+            <th>دستورات</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Reception.ReceptionId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Reception.Customer.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Reception.Serial)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Service.Name)
+                </td>
+                <td>
+                    <p class="font-weight-bold text-primary">
+                        @item.ActionDate.ToShamsi()
+                    </p>
+                    @* @Html.DisplayFor(modelItem => item.ActionDate)*@
+                </td>
+                <td>
+                    <p class="font-weight-bold text-success">
+                        @item.Price.ToString("#,0") تومان
+                    </p>
+                    @* @Html.DisplayFor(modelItem => item.Price)*@
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Shipping.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status.Name)
+                </td>
+
+                <td>
+                    <a asp-action="Edit" class="btn btn-warning" asp-route-id="@item.DutyId"><i class="far fa-edit"></i></a>
+                    <a asp-action="Details" class="btn btn-info" asp-route-id="@item.DutyId"><i class="fas fa-info-circle"></i></a>
+                    <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.DutyId"><i class="fas fa-trash"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

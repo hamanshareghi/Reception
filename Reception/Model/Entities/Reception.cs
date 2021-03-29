@@ -56,7 +56,7 @@ namespace Model.Entities
         public ApplicationUser Customer { get; set; }
 
 
-        public ICollection<Action> Actions { get; set; }
+        public ICollection<Duty> Duties { get; set; }
 
         public ICollection<DeviceDefect> DeviceDefects { get; set; }
         public ICollection<DeviceImage> DeviceImages { get; set; }

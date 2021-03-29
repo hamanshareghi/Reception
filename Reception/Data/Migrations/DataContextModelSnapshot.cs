@@ -123,56 +123,6 @@ namespace Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Model.Entities.Action", b =>
-                {
-                    b.Property<int>("ActionId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("ActionDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("InsertDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDelete")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ReceptionId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ServiceId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ShippingId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StatusId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("UpDateTime")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("ActionId");
-
-                    b.HasIndex("ReceptionId");
-
-                    b.HasIndex("ServiceId");
-
-                    b.HasIndex("ShippingId");
-
-                    b.HasIndex("StatusId");
-
-                    b.ToTable("Action");
-                });
-
             modelBuilder.Entity("Model.Entities.ApplicationRole", b =>
                 {
                     b.Property<string>("Id")
@@ -552,6 +502,56 @@ namespace Data.Migrations
                     b.ToTable("DeviceImages");
                 });
 
+            modelBuilder.Entity("Model.Entities.Duty", b =>
+                {
+                    b.Property<int>("DutyId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("ActionDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("InsertDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ReceptionId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ServiceId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ShippingId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StatusId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("DutyId");
+
+                    b.HasIndex("ReceptionId");
+
+                    b.HasIndex("ServiceId");
+
+                    b.HasIndex("ShippingId");
+
+                    b.HasIndex("StatusId");
+
+                    b.ToTable("Duties");
+                });
+
             modelBuilder.Entity("Model.Entities.Faq", b =>
                 {
                     b.Property<int>("FaqId")
@@ -810,6 +810,49 @@ namespace Data.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("Receptions");
+                });
+
+            modelBuilder.Entity("Model.Entities.RequestDevice", b =>
+                {
+                    b.Property<int>("RequestDeviceId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CustomerId")
+                        .IsRequired()
+                        .HasMaxLength(450)
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("InsertDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<bool>("ViewStatus")
+                        .HasColumnType("bit");
+
+                    b.HasKey("RequestDeviceId");
+
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("RequestDevices");
                 });
 
             modelBuilder.Entity("Model.Entities.Rule", b =>
@@ -1074,41 +1117,6 @@ namespace Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Model.Entities.Action", b =>
-                {
-                    b.HasOne("Model.Entities.Reception", "Reception")
-                        .WithMany("Actions")
-                        .HasForeignKey("ReceptionId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Model.Entities.Service", "Service")
-                        .WithMany("Actions")
-                        .HasForeignKey("ServiceId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Model.Entities.Shipping", "Shipping")
-                        .WithMany("Actions")
-                        .HasForeignKey("ShippingId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Model.Entities.Status", "Status")
-                        .WithMany("Actions")
-                        .HasForeignKey("StatusId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Reception");
-
-                    b.Navigation("Service");
-
-                    b.Navigation("Shipping");
-
-                    b.Navigation("Status");
-                });
-
             modelBuilder.Entity("Model.Entities.Cost", b =>
                 {
                     b.HasOne("Model.Entities.CostDefine", "CostDefine")
@@ -1157,6 +1165,41 @@ namespace Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Reception");
+                });
+
+            modelBuilder.Entity("Model.Entities.Duty", b =>
+                {
+                    b.HasOne("Model.Entities.Reception", "Reception")
+                        .WithMany("Duties")
+                        .HasForeignKey("ReceptionId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Model.Entities.Service", "Service")
+                        .WithMany("Duties")
+                        .HasForeignKey("ServiceId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Model.Entities.Shipping", "Shipping")
+                        .WithMany("Duties")
+                        .HasForeignKey("ShippingId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Model.Entities.Status", "Status")
+                        .WithMany("Duties")
+                        .HasForeignKey("StatusId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Reception");
+
+                    b.Navigation("Service");
+
+                    b.Navigation("Shipping");
+
+                    b.Navigation("Status");
                 });
 
             modelBuilder.Entity("Model.Entities.Leave", b =>
@@ -1213,6 +1256,25 @@ namespace Data.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("Model.Entities.RequestDevice", b =>
+                {
+                    b.HasOne("Model.Entities.ApplicationUser", "User")
+                        .WithMany("RequestDevices")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Model.Entities.Product", "Product")
+                        .WithMany("RequestDevices")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Model.Entities.Ticket", b =>
                 {
                     b.HasOne("Model.Entities.ApplicationUser", "User")
@@ -1229,6 +1291,8 @@ namespace Data.Migrations
                     b.Navigation("Leaves");
 
                     b.Navigation("Receptions");
+
+                    b.Navigation("RequestDevices");
 
                     b.Navigation("Tickets");
                 });
@@ -1251,6 +1315,8 @@ namespace Data.Migrations
             modelBuilder.Entity("Model.Entities.Product", b =>
                 {
                     b.Navigation("Receptions");
+
+                    b.Navigation("RequestDevices");
                 });
 
             modelBuilder.Entity("Model.Entities.ProductGroup", b =>
@@ -1262,26 +1328,26 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Model.Entities.Reception", b =>
                 {
-                    b.Navigation("Actions");
-
                     b.Navigation("DeviceDefects");
 
                     b.Navigation("DeviceImages");
+
+                    b.Navigation("Duties");
                 });
 
             modelBuilder.Entity("Model.Entities.Service", b =>
                 {
-                    b.Navigation("Actions");
+                    b.Navigation("Duties");
                 });
 
             modelBuilder.Entity("Model.Entities.Shipping", b =>
                 {
-                    b.Navigation("Actions");
+                    b.Navigation("Duties");
                 });
 
             modelBuilder.Entity("Model.Entities.Status", b =>
                 {
-                    b.Navigation("Actions");
+                    b.Navigation("Duties");
                 });
 #pragma warning restore 612, 618
         }
