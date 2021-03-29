@@ -268,3 +268,8 @@ D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Views\Sh
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Views\Shipping\Details.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Views\Shipping\Edit.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Views\Shipping\Index.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Views\Duties\Create.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Views\Duties\Delete.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Views\Duties\Details.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Views\Duties\Edit.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Views\Duties\Index.cshtml.g.cs

@@ -28,6 +28,7 @@
                                                     <div class="input-group input-group-lg input-group-solid">
                                                         <div class="input-group-prepend"><span class="input-group-text"><i class="la la-file-contract"></i></span></div>
                                                         <input type="text" class="form-control form-control-lg form-control-solid" asp-for="FullName" placeholder="نام کامل">
+                                                        <span asp-validation-for="FullName"></span>
                                                     </div>
                                                     <div class="fv-plugins-message-container"></div>
                                                 </div>
@@ -42,6 +43,8 @@
                                                             </span>
                                                         </div>
                                                         <input type="tel" class="form-control form-control-lg form-control-solid" asp-for="Contact" placeholder="موبایل">
+                                                        <span asp-validation-for="Contact"></span>
+
                                                     </div>
                                                     @*<span class="form-text text-muted">ما هرگز ایمیل شما را با هیچ کس دیگری به اشتراک نمی گذاریم.</span>*@
                                                     <div class="fv-plugins-message-container"></div>
@@ -53,6 +56,8 @@
                                                     <div class="input-group input-group-lg input-group-solid">
                                                         <div class="input-group-prepend"><span class="input-group-text"><i class="la la-at"></i></span></div>
                                                         <input type="email" class="form-control form-control-lg form-control-solid" asp-for="Email" placeholder="پست الکترونیک">
+                                                        <span asp-validation-for="Email"></span>
+
                                                     </div>
                                                     <div class="fv-plugins-message-container"></div>
                                                 </div>
@@ -63,6 +68,8 @@
                                                     <div class="input-group input-group-lg input-group-solid">
                                                         <div class="input-group-prepend"><span class="input-group-text"><i class="la la-map"></i></span></div>
                                                         <input type="text" class="form-control form-control-lg form-control-solid" asp-for="Address" placeholder="آدرس">
+                                                        <span asp-validation-for="Address"></span>
+
                                                     </div>
                                                     <div class="fv-plugins-message-container"></div>
                                                 </div>
@@ -73,6 +80,8 @@
                                                     <div class="input-group input-group-lg input-group-solid">
                                                         <div class="input-group-prepend"><span class="input-group-text"><i class="la la-file-text"></i></span></div>
                                                         <input type="text" class="form-control form-control-lg form-control-solid" asp-for="Description" placeholder="توضیحات تکمیلی">
+                                                        <span asp-validation-for="Description"></span>
+
                                                     </div>
                                                     <div class="fv-plugins-message-container"></div>
                                                 </div>
