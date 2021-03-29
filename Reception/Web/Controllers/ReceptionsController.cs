@@ -40,7 +40,7 @@ namespace Web.Controllers
                 return NotFound();
             }
 
-            var reception = _reception.GetById(id.Value);
+            var reception =await _reception.GetById(id.Value);
             if (reception == null)
             {
                 return NotFound();
@@ -52,7 +52,7 @@ namespace Web.Controllers
         // GET: Receptions/Create
         public IActionResult Create()
         {
-            ViewData["CustomerId"] = new SelectList(_userManager.Users.ToList(), "Id", "Fullname");
+            ViewData["CustomerId"] = new SelectList(_userManager.Users.ToList(), "Id", "FullName");
             ViewData["ProductId"] = new SelectList(_product.GetAll(), "ProductId", "Name");
             return View();
         }
@@ -71,7 +71,7 @@ namespace Web.Controllers
                 _reception.Add(reception);
                 return RedirectToAction(nameof(Index),"Receptions");
             }
-            ViewData["CustomerId"] = new SelectList(_userManager.Users.ToList(), "Id", "Fullname");
+            ViewData["CustomerId"] = new SelectList(_userManager.Users.ToList(), "Id", "FullName");
             ViewData["ProductId"] = new SelectList(_product.GetAll(), "ProductId", "Name");
             return View(reception);
         }
@@ -89,7 +89,7 @@ namespace Web.Controllers
             {
                 return NotFound();
             }
-            ViewData["CustomerId"] = new SelectList(_userManager.Users.ToList(), "Id", "Fullname");
+            ViewData["CustomerId"] = new SelectList(_userManager.Users.ToList(), "Id", "FullName");
             ViewData["ProductId"] = new SelectList(_product.GetAll(), "ProductId", "Name");
             return View(reception);
         }
@@ -126,7 +126,7 @@ namespace Web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CustomerId"] = new SelectList(_userManager.Users.ToList(), "Id", "Fullname");
+            ViewData["CustomerId"] = new SelectList(_userManager.Users.ToList(), "Id", "FullName");
             ViewData["ProductId"] = new SelectList(_product.GetAll(), "ProductId", "Name");
             return View(reception);
         }

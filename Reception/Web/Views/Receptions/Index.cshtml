@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Model.Entities.Reception>
+﻿@using Common.Library
+@model IEnumerable<Model.Entities.Reception>
 
 @{
     ViewData["Title"] = "Index";
@@ -6,64 +7,90 @@
 
 <div class="container">
     <h1>لیست پذیرش</h1>
-
+    <hr />
     <p>
-        <a asp-action="Create">Create New</a>
+        <a asp-action="Create" class="btn btn-success">پذیرش جدید</a>
     </p>
     <table class="table table-striped table-responsive table-bordered">
         <thead>
             <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ReceptionId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Customer)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Customer.Contact)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ReceptionDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Product)
+                </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Serial)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.UserId)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ReceptionDate)
-                </th>
+
                 <th>
                     @Html.DisplayNameFor(model => model.Description)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Product)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Customer)
-                </th>
-
+                <th>عملیات</th>
                 <th>دستورات</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Serial)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UserId)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ReceptionDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Product.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Customer.Id)
-                    </td>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReceptionId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.FullName)
+                </td>
+                <td>
+                    <p class="text-primary font-weight-bold">
+                        @item.ReceptionDate.ToShamsi()
+                    </p>
+                    @* @Html.DisplayFor(modelItem => item.ReceptionDate)*@
+                </td>
+                <td>
+                    <p class="text-info font-weight-bold">
+                        @item.Customer.Contact
+                    </p>
+                    @* @Html.DisplayFor(modelItem => item.ReceptionDate)*@
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Serial)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserId)
+                </td>
 
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.ReceptionId">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.ReceptionId">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.ReceptionId">Delete</a>
-                    </td>
-                </tr>
+                <td>
+                    @Html.Raw(item.Description)
+                </td>
+                <td>
+                    <a asp-controller="" asp-action="Edit" class="btn btn-success" asp-route-id="@item.ReceptionId">
+                        <i class="fas fa-calendar-plus"></i> ثبت خدمات
+                    </a>
+
+                </td>
+                <td>
+                    <a asp-action="Edit" class="btn btn-warning" asp-route-id="@item.ReceptionId"><i class="far fa-edit"></i></a>
+                    <a asp-action="Details" class="btn btn-info" asp-route-id="@item.ReceptionId"><i class="fas fa-info-circle"></i></a>
+                    <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.ReceptionId"><i class="fas fa-trash"></i></a>
+
+                </td>
+            </tr>
             }
         </tbody>
     </table>
