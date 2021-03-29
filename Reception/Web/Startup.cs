@@ -58,6 +58,7 @@ namespace Web
             services.AddScoped<IShipping, ShippingService>();
             services.AddScoped<IDebtor, DebtorService>();
             services.AddScoped<IDuty, DutyService>();
+            services.AddScoped<IRequestDevice, RequestDeviceService>();
 
 
             #region Authorization
