@@ -93,12 +93,13 @@
                                 <!--end::گام 1-->
                                 <!--begin::اقدامات-->
                                 <div class="d-flex justify-content-between border-top mt-5 pt-10">
-
                                     <div>
-
-                                        <button type="submit" class="btn btn-primary font-weight-bold text-uppercase px-9 py-4" >
+                                        <button type="submit" class="btn btn-primary font-weight-bold text-uppercase px-5 py-2" >
                                             ثبت اطلاعات مشتریان
                                         </button>
+                                        <a asp-area="" asp-controller="Customer" asp-action="Index" class="btn btn-info font-weight-bold text-uppercase px-5 py-2" >
+                                            بازگشت به لیست
+                                        </a>
                                     </div>
                                 </div>
                                 <!--end::اقدامات-->
@@ -125,7 +126,6 @@
         ClassicEditor
             .create(document.querySelector('#editor'),
                 {
-                    // The language code is defined in the https://en.wikipedia.org/wiki/ISO_639-1 standard.
                     language: 'fa'
                 })
             .then(editor => {

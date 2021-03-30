@@ -260,6 +260,11 @@ D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Views\Stat
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Views\Status\Details.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Views\Status\Edit.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Views\Status\Index.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Views\Tickets\Create.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Views\Tickets\Delete.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Views\Tickets\Details.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Views\Tickets\Edit.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Views\Tickets\Index.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Views\Users\Create.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Views\Users\Edit.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Views\Users\Index.cshtml.g.cs
@@ -278,8 +283,3 @@ D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Web.dll
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\ref\Web.dll
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Web.pdb
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Web.genruntimeconfig.cache
-D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Views\Tickets\Create.cshtml.g.cs
-D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Views\Tickets\Delete.cshtml.g.cs
-D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Views\Tickets\Details.cshtml.g.cs
-D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Views\Tickets\Edit.cshtml.g.cs
-D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Views\Tickets\Index.cshtml.g.cs

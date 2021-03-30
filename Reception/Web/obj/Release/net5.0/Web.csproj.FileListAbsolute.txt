@@ -278,3 +278,8 @@ D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Views\Re
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Views\RequestDevices\Details.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Views\RequestDevices\Edit.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Views\RequestDevices\Index.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Views\Tickets\Create.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Views\Tickets\Delete.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Views\Tickets\Details.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Views\Tickets\Edit.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Views\Tickets\Index.cshtml.g.cs
