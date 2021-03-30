@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<Model.Entities.RequestDevice>
-
+@using Common.Library
 @{
     ViewData["Title"] = "Index";
 }
@@ -14,6 +14,10 @@
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.User)
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.User.PhoneNumber)*@
+                شماره تماس
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.UpDateTime)
@@ -40,7 +44,13 @@
                 @Html.DisplayFor(modelItem => item.User.FullName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.UpDateTime)
+                @Html.DisplayFor(modelItem => item.User.PhoneNumber)
+            </td>
+            <td>
+                <p class="font-weight-bold text-success">
+                    @item.UpDateTime?.ToShamsi()
+                </p>
+                @*@Html.DisplayFor(modelItem => item.UpDateTime)*@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Product.Name)

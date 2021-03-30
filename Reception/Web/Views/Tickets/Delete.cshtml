@@ -1,0 +1,62 @@
+﻿@model Model.Entities.Ticket
+@using Common.Library
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="container">
+
+</div>
+<h1>حذف تیکت</h1>
+
+<h3>آیا از حذف تیکت اطمینان دارید؟</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.User.FullName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Subject)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Subject)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.Raw(Model.Description)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MessageStatus)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MessageStatus)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.User)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.User.FullName)
+        </dd >
+        
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.UpDateTime)
+        </dt>
+        <dd class="col-sm-10">
+            <p class="text-dark font-weight-bold">
+                @Model.UpDateTime?.ToShamsiDot()
+            </p>
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="TicketId" />
+        <input type="submit" value="حذف تیکت " class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-info">بازگشت به لیست</a>
+    </form>
+</div>
