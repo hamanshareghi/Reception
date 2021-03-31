@@ -12,7 +12,7 @@ namespace Model.Entities
     public class Reception : BaseEntityNotId
     {
         [Key]
-        [Display(Name = "شماره پذیرش")]
+        [Display(Name = "پذیرش")]
         public int ReceptionId { get; set; }
 
         [Display(Name = "مشتری")]

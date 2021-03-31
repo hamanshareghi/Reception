@@ -15,13 +15,16 @@ namespace Web.Controllers
     public class ReceptionsController : Controller
     {
         private IProduct _product;
-
+        private IDefect _defect;
+        private IDeviceDefect _deviceDefect;
         private IReception _reception;
         private UserManager<ApplicationUser> _userManager;
 
-        public ReceptionsController(IProduct product, IReception reception, UserManager<ApplicationUser> userManager)
+        public ReceptionsController(IProduct product, IDefect defect, IDeviceDefect deviceDefect, IReception reception, UserManager<ApplicationUser> userManager)
         {
             _product = product;
+            _defect = defect;
+            _deviceDefect = deviceDefect;
             _reception = reception;
             _userManager = userManager;
         }
@@ -50,10 +53,12 @@ namespace Web.Controllers
         }
 
         // GET: Receptions/Create
-        public IActionResult Create()
+        public async Task<IActionResult> CreateAsync()
         {
             ViewData["CustomerId"] = new SelectList(_userManager.Users.ToList(), "Id", "FullName");
             ViewData["ProductId"] = new SelectList(_product.GetAll(), "ProductId", "Name");
+            ViewData["DefectId"] = new SelectList(await _defect.GetAll(), "DefectId", "Name");
+
             return View();
         }
 
@@ -62,17 +67,33 @@ namespace Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ReceptionId,CustomerId,ProductId,Serial,UserId,ReceptionDate,Description,InsertDate,IsDelete,UpDateTime")] Reception reception)
+        public async Task<IActionResult> Create([Bind("ReceptionId,CustomerId,ProductId,Serial,UserId,ReceptionDate,Description,InsertDate,IsDelete,UpDateTime")] Reception reception,List<int> defectsList)
         {
             if (ModelState.IsValid)
             {
                 reception.InsertDate = DateTime.Now;
                 reception.UpDateTime =DateTime.Now;
                 _reception.Add(reception);
+                foreach (var item in defectsList)
+                {
+                    _deviceDefect.Add(new DeviceDefect()
+                    {
+                        UpDateTime = DateTime.Now,
+                        InsertDate = DateTime.Now,
+                        ReceptionId = reception.ReceptionId,
+                        IsDelete = false,
+                        DefectId = item,
+                        
+                    });
+                                       
+                }
+                
                 return RedirectToAction(nameof(Index),"Receptions");
             }
             ViewData["CustomerId"] = new SelectList(_userManager.Users.ToList(), "Id", "FullName");
             ViewData["ProductId"] = new SelectList(_product.GetAll(), "ProductId", "Name");
+            ViewData["DefectId"] = new SelectList(await _defect.GetAll(), "DefectId", "Name");
+
             return View(reception);
         }
 
@@ -91,6 +112,8 @@ namespace Web.Controllers
             }
             ViewData["CustomerId"] = new SelectList(_userManager.Users.ToList(), "Id", "FullName");
             ViewData["ProductId"] = new SelectList(_product.GetAll(), "ProductId", "Name");
+            ViewData["DefectId"] = new SelectList(await _defect.GetAll(), "DefectId", "Name");
+
             return View(reception);
         }
 
@@ -124,10 +147,12 @@ namespace Web.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index),"Receptions");
             }
             ViewData["CustomerId"] = new SelectList(_userManager.Users.ToList(), "Id", "FullName");
             ViewData["ProductId"] = new SelectList(_product.GetAll(), "ProductId", "Name");
+            ViewData["DefectId"] = new SelectList(await _defect.GetAll(), "DefectId", "Name");
+
             return View(reception);
         }
 
