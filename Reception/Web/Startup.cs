@@ -60,6 +60,7 @@ namespace Web
             services.AddScoped<IDuty, DutyService>();
             services.AddScoped<IRequestDevice, RequestDeviceService>();
             services.AddScoped<ITicket, TicketService>();
+            services.AddScoped<ICustomer, CustomerService>();
 
 
             #region Authorization

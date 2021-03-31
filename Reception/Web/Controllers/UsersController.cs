@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Data.ViewModels.Account;
@@ -60,6 +61,8 @@ namespace Web.Controllers
                     Email = model.Email,
                     FullName = model.FullName,
                     EmailConfirmed = true,
+                    InsertDate = DateTime.Now,
+                    UpDateTime = DateTime.Now,
                     
                 };
                 IdentityResult result = await userManager.CreateAsync(user, model.Password);

@@ -1,68 +1,126 @@
-﻿@model IEnumerable<Model.Entities.ApplicationUser>
-
+﻿@model Tuple<List<Model.Entities.ApplicationUser>, int>
+@using Common.Library
+@{
+    int row = 1;
+}
 <div class="container">
     <h4 class="card-title"> مشتریان </h4>
+    <div class="mb-7">
+        <form asp-area="" asp-controller="Customer" asp-action="Index" method="get">
+            <div class="row align-items-center">
+
+                <div class="col-lg-10 col-xl-10">
+                    <div class="row align-items-center">
+                        <div class="col-md-10 my-2 my-md-0">
+                            <div class="input-icon">
+                                <input type="text" name="search" class="form-control" placeholder="جستجو..." id="kt_datatable_search_query">
+                                <span>
+                                    <i class="flaticon2-search-1 text-muted"></i>
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-2 col-xl-2 mt-5 mt-lg-0">
+                    <button type="submit" class="btn btn-light-primary px-6 font-weight-bold">
+                        جستجو
+                    </button>
+                </div>
+
+            </div>
+        </form>
+    </div>
     <hr />
     <p>
         <a asp-controller="Customer" asp-action="AddCustomer" class="btn btn-success">ثبت مشتری جدید</a>
     </p>
     <table class="table table-bordered table-striped table-responsive">
         <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.FullName)
-                </th>
-                <th>
-                    @*@Html.DisplayNameFor(model => model.PhoneNumber)*@
-                    موبایل
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CustomerKind)
-                </th>
-                <th>
-                    @*@Html.DisplayNameFor(model => model.Email)*@
-                    ایمیل
-                </th>
-                @*<th>
-                    @Html.DisplayNameFor(model => model.Position)
-                </th>*@
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                نام کامل
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.PhoneNumber)*@
+                موبایل
+            </th>
+            <th>
+                مشتری
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Email)*@
+                ایمیل
+            </th>
+            <th>
+                بروزرسانی
+            </th>
 
-                <th>دستورات</th>
-            </tr>
+            <th>دستورات</th>
+        </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FullName)
-                    </td>
+        @foreach (var item in Model.Item1)
+        {
+            <tr>
+                <td>
+                    @row
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
 
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CustomerKind)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerKind)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
 
-                    </td>
-                    @*<td>
-                        @Html.DisplayFor(modelItem => item.Position)
-                    </td>*@
+                </td>
+                <td>
+                    <p class="text-info font-weight-bold">
+                        @item.UpDateTime?.ToShamsi()
+                    </p>
+                </td>
 
-                    <td>
-                        <a asp-action="EditCustomer" class="btn btn-warning" asp-route-id="@item.Id"><i class="far fa-edit"></i></a>
-                        @*<a asp-action="Details" class="btn btn-info" asp-route-id="@item.Id"><i class="fas fa-info-circle"></i></a>*@
-                        <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id"><i class="fas fa-trash"></i></a>
-                    </td>
-                </tr>
-            }
+                <td>
+                    <a asp-action="EditCustomer" class="btn btn-warning" asp-route-id="@item.Id"><i class="far fa-edit"></i></a>
+                    @*<a asp-action="Details" class="btn btn-info" asp-route-id="@item.Id"><i class="fas fa-info-circle"></i></a>*@
+                    <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id"><i class="fas fa-trash"></i></a>
+                </td>
+            </tr>
+            row += 1;
+        }
         </tbody>
     </table>
 </div>
+<div class="container">
+        @if (Model.Item2 > 1)
+        {
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    @for (int i = 1; i <= Model.Item2; i++)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="/Customer/Index?pageId=@i">
+                                @i
+                            </a>
+                        </li>
+                    }
 
+
+                </ul>
+            </nav>
+        }
+
+    
+</div>
 
 

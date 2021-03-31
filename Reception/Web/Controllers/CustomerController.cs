@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Common.Library;
 using Data.ViewModels.Customer;
+using DataAccess.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Model.Entities;
 
@@ -13,13 +15,13 @@ namespace Web.Controllers
     {
 
         private UserManager<ApplicationUser> _userManager;
-        private SignInManager<ApplicationUser> _signInManager;
+        private ICustomer _customer;
         private RoleManager<ApplicationRole> _roleManager;
 
-        public CustomerController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, RoleManager<ApplicationRole> roleManager)
+        public CustomerController(UserManager<ApplicationUser> userManager, ICustomer customer, RoleManager<ApplicationRole> roleManager)
         {
             _userManager = userManager;
-            _signInManager = signInManager;
+            _customer = customer;
             _roleManager = roleManager;
         }
 
@@ -57,13 +59,18 @@ namespace Web.Controllers
                     FullName = model.FullName,
                     EmailConfirmed = true,
                     Position = "Customer",
+                    IsDelete = false,
+                    InsertDate = DateTime.Now,
+                    UpDateTime = DateTime.Now,
                     
                 };
                 IdentityResult result = await _userManager.CreateAsync(customer, "Password@1");
                 if (result.Succeeded)
                 {
-
+                    
                     var rolesResult = await _userManager.AddToRoleAsync(customer, "Users");
+                    string message = $"کاربر {model.FullName} خوش آمدید نام کاربری {model.Contact} و رمز عبور : Password@1 برای پیگیری به سایت www.storebit.ir مراجعه کنید";
+                    SendMessage.SendSMS(customer.PhoneNumber,message);
                     return Redirect("~/Customer/Index");
                 }
 
@@ -81,10 +88,14 @@ namespace Web.Controllers
             return View();
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string search,int pageId = 1)
         {
-            var model = _userManager.Users.ToList();
-            return View(model);
+            if (!string.IsNullOrEmpty(search))
+            {
+                return View( _customer.GetUserBySearch(search,pageId));
+            }
+            
+            return View (  _customer.GetAll(pageId));
         }
 
         [HttpGet]
@@ -97,7 +108,8 @@ namespace Web.Controllers
                 Description = model.Description,
                 FullName = model.FullName,
                 Address = model.Address,
-                Email = model.Email
+                Email = model.Email,
+
             };
             return View(result);
         }
@@ -115,8 +127,10 @@ namespace Web.Controllers
                 result.FullName = model.FullName;
                 result.Email = model.Email;
                 result.PhoneNumber = model.Contact;
-
+                result.UpDateTime=DateTime.Now;
                 var editResult =await _userManager.UpdateAsync(result);
+                //string message = $"کاربر {model.FullName} خوش آمدید نام کاربری {model.Contact} و رمز عبور : Password@1 برای پیگیری به سایت www.storebit.ir مراجعه کنید";
+                //SendMessage.SendSMS(result.PhoneNumber, message);
                 if (editResult.Succeeded)
                 {
                     return RedirectToAction("Index", "Customer");
@@ -148,8 +162,10 @@ namespace Web.Controllers
 
             if (ModelState.IsValid)
             {
-                var result = await _userManager.FindByIdAsync(model.Id);
-               var deleteResult = await _userManager.DeleteAsync(result);
+               var result = await _userManager.FindByIdAsync(model.Id);
+               result.IsDelete = false;
+               result.UpDateTime=DateTime.Now;
+               var deleteResult = await _userManager.UpdateAsync(result);
                 if (deleteResult.Succeeded)
                 {
                     return RedirectToAction("Index", "Customer");

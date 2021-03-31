@@ -1,7 +1,9 @@
 ﻿
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
+using Model.Entities.Common;
 
 namespace Model.Entities
 {
@@ -29,6 +31,18 @@ namespace Model.Entities
 
         [Display(Name = "شرح")]
         public string Description { get; set; }
+
+        [Display(Name = "تاریخ")]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
+
+        public DateTime InsertDate { get; set; } = DateTime.Now;
+
+        public bool IsDelete { get; set; }
+
+        [Display(Name = "تاریخ")]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
+
+        public DateTime? UpDateTime { get; set; }
 
 
         #region Relation

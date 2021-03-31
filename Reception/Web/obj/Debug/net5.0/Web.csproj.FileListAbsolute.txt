@@ -283,3 +283,4 @@ D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Web.dll
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\ref\Web.dll
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Web.pdb
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Web.genruntimeconfig.cache
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\bin\Debug\net5.0\Kavenegar.dll
