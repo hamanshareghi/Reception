@@ -1,50 +1,131 @@
-﻿@model IEnumerable<Model.Entities.Shipping>
+﻿@model Tuple<List<Model.Entities.Shipping>,int>
+@{
+    int row = 1;
+    string query = " ";
+    if (ViewBag.Search != null)
+    {
+        query = ViewBag.Search.ToString();
+    }
+}
+@using Common.Library
+<div class="container">
+    <h1> باربری</h1>
+    <div class="mb-7">
+        <form asp-area="" asp-controller="Shipping" asp-action="Index" method="get">
+            <div class="row align-items-center">
 
+                <div class="col-lg-10 col-xl-10">
+                    <div class="row align-items-center">
+                        <div class="col-md-10 my-2 my-md-0">
+                            <div class="input-icon">
+                                <input type="text" name="search" class="form-control" placeholder="جستجو..." id="kt_datatable_search_query">
+                                <span>
+                                    <i class="flaticon2-search-1 text-muted"></i>
+                                </span>
+                            </div>
+                        </div>
 
-<h1> باربری</h1>
-<hr />
-<p>
-    <a asp-controller="Shipping" asp-action="Create" class="btn btn-success">باربری جدید</a>
-</p>
-<table class="table table-bordered table-striped table-responsive">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Driver)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Contact)
-            </th>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-xl-2 mt-5 mt-lg-0">
+                    <button type="submit" class="btn btn-light-primary px-6 font-weight-bold">
+                        جستجو
+                    </button>
+                </div>
 
-
-            <th>دستورات</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+            </div>
+        </form>
+    </div>
+    <hr />
+    <p>
+        <a asp-controller="Shipping" asp-action="Create" class="btn btn-success">باربری جدید</a>
+    </p>
+    <table class="table table-bordered table-striped table-responsive">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Driver)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Contact)
-                </td>
+                <th>
+                    #
+                </th>
+                <th>
+                    نام کامل
+                    </th>
+                <th>
+                    مسئول
+                </th>
+                <th>
+                    تماس
+                </th>
+                <th>
+                    بروزرسانی
+                </th>
 
-                <td>
-                    <a asp-action="Edit" class="btn btn-warning" asp-route-id="@item.ShippingId"><i class="far fa-edit"></i></a>
-                    <a asp-action="Details" class="btn btn-info" asp-route-id="@item.ShippingId"><i class="fas fa-info-circle"></i></a>
-                    <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.ShippingId"><i class="fas fa-trash"></i></a>
-                </td>
+                <th>دستورات</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Item1)
+            {
+                <tr>
+                    <td>
+                        @row
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Driver)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Contact)
+                    </td>
+                    <td>
+                        <p class="text-info font-weight-bold">
+                            @item.UpDateTime?.ToShamsi()
+                        </p>
+                    </td>
+                    <td>
+                        <a asp-action="Edit" class="btn btn-warning" asp-route-id="@item.ShippingId"><i class="far fa-edit"></i></a>
+                        <a asp-action="Details" class="btn btn-info" asp-route-id="@item.ShippingId"><i class="fas fa-info-circle"></i></a>
+                        <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.ShippingId"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+                row +=1;
+       }
+
+        </tbody>
+    </table>
+</div>
+
+<div class="container">
+    @if (Model.Item2 > 1)
+    {
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                @for (int i = 1; i <= Model.Item2; i++)
+                {
+                    <li class="page-item">
+                        @if (!string.IsNullOrEmpty(query))
+                        {
+                            <a class="page-link" href="/Shipping/Index?pageId=@i&search=@query">
+                                @i
+                            </a>
+                        }
+                        else
+                        {
+                            <a class="page-link" href="/Shipping/Index?pageId=@i">
+                                @i
+                            </a>
+                        }
+                    </li>
+                }
+
+
+            </ul>
+        </nav>
+    }
+
+    
+</div>
+
 
 

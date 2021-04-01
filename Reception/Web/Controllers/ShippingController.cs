@@ -19,9 +19,14 @@ namespace Web.Controllers
         }
 
         // GET: Admin/Carousels
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string search ,int pageId =1)
         {
-            return View(await _shipping.GetAll());
+            if (!string.IsNullOrEmpty(search))
+            {
+                ViewBag.Search = search;
+                return View(_shipping.GetShippingBySearch(search, pageId));
+            }
+            return View(  _shipping.GetAll(pageId));
         }
 
         // GET: Admin/Carousels/Details/5

@@ -38,9 +38,74 @@ namespace DataAccess.Services
             return _context.Shippings.Any(s => s.ShippingId == id);
         }
 
-        public Task<List<Shipping>> GetAll()
+        public Tuple<List<Shipping>, int> GetShippingBySearch(string search, int pageId)
         {
-            return _context.Shippings.ToListAsync();
+            int take = 0;
+            if (take == 0)
+            {
+                take = 1;
+            }
+
+            int skip = (pageId - 1) * take;
+
+            int pageCount = _context.Shippings
+                .Count(s =>
+                        s.Contact.ToLower().Contains(search)
+                        || s.Description.ToLower().Contains(search)
+                        || s.Name.ToLower().Contains(search)
+                        || s.Driver.ToLower().Contains(search)
+                        );
+            if (pageCount % take != 0)
+            {
+                pageCount = pageCount / take;
+                pageCount++;
+            }
+            else
+            {
+                pageCount = pageCount / take;
+            }
+
+            var query = _context.Shippings
+
+                    .Where(s =>
+                        s.Contact.ToLower().Contains(search)
+                        || s.Description.ToLower().Contains(search)
+                        || s.Name.ToLower().Contains(search)
+                        || s.Driver.ToLower().Contains(search)
+                    )
+                    .OrderByDescending(s => s.UpDateTime)
+                    .Skip(skip)
+                    .Take(take)
+                    .ToList();
+            return Tuple.Create(query, pageCount);
+        }
+
+        public Tuple<List<Shipping>, int> GetAll(int pageId = 1)
+        {
+            int take = 0;
+            if (take == 0)
+            {
+                take = 1;
+            }
+
+            int skip = (pageId - 1) * take;
+
+            int pageCount = _context.Shippings.Count();
+            if (pageCount % take != 0)
+            {
+                pageCount = pageCount / take;
+                pageCount++;
+            }
+            else
+            {
+                pageCount = pageCount / take;
+            }
+
+            var query = _context.Shippings
+                .Skip(skip)
+                .Take(take)
+                .ToList();
+            return Tuple.Create(query, pageCount);
         }
 
         public Task<Shipping> GetById(int id)

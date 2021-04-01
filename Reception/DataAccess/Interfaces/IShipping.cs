@@ -9,11 +9,13 @@ namespace DataAccess.Interfaces
 {
     public interface IShipping
     {
-        Task<List<Shipping>> GetAll();
+        Tuple<List<Shipping>,int>  GetAll(int pageId=1);
         Task<Shipping> GetById(int id);
         void Add(Shipping shipping);
         void Update(Shipping shipping);
         void Delete(Shipping shipping);
         bool Exist(int id);
+        Tuple<List<Shipping>, int> GetShippingBySearch(string search,int pageId);
+
     }
 }

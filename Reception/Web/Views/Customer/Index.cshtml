@@ -2,6 +2,12 @@
 @using Common.Library
 @{
     int row = 1;
+    string query = " ";
+    if (ViewBag.Search != null)
+    {
+         query = ViewBag.Search.ToString();
+    }
+
 }
 <div class="container">
     <h4 class="card-title"> مشتریان </h4>
@@ -109,9 +115,18 @@
                     @for (int i = 1; i <= Model.Item2; i++)
                     {
                         <li class="page-item">
-                            <a class="page-link" href="/Customer/Index?pageId=@i">
-                                @i
-                            </a>
+                            @if (!string.IsNullOrEmpty(query))
+                            {
+                                <a class="page-link" href="/Customer/Index?pageId=@i&search=@query">
+                                    @i
+                                </a>
+                            }
+                            else
+                            {
+                                <a class="page-link" href="/Customer/Index?pageId=@i">
+                                    @i
+                                </a>
+                            }
                         </li>
                     }
 

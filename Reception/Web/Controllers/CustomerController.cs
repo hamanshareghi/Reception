@@ -90,8 +90,10 @@ namespace Web.Controllers
 
         public IActionResult Index(string search,int pageId = 1)
         {
+            
             if (!string.IsNullOrEmpty(search))
             {
+                ViewBag.Search = search;
                 return View( _customer.GetUserBySearch(search,pageId));
             }
             

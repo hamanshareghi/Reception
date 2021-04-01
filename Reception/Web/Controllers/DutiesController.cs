@@ -53,11 +53,11 @@ namespace Web.Controllers
         }
 
         // GET: Duties/Create
-        public async Task<IActionResult> CreateAsync()
+        public async Task<IActionResult> Create()
         {
             ViewData["ReceptionId"] = new SelectList(await _reception.GetAll(), "ReceptionId", "ReceptionId");
             ViewData["ServiceId"] = new SelectList(await _service.GetAll(), "ServiceId", "Name");
-            ViewData["ShippingId"] = new SelectList(await _shipping.GetAll(), "ShippingId", "Name");
+            ViewData["ShippingId"] = new SelectList(_shipping.GetAll().Item1, "ShippingId", "Name");
             ViewData["StatusId"] = new SelectList(await _status.GetAll(), "StatusId", "Name");
             return View();
         }
@@ -78,7 +78,7 @@ namespace Web.Controllers
             }
             ViewData["ReceptionId"] = new SelectList(await _reception.GetAll(), "ReceptionId", "ReceptionId");
             ViewData["ServiceId"] = new SelectList(await _service.GetAll(), "ServiceId", "Name");
-            ViewData["ShippingId"] = new SelectList(await _shipping.GetAll(), "ShippingId", "Name");
+            ViewData["ShippingId"] = new SelectList(_shipping.GetAll().Item1, "ShippingId", "Name");
             ViewData["StatusId"] = new SelectList(await _status.GetAll(), "StatusId", "Name");
             return View(duty);
         }
@@ -98,7 +98,7 @@ namespace Web.Controllers
             }
             ViewData["ReceptionId"] = new SelectList(await _reception.GetAll(), "ReceptionId", "ReceptionId");
             ViewData["ServiceId"] = new SelectList(await _service.GetAll(), "ServiceId", "Name");
-            ViewData["ShippingId"] = new SelectList(await _shipping.GetAll(), "ShippingId", "Name");
+            ViewData["ShippingId"] = new SelectList(_shipping.GetAll().Item1, "ShippingId", "Name");
             ViewData["StatusId"] = new SelectList(await _status.GetAll(), "StatusId", "Name");
             return View(duty);
         }
@@ -137,7 +137,7 @@ namespace Web.Controllers
             }
             ViewData["ReceptionId"] = new SelectList(await _reception.GetAll(), "ReceptionId", "ReceptionId");
             ViewData["ServiceId"] = new SelectList(await _service.GetAll(), "ServiceId", "Name");
-            ViewData["ShippingId"] = new SelectList(await _shipping.GetAll(), "ShippingId", "Name");
+            ViewData["ShippingId"] = new SelectList(_shipping.GetAll().Item1, "ShippingId", "Name");
             ViewData["StatusId"] = new SelectList(await _status.GetAll(), "StatusId", "Name");
             return View(duty);
         }
