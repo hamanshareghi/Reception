@@ -74,6 +74,11 @@ namespace DataAccess.Services
 
         }
 
+        public List<Debtor> GetDebtorFromToDate(string search, DateTime start, DateTime end)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Debtor> GetAll()
         {
             return _context.Debtors.ToList();

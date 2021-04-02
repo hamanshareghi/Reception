@@ -2,8 +2,10 @@
 
 @{
     ViewData["Title"] = "Debtors";
+    int row = 1;
 }
-
+<link href="~/lib/Kendo/css/kendo.common.min.css" rel="stylesheet" />
+<link href="~/lib/Kendo/css/kendo.default.min.css" rel="stylesheet" />
 
 <div class="container">
     <h1>گزارش دوره ای بدهکاران</h1>
@@ -27,10 +29,10 @@
                 <div class="col-lg-3 col-xl-3">
                     <div class="row align-items-center">
                         <div class="col-md-10 my-2 my-md-0">
-                            <div class="input-icon">
-                                <input type="text" name="search" class="form-control" placeholder="جستجو..." id="kt_datatable_search_query">
-                                
-                            </div>
+                           
+                                <input type="text" id="datepickerFrom" name="search" class="form-control w-100" placeholder="جستجو..." >
+
+                      
                         </div>
 
                     </div>
@@ -38,10 +40,10 @@
                 <div class="col-lg-3 col-xl-3">
                     <div class="row align-items-center">
                         <div class="col-md-10 my-2 my-md-0">
-                            <div class="input-icon">
-                                <input type="text" name="search" class="form-control" placeholder="جستجو..." id="kt_datatable_search_query">
-                                
-                            </div>
+                            
+                                <input type="text" id="datepickerTo" name="search" class="form-control w-100" placeholder="جستجو..." >
+
+                         
                         </div>
 
                     </div>
@@ -58,33 +60,39 @@
 
     <table class="table table-striped table-responsive table-bordered">
         <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Title)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Price)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Description)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PayStatus)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.User)
-                </th>
+        <tr>
+            <th>
+               #
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PayStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th>
 
-                <th>
-                    @Html.DisplayNameFor(model => model.UpDateTime)
-                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpDateTime)
+            </th>
 
-            </tr>
+        </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
                 <tr>
+                    <td>
+                        @row
+                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Title)
                     </td>
@@ -106,8 +114,34 @@
                     </td>
 
                 </tr>
+                row++;
             }
         </tbody>
     </table>
 </div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/lib/Kendo/js/jquery-1.12.4.min.js"></script>
+
+    <script src="~/lib/Kendo/js/JalaliDate.js"></script>
+    <script src="~/lib/Kendo/js/kendo.web.js"></script>
+    <script src="~/lib/Kendo/js/fa-IR.js"></script>
+    <script src="~/lib/Kendo/js/kendo.calendar.fa.js"></script>
+    <script src="~/lib/Kendo/js/kendo.datepicker.fa.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            // create DatePicker from input HTML element
+            //$("#datepicker").kendoDatePicker({ culture: "en-US" });
+            $("#datepickerFrom").kendoDatePickerShamsi({ culture: "fa-IR" });
+            $("#datepickerTo").kendoDatePickerShamsi({ culture: "fa-IR" });
+
+            //$("#calendar").kendoCalendar({ culture: "en-US" });
+            //$("#calendarShamsi").kendoCalendarShamsi({ culture: "fa-IR" });
+
+            //$("#timepicker").kendoTimePicker();
+        });
+    </script>
+}
 
