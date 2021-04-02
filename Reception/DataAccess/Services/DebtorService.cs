@@ -38,11 +38,62 @@ namespace DataAccess.Services
             return _context.Debtors.Any(s => s.DebtorId == id);
         }
 
-        public Task<List<Debtor>> GetAll()
+        public Tuple<List<Debtor>,int> GetDebtorBySearch(string search,int take, int pageId =1)
         {
-            return _context.Debtors
-                .Include(s=>s.User)
-                .ToListAsync();
+            int skip = (pageId - 1) * take;
+            int pageCount = _context.Debtors
+                .Include(s => s.User)
+                .Count(
+                    s=>s.Description.ToLower().Contains(search)
+                    || s.User.FullName.ToLower().Contains(search)
+                    || s.Title.ToLower().Contains(search)
+                    || s.User.PhoneNumber.ToLower().Contains(search)
+                    || s.Price.ToString().ToLower().Contains(search)
+                    
+                    );
+            if (pageCount % take != 0)
+            {
+                pageCount = pageCount % take;
+                pageCount++;
+            }
+            else
+            {
+                pageCount = pageCount / take;
+            }
+            var query = _context.Debtors
+                .Include(s => s.User)
+                .Where(
+                    s => s.Description.ToLower().Contains(search)
+                         || s.User.FullName.ToLower().Contains(search)
+                         || s.Title.ToLower().Contains(search)
+                         || s.User.PhoneNumber.ToLower().Contains(search)
+                         || s.Price.ToString().ToLower().Contains(search)
+
+                );
+            return Tuple.Create(query.ToList(), pageCount);
+
+        }
+
+        public Tuple<List<Debtor>,int> GetAll(int take, int pageId = 1)
+        {
+            int skip = (pageId - 1) * take;
+            int pageCount = _context.Debtors
+                .Include(s => s.User)
+                .Count();
+            if (pageCount % take != 0)
+            {
+                pageCount = pageCount % take;
+                pageCount++;
+            }
+            else
+            {
+                pageCount = pageCount / take;
+            }
+            var query = _context.Debtors
+                .Include(s => s.User)
+                .Skip(skip)
+                .Take(take);
+            return Tuple.Create(query.ToList(), pageCount);
         }
 
         public Task<Debtor> GetById(int id)

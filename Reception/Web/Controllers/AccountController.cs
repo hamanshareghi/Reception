@@ -35,11 +35,11 @@ namespace Web.Controllers
             if (ModelState.IsValid)
             {
 
-                var user = _userManager.FindByNameAsync(model.UserName).Result;
+                var user = _userManager.FindByNameAsync(model.PhoneNumber).Result;
 
                 await _signInManager.SignOutAsync();
-                var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe,
-                    lockoutOnFailure: true);
+                var result = await _signInManager.PasswordSignInAsync(model.PhoneNumber, model.Password, model.RememberMe,
+                    lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
                     if (!string.IsNullOrEmpty(returnUrl) )

@@ -1,0 +1,194 @@
+﻿@using DataAccess.Interfaces
+@inject IOneData OneData
+<div class="card card-custom gutter-b bg-diagonal bg-diagonal bg-diagonal-light-success">
+    @*<div class="card-header">
+            <div class="card-title">
+                <h3 class="card-label">
+                    کارت پایه ای
+                    <small>sub title</small>
+                </h3>
+            </div>
+        </div>*@
+    <div class="card-body">
+        <div class="row">
+            <div class="col-xxl-4">
+
+                <!--begin::فرم ها Widget 10-->
+                <div class="card card-custom gutter-b ">
+                    <!--begin::Body-->
+                    <div class="card-body">
+                        <!--begin::Top-->
+                        <div class="d-flex align-items-center">
+                            <!--begin::سیمبل-->
+                            <div class="symbol symbol-45 symbol-light mr-5">
+                                <span class="symbol-label">
+
+                                    <!--begin::Svg Icon | path:assets/media/svg/icons/عمومی/کلیپ بورد.svg-->
+                                    <img src="~/img/Logo/Logo.png" class="img-fluid" alt="فروشگاه اینترنتی بیت" />
+
+                                </span>
+                            </div>
+                            <!--end::سیمبل-->
+                            <!--begin::اطلاعات-->
+                            <div class="d-flex flex-column flex-grow-1">
+                                <a asp-area="" asp-controller="Home" asp-action="AboutUs" class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder">معرفی گروه بیت</a>
+                                <div class="d-flex">
+                                    <div class="d-flex align-items-center pr-5">
+                                        <span class="svg-icon svg-icon-md svg-icon-primary pr-1">
+
+                                        </span>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!--end::اطلاعات-->
+
+                        </div>
+                        <!--end::Top-->
+                        <!--begin::Bottom-->
+                        <div class="pt-3">
+                            <!--begin::متن-->
+                            <p class="text-dark-75 font-size-lg font-weight-normal pt-5 mb-6">
+                             @*   @Html.Raw(OneData.GetFirst().Introduction.Substring(0, 150))*@
+                            </p>
+                            <!--end::متن-->
+                            <!--end::اکشن-->
+                        </div>
+                        <!--end::Bottom-->
+
+
+                    </div>
+                    <!--end::Body-->
+                </div>
+                <!--end::فرم ها Widget 10-->
+
+
+            </div>
+            <div class="col-xxl-4">
+
+                <!--begin::فرم ها Widget 10-->
+                <div class="card card-custom gutter-b  ">
+                    <!--begin::Body-->
+                    <div class="card-body">
+                        <!--begin::Top-->
+                        <div class="d-flex align-items-center">
+
+                            <!--begin::اطلاعات-->
+
+
+                            <div class="d-flex flex-column flex-grow-1">
+                                <a class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder">گروه بیت در شبکه های اجتماعی</a>
+                                <div class="d-flex my-1">
+
+                                    <div class="symbol-list d-flex flex-wrap">
+                                        <div class="symbol mr-3">
+                                            <a href="https://instagram.com/storebitir">
+                                                <i class="fab fa-2x fa-instagram-square"></i>
+                                            </a>
+                                        </div>
+                                        <div class="symbol mr-3">
+                                            <a href="mailto:info@storebit.ir">
+                                                <i class="fas fa-2x fa-envelope-open"></i>
+                                            </a>
+                                        </div>
+                                        <div class="symbol mr-3">
+                                            <a href="https://linkedin.com/haman-shareghi-305333137">
+                                                <i class="fab fa-2x fa-linkedin"></i>
+                                            </a>
+                                        </div>
+                                        <div class="symbol mr-3">
+                                            <a href="https://t.me/">
+                                                <i class="fab fa-2x fa-telegram"></i>
+                                            </a>
+                                        </div>
+                                        <div class="symbol mr-3">
+                                            <a asp-area="" asp-controller="Account" asp-action="Login">
+                                                <i class="fas fa-2x fa-sign-in-alt"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::اطلاعات-->
+
+                        </div>
+                        <!--end::Top-->
+                        <!--begin::Bottom-->
+                        <div class="pt-3">
+                            <!--begin::متن-->
+                            <p class="text-dark-75 font-size-lg font-weight-normal pt-5 mb-2">
+                                <i class="fas fa-map-marked-alt"></i> : مازندران - آمل - خیابان امام خمینی - آفتاب ۴ پلاک۱۱
+
+                                @*@Html.Raw(OneData.GetFirst().Introduction.Substring(0, 150))*@
+                            </p>
+                            <!--end::متن-->
+                            <p class="text-dark-75 font-size-lg font-weight-normal pt-5 ">
+                                <i class="fas fa-phone"></i> :01144269191-01144269192
+                            </p>
+
+                        </div>
+                    </div>
+                    <!--end::Body-->
+                </div>
+                <!--end::فرم ها Widget 10-->
+
+
+            </div>
+            <div class="col-xxl-4">
+
+                <!--begin::فرم ها Widget 10-->
+                <div class="card card-custom gutter-b ">
+                    <!--begin::Body-->
+                    <div class="card-body">
+                        <!--begin::Top-->
+                        <div class="d-flex align-items-center">
+                            <!--begin::سیمبل-->
+                            <div class="symbol symbol-45 symbol-light mr-5">
+                                <span class="symbol-label">
+
+                                    <!--begin::Svg Icon | path:assets/media/svg/icons/عمومی/کلیپ بورد.svg-->
+                                    <img src="~/img/Logo/Logo.png" class="img-fluid" alt="فروشگاه اینترنتی بیت" />
+
+                                </span>
+                            </div>
+                            <!--end::سیمبل-->
+                            <!--begin::اطلاعات-->
+                            <div class="d-flex flex-column flex-grow-1">
+                                <a asp-area="" asp-controller="Home" asp-action="AboutUs" class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder">معرفی فروشگاه اینترنتی بیت</a>
+                                <div class="d-flex">
+                                    <div class="d-flex align-items-center pr-5">
+                                        <span class="svg-icon svg-icon-md svg-icon-primary pr-1">
+
+                                        </span>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!--end::اطلاعات-->
+
+                        </div>
+                        <!--end::Top-->
+                        <!--begin::Bottom-->
+                        <div class="pt-3">
+                            <!--begin::متن-->
+                            <p class="text-dark-75 font-size-lg font-weight-normal pt-5 mb-6">
+                               @* @Html.Raw(OneData.GetFirst().Introduction.Substring(0, 150))*@
+                            </p>
+                            <!--end::متن-->
+                            <!--end::اکشن-->
+                        </div>
+                        <!--end::Bottom-->
+
+
+                    </div>
+                    <!--end::Body-->
+                </div>
+                <!--end::فرم ها Widget 10-->
+
+
+            </div>
+        </div>
+    </div>
+</div>

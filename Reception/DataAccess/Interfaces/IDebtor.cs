@@ -9,11 +9,12 @@ namespace DataAccess.Interfaces
 {
     public interface IDebtor
     {
-        Task<List<Debtor>> GetAll();
+        Tuple<List<Debtor>,int> GetAll(int take, int pageId = 1);
         Task<Debtor> GetById(int id);
         void Add(Debtor debtor);
         void Update(Debtor debtor);
         void Delete(Debtor debtor);
         bool Exist(int id);
+        Tuple<List<Debtor>, int> GetDebtorBySearch(string search,int take,int pageId);
     }
 }

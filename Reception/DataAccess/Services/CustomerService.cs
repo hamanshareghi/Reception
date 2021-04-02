@@ -33,6 +33,7 @@ namespace DataAccess.Services
             else
             {
                 pageCount = pageCount / take;
+
             }
 
             var query = _userManager.Users

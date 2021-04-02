@@ -43,7 +43,7 @@ namespace DataAccess.Services
             int take = 0;
             if (take == 0)
             {
-                take = 1;
+                take = 25;
             }
 
             int skip = (pageId - 1) * take;
@@ -85,7 +85,7 @@ namespace DataAccess.Services
             int take = 0;
             if (take == 0)
             {
-                take = 1;
+                take = 25;
             }
 
             int skip = (pageId - 1) * take;

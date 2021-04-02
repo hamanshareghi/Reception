@@ -7,7 +7,7 @@ namespace Data.ViewModels.Account
 
         [Display(Name = "نام کاربری")]
         [Required(ErrorMessage = "مقدار {0} را وارد کنید")]
-        public string UserName { get; set; }
+        public string PhoneNumber { get; set; }
 
         [Display(Name = "پسورد")]
         [Required(ErrorMessage = "مقدار {0} را وارد کنید")]
