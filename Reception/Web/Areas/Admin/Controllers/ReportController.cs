@@ -3,27 +3,30 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DataAccess.Interfaces;
 
 namespace Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class ReportController : Controller
     {
-        [HttpGet]
-        public IActionResult Costs(string fromDate)
+        private IDebtor _debtor;
+
+        public ReportController(IDebtor debtor)
         {
-            if (!string.IsNullOrEmpty(fromDate))
-            {
-                ViewBag.date = fromDate;
-            }
-
-            return View();
+            _debtor = debtor;
         }
-
-        [HttpPost]
+ 
         public IActionResult Costs()
         {
             return View();
+        }
+
+
+        public IActionResult Debtors()
+        {
+            var model = _debtor.GetAll();
+            return View(model);
         }
     }
 }

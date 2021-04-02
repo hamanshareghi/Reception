@@ -74,6 +74,11 @@ namespace DataAccess.Services
 
         }
 
+        public List<Debtor> GetAll()
+        {
+            return _context.Debtors.ToList();
+        }
+
         public Tuple<List<Debtor>,int> GetAll(int take, int pageId = 1)
         {
             int skip = (pageId - 1) * take;

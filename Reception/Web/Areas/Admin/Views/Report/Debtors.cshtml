@@ -1,0 +1,113 @@
+﻿@model IEnumerable<Model.Entities.Debtor>
+
+@{
+    ViewData["Title"] = "Debtors";
+}
+
+
+<div class="container">
+    <h1>گزارش دوره ای بدهکاران</h1>
+    <div class="mb-7">
+        <form asp-area="Admin" asp-controller="Report" asp-action="Debtors" method="get">
+            <div class="row align-items-center">
+
+                <div class="col-lg-4 col-xl-4">
+                    <div class="row align-items-center">
+                        <div class="col-md-10 my-2 my-md-0">
+                            <div class="input-icon">
+                                <input type="text" name="search" class="form-control" placeholder="جستجو..." id="kt_datatable_search_query">
+                                <span>
+                                    <i class="flaticon2-search-1 text-muted"></i>
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-3 col-xl-3">
+                    <div class="row align-items-center">
+                        <div class="col-md-10 my-2 my-md-0">
+                            <div class="input-icon">
+                                <input type="text" name="search" class="form-control" placeholder="جستجو..." id="kt_datatable_search_query">
+                                
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-3 col-xl-3">
+                    <div class="row align-items-center">
+                        <div class="col-md-10 my-2 my-md-0">
+                            <div class="input-icon">
+                                <input type="text" name="search" class="form-control" placeholder="جستجو..." id="kt_datatable_search_query">
+                                
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-2 col-xl-2 mt-5 mt-lg-0">
+                    <button type="submit" class="btn btn-light-primary px-6 font-weight-bold">
+                        جستجو
+                    </button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+    <table class="table table-striped table-responsive table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PayStatus)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.User)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.UpDateTime)
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PayStatus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.Id)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UpDateTime)
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
