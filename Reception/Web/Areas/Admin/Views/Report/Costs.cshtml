@@ -3,5 +3,68 @@
     ViewData["Title"] = "Costs";
 }
 
+<link href="~/lib/Kendo/css/kendo.common.min.css" rel="stylesheet" />
+<link href="~/lib/Kendo/css/kendo.default.min.css" rel="stylesheet" />
 <h1>Costs</h1>
+
+
+        @{
+            if (ViewBag.date != null)
+            {
+                <div class="alert alert-primary">
+                    <p>
+                    @ViewBag.date.ToString();</p>
+                </div>
+            }
+
+        }
+
+
+<div>
+   
+    <form asp-area="Admin" asp-controller="Report" asp-action="Costs" method="post">
+        <body style="direction: rtl; font-family: tahoma;">
+        <div id="example" class="k-content">
+            <div style="margin-right: 10px;">
+
+               @* <input id="datepicker" value="2018/03/22" style="width:150px;" /><br/><br/>*@
+                <input id="datepickerShamsi" value="1397/01/02" style="width:150px;" /><br/><br/>
+                @*<input id="timepicker" value="16:00" style="width:150px;" /><br/><br/>*@
+
+                @*<div id="calendar"></div>
+                <div id="calendarShamsi"></div>*@
+            </div>
+            
+        </div>
+        </body>
+    </form>
+
+
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/lib/Kendo/js/jquery-1.12.4.min.js"></script>
+
+    <script src="~/lib/Kendo/js/JalaliDate.js"></script>
+    <script src="~/lib/Kendo/js/kendo.web.js"></script>
+    <script src="~/lib/Kendo/js/fa-IR.js"></script>
+    <script src="~/lib/Kendo/js/kendo.calendar.fa.js"></script>
+    <script src="~/lib/Kendo/js/kendo.datepicker.fa.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            // create DatePicker from input HTML element
+            //$("#datepicker").kendoDatePicker({ culture: "en-US" });
+            $("#datepickerShamsi").kendoDatePickerShamsi({ culture: "fa-IR" });
+
+            //$("#calendar").kendoCalendar({ culture: "en-US" });
+            //$("#calendarShamsi").kendoCalendarShamsi({ culture: "fa-IR" });
+
+            //$("#timepicker").kendoTimePicker();
+        });
+    </script>
+}
 

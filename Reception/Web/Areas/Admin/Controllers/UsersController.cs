@@ -63,6 +63,7 @@ namespace Web.Areas.Admin.Controllers
                     EmailConfirmed = true,
                     InsertDate = DateTime.Now,
                     UpDateTime = DateTime.Now,
+                    CustomerKind = Customer.Admins,
                     
                 };
                 IdentityResult result = await userManager.CreateAsync(user, model.Password);
@@ -102,7 +103,8 @@ namespace Web.Areas.Admin.Controllers
             ApplicationUser user = await userManager.FindByIdAsync(id);
             if (user != null)
             {
-                IdentityResult result = await userManager.DeleteAsync(user);
+                user.IsDelete = false;
+                IdentityResult result = await userManager.UpdateAsync(user);
                 if (result.Succeeded)
                 {
                     return RedirectToAction("Index","Users");

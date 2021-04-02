@@ -12,7 +12,7 @@
 <div class="container">
     <h4 class="card-title"> مشتریان </h4>
     <div class="mb-7">
-        <form asp-area="" asp-controller="Customer" asp-action="Index" method="get">
+        <form asp-area="Admin" asp-controller="Customer" asp-action="Index" method="get">
             <div class="row align-items-center">
 
                 <div class="col-lg-10 col-xl-10">
@@ -39,7 +39,7 @@
     </div>
     <hr />
     <p>
-        <a asp-controller="Customer" asp-action="AddCustomer" class="btn btn-success">ثبت مشتری جدید</a>
+        <a asp-area="Admin" asp-controller="Customer" asp-action="AddCustomer" class="btn btn-success">ثبت مشتری جدید</a>
     </p>
     <table class="table table-bordered table-striped table-responsive">
         <thead>

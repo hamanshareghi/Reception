@@ -17,9 +17,14 @@ namespace Web.Areas.Admin.Controllers
             _defect = defect;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index(string search,int take,int pageId=1)
         {
-            return View(await _defect.GetAll());
+            if (!string.IsNullOrEmpty(search))
+            {
+                ViewBag.Search = search;
+                return View(_defect.GetDefectBySearch(search, 25, pageId));
+            }
+            return View( _defect.GetAll(25,pageId));
         }
 
         public async Task<IActionResult> Details(int? id)

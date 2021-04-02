@@ -57,7 +57,7 @@ namespace Web.Areas.Admin.Controllers
         {
             ViewData["CustomerId"] = new SelectList(_userManager.Users.ToList(), "Id", "FullName");
             ViewData["ProductId"] = new SelectList(_product.GetAll(), "ProductId", "Name");
-            ViewData["DefectId"] = new SelectList(await _defect.GetAll(), "DefectId", "Name");
+            ViewData["DefectId"] = new SelectList( _defect.GetAll(), "DefectId", "Name");
 
             return View();
         }
@@ -92,7 +92,7 @@ namespace Web.Areas.Admin.Controllers
             }
             ViewData["CustomerId"] = new SelectList(_userManager.Users.ToList(), "Id", "FullName");
             ViewData["ProductId"] = new SelectList(_product.GetAll(), "ProductId", "Name");
-            ViewData["DefectId"] = new SelectList(await _defect.GetAll(), "DefectId", "Name");
+            ViewData["DefectId"] = new SelectList(_defect.GetAll(), "DefectId", "Name");
 
             return View(reception);
         }
@@ -112,7 +112,7 @@ namespace Web.Areas.Admin.Controllers
             }
             ViewData["CustomerId"] = new SelectList(_userManager.Users.ToList(), "Id", "FullName");
             ViewData["ProductId"] = new SelectList(_product.GetAll(), "ProductId", "Name");
-            ViewData["DefectId"] = new SelectList(await _defect.GetAll(), "DefectId", "Name");
+            ViewData["DefectId"] = new SelectList( _defect.GetAll(), "DefectId", "Name");
 
             return View(reception);
         }
@@ -151,7 +151,7 @@ namespace Web.Areas.Admin.Controllers
             }
             ViewData["CustomerId"] = new SelectList(_userManager.Users.ToList(), "Id", "FullName");
             ViewData["ProductId"] = new SelectList(_product.GetAll(), "ProductId", "Name");
-            ViewData["DefectId"] = new SelectList(await _defect.GetAll(), "DefectId", "Name");
+            ViewData["DefectId"] = new SelectList( _defect.GetAll(), "DefectId", "Name");
 
             return View(reception);
         }

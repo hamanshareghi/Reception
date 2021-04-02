@@ -63,7 +63,9 @@ namespace Model.Entities
     public enum Customer
     {
         Customer = 1,
-        Colleague = 2
+        Colleague = 2,
+        Admins=3,
+        SuperAdmin=4
     }
 
 }

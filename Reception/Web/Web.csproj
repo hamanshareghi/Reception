@@ -5,15 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Areas\Admin\Views\Shared\Error.cshtml" />
-    <Content Remove="Areas\Admin\Views\Shared\_AdminLayout.cshtml" />
+    <!--<Content Remove="Areas\Admin\Views\Shared\Error.cshtml" />
     <Content Remove="Areas\Admin\Views\Shared\_ValidationScriptsPartial.cshtml" />
-    <Content Remove="Areas\Admin\Views\_ViewImports.cshtml" />
+    <Content Remove="Areas\Admin\Views\_ViewImports.cshtml" />-->
   </ItemGroup>
 
   <ItemGroup>
     <None Include="Areas\Admin\Views\Shared\Error.cshtml" />
-    <None Include="Areas\Admin\Views\Shared\_AdminLayout.cshtml" />
     <None Include="Areas\Admin\Views\Shared\_ValidationScriptsPartial.cshtml" />
     <None Include="Areas\Admin\Views\_ViewImports.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
