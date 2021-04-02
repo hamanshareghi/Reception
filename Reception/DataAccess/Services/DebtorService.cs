@@ -29,8 +29,8 @@ namespace DataAccess.Services
         public void Delete(Debtor debtor)
         {
             debtor.IsDelete = true;
-            _context.Debtors.Update(debtor);
-            _context.SaveChanges();
+            Update(debtor);
+            
         }
 
         public bool Exist(int id)

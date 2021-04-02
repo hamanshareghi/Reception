@@ -1,17 +1,25 @@
 ﻿@using Common.Library
 @model IEnumerable<Model.Entities.Debtor>
-
+@{
+    int row = 1;
+}
 <div class="container">
     <h1> بدهکاران</h1>
     <hr />
     <p>
-        <a asp-action="Create" class="btn btn-success">ثبت بدهی اشخاص</a>
+        <a asp-area="" asp-controller="Debtor" asp-action="Create" class="btn btn-success">ثبت بدهی اشخاص</a>
     </p>
     <table class="table table-bordered table-striped table-responsive">
         <thead>
             <tr>
                 <th>
+                    #
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.User)
+                </th>
+                <th>
+                    تماس
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Title)
@@ -33,7 +41,13 @@
             {
                 <tr>
                     <td>
+                        @row
+                    </td>
+                    <td>
                         @Html.DisplayFor(modelItem => item.User.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.PhoneNumber)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Title)
@@ -57,6 +71,7 @@
                         <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.DebtorId"><i class="fas fa-trash"></i></a>
                     </td>
                 </tr>
+                row += 1;
             }
         </tbody>
     </table>
