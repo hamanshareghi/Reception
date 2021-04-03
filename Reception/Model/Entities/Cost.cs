@@ -23,7 +23,6 @@ namespace Model.Entities
         public int Price { get; set; }
 
         [Display(Name = "کاربر")]
-        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(450, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
         public string UserId { get; set; }
 

@@ -9,11 +9,13 @@ namespace DataAccess.Interfaces
 {
     public interface IDuty
     {
-        Task<List<Duty>> GetAll();
+        List<Duty> GetAll();
         Task<Duty> GetById(int id);
         void Add(Duty duty);
         void Update(Duty duty);
         void Delete(Duty duty);
         bool Exist(int id);
+        Tuple<List<Duty>, int> GetAll(int take, int pageId = 1);
+        Tuple<List<Duty>, int> GetDutyBySearch(string search,int take, int pageId = 1);
     }
 }

@@ -27,10 +27,14 @@ namespace Web.Areas.Admin.Controllers
         }
 
         // GET: Duties
-        public async Task<IActionResult> Index()
+        public IActionResult Index(string search ,int take,int pageId=1)
         {
-           
-            return View(await _duty.GetAll());
+            if (!string.IsNullOrEmpty(search))
+            {
+                ViewBag.Search = search;
+                return View(_duty.GetDutyBySearch(search, 20, pageId));
+            }
+            return View( _duty.GetAll(25,pageId));
         }
 
         // GET: Duties/Details/5
@@ -53,7 +57,7 @@ namespace Web.Areas.Admin.Controllers
         // GET: Duties/Create
         public async Task<IActionResult> Create()
         {
-            ViewData["ReceptionId"] = new SelectList(await _reception.GetAll(), "ReceptionId", "ReceptionId");
+            ViewData["ReceptionId"] = new SelectList( _reception.GetAll(), "ReceptionId", "ReceptionId");
             ViewData["ServiceId"] = new SelectList( _service.GetAll(), "ServiceId", "Name");
             ViewData["ShippingId"] = new SelectList(_shipping.GetAll().Item1, "ShippingId", "Name");
             ViewData["StatusId"] = new SelectList(await _status.GetAll(), "StatusId", "Name");
@@ -72,9 +76,9 @@ namespace Web.Areas.Admin.Controllers
                 duty.InsertDate=DateTime.Now;
                 duty.UpDateTime=DateTime.Now;
                 _duty.Add(duty);
-                return RedirectToAction(nameof(Index),"Duties");
+                return RedirectToAction(nameof(Index),"Duties",new {area="Admin"});
             }
-            ViewData["ReceptionId"] = new SelectList(await _reception.GetAll(), "ReceptionId", "ReceptionId");
+            ViewData["ReceptionId"] = new SelectList(_reception.GetAll(), "ReceptionId", "ReceptionId");
             ViewData["ServiceId"] = new SelectList( _service.GetAll(), "ServiceId", "Name");
             ViewData["ShippingId"] = new SelectList(_shipping.GetAll().Item1, "ShippingId", "Name");
             ViewData["StatusId"] = new SelectList(await _status.GetAll(), "StatusId", "Name");
@@ -94,7 +98,7 @@ namespace Web.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["ReceptionId"] = new SelectList(await _reception.GetAll(), "ReceptionId", "ReceptionId");
+            ViewData["ReceptionId"] = new SelectList( _reception.GetAll(), "ReceptionId", "ReceptionId");
             ViewData["ServiceId"] = new SelectList( _service.GetAll(), "ServiceId", "Name");
             ViewData["ShippingId"] = new SelectList(_shipping.GetAll().Item1, "ShippingId", "Name");
             ViewData["StatusId"] = new SelectList(await _status.GetAll(), "StatusId", "Name");
@@ -131,9 +135,9 @@ namespace Web.Areas.Admin.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index),"Duties");
+                return RedirectToAction(nameof(Index), "Duties", new { area = "Admin" });
             }
-            ViewData["ReceptionId"] = new SelectList(await _reception.GetAll(), "ReceptionId", "ReceptionId");
+            ViewData["ReceptionId"] = new SelectList( _reception.GetAll(), "ReceptionId", "ReceptionId");
             ViewData["ServiceId"] = new SelectList( _service.GetAll(), "ServiceId", "Name");
             ViewData["ShippingId"] = new SelectList(_shipping.GetAll().Item1, "ShippingId", "Name");
             ViewData["StatusId"] = new SelectList(await _status.GetAll(), "StatusId", "Name");
@@ -164,7 +168,7 @@ namespace Web.Areas.Admin.Controllers
         {
             var duty = await _duty.GetById(id);
             _duty.Delete(duty);
-            return RedirectToAction(nameof(Index),"Duties");
+            return RedirectToAction(nameof(Index), "Duties", new { area = "Admin" });
         }
 
         private bool DutyExists(int id)

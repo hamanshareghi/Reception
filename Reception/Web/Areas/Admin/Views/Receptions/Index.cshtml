@@ -1,52 +1,92 @@
 ﻿@using Common.Library
-@model IEnumerable<Model.Entities.Reception>
+@model Tuple<List<Model.Entities.Reception>,int>
 
 @{
     ViewData["Title"] = "Index";
+    int row = 1;
+    string query = " ";
+    if (ViewBag.Search != null)
+    {
+        query = ViewBag.Search.ToString();
+    }
 }
 
 <div class="container">
     <h1>لیست پذیرش</h1>
+    <div class="mb-7">
+        <form asp-area="Admin" asp-controller="Receptions" asp-action="Index" method="get">
+            <div class="row align-items-center">
+
+                <div class="col-lg-10 col-xl-10">
+                    <div class="row align-items-center">
+                        <div class="col-md-10 my-2 my-md-0">
+                            <div class="input-icon">
+                                <input type="text" name="search" class="form-control" placeholder="جستجو..." id="kt_datatable_search_query">
+                                <span>
+                                    <i class="flaticon2-search-1 text-muted"></i>
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-2 col-xl-2 mt-5 mt-lg-0">
+                    <button type="submit" class="btn btn-light-primary px-6 font-weight-bold">
+                        جستجو
+                    </button>
+                </div>
+
+            </div>
+        </form>
+    </div>
     <hr />
     <p>
         <a asp-action="Create" class="btn btn-success">پذیرش جدید</a>
     </p>
     <table class="table table-striped table-responsive table-bordered">
         <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.ReceptionId)
+        <tr>
+            <th>
+                #
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Customer)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Customer.Contact)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ReceptionDate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Product)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Serial)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.UserId)
-                </th>
+            <th>
+                پذیرش
+            </th>
+            <th>
+                مشتری
+            </th>
 
-                <th>
-                    @Html.DisplayNameFor(model => model.Description)
-                </th>
-                <th>عملیات</th>
-                <th>دستورات</th>
-            </tr>
+            <th>
+                تاریخ
+            </th>
+            <th>
+                تماس
+            </th>
+
+            <th>
+                دستگاه
+            </th>
+            <th>
+                سریال
+            </th>
+            <th>
+                کاربر
+            </th>
+
+            <th>
+                شرح
+            </th>
+            <th>عملیات</th>
+            <th>دستورات</th>
+        </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
+            @foreach (var item in Model.Item1)
             {
             <tr>
+                <td>
+                    #
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ReceptionId)
                 </td>
@@ -72,7 +112,7 @@
                     @Html.DisplayFor(modelItem => item.Serial)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.UserId)
+                    @Html.DisplayFor(modelItem => item.Customer.FullName)
                 </td>
 
                 <td>
@@ -91,8 +131,39 @@
 
                 </td>
             </tr>
+                row++;
             }
         </tbody>
     </table>
+
+</div>
+<div class="container">
+    @if (Model.Item2 > 1)
+    {
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                @for (int i = 1; i <= Model.Item2; i++)
+                {
+                    <li class="page-item">
+                        @if (!string.IsNullOrEmpty(query))
+                        {
+                            <a class="page-link" href="/Receptions/Index?pageId=@i&search=@query">
+                                @i
+                            </a>
+                        }
+                        else
+                        {
+                            <a class="page-link" href="/Receptions/Index?pageId=@i">
+                                @i
+                            </a>
+                        }
+                    </li>
+                }
+
+
+            </ul>
+        </nav>
+    }
+
 
 </div>

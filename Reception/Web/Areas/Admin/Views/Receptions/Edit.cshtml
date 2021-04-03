@@ -3,6 +3,8 @@
 @{
     ViewData["Title"] = "Edit";
 }
+<link href="~/lib/Kendo/css/kendo.common.min.css" rel="stylesheet" />
+<link href="~/lib/Kendo/css/kendo.default.min.css" rel="stylesheet" />
 <div class="container">
     <h4>ویرایش اطلاعات پذیرش</h4>
     <hr />
@@ -11,6 +13,8 @@
             <form asp-action="Edit">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="ReceptionId" />
+                <input type="hidden" asp-for="ReceptionDate" />
+                <input type="hidden" asp-for="UserId" />
                 <div class="dropdown bootstrap-select form-control mb-5">
                     <label asp-for="CustomerId" class="control-label"></label>
                     <select class="form-control selectpicker" asp-for="CustomerId" data-live-search="true" tabindex="null" asp-items="ViewBag.CustomerId">
@@ -23,16 +27,19 @@
                     </select>
                 </div>
                 <div class="row ">
-                    <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                    <div class="form-group col-lg-8 col-md-8 col-sm-12">
                         <label asp-for="Serial" class="control-label"></label>
                         <input asp-for="Serial" class="form-control" />
                         <span asp-validation-for="Serial" class="text-danger"></span>
                     </div>
-                    <div class="form-group col-lg-6 col-md-6 col-sm-12">
+
+                    <div class="form-group col-lg-4 col-md-4 col-sm-12">
                         <label asp-for="ReceptionDate" class="control-label"></label>
-                        <input asp-for="ReceptionDate" class="form-control" />
+                        <input type="text" id="date" name="date" class="form-control w-100">
                         <span asp-validation-for="ReceptionDate" class="text-danger"></span>
+
                     </div>
+
                 </div>
 
                 <div class="form-group">
@@ -67,5 +74,26 @@
             .catch(error => {
                 console.error(error);
             });
+    </script>
+    <script src="~/lib/Kendo/js/jquery-1.12.4.min.js"></script>
+
+    <script src="~/lib/Kendo/js/JalaliDate.js"></script>
+    <script src="~/lib/Kendo/js/kendo.web.js"></script>
+    <script src="~/lib/Kendo/js/fa-IR.js"></script>
+    <script src="~/lib/Kendo/js/kendo.calendar.fa.js"></script>
+    <script src="~/lib/Kendo/js/kendo.datepicker.fa.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            // create DatePicker from input HTML element
+            //$("#datepicker").kendoDatePicker({ culture: "en-US" });
+            $("#date").kendoDatePickerShamsi({ culture: "fa-IR" });
+            //$("#datepickerTo").kendoDatePickerShamsi({ culture: "fa-IR" });
+
+            //$("#calendar").kendoCalendar({ culture: "en-US" });
+            //$("#calendarShamsi").kendoCalendarShamsi({ culture: "fa-IR" });
+
+            //$("#timepicker").kendoTimePicker();
+        });
     </script>
 }

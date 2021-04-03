@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Library;
 using Data.Context;
 using DataAccess.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -19,7 +20,7 @@ namespace DataAccess.Services
         {
             _context = context;
         }         
-        public Task<List<Duty>> GetAll()
+        public List<Duty> GetAll()
         {
             return _context.Duties
                 .Include(d => d.Reception)
@@ -27,7 +28,7 @@ namespace DataAccess.Services
                 .Include(d => d.Shipping)
                 .Include(d => d.Status)
                 .OrderByDescending(s => s.UpDateTime)
-                .ToListAsync();
+                .ToList();
         }
 
         public Task<Duty> GetById(int id)
@@ -62,6 +63,67 @@ namespace DataAccess.Services
         public bool Exist(int id)
         {
             return _context.Duties.Any(s => s.DutyId == id);
+        }
+
+        public Tuple<List<Duty>, int> GetAll(int take, int pageId = 1)
+        {
+            int skip = (pageId - 1) * take;
+            int pageCount = _context.Duties.Count();
+            if (pageCount % take != 0)
+            {
+                pageCount = pageCount / take;
+                pageCount++;
+            }
+            else
+            {
+                pageCount = pageCount / take;
+            }
+
+            var query = _context.Duties
+                .Include(d => d.Reception)
+                .Include(d => d.Service)
+                .Include(d => d.Shipping)
+                .Include(d => d.Status)
+                .OrderByDescending(s => s.UpDateTime)
+                .Skip(skip)
+                .Take(take);
+            return Tuple.Create(query.ToList(), pageCount);
+        }
+
+        public Tuple<List<Duty>, int> GetDutyBySearch(string search, int take, int pageId = 1)
+        {
+            int skip = (pageId - 1) * take;
+            int pageCount = _context.Duties.Count(
+                s=>s.Description.ToLower().Contains(search)
+                || s.ActionDate.ToShamsi().ToString().Contains(search)
+                || s.Price.ToString().ToLower().Contains(search)
+                || s.Shipping.Name.ToLower().Contains(search)
+                
+                );
+            if (pageCount % take != 0)
+            {
+                pageCount = pageCount / take;
+                pageCount++;
+            }
+            else
+            {
+                pageCount = pageCount / take;
+            }
+
+            var query = _context.Duties
+                .Include(d => d.Reception)
+                .Include(d => d.Service)
+                .Include(d => d.Shipping)
+                .Include(d => d.Status)
+                .Where(
+                    s => s.Description.ToLower().Contains(search)
+                         || s.ActionDate.ToShamsi().ToString().Contains(search)
+                         || s.Price.ToString().ToLower().Contains(search)
+                         || s.Shipping.Name.ToLower().Contains(search))
+                             .OrderByDescending(s => s.UpDateTime)
+                             .Skip(skip)
+                             .Take(take);
+            return Tuple.Create(query.ToList(), pageCount);
         }
     }
 }
