@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using DataAccess.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -13,16 +14,23 @@ namespace Web.Areas.Admin.Controllers
     {
         private ICost _cost;
         private ICostDefine _costDefine;
+        private UserManager<ApplicationUser> _userManager;
 
-        public CostController(ICost cost, ICostDefine costDefine)
+        public CostController(ICost cost, ICostDefine costDefine, UserManager<ApplicationUser> userManager)
         {
             _cost = cost;
             _costDefine = costDefine;
+            _userManager = userManager;
         }
 
-        public  IActionResult Index()
+        public  IActionResult Index(string search ,int take,int pageId=1)
         {
-            return View(_cost.GetAll());
+            if (!string.IsNullOrEmpty(search))
+            {
+                ViewBag.search = search;
+                return View(_cost.GetCostBySearch(search, 25, pageId));
+            }
+            return View(_cost.GetAll(25,pageId));
         }
 
         public async Task<IActionResult> Details(int? id)
@@ -58,9 +66,10 @@ namespace Web.Areas.Admin.Controllers
                
                 cost.InsertDate = DateTime.Now;
                 cost.UpDateTime=DateTime.Now;
+                cost.UserId = _userManager.GetUserId(User);
                 _cost.Add(cost);
 
-                return RedirectToAction(nameof(Index), "Cost");
+                return RedirectToAction(nameof(Index), "Cost",new {area="Admin"});
             }
             ViewData["CostDefineId"] = new SelectList(_costDefine.GetAll(), "CostDefineId", "Name");
             return View(cost);
@@ -97,6 +106,7 @@ namespace Web.Areas.Admin.Controllers
                 {
                     
                     cost.UpDateTime = DateTime.Now;
+                    cost.UserId = _userManager.GetUserId(User);
                     _cost.Update(cost);
 
                 }
@@ -112,7 +122,7 @@ namespace Web.Areas.Admin.Controllers
                     }
                 }
                 ViewData["CostDefineId"] = new SelectList(_costDefine.GetAll(), "CostDefineId", "Name");
-                return RedirectToAction(nameof(Index), "Cost");
+                return RedirectToAction(nameof(Index), "Cost", new { area = "Admin" });
             }
             return View(cost);
         }
@@ -141,7 +151,7 @@ namespace Web.Areas.Admin.Controllers
             var cost = await _cost.GetById(id);
             _cost.Delete(cost);
 
-            return RedirectToAction(nameof(Index), "Cost");
+            return RedirectToAction(nameof(Index), "Cost", new { area = "Admin" });
         }
 
         private bool CostExists(int id)

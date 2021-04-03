@@ -22,7 +22,7 @@ namespace Web.Areas.Admin.Controllers
             _userManager = userManager;
         }
 
-        public async Task<IActionResult> Index(string search,int pageId=1)
+        public IActionResult Index(string search,int pageId=1)
         {
             if (!string.IsNullOrEmpty(search))
             {

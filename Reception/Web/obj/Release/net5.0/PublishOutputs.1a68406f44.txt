@@ -435,6 +435,10 @@ D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\www
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\lib\ckeditor\skins\moono-lisa\readme.md
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\lib\ckeditor\styles.js
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\lib\ckeditor\vendor\promise.js
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\lib\DateTimePickerPersian\jquery.md.bootstrap.datetimepicker.js
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\lib\DateTimePickerPersian\jquery.md.bootstrap.datetimepicker.js.map
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\lib\DateTimePickerPersian\jquery.md.bootstrap.datetimepicker.style.css
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\lib\DateTimePickerPersian\jquery.md.bootstrap.datetimepicker.style.css.map
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
@@ -447,6 +451,14 @@ D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\www
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\lib\jquery\dist\jquery.min.js
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\lib\jquery\dist\jquery.min.map
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\lib\jquery\LICENSE.txt
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\lib\Kendo\css\kendo.common.min.css
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\lib\Kendo\css\kendo.default.min.css
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\lib\Kendo\js\fa-IR.js
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\lib\Kendo\js\JalaliDate.js
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\lib\Kendo\js\jquery-1.12.4.min.js
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\lib\Kendo\js\kendo.calendar.fa.js
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\lib\Kendo\js\kendo.datepicker.fa.js
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\lib\Kendo\js\kendo.web.js
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\select2\css\select2.css
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\select2\css\select2.min.css
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\select2\js\i18n\af.js

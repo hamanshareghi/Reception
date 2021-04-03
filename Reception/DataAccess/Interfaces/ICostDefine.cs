@@ -9,7 +9,7 @@ namespace DataAccess.Interfaces
 {
     public interface ICostDefine
     {
-        IEnumerable<CostDefine> GetAll();
+        List<CostDefine> GetAll();
         Task<CostDefine> GetById(int id);
         void Add(CostDefine costDefine);
         void Update(CostDefine costDefine);

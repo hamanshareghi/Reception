@@ -56,9 +56,10 @@ namespace Web.Areas.Admin.Controllers
             {
 
                 defect.InsertDate = DateTime.Now;
+                defect.UpDateTime=DateTime.Now;
                 _defect.Add(defect);
 
-                return RedirectToAction(nameof(Index), "Defect");
+                return RedirectToAction(nameof(Index), "Defect", new {area="Admin"});
             }
             return View(defect);
         }
@@ -107,7 +108,7 @@ namespace Web.Areas.Admin.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index), "Defect");
+                return RedirectToAction(nameof(Index), "Defect", new { area = "Admin" });
             }
             return View(defect);
         }
@@ -136,7 +137,7 @@ namespace Web.Areas.Admin.Controllers
             var defect = await _defect.GetById(id);
             _defect.Delete(defect);
 
-            return RedirectToAction(nameof(Index), "Defect");
+            return RedirectToAction(nameof(Index), "Defect", new { area = "Admin" });
         }
 
         private bool DefectExists(int id)

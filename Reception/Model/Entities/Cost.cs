@@ -23,7 +23,8 @@ namespace Model.Entities
         public int Price { get; set; }
 
         [Display(Name = "کاربر")]
-        [MaxLength(100, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [MaxLength(450, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
         public string UserId { get; set; }
 
         [Display(Name = "شرح")]
@@ -34,6 +35,10 @@ namespace Model.Entities
         [ForeignKey(nameof(CostDefineId))]
         public CostDefine CostDefine { get; set; }
 
+        //[Display(Name = "کاربر")]
+        //[ForeignKey(nameof(UserId))]
+        //public ApplicationUser User { get; set; }
         #endregion
+
     }
 }

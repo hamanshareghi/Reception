@@ -48,7 +48,7 @@
         <form asp-action="Delete">
             <input type="hidden" asp-for="Id" />
             <input type="submit" value="حذف مشتری" class="btn btn-danger" />
-            <a asp-action="Index" class="btn btn-info">بازگشت به لیست</a>
+            <a asp-area="Admin" asp-controller="Customer" asp-action="Index" class="btn btn-info">بازگشت به لیست</a>
         </form>
     </div>
 

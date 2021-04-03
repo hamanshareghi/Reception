@@ -7,7 +7,8 @@
         <div class="col-md-10 mx-auto">
             <form asp-area="Admin" asp-action="Edit" asp-controller="Cost" method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <input type="hidden" asp-for="CostDefineId" />
+                <input type="hidden" asp-for="CostId" />
+                <input type="hidden" asp-for="UserId" />
 
 
                 <div class="form-group">

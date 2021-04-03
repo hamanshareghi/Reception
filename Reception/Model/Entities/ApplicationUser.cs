@@ -52,6 +52,7 @@ namespace Model.Entities
         public ICollection<Leave> Leaves { get; set; }
         public ICollection<Debtor> Debtors { get; set; }
         public ICollection<RequestDevice> RequestDevices { get; set; }
+        //public ICollection<Cost> Costs { get; set; }
 
 
         #endregion

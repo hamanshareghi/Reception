@@ -41,7 +41,9 @@ namespace DataAccess.Services
         public Tuple<List<Cost>, int> GetAll(int take, int pageId = 1)
         {
             int skip = (pageId - 1) * take;
-            int pageCount = _context.Costs.Count();
+            int pageCount = _context.Costs
+                .Include(s=>s.CostDefine)
+                .Count();
             if (pageCount % take != 0)
             {
                 pageCount = pageCount / take;
@@ -54,7 +56,6 @@ namespace DataAccess.Services
 
             var query = _context.Costs
                 .Include(s => s.CostDefine)
-                .OrderByDescending(s => s.UpDateTime)
                 .Skip(skip)
                 .Take(take);
             return Tuple.Create(query.ToList(), pageCount);

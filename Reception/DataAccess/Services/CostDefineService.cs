@@ -85,7 +85,7 @@ namespace DataAccess.Services
             return Tuple.Create(query.ToList(), pageCount);
         }
 
-        public IEnumerable<CostDefine> GetAll()
+        public List<CostDefine> GetAll()
         {
             return _context.CostDefines.ToList();
         }
