@@ -80,6 +80,8 @@ namespace Data.Context
                 .HasQueryFilter(u => !u.IsDelete);
             modelBuilder.Entity<Service>()
                 .HasQueryFilter(u => !u.IsDelete);
+            modelBuilder.Entity<Shipping>()
+                .HasQueryFilter(u => !u.IsDelete);
             modelBuilder.Entity<Ticket>()
                 .HasQueryFilter(u => !u.IsDelete);
             modelBuilder.Entity<Video>()

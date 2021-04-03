@@ -5,7 +5,7 @@
     <hr />
     <div class="row">
         <div class="col-md-10 mx-auto">
-            <form asp-action="Edit" asp-controller="Shipping" method="post">
+            <form asp-area="Admin" asp-action="Edit" asp-controller="Shipping" method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="ShippingId" />
                 <div class="form-group">

@@ -57,15 +57,16 @@ namespace Web.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Driver,Contact,Description,ShippingId,InsertDate,IsDelete,UpDateTime")] Shipping shipping)
+        public async Task<IActionResult> Create([Bind("ShippingId,Name,Driver,Contact,Description,ShippingId,InsertDate,IsDelete,UpDateTime")] Shipping shipping)
         {
             if (ModelState.IsValid)
             {
 
                 shipping.InsertDate = DateTime.Now;
+                shipping.UpDateTime=DateTime.Now;
                 _shipping.Add(shipping);
 
-                return RedirectToAction(nameof(Index), "Shipping");
+                return RedirectToAction(nameof(Index), "Shipping", new { area = "Admin" });
             }
             return View(shipping);
         }
@@ -78,7 +79,7 @@ namespace Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var shipping = _shipping.GetById(id.Value);
+            var shipping =await _shipping.GetById(id.Value);
             if (shipping == null)
             {
                 return NotFound();
@@ -91,7 +92,7 @@ namespace Web.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Name, Driver, Contact, Description, ShippingId, InsertDate, IsDelete, UpDateTime")] Shipping shipping)
+        public async Task<IActionResult> Edit(int id, [Bind("ShippingId,Name, Driver, Contact, Description, ShippingId, InsertDate, IsDelete, UpDateTime")] Shipping shipping)
         {
             if (id != shipping.ShippingId)
             {
@@ -130,7 +131,7 @@ namespace Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var shipping = _shipping.GetById(id.Value);
+            var shipping =await _shipping.GetById(id.Value);
             if (shipping == null)
             {
                 return NotFound();
@@ -144,7 +145,8 @@ namespace Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var shipping = _shipping.GetById(id);
+            var shipping =await _shipping.GetById(id);
+            _shipping.Delete(shipping);
             return RedirectToAction(nameof(Index), "Shipping", new { area = "Admin" });
         }
 
