@@ -98,7 +98,8 @@ namespace Data.Context
                 .HasQueryFilter(u => !u.IsDelete);
             modelBuilder.Entity<Duty>()
                 .HasQueryFilter(u => !u.IsDelete);
-
+            //modelBuilder.Entity<ApplicationUser>()
+            //    .HasQueryFilter(u => !u.IsDelete);
             base.OnModelCreating(modelBuilder);
         }
     }

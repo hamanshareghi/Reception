@@ -69,7 +69,7 @@ namespace Web.Areas.Admin.Controllers
                     var rolesResult = await _userManager.AddToRoleAsync(customer, "Users");
                     //string message = $"کاربر {model.FullName} خوش آمدید نام کاربری {model.Contact} و رمز عبور : Password@1 برای پیگیری به سایت www.storebit.ir مراجعه کنید";
                     //SendMessage.SendSMS(customer.PhoneNumber,message);
-                    return Redirect("~/Customer/Index");
+                    return RedirectToAction("Index","Customer",new {area="Admin"});
                 }
 
                 foreach (var error in result.Errors)
@@ -133,7 +133,7 @@ namespace Web.Areas.Admin.Controllers
                 //SendMessage.SendSMS(result.PhoneNumber, message);
                 if (editResult.Succeeded)
                 {
-                    return RedirectToAction("Index", "Customer");
+                    return RedirectToAction("Index", "Customer",new {area="Admin"});
                 }
                 
             }
@@ -168,7 +168,7 @@ namespace Web.Areas.Admin.Controllers
                var deleteResult = await _userManager.UpdateAsync(result);
                 if (deleteResult.Succeeded)
                 {
-                    return RedirectToAction("Index", "Customer");
+                    return RedirectToAction("Index", "Customer",new {area="Admin"});
                 }
 
             }
