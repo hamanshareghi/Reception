@@ -22,10 +22,15 @@ namespace Web.Areas.Admin.Controllers
         }
 
         // GET: Admin/ProductGroups
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string search,int take,int pageId=1)
         {
+            if (!string.IsNullOrEmpty(search))
+            {
+                ViewBag.search = search;
+                return View(_productGroup.GetProductGroupBySearch(search, 25, pageId));
+            }
             
-            return View(_productGroup.GetAll());
+            return View(_productGroup.GetAll(25,pageId));
         }
 
         // GET: Admin/ProductGroups/Details/5

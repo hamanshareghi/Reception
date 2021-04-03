@@ -38,9 +38,59 @@ namespace DataAccess.Services
             return _context.Services.Any(s => s.ServiceId == id);
         }
 
-        public Task<List<Service>> GetAll()
+        public Tuple<List<Service>, int> GetServiceBySearch(string search, int take, int pageId = 1)
         {
-            return _context.Services.ToListAsync();
+            int skip = (pageId - 1) * take;
+            int pageCount = _context.Services.Count(
+                s => s.Name.ToLower().Contains(search)
+                || s.Description.ToLower().Contains(search)
+                || s.Warranty.ToLower().Contains(search)
+                );
+            if (pageCount % take != 0)
+            {
+                pageCount = pageCount / take;
+                pageCount++;
+            }
+            else
+            {
+                pageCount = pageCount / take;
+            }
+
+            var query = _context.Services
+                .Where(s =>
+                    s.Name.ToLower().Contains(search)
+                       || s.Description.ToLower().Contains(search)
+                       || s.Warranty.ToLower().Contains(search))
+                .Skip(skip)
+                .Take(take)
+                .ToList();
+            return Tuple.Create(query, pageCount);
+        }
+
+        public List<Service> GetAll()
+        {
+            return _context.Services.ToList();
+        }
+
+        public Tuple<List<Service>, int> GetAll(int take, int pageId = 1)
+        {
+            int skip = (pageId - 1) * take;
+            int pageCount = _context.Services.Count();
+            if (pageCount % take != 0)
+            {
+                pageCount = pageCount / take;
+                pageCount++;
+            }
+            else
+            {
+                pageCount = pageCount / take;
+            }
+
+            var query = _context.Services
+                .OrderByDescending(s => s.UpDateTime)
+                .Skip(skip)
+                .Take(take);
+            return Tuple.Create(query.ToList(), pageCount);
         }
 
         public Task<Service> GetById(int id)

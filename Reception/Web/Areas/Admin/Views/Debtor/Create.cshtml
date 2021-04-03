@@ -5,8 +5,13 @@
     <hr />
     <div class="row">
         <div class="col-md-10 mx-auto">
-            <form asp-area="" asp-controller="Debtor" asp-action="Create" method="post">
+            <form asp-area="Admin" asp-controller="Debtor" asp-action="Create" method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="dropdown bootstrap-select form-control mb-5">
+                    <label asp-for="UserId" class="control-label"></label>
+                    <select class="form-control selectpicker" asp-for="UserId" data-live-search="true" tabindex="null" asp-items="ViewBag.UserId">>
+                    </select>
+                </div>
                 <div class="form-group">
                     <label asp-for="Title" class="control-label"></label>
                     <input asp-for="Title" class="form-control" />
@@ -16,11 +21,7 @@
                     <label asp-for="UserId" class="control-label"></label>
                     <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId"></select>
                 </div>*@
-                <div class="dropdown bootstrap-select form-control mb-5">
-                    <label asp-for="UserId" class="control-label"></label>
-                    <select class="form-control selectpicker" asp-for="UserId" data-live-search="true" tabindex="null" asp-items="ViewBag.UserId">>
-                    </select>
-                </div>
+
                 <div class="form-group">
                     <label asp-for="Price" class="control-label"></label>
                     <input asp-for="Price" class="form-control" />

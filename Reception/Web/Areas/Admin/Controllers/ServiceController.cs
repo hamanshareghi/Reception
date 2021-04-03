@@ -17,9 +17,14 @@ namespace Web.Areas.Admin.Controllers
             _service = service;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index(string search,int take,int pageId=1)
         {
-            return View(await _service.GetAll());
+            if (!string.IsNullOrEmpty(search))
+            {
+                ViewBag.search = search;
+                return View(_service.GetServiceBySearch(search, 25, pageId));
+            }
+            return View(_service.GetAll(25,pageId));
         }
 
         public async Task<IActionResult> Details(int? id)
@@ -45,15 +50,16 @@ namespace Web.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DefectId,Name,Description,InsertDate,IsDelete,UpDateTime")] Service service)
+        public async Task<IActionResult> Create([Bind("ServiceId,Name,Warranty,Description,InsertDate,IsDelete,UpDateTime")] Service service)
         {
             if (ModelState.IsValid)
             {
 
                 service.InsertDate = DateTime.Now;
+                service.UpDateTime=DateTime.Now;
                 _service.Add(service);
 
-                return RedirectToAction(nameof(Index), "Service");
+                return RedirectToAction(nameof(Index), "Service",new {area="Admin"});
             }
             return View(service);
         }
@@ -75,7 +81,7 @@ namespace Web.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("DefectId,Name,Description,InsertDate,IsDelete,UpDateTime")] Service service)
+        public async Task<IActionResult> Edit(int id, [Bind("ServiceId,Name,Warranty,Description,InsertDate,IsDelete,UpDateTime")] Service service)
         {
             if (id != service.ServiceId)
             {
@@ -102,7 +108,7 @@ namespace Web.Areas.Admin.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index), "Service");
+                return RedirectToAction(nameof(Index), "Service", new { area = "Admin" });
             }
             return View(service);
         }
@@ -131,7 +137,7 @@ namespace Web.Areas.Admin.Controllers
             var service = await _service.GetById(id);
             _service.Delete(service);
 
-            return RedirectToAction(nameof(Index), "Service");
+            return RedirectToAction(nameof(Index), "Service", new { area = "Admin" });
         }
 
         private bool ServiceExists(int id)

@@ -38,12 +38,66 @@ namespace DataAccess.Services
             return _context.Costs.Any(s => s.CostId == id);
         }
 
-        public Task<List<Cost>> GetAll()
+        public Tuple<List<Cost>, int> GetAll(int take, int pageId = 1)
+        {
+            int skip = (pageId - 1) * take;
+            int pageCount = _context.Costs.Count();
+            if (pageCount % take != 0)
+            {
+                pageCount = pageCount / take;
+                pageCount++;
+            }
+            else
+            {
+                pageCount = pageCount / take;
+            }
+
+            var query = _context.Costs
+                .Include(s => s.CostDefine)
+                .OrderByDescending(s => s.UpDateTime)
+                .Skip(skip)
+                .Take(take);
+            return Tuple.Create(query.ToList(), pageCount);
+        }
+
+        public Tuple<List<Cost>, int> GetCostBySearch(string search, int take, int pageId = 1)
+        {
+            int skip = (pageId - 1) * take;
+            int pageCount = _context.Costs.Count(
+                s=>s.Description.ToLower().Contains(search)
+                || s.Price.ToString().ToLower().Contains(search)
+                || s.CostDefine.Name.ToLower().Contains(search)
+                
+                );
+            if (pageCount % take != 0)
+            {
+                pageCount = pageCount / take;
+                pageCount++;
+            }
+            else
+            {
+                pageCount = pageCount / take;
+            }
+
+            var query = _context.Costs
+                .Include(s => s.CostDefine)
+                .Where(
+                    s => s.Description.ToLower().Contains(search)
+                         || s.Price.ToString().ToLower().Contains(search)
+                         || s.CostDefine.Name.ToLower().Contains(search)
+                    )
+                .OrderByDescending(s => s.UpDateTime)
+                .Skip(skip)
+                .Take(take);
+            return Tuple.Create(query.ToList(), pageCount);
+        }
+
+        public List<Cost> GetAll()
         {
             return _context.Costs
                 .Include(s=>s.CostDefine)
                 .OrderByDescending(s=>s.UpDateTime)
-                .ToListAsync();
+                .ToList();
         }
 
         public Task<Cost> GetById(int id)

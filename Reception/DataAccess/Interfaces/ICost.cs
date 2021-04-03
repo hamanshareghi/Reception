@@ -9,11 +9,14 @@ namespace DataAccess.Interfaces
 {
     public interface ICost
     {
-        Task<List<Cost>> GetAll();
+        List<Cost> GetAll();
         Task<Cost> GetById(int id);
         void Add(Cost cost);
         void Update(Cost cost);
         void Delete(Cost cost);
         bool Exist(int id);
+        Tuple<List<Cost>, int> GetAll(int take, int pageId = 1);
+        Tuple<List<Cost>, int> GetCostBySearch(string search,int take, int pageId = 1);
+
     }
 }

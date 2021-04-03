@@ -20,9 +20,9 @@ namespace Web.Areas.Admin.Controllers
             _costDefine = costDefine;
         }
 
-        public async Task<IActionResult> Index()
+        public  IActionResult Index()
         {
-            return View(await _cost.GetAll());
+            return View(_cost.GetAll());
         }
 
         public async Task<IActionResult> Details(int? id)

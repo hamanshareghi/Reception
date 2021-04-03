@@ -15,5 +15,7 @@ namespace DataAccess.Interfaces
         void Update(CostDefine costDefine);
         void Delete(CostDefine costDefine);
         bool Exist(int id);
+        Tuple<List<CostDefine>, int> GetAll(int take, int pageId = 1);
+        Tuple<List<CostDefine>, int> GetCostDefineBySearch(string search, int take, int pageId = 1);
     }
 }

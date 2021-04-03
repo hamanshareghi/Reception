@@ -38,6 +38,53 @@ namespace DataAccess.Services
             return _context.CostDefines.Any(s => s.CostDefineId == id);
         }
 
+        public Tuple<List<CostDefine>, int> GetAll(int take, int pageId = 1)
+        {
+            int skip = (pageId - 1) * take;
+            int pageCount = _context.CostDefines.Count();
+            if (pageCount % take != 0)
+            {
+                pageCount = pageCount / take;
+                pageCount++;
+            }
+            else
+            {
+                pageCount = pageCount / take;
+            }
+
+            var query = _context.CostDefines
+                .OrderByDescending(s => s.UpDateTime)
+                .Skip(skip)
+                .Take(take);
+            return Tuple.Create(query.ToList(), pageCount);
+        }
+
+        public Tuple<List<CostDefine>, int> GetCostDefineBySearch(string search, int take, int pageId = 1)
+        {
+            int skip = (pageId - 1) * take;
+            int pageCount = _context.CostDefines.Count(
+                 s=>s.Name.ToLower().Contains(search)
+                );
+            if (pageCount % take != 0)
+            {
+                pageCount = pageCount / take;
+                pageCount++;
+            }
+            else
+            {
+                pageCount = pageCount / take;
+            }
+
+            var query = _context.CostDefines
+                .Where(
+                         s=> s.Name.ToLower().Contains(search)
+                    )
+                .OrderByDescending(s => s.UpDateTime)
+                .Skip(skip)
+                .Take(take);
+            return Tuple.Create(query.ToList(), pageCount);
+        }
+
         public IEnumerable<CostDefine> GetAll()
         {
             return _context.CostDefines.ToList();

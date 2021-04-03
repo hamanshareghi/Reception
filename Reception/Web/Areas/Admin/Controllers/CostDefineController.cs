@@ -17,9 +17,14 @@ namespace Web.Areas.Admin.Controllers
             _costDefine = costDefine;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index(string search,int take,int pageId=1)
         {
-            return View(_costDefine.GetAll());
+            if (!string.IsNullOrEmpty(search))
+            {
+                ViewBag.search = search;
+                return View(_costDefine.GetCostDefineBySearch(search, 25, pageId));
+            }
+            return View(_costDefine.GetAll(25,pageId));
         }
 
         public async Task<IActionResult> Details(int? id)
@@ -51,6 +56,7 @@ namespace Web.Areas.Admin.Controllers
             {
 
                 costDefine.InsertDate = DateTime.Now;
+                costDefine.UpDateTime=DateTime.Now;
                 _costDefine.Add(costDefine);
 
                 return RedirectToAction(nameof(Index), "CostDefine", new { area = "Admin" });

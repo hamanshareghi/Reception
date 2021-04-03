@@ -5,14 +5,21 @@
     <hr />
     <div class="row">
         <div class="col-md-10 mx-auto">
-            <form asp-area="" asp-controller="Service" asp-action="Create" method="post">
+            <form asp-area="Admin" asp-controller="Service" asp-action="Create" method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Name" class="control-label"></label>
-                    <input asp-for="Name" class="form-control" />
-                    <span asp-validation-for="Name" class="text-danger"></span>
-                </div>
-
+                
+                    <div class="form-group ">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group ">
+                        <label asp-for="Warranty" class="control-label"></label>
+                        <input asp-for="Warranty" class="form-control" />
+                        <span asp-validation-for="Warranty" class="text-danger"></span>
+                    </div>
+                
+                
                 <div class="form-group">
                     <label asp-for="Description" class="control-label"></label>
                     <textarea asp-for="Description" class="form-control" id="editor"></textarea>

@@ -14,7 +14,7 @@ namespace Model.Entities
         [Key]
         public int ServiceId { get; set; }
 
-        [Display(Name = "ایراد")]
+        [Display(Name = "خدمات")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(400, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
         public string Name { get; set; }

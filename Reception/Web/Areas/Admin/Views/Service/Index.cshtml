@@ -1,35 +1,84 @@
-﻿@model IEnumerable<Model.Entities.Service>
+﻿@model Tuple<List<Model.Entities.Service>,int>
+@using Common.Library
+@{
+    int row = 1;
+    string query = " ";
+    if (ViewBag.Search != null)
+    {
+        query = ViewBag.Search.ToString();
+    }
 
-<h4 class="card-title"> خدمات</h4>
-<hr />
-<p>
-    <a asp-action="Create" class="btn btn-success">ثبت سرویس جدید</a>
-</p>
-<table class="table table-bordered table-striped table-responsive">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>*@
+}
+<div class="container">
+    <h4 class="card-title"> خدمات</h4>
+    <div class="mb-7">
+        <form asp-area="Admin" asp-controller="Service" asp-action="Index" method="get">
+            <div class="row align-items-center">
 
+                <div class="col-lg-10 col-xl-10">
+                    <div class="row align-items-center">
+                        <div class="col-md-10 my-2 my-md-0">
+                            <div class="input-icon">
+                                <input type="text" name="search" class="form-control" placeholder="جستجو..." id="kt_datatable_search_query">
+                                <span>
+                                    <i class="flaticon2-search-1 text-muted"></i>
+                                </span>
+                            </div>
+                        </div>
 
-            <th>دستورات</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+                    </div>
+                </div>
+                <div class="col-lg-2 col-xl-2 mt-5 mt-lg-0">
+                    <button type="submit" class="btn btn-light-primary px-6 font-weight-bold">
+                        جستجو
+                    </button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+    <hr />
+    <p>
+        <a asp-area="Admin" asp-controller="Service" asp-action="Create" class="btn btn-success">ثبت خدمات جدید</a>
+    </p>
+    <table class="table table-bordered table-striped table-responsive">
+        <thead>
             <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    خدمات
+                </th>
+                <th>
+                    گارانتی
+                </th>
+                <th>
+                    بروزرسانی
+                </th>
+                <th>دستورات</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Item1)
+            {
+            <tr>
+
+                <td>
+                    @row
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Warranty)
+                </td>
 
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>*@
+                <td>
+                    <p class="text-info font-weight-bold">
+                        @item.UpDateTime?.ToShamsi()
+                    </p>
+                </td>
 
 
                 <td>
@@ -38,7 +87,40 @@
                     <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.ServiceId"><i class="fas fa-trash"></i></a>
                 </td>
             </tr>
-        }
-    </tbody>
-</table>
+                row++;
+            }
+        </tbody>
+    </table>
 
+
+</div>
+<div class="container">
+    @if (Model.Item2 > 1)
+    {
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                @for (int i = 1; i <= Model.Item2; i++)
+                {
+                    <li class="page-item">
+                        @if (!string.IsNullOrEmpty(query))
+                        {
+                            <a class="page-link" href="/Service/Index?pageId=@i&search=@query">
+                                @i
+                            </a>
+                        }
+                        else
+                        {
+                            <a class="page-link" href="/Service/Index?pageId=@i">
+                                @i
+                            </a>
+                        }
+                    </li>
+                }
+
+
+            </ul>
+        </nav>
+    }
+
+    
+</div>
