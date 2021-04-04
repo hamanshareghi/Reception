@@ -11,16 +11,27 @@ namespace Web.Areas.Admin.Controllers
     public class ReportController : Controller
     {
         private IDebtor _debtor;
+        private ICost _cost;
 
-        public ReportController(IDebtor debtor)
+        public ReportController(IDebtor debtor, ICost cost)
         {
             _debtor = debtor;
+            _cost = cost;
         }
  
+        [HttpGet]
+        public IActionResult Costs(string search,string strDate,string endDate)
+        {
+
+            return View(_cost.GetCostFromToDate(search,strDate,endDate));
+        }
+
+        [HttpPost]
         public IActionResult Costs()
         {
             return View();
         }
+
 
 
         public IActionResult Debtors()

@@ -1,47 +1,106 @@
-﻿
+﻿@using Common.Library
+@model List<Cost>
 @{
     ViewData["Title"] = "Costs";
+    int row = 1;
 }
 
 <link href="~/lib/Kendo/css/kendo.common.min.css" rel="stylesheet" />
 <link href="~/lib/Kendo/css/kendo.default.min.css" rel="stylesheet" />
-<h1>Costs</h1>
+<div class="container">
+    <h1>گزارش دوره ای هزینه ها</h1>
+
+    <div class="mb-7">
+        <form asp-area="Admin" asp-controller="Report" asp-action="Costs" method="get">
+            <div class="row align-items-center">
+
+                <div class="col-lg-4 col-xl-4">
+                        <div class="col-md-10 my-2 my-md-0">
+                            <div class="input-icon">
+                                <input type="text" name="search" class="form-control" placeholder="جستجو..." id="kt_datatable_search_query">
+                                <span>
+                                    <i class="flaticon2-search-1 text-muted"></i>
+                                </span>
+                            </div>
 
 
-        @{
-            if (ViewBag.date != null)
-            {
-                <div class="alert alert-primary">
-                    <p>
-                    @ViewBag.date.ToString();</p>
+                    </div>
                 </div>
-            }
+                <div class="col-lg-3 col-xl-3">
+                    <div class="col-md-11 my-2 my-md-0">
+                        <input type="text" id="strDate" name="strDate" class="form-control w-100">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-xl-3">
+                    <div class="col-md-12 my-2 my-md-0">
+                        <input type="text" id="endDate" name="endDate" class="form-control w-100">
+                    </div>
+                </div>
+                <div class="col-lg-2 col-xl-2 mt-5 mt-lg-0">
+                    <button type="submit" class="btn btn-light-primary px-6 font-weight-bold">
+                        جستجو
+                    </button>
+                </div>
 
-        }
-
-
-<div>
-   
-    <form asp-area="Admin" asp-controller="Report" asp-action="Costs" method="post">
-        <body style="direction: rtl; font-family: tahoma;">
-        <div id="example" class="k-content">
-            <div style="margin-right: 10px;">
-
-               @* <input id="datepicker" value="2018/03/22" style="width:150px;" /><br/><br/>*@
-                <input id="datepickerShamsi" value="1397/01/02" style="width:150px;" /><br/><br/>
-                @*<input id="timepicker" value="16:00" style="width:150px;" /><br/><br/>*@
-
-                @*<div id="calendar"></div>
-                <div id="calendarShamsi"></div>*@
             </div>
-            
-        </div>
-        </body>
-    </form>
-
+        </form>
+    </div>
 
 </div>
 
+<table class="table table-bordered table-striped table-responsive">
+    <thead>
+    <tr>
+        <th>
+            #
+        </th>
+        <th>
+            گروه هزینه
+        </th>
+        <th>
+            مبلغ
+        </th>
+        <th>
+            تاریخ
+        </th>
+        <th>
+            کاربر
+        </th>
+
+        <th>دستورات</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @row
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CostDefine.Name)
+            </td>
+            <td>
+                <p class="font-weight-bold text-dark">
+                    @item.Price.ToString("#,0") تومان
+                </p>
+            </td>
+            <td>
+                <p class="text-primary">
+                    @item.InsertDate.ToShamsiDot()
+                </p>
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+
+           
+        </tr>
+        row++;
+    }
+    </tbody>
+</table>
 
 
 @section Scripts {
@@ -58,7 +117,8 @@
 
             // create DatePicker from input HTML element
             //$("#datepicker").kendoDatePicker({ culture: "en-US" });
-            $("#datepickerShamsi").kendoDatePickerShamsi({ culture: "fa-IR" });
+            $("#strDate").kendoDatePickerShamsi({ culture: "fa-IR" });
+            $("#endDate").kendoDatePickerShamsi({ culture: "fa-IR" });
 
             //$("#calendar").kendoCalendar({ culture: "en-US" });
             //$("#calendarShamsi").kendoCalendarShamsi({ culture: "fa-IR" });
