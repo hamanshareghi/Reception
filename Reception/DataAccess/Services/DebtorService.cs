@@ -53,7 +53,7 @@ namespace DataAccess.Services
                     );
             if (pageCount % take != 0)
             {
-                pageCount = pageCount % take;
+                pageCount = pageCount / take;
                 pageCount++;
             }
             else
@@ -92,7 +92,7 @@ namespace DataAccess.Services
                 .Count();
             if (pageCount % take != 0)
             {
-                pageCount = pageCount % take;
+                pageCount = pageCount / take;
                 pageCount++;
             }
             else

@@ -11,7 +11,7 @@ namespace DataAccess.Interfaces
     {
         List<Reception> GetAll();
         Task<Reception> GetById(int id);
-        void Add(Reception reception);
+        Reception Add(Reception reception);
         void Update(Reception reception);
         void Delete(Reception reception);
         bool Exist(int id);

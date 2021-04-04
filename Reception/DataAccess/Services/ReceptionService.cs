@@ -40,10 +40,11 @@ namespace DataAccess.Services
                 .FirstOrDefaultAsync(s=>s.ReceptionId == id);
         }
 
-        public void Add(Reception reception)
+        public Reception Add(Reception reception)
         {
             _context.Receptions.Add(reception);
             _context.SaveChanges();
+            return reception;
         }
 
         public void Update(Reception reception)
@@ -70,7 +71,7 @@ namespace DataAccess.Services
                 .Count();
             if (pageCount % take != 0)
             {
-                pageCount = pageCount % take;
+                pageCount = pageCount / take;
                 pageCount++;
             }
             else
@@ -131,7 +132,8 @@ namespace DataAccess.Services
                          || s.Serial.ToLower().Contains(search)
                          || s.Customer.PhoneNumber.ToLower().Contains(search)
 
-                );
+                ).Skip(skip)
+                .Take(take);
             return Tuple.Create(query.ToList(), pageCount);
         }
     }

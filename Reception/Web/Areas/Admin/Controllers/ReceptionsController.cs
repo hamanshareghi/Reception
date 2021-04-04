@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Common.Library;
 using DataAccess.Interfaces;
 using Kavenegar;
+using Kavenegar.Models;
+using Kavenegar.Models.Enums;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -84,6 +86,8 @@ namespace Web.Areas.Admin.Controllers
                 reception.InsertDate = DateTime.Now;
                 reception.UpDateTime =DateTime.Now;
                 reception.UserId = _userManager.GetUserId(User);
+                string phone= reception.
+               
                 if (date != "")
                 {
                     string[] std = date.Split('/');
@@ -93,7 +97,9 @@ namespace Web.Areas.Admin.Controllers
                         new PersianCalendar()
                     );
                 }
-                _reception.Add(reception);
+
+
+                Reception newReception= _reception.Add(reception);
 
                 foreach (var item in defectsList)
                 {
@@ -108,21 +114,21 @@ namespace Web.Areas.Admin.Controllers
                     });
                                        
                 }
-                var client = new WebClient();
-                string url = $"http://api.kavenegar.com/v1/326C4D6F466E46637061714A747930487875702B3072737671766C7045572F4E4345306456574D713953633D/sms/send.json?receptor={reception.Customer.PhoneNumber}&token={reception.Customer.FullName}&token2={reception.ReceptionId.ToString()}&token3={reception.ReceptionDate.ToString()}&template=Reception";
-                var content = client.DownloadString(url);
-                //Api = new KavenegarApi("326C4D6F466E46637061714A747930487875702B3072737671766C7045572F4E4345306456574D713953633D");
 
-                //string receptor = reception.Customer.PhoneNumber;
-                //string token = reception.Customer.FullName;
-                //string token2 = reception.ReceptionId.ToString();
-                //string token3 = reception.ReceptionDate.ToString();
-                //string template = "Reception";
-                //var result = Api.VerifyLookup(receptor, token, token2, token3, template);
-                //var api = new KavenegarApi("326C4D6F466E46637061714A747930487875702B3072737671766C7045572F4E4345306456574D713953633D");
-                //var result = api.Send("", reception.Customer.PhoneNumber, "خدمات پیام کوتاه کاوه نگار");
+                #region VerifyLookupAsync
+               
+                KavenegarApi kavenegar = new KavenegarApi("326C4D6F466E46637061714A747930487875702B3072737671766C7045572F4E4345306456574D713953633D");
 
-                return RedirectToAction(nameof(Index),"Receptions");
+                SendResult result = null;
+                string receptor = newReception.Customer.Contact;
+                string token = newReception.Customer.FullName;
+                string token2 = newReception.ReceptionId.ToString();
+                string token3 = newReception.ReceptionDate.ToString(CultureInfo.InvariantCulture);
+                result =  kavenegar.VerifyLookup(receptor,token ,token2  ,token3 , null, null, "Reception", VerifyLookupType.Sms);
+                #endregion
+
+
+                return RedirectToAction(nameof(Index),"Receptions",new {area="Admin"});
             }
             ViewData["CustomerId"] = new SelectList(_userManager.Users.ToList(), "Id", "FullName");
             ViewData["ProductId"] = new SelectList(_product.GetAll(), "ProductId", "Name");
