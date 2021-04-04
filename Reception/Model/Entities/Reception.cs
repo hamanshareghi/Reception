@@ -60,6 +60,8 @@ namespace Model.Entities
 
         public ICollection<DeviceDefect> DeviceDefects { get; set; }
         public ICollection<DeviceImage> DeviceImages { get; set; }
+        //public ICollection<Sms> SmsCollection { get; set; }
+
         #endregion
 
     }

@@ -10,8 +10,8 @@ namespace DataAccess.Interfaces
     public interface IReception
     {
         List<Reception> GetAll();
-        Task<Reception> GetById(int id);
-        Reception Add(Reception reception);
+        Reception GetById(int id);
+        int Add(Reception reception);
         void Update(Reception reception);
         void Delete(Reception reception);
         bool Exist(int id);

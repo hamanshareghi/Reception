@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Library;
 using Data.Context;
 using DataAccess.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -29,7 +30,7 @@ namespace DataAccess.Services
                 .ToList();
         }
 
-        public Task<Reception> GetById(int id)
+        public Reception GetById(int id)
         {
             return _context.Receptions
                 .Include(r => r.Customer)
@@ -37,14 +38,14 @@ namespace DataAccess.Services
                 .Include(s => s.Duties)
                 .Include(s => s.DeviceDefects)
                 .Include(s => s.DeviceImages)
-                .FirstOrDefaultAsync(s=>s.ReceptionId == id);
+                .FirstOrDefault(s=>s.ReceptionId == id);
         }
 
-        public Reception Add(Reception reception)
+        public int Add(Reception reception)
         {
             _context.Receptions.Add(reception);
             _context.SaveChanges();
-            return reception;
+            return reception.ReceptionId;
         }
 
         public void Update(Reception reception)
@@ -101,7 +102,7 @@ namespace DataAccess.Services
                 .Count(
                     s => s.Description.ToLower().Contains(search)
                          || s.Customer.FullName.ToLower().Contains(search)
-                         || s.ReceptionDate.ToString().ToLower().Contains(search)
+                         || s.ReceptionDate.ToShamsi().ToLower().Contains(search)
                          || s.Product.Name.Contains(search)
                          || s.Product.ProductGroup.GroupName.Contains(search)
                          || s.Serial.ToLower().Contains(search)
@@ -110,7 +111,7 @@ namespace DataAccess.Services
                 );
             if (pageCount % take != 0)
             {
-                pageCount = pageCount % take;
+                pageCount = pageCount / take;
                 pageCount++;
             }
             else
@@ -126,7 +127,7 @@ namespace DataAccess.Services
                 .Where(
                     s => s.Description.ToLower().Contains(search)
                          || s.Customer.FullName.ToLower().Contains(search)
-                         || s.ReceptionDate.ToString().ToLower().Contains(search)
+                         || s.ReceptionDate.ToShamsi().ToLower().Contains(search)
                          || s.Product.Name.Contains(search)
                          || s.Product.ProductGroup.GroupName.Contains(search)
                          || s.Serial.ToLower().Contains(search)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Common.Library;
 using DataAccess.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -24,10 +25,14 @@ namespace Web.Areas.Admin.Controllers
         }
 
         // GET: RequestDevices
-        public async Task<IActionResult> Index()
+        public IActionResult Index(string search ,int take,int pageId=1)
         {
-            
-            return View(await _requestDevice.GetAll());
+            if (!string.IsNullOrEmpty(search))
+            {
+                ViewBag.Search = search;
+                return View(_requestDevice.GetRequestDeViceBySearch(search, 20, pageId));
+            }
+            return View( _requestDevice.GetAll(25,pageId));
         }
 
         // GET: RequestDevices/Details/5
@@ -38,7 +43,7 @@ namespace Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var requestDevice = await _requestDevice.GetById(id.Value);
+            var requestDevice =  _requestDevice.GetById(id.Value);
             if (requestDevice == null)
             {
                 return NotFound();
@@ -68,7 +73,7 @@ namespace Web.Areas.Admin.Controllers
                 requestDevice.UpDateTime=DateTime.Now;
                 requestDevice.ViewStatus = false;
                 _requestDevice.Add(requestDevice);
-                return RedirectToAction(nameof(Index),"RequestDevices");
+                return RedirectToAction(nameof(Index),"RequestDevices",new {area="Admin"});
             }
             ViewData["ProductId"] = new SelectList(_product.GetAll(), "ProductId", "Name");
             ViewData["CustomerId"] = new SelectList(await _userManager.Users.ToListAsync(), "Id", "FullName");
@@ -83,7 +88,7 @@ namespace Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var requestDevice = await _requestDevice.GetById(id.Value);
+            var requestDevice =  _requestDevice.GetById(id.Value);
             if (requestDevice == null)
             {
                 return NotFound();
@@ -123,7 +128,7 @@ namespace Web.Areas.Admin.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index),"RequestDevices");
+                return RedirectToAction(nameof(Index), "RequestDevices", new { area = "Admin" });
             }
             ViewData["ProductId"] = new SelectList(_product.GetAll(), "ProductId", "Name");
             ViewData["CustomerId"] = new SelectList(await _userManager.Users.ToListAsync(), "Id", "FullName");
@@ -138,7 +143,7 @@ namespace Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var requestDevice = await _requestDevice.GetById(id.Value);
+            var requestDevice =  _requestDevice.GetById(id.Value);
             if (requestDevice == null)
             {
                 return NotFound();
@@ -152,14 +157,27 @@ namespace Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var requestDevice = await _requestDevice.GetById(id);
+            var requestDevice =  _requestDevice.GetById(id);
             _requestDevice.Delete(requestDevice);
-            return RedirectToAction(nameof(Index),"RequestDevices");
+            return RedirectToAction(nameof(Index), "RequestDevices", new { area = "Admin" });
         }
 
         private bool RequestDeviceExists(int id)
         {
+
             return _requestDevice.Exist(id);
+        }
+
+        public IActionResult Send(int id)
+        {
+            RequestDevice model = _requestDevice.GetById(id);
+
+            string receptor = model.User.Contact;
+            string token = model.User.FullName.Replace(" ", "-");
+            string token2 = model.Product.Name.Replace(" ","-");
+            //string token3 = model.UpDateTime?.ToShamsiDot();
+            SendMessage.SendRequestDevice(receptor,token,token2,null, "RequestDevice");
+            return RedirectToAction("Index", "RequestDevices", new {area = "Admin"});
         }
     }
 }

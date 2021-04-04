@@ -7,6 +7,7 @@ using Data.Context;
 using DataAccess.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Model.Entities;
+using Common.Library;
 
 namespace DataAccess.Services
 {
@@ -18,28 +19,29 @@ namespace DataAccess.Services
         {
             _context = context;
         }
-        public Task<List<RequestDevice>> GetAll()
+        public List<RequestDevice> GetAll()
         {
             return _context.RequestDevices
                 .Include(r => r.Product)
                 .Include(r => r.User)
                 .OrderByDescending(s=>s.UpDateTime)
-                .ToListAsync();
+                .ToList();
         }
 
-        public Task<RequestDevice> GetById(int id)
+        public RequestDevice GetById(int id)
         {
             return _context.RequestDevices
                 .Include(r => r.Product)
                 .Include(r => r.User)
                 .OrderByDescending(s => s.UpDateTime)
-                .FirstOrDefaultAsync(s => s.RequestDeviceId == id);
+                .FirstOrDefault(s => s.RequestDeviceId == id);
         }
 
-        public void Add(RequestDevice requestDevice)
+        public int Add(RequestDevice requestDevice)
         {
             _context.RequestDevices.Add(requestDevice);
             _context.SaveChanges();
+            return requestDevice.RequestDeviceId;
         }
 
         public void Update(RequestDevice requestDevice)
@@ -57,6 +59,68 @@ namespace DataAccess.Services
         public bool Exist(int id)
         {
             return _context.RequestDevices.Any(s=>s.RequestDeviceId == id);
+        }
+
+        public Tuple<List<RequestDevice>, int> GetAll(int take, int pageId = 1)
+        {
+            int skip = (pageId - 1) * take;
+            int pageCount = _context.RequestDevices.Count();
+            if (pageCount % take != 0)
+            {
+                pageCount = pageCount / take;
+                pageCount++;
+            }
+            else
+            {
+                pageCount = pageCount / take;
+            }
+            var query = _context.RequestDevices
+                .Include(r => r.Product)
+                .Include(r => r.User)
+                .OrderByDescending(s => s.UpDateTime)
+                .Skip(skip)
+                .Take(take);
+            return Tuple.Create(query.ToList(), pageCount);
+        }
+
+        public Tuple<List<RequestDevice>, int> GetRequestDeViceBySearch(string search, int take, int pageId = 1)
+        {
+            int skip = (pageId - 1) * take;
+            int pageCount = _context.RequestDevices
+                .Include(r => r.Product)
+                .Include(r => r.User)
+                .Count(
+                s=>s.Description.ToLower().Contains(search)
+                || s.User.FullName.ToLower().Contains(search)
+                || s.User.PhoneNumber.ToLower().Contains(search)
+                || s.Product.Name.ToLower().Contains(search)
+                || s.Product.ProductGroup.GroupName.ToLower().Contains(search)
+                || s.InsertDate.ToShamsi().ToLower().Contains(search)
+                );
+            if (pageCount % take != 0)
+            {
+                pageCount = pageCount / take;
+                pageCount++;
+            }
+            else
+            {
+                pageCount = pageCount / take;
+            }
+            var query = _context.RequestDevices
+                .Include(r => r.Product)
+                .Include(r => r.User)
+                .Where(
+                    s => s.Description.ToLower().Contains(search)
+                         || s.User.FullName.ToLower().Contains(search)
+                         || s.User.PhoneNumber.ToLower().Contains(search)
+                         || s.Product.Name.ToLower().Contains(search)
+                         || s.Product.ProductGroup.GroupName.ToLower().Contains(search)
+                         || s.InsertDate.ToShamsi().ToLower().Contains(search)
+                )
+                .OrderByDescending(s => s.UpDateTime)
+                .Skip(skip)
+                .Take(take);
+            return Tuple.Create(query.ToList(), pageCount);
         }
     }
 }

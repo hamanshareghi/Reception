@@ -36,14 +36,14 @@ namespace Web.Areas.Admin.Controllers
             _userManager = userManager;
         }
         // GET: Receptions
-        public IActionResult Index( string search,int take,int pageId=1)
+        public IActionResult Index(string search, int take, int pageId = 1)
         {
             if (!string.IsNullOrEmpty(search))
             {
                 ViewBag.Search = search;
                 return View(_reception.GetReceptionBySearch(search, 20, pageId));
             }
-            return View( _reception.GetAll(25,pageId));
+            return View(_reception.GetAll(25, pageId));
         }
 
         // GET: Receptions/Details/5
@@ -54,7 +54,7 @@ namespace Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var reception =await _reception.GetById(id.Value);
+            var reception = _reception.GetById(id.Value);
             if (reception == null)
             {
                 return NotFound();
@@ -68,7 +68,7 @@ namespace Web.Areas.Admin.Controllers
         {
             ViewData["CustomerId"] = new SelectList(_userManager.Users.ToList(), "Id", "FullName");
             ViewData["ProductId"] = new SelectList(_product.GetAll(), "ProductId", "Name");
-            ViewData["DefectId"] = new SelectList( _defect.GetAll(), "DefectId", "Name");
+            ViewData["DefectId"] = new SelectList(_defect.GetAll(), "DefectId", "Name");
 
             return View();
         }
@@ -78,16 +78,16 @@ namespace Web.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        
-        public async Task<IActionResult> Create([Bind("ReceptionId,CustomerId,ProductId,Serial,UserId,ReceptionDate,Description,InsertDate,IsDelete,UpDateTime")] Reception reception,List<int> defectsList,string date="")
+
+        public async Task<IActionResult> Create([Bind("ReceptionId,CustomerId,ProductId,Serial,UserId,ReceptionDate,Description,InsertDate,IsDelete,UpDateTime")] Reception reception, List<int> defectsList, string date = "")
         {
             if (ModelState.IsValid)
             {
                 reception.InsertDate = DateTime.Now;
-                reception.UpDateTime =DateTime.Now;
+                reception.UpDateTime = DateTime.Now;
                 reception.UserId = _userManager.GetUserId(User);
-                string phone= reception.
-               
+
+
                 if (date != "")
                 {
                     string[] std = date.Split('/');
@@ -99,7 +99,8 @@ namespace Web.Areas.Admin.Controllers
                 }
 
 
-                Reception newReception= _reception.Add(reception);
+                int newReceptionId = _reception.Add(reception);
+
 
                 foreach (var item in defectsList)
                 {
@@ -110,25 +111,14 @@ namespace Web.Areas.Admin.Controllers
                         ReceptionId = reception.ReceptionId,
                         IsDelete = false,
                         DefectId = item,
-                        
+
                     });
-                                       
+
                 }
-
-                #region VerifyLookupAsync
-               
-                KavenegarApi kavenegar = new KavenegarApi("326C4D6F466E46637061714A747930487875702B3072737671766C7045572F4E4345306456574D713953633D");
-
-                SendResult result = null;
-                string receptor = newReception.Customer.Contact;
-                string token = newReception.Customer.FullName;
-                string token2 = newReception.ReceptionId.ToString();
-                string token3 = newReception.ReceptionDate.ToString(CultureInfo.InvariantCulture);
-                result =  kavenegar.VerifyLookup(receptor,token ,token2  ,token3 , null, null, "Reception", VerifyLookupType.Sms);
-                #endregion
+                //SendSms(newReceptionId);
 
 
-                return RedirectToAction(nameof(Index),"Receptions",new {area="Admin"});
+                return RedirectToAction(nameof(Index), "Receptions", new { area = "Admin" });
             }
             ViewData["CustomerId"] = new SelectList(_userManager.Users.ToList(), "Id", "FullName");
             ViewData["ProductId"] = new SelectList(_product.GetAll(), "ProductId", "Name");
@@ -145,14 +135,14 @@ namespace Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var reception = await _reception.GetById(id.Value);
+            var reception = _reception.GetById(id.Value);
             if (reception == null)
             {
                 return NotFound();
             }
             ViewData["CustomerId"] = new SelectList(_userManager.Users.ToList(), "Id", "FullName");
             ViewData["ProductId"] = new SelectList(_product.GetAll(), "ProductId", "Name");
-            ViewData["DefectId"] = new SelectList( _defect.GetAll(), "DefectId", "Name");
+            ViewData["DefectId"] = new SelectList(_defect.GetAll(), "DefectId", "Name");
 
             return View(reception);
         }
@@ -162,7 +152,7 @@ namespace Web.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ReceptionId,CustomerId,ProductId,Serial,UserId,ReceptionDate,Description,InsertDate,IsDelete,UpDateTime")] Reception reception,string date="")
+        public async Task<IActionResult> Edit(int id, [Bind("ReceptionId,CustomerId,ProductId,Serial,UserId,ReceptionDate,Description,InsertDate,IsDelete,UpDateTime")] Reception reception, string date = "")
         {
             if (id != reception.ReceptionId)
             {
@@ -173,7 +163,7 @@ namespace Web.Areas.Admin.Controllers
             {
                 try
                 {
-                    reception.UpDateTime=DateTime.Now;
+                    reception.UpDateTime = DateTime.Now;
                     reception.UserId = _userManager.GetUserId(User);
 
                     if (date != "")
@@ -198,24 +188,24 @@ namespace Web.Areas.Admin.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index),"Receptions");
+                return RedirectToAction(nameof(Index), "Receptions", new { area = "Admin" });
             }
             ViewData["CustomerId"] = new SelectList(_userManager.Users.ToList(), "Id", "FullName");
             ViewData["ProductId"] = new SelectList(_product.GetAll(), "ProductId", "Name");
-            ViewData["DefectId"] = new SelectList( _defect.GetAll(), "DefectId", "Name");
+            ViewData["DefectId"] = new SelectList(_defect.GetAll(), "DefectId", "Name");
 
             return View(reception);
         }
 
         // GET: Receptions/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public IActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var reception = await _reception.GetById(id.Value);
+            var reception = _reception.GetById(id.Value);
             if (reception == null)
             {
                 return NotFound();
@@ -229,14 +219,38 @@ namespace Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var reception = await _reception.GetById(id);
-                _reception.Delete(reception);
-            return RedirectToAction(nameof(Index),"Receptions");
+            var reception = _reception.GetById(id);
+            _reception.Delete(reception);
+            return RedirectToAction(nameof(Index), "Receptions", new { area = "Admin" });
         }
 
         private bool ReceptionExists(int id)
         {
             return _reception.Exist(id);
+        }
+
+        public IActionResult Send(int id)
+        {
+            SendSms(id);
+            return RedirectToAction("Index", "Receptions", new {area = "Admin"});
+        }
+
+        private void SendSms(int id)
+        {
+
+            #region VerifyLookupAsync
+
+            KavenegarApi kavenegar = new KavenegarApi("326C4D6F466E46637061714A747930487875702B3072737671766C7045572F4E4345306456574D713953633D");
+
+            SendResult result = null;
+
+            Reception newReception = _reception.GetById(id);
+            string receptor = newReception.Customer.Contact;
+            string token = newReception.Customer.FullName.Replace(" ", "-");
+            string token2 = newReception.ReceptionId.ToString();
+            string token3 = newReception.ReceptionDate.ToShamsiDot();
+            result = kavenegar.VerifyLookup(receptor, token, token2, token3, "ReceptionWithName", VerifyLookupType.Sms);
+            #endregion
         }
     }
 }
