@@ -2,25 +2,21 @@
 
 namespace Data.Migrations
 {
-    public partial class changeCost : Migration
+    public partial class change3 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Costs_AspNetUsers_UserId",
-                table: "Costs");
-
-            migrationBuilder.DropIndex(
-                name: "IX_Costs_UserId",
-                table: "Costs");
+            migrationBuilder.RenameColumn(
+                name: "CustomerKind",
+                table: "AspNetUsers",
+                newName: "UserKind");
 
             migrationBuilder.AlterColumn<string>(
                 name: "UserId",
                 table: "Costs",
                 type: "nvarchar(450)",
                 maxLength: 450,
-                nullable: false,
-                defaultValue: "",
+                nullable: true,
                 oldClrType: typeof(string),
                 oldType: "nvarchar(100)",
                 oldMaxLength: 100,
@@ -29,6 +25,11 @@ namespace Data.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.RenameColumn(
+                name: "UserKind",
+                table: "AspNetUsers",
+                newName: "CustomerKind");
+
             migrationBuilder.AlterColumn<string>(
                 name: "UserId",
                 table: "Costs",
@@ -37,20 +38,8 @@ namespace Data.Migrations
                 nullable: true,
                 oldClrType: typeof(string),
                 oldType: "nvarchar(450)",
-                oldMaxLength: 450);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Costs_UserId",
-                table: "Costs",
-                column: "UserId");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Costs_AspNetUsers_UserId",
-                table: "Costs",
-                column: "UserId",
-                principalTable: "AspNetUsers",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
+                oldMaxLength: 450,
+                oldNullable: true);
         }
     }
 }

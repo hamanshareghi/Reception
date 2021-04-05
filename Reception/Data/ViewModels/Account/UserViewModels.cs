@@ -26,6 +26,9 @@ namespace Data.ViewModels.Account
         [MaxLength(100, ErrorMessage = "لطفا {0} را کمتر از {1} وارد کنید")]
         public string PhoneNumber { get; set; }
 
+        [Display(Name = "نوع کاربر")]
+        public UserKind UserKind { get; set; }
+
         [Display(Name = "پسورد")]
         [MaxLength(100, ErrorMessage = "لطفا {0} را کمتر از {1} وارد کنید")]
         [DataType(DataType.Password)]

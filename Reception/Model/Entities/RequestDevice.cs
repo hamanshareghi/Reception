@@ -28,7 +28,7 @@ namespace Model.Entities
         [Display(Name = "شرح")]
         public string Description { get; set; }
 
-        [Display(Name = "نمایش")]
+        [Display(Name = "تکمیل شده؟")]
         public bool ViewStatus { get; set; }
 
         #region Relation

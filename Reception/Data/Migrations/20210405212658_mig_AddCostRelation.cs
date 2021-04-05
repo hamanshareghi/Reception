@@ -2,7 +2,7 @@
 
 namespace Data.Migrations
 {
-    public partial class mig_AddRelationCost : Migration
+    public partial class mig_AddCostRelation : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

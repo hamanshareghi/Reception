@@ -63,7 +63,7 @@ namespace Web.Areas.Admin.Controllers
                     EmailConfirmed = true,
                     InsertDate = DateTime.Now,
                     UpDateTime = DateTime.Now,
-                    CustomerKind = Customer.Admins,
+                    UserKind = model.UserKind,
                     
                 };
                 IdentityResult result = await userManager.CreateAsync(user, model.Password);

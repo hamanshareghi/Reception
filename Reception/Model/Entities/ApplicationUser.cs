@@ -15,7 +15,7 @@ namespace Model.Entities
 
         [Display(Name = "مشتری")]
         [MaxLength(50, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
-        public Customer CustomerKind { get; set; }
+        public UserKind UserKind { get; set; }
 
         [Display(Name = "تماس")]
         [MaxLength(400, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
@@ -52,8 +52,9 @@ namespace Model.Entities
         public ICollection<Leave> Leaves { get; set; }
         public ICollection<Debtor> Debtors { get; set; }
         public ICollection<RequestDevice> RequestDevices { get; set; }
-        //public ICollection<Cost> Costs { get; set; }
-
+        public ICollection<Payment> Payments { get; set; }
+        public ICollection<Cost> Costs { get; set; }
+        public ICollection<AllMessage> AllMessages { get; set; }
 
         #endregion
 
@@ -61,12 +62,13 @@ namespace Model.Entities
 
 
 
-    public enum Customer
+    public enum UserKind
     {
         Customer = 1,
         Colleague = 2,
-        Admins=3,
-        SuperAdmin=4
+        Reseller=3,
+        Admins=4,
+        SuperAdmin=5
     }
 
 }

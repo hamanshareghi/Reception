@@ -40,7 +40,9 @@ namespace Data.Context
         public DbSet<Leave> Leaves { get; set; }
         public DbSet<Debtor> Debtors { get; set; }
         public DbSet<RequestDevice> RequestDevices { get; set; }
+        public DbSet<Payment> Payments { get; set; }
 
+        public DbSet<AllMessage> AllMessages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -98,8 +100,10 @@ namespace Data.Context
                 .HasQueryFilter(u => !u.IsDelete);
             modelBuilder.Entity<Duty>()
                 .HasQueryFilter(u => !u.IsDelete);
-            //modelBuilder.Entity<ApplicationUser>()
-            //    .HasQueryFilter(u => !u.IsDelete);
+            modelBuilder.Entity<Payment>()
+                .HasQueryFilter(u => !u.IsDelete);
+            modelBuilder.Entity<AllMessage>()
+                .HasQueryFilter(u => !u.IsDelete);
             base.OnModelCreating(modelBuilder);
         }
     }

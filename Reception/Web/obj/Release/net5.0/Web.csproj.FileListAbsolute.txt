@@ -296,3 +296,9 @@ D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Views\Sh
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Views\Shared\_JSMain.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Views\Shared\_MainLayout.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Views\Shared\_NavBar.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Views\Home\About.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Views\Home\Contact.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Views\Learn\Articles.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Views\Learn\Faqs.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Views\Learn\Videos.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Views\Shared\_Header.cshtml.g.cs

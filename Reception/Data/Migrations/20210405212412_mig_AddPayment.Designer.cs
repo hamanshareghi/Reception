@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210403184035_changeCost")]
-    partial class changeCost
+    [Migration("20210405212412_mig_AddPayment")]
+    partial class mig_AddPayment
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -172,10 +172,6 @@ namespace Data.Migrations
                         .HasMaxLength(400)
                         .HasColumnType("nvarchar(400)");
 
-                    b.Property<int>("CustomerKind")
-                        .HasMaxLength(50)
-                        .HasColumnType("int");
-
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -231,6 +227,10 @@ namespace Data.Migrations
 
                     b.Property<DateTime?>("UpDateTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("UserKind")
+                        .HasMaxLength(50)
+                        .HasColumnType("int");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
@@ -343,7 +343,6 @@ namespace Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UserId")
-                        .IsRequired()
                         .HasMaxLength(450)
                         .HasColumnType("nvarchar(450)");
 
@@ -699,6 +698,51 @@ namespace Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("OneDatas");
+                });
+
+            modelBuilder.Entity("Model.Entities.Payment", b =>
+                {
+                    b.Property<int>("PaymentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CustomerId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Destination")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<DateTime>("InsertDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("PaymentDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Source")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<DateTime?>("UpDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("PaymentId");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("Payments");
                 });
 
             modelBuilder.Entity("Model.Entities.Product", b =>
@@ -1223,6 +1267,15 @@ namespace Data.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Model.Entities.Payment", b =>
+                {
+                    b.HasOne("Model.Entities.ApplicationUser", "User")
+                        .WithMany("Payments")
+                        .HasForeignKey("CustomerId");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Model.Entities.Product", b =>
                 {
                     b.HasOne("Model.Entities.Brand", "Brand")
@@ -1301,6 +1354,8 @@ namespace Data.Migrations
                     b.Navigation("Debtors");
 
                     b.Navigation("Leaves");
+
+                    b.Navigation("Payments");
 
                     b.Navigation("Receptions");
 

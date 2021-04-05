@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210403195413_mig_ChangeCost")]
-    partial class mig_ChangeCost
+    [Migration("20210405210057_change3")]
+    partial class change3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -172,10 +172,6 @@ namespace Data.Migrations
                         .HasMaxLength(400)
                         .HasColumnType("nvarchar(400)");
 
-                    b.Property<int>("CustomerKind")
-                        .HasMaxLength(50)
-                        .HasColumnType("int");
-
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -231,6 +227,10 @@ namespace Data.Migrations
 
                     b.Property<DateTime?>("UpDateTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("UserKind")
+                        .HasMaxLength(50)
+                        .HasColumnType("int");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
