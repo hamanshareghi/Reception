@@ -8,6 +8,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Library;
 
 namespace DataAccess.Services
 {
@@ -57,6 +58,7 @@ namespace DataAccess.Services
 
             var query = _context.Costs
                 .Include(s => s.CostDefine)
+                .OrderByDescending(s=>s.UpDateTime)
                 .Skip(skip)
                 .Take(take);
             return Tuple.Create(query.ToList(), pageCount);
@@ -69,7 +71,7 @@ namespace DataAccess.Services
                 s => s.Description.ToLower().Contains(search)
                 || s.Price.ToString().ToLower().Contains(search)
                 || s.CostDefine.Name.ToLower().Contains(search)
-
+                || s.InsertDate.ToShamsi().ToString().ToLower().Contains(search)
                 );
             if (pageCount % take != 0)
             {
@@ -87,6 +89,8 @@ namespace DataAccess.Services
                     s => s.Description.ToLower().Contains(search)
                          || s.Price.ToString().ToLower().Contains(search)
                          || s.CostDefine.Name.ToLower().Contains(search)
+                         || s.InsertDate.ToShamsi().ToString().ToLower().Contains(search)
+
                     )
                 .OrderByDescending(s => s.UpDateTime)
                 .Skip(skip)
@@ -142,11 +146,11 @@ namespace DataAccess.Services
                 .ToList();
         }
 
-        public Task<Cost> GetById(int id)
+        public Cost GetById(int id)
         {
             return _context.Costs
                 .Include(s => s.CostDefine)
-                .FirstOrDefaultAsync(s => s.CostId == id);
+                .FirstOrDefault(s => s.CostId == id);
         }
 
         public void Update(Cost cost)

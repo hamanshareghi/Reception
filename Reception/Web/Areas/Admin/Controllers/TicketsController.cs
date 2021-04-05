@@ -64,6 +64,8 @@ namespace Web.Areas.Admin.Controllers
                 ticket.InsertDate=DateTime.Now;
                 ticket.UpDateTime=DateTime.Now;
                 ticket.MessageStatus = MessageStatus.Unread;
+                ticket.UserId = _userManager.GetUserId(User);
+
                 _ticket.Add(ticket);
                 return RedirectToAction(nameof(Index),"Tickets");
             }
@@ -106,6 +108,7 @@ namespace Web.Areas.Admin.Controllers
                 {
                     ticket.UpDateTime=DateTime.Now;
                     ticket.MessageStatus = MessageStatus.Seen;
+                    ticket.UserId = _userManager.GetUserId(User);
                     _ticket.Update(ticket);
                 }
                 catch (DbUpdateConcurrencyException)

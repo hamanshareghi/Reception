@@ -72,6 +72,8 @@ namespace Web.Areas.Admin.Controllers
                 requestDevice.InsertDate=DateTime.Now;
                 requestDevice.UpDateTime=DateTime.Now;
                 requestDevice.ViewStatus = false;
+                requestDevice.UserId = _userManager.GetUserId(User);
+
                 _requestDevice.Add(requestDevice);
                 return RedirectToAction(nameof(Index),"RequestDevices",new {area="Admin"});
             }
@@ -114,6 +116,7 @@ namespace Web.Areas.Admin.Controllers
             {
                 try
                 {
+                    requestDevice.UserId = _userManager.GetUserId(User);
                     requestDevice.UpDateTime=DateTime.Now;
                     _requestDevice.Update(requestDevice);
                 }

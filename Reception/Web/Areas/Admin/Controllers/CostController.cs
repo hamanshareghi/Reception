@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Common.Library;
 using DataAccess.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -40,7 +41,7 @@ namespace Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var cost = await _cost.GetById(id.Value);
+            var cost =  _cost.GetById(id.Value);
             if (cost == null)
             {
                 return NotFound();
@@ -68,8 +69,8 @@ namespace Web.Areas.Admin.Controllers
                 cost.UpDateTime=DateTime.Now;
                 cost.UserId = _userManager.GetUserId(User);
                 _cost.Add(cost);
-
-                return RedirectToAction(nameof(Index), "Cost",new {area="Admin"});
+                
+                return RedirectToAction(nameof(Send), "Cost",new {area="Admin"});
             }
             ViewData["CostDefineId"] = new SelectList(_costDefine.GetAll(), "CostDefineId", "Name");
             return View(cost);
@@ -82,7 +83,7 @@ namespace Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var cost = await _cost.GetById(id.Value);
+            var cost =  _cost.GetById(id.Value);
             if (cost == null)
             {
                 return NotFound();
@@ -134,7 +135,7 @@ namespace Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var cost = await _cost.GetById(id.Value);
+            var cost =  _cost.GetById(id.Value);
 
             if (cost == null)
             {
@@ -148,7 +149,7 @@ namespace Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var cost = await _cost.GetById(id);
+            var cost =  _cost.GetById(id);
             _cost.Delete(cost);
 
             return RedirectToAction(nameof(Index), "Cost", new { area = "Admin" });
@@ -157,6 +158,19 @@ namespace Web.Areas.Admin.Controllers
         private bool CostExists(int id)
         {
             return _cost.Exist(id);
+        }
+
+        public  IActionResult Send(int id)
+        {
+            var model = _cost.GetById(id);
+            string receptor = "09121950430";
+            //var name = _userManager.FindByIdAsync(model.UserId);
+
+            string token = model.UserId.Substring(0, 5);
+            string token2 = model.Price.ToString();
+            string token3 = model.CostDefine.Name.Replace(" ", "-");
+            SendMessage.Send(receptor, token, token2, token3,null,null, "Cost");
+            return RedirectToAction("Index", "Cost", new {area = "Admin"});
         }
     }
 }

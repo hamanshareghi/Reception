@@ -57,6 +57,8 @@ namespace Web.Areas.Admin.Controllers
 
                 service.InsertDate = DateTime.Now;
                 service.UpDateTime=DateTime.Now;
+                //service.UserId = _userManager.GetUserId(User);
+
                 _service.Add(service);
 
                 return RedirectToAction(nameof(Index), "Service",new {area="Admin"});

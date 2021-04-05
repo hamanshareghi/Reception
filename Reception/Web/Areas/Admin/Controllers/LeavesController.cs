@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using DataAccess.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Model.Entities;
@@ -11,10 +12,12 @@ namespace Web.Areas.Admin.Controllers
     public class LeavesController : Controller
     {
         private ILeave _leave;
+        private UserManager<ApplicationUser> _userManager;
 
-        public LeavesController(ILeave leave)
+        public LeavesController(ILeave leave, UserManager<ApplicationUser> userManager)
         {
             _leave = leave;
+            _userManager = userManager;
         }
 
         // GET: Leaves
@@ -58,6 +61,8 @@ namespace Web.Areas.Admin.Controllers
                 leave.InsertDate=DateTime.Now;
                 leave.UpDateTime=DateTime.Now;
                 leave.Confirmation = false;
+                leave.UserId = _userManager.GetUserId(User);
+
                 _leave.Add(leave);
                 return RedirectToAction(nameof(Index),"Leaves");
             }
@@ -96,6 +101,7 @@ namespace Web.Areas.Admin.Controllers
             {
                 try
                 {
+                    leave.UserId = _userManager.GetUserId(User);
                     leave.UpDateTime=DateTime.Now;
                     _leave.Update(leave);
                 }

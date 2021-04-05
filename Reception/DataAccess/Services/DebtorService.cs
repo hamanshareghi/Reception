@@ -106,11 +106,11 @@ namespace DataAccess.Services
             return Tuple.Create(query.ToList(), pageCount);
         }
 
-        public Task<Debtor> GetById(int id)
+        public Debtor GetById(int id)
         {
             return _context.Debtors
                 .Include(s => s.User)
-                .FirstOrDefaultAsync(s => s.DebtorId == id);
+                .FirstOrDefault(s => s.DebtorId == id);
         }
 
         public void Update(Debtor debtor)

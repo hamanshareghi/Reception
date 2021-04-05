@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Common.Library;
 using DataAccess.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -39,7 +40,7 @@ namespace Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var debtor = await _debtor.GetById(id.Value);
+            var debtor =  _debtor.GetById(id.Value);
             if (debtor == null)
             {
                 return NotFound();
@@ -66,9 +67,11 @@ namespace Web.Areas.Admin.Controllers
                 debtor.InsertDate = DateTime.Now;
                 debtor.UpDateTime=DateTime.Now;
                 debtor.PayStatus = PayStatus.NotPaid;
+                debtor.UserId = _userManager.GetUserId(User);
+
                 _debtor.Add(debtor);
 
-                return RedirectToAction(nameof(Index), "Debtor");
+                return RedirectToAction(nameof(Index), "Debtor", new { area = "Admin" });
             }
             ViewData["UserId"] = new SelectList(_userManager.Users.ToList(), "Id", "FullName");
             return View(debtor);
@@ -81,7 +84,7 @@ namespace Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var debtor = await _debtor.GetById(id.Value);
+            var debtor =  _debtor.GetById(id.Value);
             if (debtor == null)
             {
                 return NotFound();
@@ -103,7 +106,7 @@ namespace Web.Areas.Admin.Controllers
             {
                 try
                 {
-                    
+                    debtor.UserId = _userManager.GetUserId(User);
                     debtor.UpDateTime = DateTime.Now;
                     _debtor.Update(debtor);
 
@@ -120,7 +123,7 @@ namespace Web.Areas.Admin.Controllers
                     }
                 }
                 ViewData["UserId"] = new SelectList(_userManager.Users.ToList(), "Id", "FullName");
-                return RedirectToAction(nameof(Index), "Debtor");
+                return RedirectToAction(nameof(Index), "Debtor",new {area="Admin"});
             }
             return View(debtor);
         }
@@ -132,7 +135,7 @@ namespace Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var debtor = await _debtor.GetById(id.Value);
+            var debtor =  _debtor.GetById(id.Value);
 
             if (debtor == null)
             {
@@ -146,15 +149,26 @@ namespace Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var debtor = await _debtor.GetById(id);
+            var debtor =  _debtor.GetById(id);
             _debtor.Delete(debtor);
 
-            return RedirectToAction(nameof(Index), "Debtor");
+            return RedirectToAction(nameof(Index), "Debtor", new { area = "Admin" });
         }
 
         private bool DebtorExists(int id)
         {
             return _debtor.Exist(id);
+        }
+
+        public IActionResult Send(int id)
+        {
+            var model = _debtor.GetById(id);
+            string receptor = model.User.PhoneNumber;
+            string token = model.User.FullName.Replace(" ","-");
+            string token2 = model.Price.ToString();
+            
+            SendMessage.Send(receptor, token, token2, null, null, null, "Debtor");
+            return RedirectToAction("Index", "Debtor", new { area = "Admin" });
         }
     }
 }

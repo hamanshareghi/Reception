@@ -64,6 +64,7 @@ namespace Web.Areas.Admin.Controllers
 
                 shipping.InsertDate = DateTime.Now;
                 shipping.UpDateTime=DateTime.Now;
+
                 _shipping.Add(shipping);
 
                 return RedirectToAction(nameof(Index), "Shipping", new { area = "Admin" });

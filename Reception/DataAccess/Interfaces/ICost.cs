@@ -10,7 +10,7 @@ namespace DataAccess.Interfaces
     public interface ICost
     {
         List<Cost> GetAll();
-        Task<Cost> GetById(int id);
+        Cost GetById(int id);
         void Add(Cost cost);
         void Update(Cost cost);
         void Delete(Cost cost);

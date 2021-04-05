@@ -40,5 +40,19 @@ namespace Common.Library
             #endregion
 
         }
+        public static void Send(string receptor, string token, string token2, string token3,string token10,string token20, string template)
+        {
+
+
+            #region VerifyLookupAsync
+
+            KavenegarApi kavenegar = new KavenegarApi("326C4D6F466E46637061714A747930487875702B3072737671766C7045572F4E4345306456574D713953633D");
+
+            SendResult result = null;
+
+            result = kavenegar.VerifyLookup(receptor, token, token2, token3,token10,token20, template, VerifyLookupType.Sms);
+            #endregion
+
+        }
     }
 }
