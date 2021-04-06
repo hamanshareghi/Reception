@@ -165,8 +165,8 @@ namespace Web.Areas.Admin.Controllers
             var model = _debtor.GetById(id);
             string receptor = model.User.PhoneNumber;
             string token = model.User.FullName.Replace(" ","-");
-            string token2 = model.Price.ToString();
-            
+            string token2 = model.Price.ToString("#,0") + "-تومان";
+
             SendMessage.Send(receptor, token, token2, null, null, null, "Debtor");
             return RedirectToAction("Index", "Debtor", new { area = "Admin" });
         }

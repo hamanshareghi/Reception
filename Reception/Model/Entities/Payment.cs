@@ -14,6 +14,9 @@ namespace Model.Entities
         [Key]
         public int  PaymentId { get; set; }
 
+        [Display(Name = "کاربر")]
+        public string CurrentId { get; set; }
+
         [Display(Name = "طرف حساب")]
         public string CustomerId { get; set; }
 

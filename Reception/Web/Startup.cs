@@ -62,6 +62,7 @@ namespace Web
             services.AddScoped<ITicket, TicketService>();
             services.AddScoped<ICustomer, CustomerService>();
             services.AddScoped<IDeviceDefect, DeviceDefectService>();
+            services.AddScoped<IPayment, PaymentService>();
 
 
             #region Authorization

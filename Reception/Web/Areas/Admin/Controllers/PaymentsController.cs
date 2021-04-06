@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using Common.Library;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Data.Context;
+using DataAccess.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using Model.Entities;
 
 namespace Web.Areas.Admin.Controllers
@@ -13,18 +17,24 @@ namespace Web.Areas.Admin.Controllers
     [Area("Admin")]
     public class PaymentsController : Controller
     {
-        private readonly DataContext _context;
+        private UserManager<ApplicationUser> _userManager;
 
-        public PaymentsController(DataContext context)
+        private IPayment _payment;
+
+        public PaymentsController(UserManager<ApplicationUser> userManager, IPayment payment)
         {
-            _context = context;
+            _userManager = userManager;
+            _payment = payment;
         }
-
         // GET: Admin/Payments
-        public async Task<IActionResult> Index()
+        public IActionResult Index(string search,int take,int pageId=1)
         {
-            var dataContext = _context.Payments.Include(p => p.User);
-            return View(await dataContext.ToListAsync());
+            if (!string.IsNullOrEmpty(search))
+            {
+                ViewBag.Search = search;
+                return View(_payment.GetPaymentBySearch(search, 25, pageId));
+            }
+            return View(_payment.GetAll(25,pageId));
         }
 
         // GET: Admin/Payments/Details/5
@@ -35,9 +45,7 @@ namespace Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var payment = await _context.Payments
-                .Include(p => p.User)
-                .FirstOrDefaultAsync(m => m.PaymentId == id);
+            var payment = _payment.GetById(id.Value);
             if (payment == null)
             {
                 return NotFound();
@@ -49,7 +57,7 @@ namespace Web.Areas.Admin.Controllers
         // GET: Admin/Payments/Create
         public IActionResult Create()
         {
-            ViewData["CustomerId"] = new SelectList(_context.Users, "Id", "Id");
+            ViewData["CustomerId"] = new SelectList(_userManager.Users.ToList(), "Id", "FullName");
             return View();
         }
 
@@ -58,15 +66,28 @@ namespace Web.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PaymentId,CustomerId,PaymentDate,Price,Source,Destination,Recipt,Description,InsertDate,IsDelete,UpDateTime")] Payment payment)
+        public async Task<IActionResult> Create([Bind("PaymentId,CustomerId,PaymentDate,Price,Source,Destination,Recipt,Description,InsertDate,IsDelete,UpDateTime")] Payment payment,string date)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(payment);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                payment.IsDelete = false;
+                payment.InsertDate=DateTime.Now;
+                payment.UpDateTime=DateTime.Now;
+                payment.CurrentId = _userManager.GetUserId(User);
+
+                if (date != "")
+                {
+                    string[] std = date.Split('/');
+                    payment.PaymentDate = new DateTime(int.Parse(std[0]),
+                        int.Parse(std[1]),
+                        int.Parse(std[2]),
+                        new PersianCalendar()
+                    );
+                }
+                _payment.Add(payment);
+                return RedirectToAction(nameof(Index),"Payments",new{area="Admin"});
             }
-            ViewData["CustomerId"] = new SelectList(_context.Users, "Id", "Id", payment.CustomerId);
+            ViewData["CustomerId"] = new SelectList(_userManager.Users.ToList(), "Id", "FullName", payment.CustomerId);
             return View(payment);
         }
 
@@ -78,12 +99,12 @@ namespace Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var payment = await _context.Payments.FindAsync(id);
+            var payment = _payment.GetById(id.Value);
             if (payment == null)
             {
                 return NotFound();
             }
-            ViewData["CustomerId"] = new SelectList(_context.Users, "Id", "Id", payment.CustomerId);
+            ViewData["CustomerId"] = new SelectList(_userManager.Users.ToList(), "Id", "FullName", payment.CustomerId);
             return View(payment);
         }
 
@@ -92,7 +113,7 @@ namespace Web.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PaymentId,CustomerId,PaymentDate,Price,Source,Destination,Recipt,Description,InsertDate,IsDelete,UpDateTime")] Payment payment)
+        public async Task<IActionResult> Edit(int id, [Bind("PaymentId,CustomerId,PaymentDate,Price,Source,Destination,Recipt,Description,InsertDate,IsDelete,UpDateTime")] Payment payment,string date)
         {
             if (id != payment.PaymentId)
             {
@@ -103,8 +124,18 @@ namespace Web.Areas.Admin.Controllers
             {
                 try
                 {
-                    _context.Update(payment);
-                    await _context.SaveChangesAsync();
+                    payment.UpDateTime = DateTime.Now;
+                    payment.CurrentId = _userManager.GetUserId(User);
+                    if (date != "")
+                    {
+                        string[] std = date.Split('/');
+                        payment.PaymentDate = new DateTime(int.Parse(std[0]),
+                            int.Parse(std[1]),
+                            int.Parse(std[2]),
+                            new PersianCalendar()
+                        );
+                    }
+                    _payment.Update(payment);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -117,9 +148,9 @@ namespace Web.Areas.Admin.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index), "Payments", new { area = "Admin" });
             }
-            ViewData["CustomerId"] = new SelectList(_context.Users, "Id", "Id", payment.CustomerId);
+            ViewData["CustomerId"] = new SelectList(_userManager.Users.ToList(), "Id", "FullName", payment.CustomerId);
             return View(payment);
         }
 
@@ -131,9 +162,7 @@ namespace Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var payment = await _context.Payments
-                .Include(p => p.User)
-                .FirstOrDefaultAsync(m => m.PaymentId == id);
+            var payment = _payment.GetById(id.Value);
             if (payment == null)
             {
                 return NotFound();
@@ -147,15 +176,26 @@ namespace Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var payment = await _context.Payments.FindAsync(id);
-            _context.Payments.Remove(payment);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            var payment = _payment.GetById(id);
+            _payment.Delete(payment);
+            return RedirectToAction(nameof(Index), "Payments", new { area = "Admin" });
         }
 
         private bool PaymentExists(int id)
         {
-            return _context.Payments.Any(e => e.PaymentId == id);
+            return _payment.Exist(id);
+        }
+        public IActionResult Send(int id)
+        {
+            var model = _payment.GetById(id);
+            string receptor = model.User.PhoneNumber;
+            string token = model.User.FullName.Replace(" ", "-");
+            string token2 = model.Source.Replace(" ","-");
+            string token3 = model.Destination.Replace(" ", "-");
+            string token10 = model.Price.ToString("#,0")+"-تومان";
+            string token20 = model.Recipt.Replace(" ","-");
+            SendMessage.Send(receptor, token, token2, token3, token10, token20, "Payment");
+            return RedirectToAction("Index", "Payments", new { area = "Admin" });
         }
     }
 }

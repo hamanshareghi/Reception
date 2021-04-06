@@ -178,20 +178,17 @@ namespace Web.Areas.Admin.Controllers
             RequestDevice model = _requestDevice.GetById(id);
             string receptor = model.User.Contact;
             string token = model.User.FullName.Replace(" ", "-");
-
-            if (model.ViewStatus == true)
+            string token2 = model.Product.Name.Replace(" ", "-");
+            string template = "";
+            if (model.ViewStatus == false)
             {
-                string token2 = model.Product.Name.Replace(" ", "-");
-                SendMessage.Send(receptor, token, token2, null,null,null, "RequestDevice");
-
+                template = "RequestDevice";
             }
             else
             {
-                string token2 =  model.Product.Name.Replace(" ", "-");
-                //string token3 = model.UpDateTime?.ToShamsiDot();
-                SendMessage.Send(receptor, token, token2, null, null, null, "RequestDeviceComplete");
-
+                template = "RequestDeviceComplete";
             }
+            SendMessage.Send(receptor, token, token2, null, null, null, template);
             return RedirectToAction("Index", "RequestDevices", new { area = "Admin" });
         }
     }

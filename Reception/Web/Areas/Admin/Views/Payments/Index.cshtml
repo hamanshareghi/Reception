@@ -1,89 +1,131 @@
-﻿@model IEnumerable<Model.Entities.Payment>
+﻿@using Common.Library
+@model Tuple<List<Model.Entities.Payment>,int>
 
 @{
     ViewData["Title"] = "Index";
+    int row = 1;
+    string query = " ";
+    if (ViewBag.Search != null)
+    {
+        query = ViewBag.Search.ToString();
+    }
 }
 
-<h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
+<div class="container">
+    <h1>پرداخت ها</h1>
+    <div class="mb-7">
+        <form asp-area="Admin" asp-controller="Payments" asp-action="Index" method="get">
+            <div class="row align-items-center">
+
+                <div class="col-lg-10 col-xl-10">
+                    <div class="row align-items-center">
+                        <div class="col-md-10 my-2 my-md-0">
+                            <div class="input-icon">
+                                <input type="text" name="search" class="form-control" placeholder="جستجو..." id="kt_datatable_search_query">
+                                <span>
+                                    <i class="flaticon2-search-1 text-muted"></i>
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-2 col-xl-2 mt-5 mt-lg-0">
+                    <button type="submit" class="btn btn-light-primary px-6 font-weight-bold">
+                        جستجو
+                    </button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+    <hr />
+    <p>
+        <a asp-area="Admin" asp-controller="Payments" asp-action="Create" class="btn btn-success">ثبت پرداختی جدید</a>
+    </p>
+    <table class="table table-striped table-responsive table-bordered">
+        <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.PaymentDate)
+                #
+                </th>
+            <th>
+                تاریخ
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+                مبلغ
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Source)
+                از حساب
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Destination)
+               به حساب
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Recipt)
+                فیش
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Description)
+                شرح
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.User)
+                کاربر
             </th>
+
             <th>
-                @Html.DisplayNameFor(model => model.InsertDate)
+                بروزرسانی
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsDelete)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UpDateTime)
-            </th>
-            <th></th>
+            <th>دستورات</th>
         </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.PaymentDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Source)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Destination)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Recipt)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.InsertDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsDelete)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpDateTime)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.PaymentId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.PaymentId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.PaymentId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Item1)
+            {
+                <tr>
+                    <td>
+                        @row
+                    </td>
+                    <td>
+                        <p class="text-primary font-weight-bold">
+                            @item.PaymentDate.ToShamsi()
+                        </p>
+                    </td>
+                    <td>
+                        <p class="text-info font-weight-bold">
+                            @item.Price.ToString("#,0") تومان
+                        </p>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Source)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Destination)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Recipt)
+                    </td>
+                    <td>
+                        @Html.Raw(item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.FullName)
+                    </td>
+
+                    <td>
+                        <p class="text-primary font-weight-bold">
+                            @item.UpDateTime?.ToShamsi()
+                        </p>
+                    </td>
+                    <td>
+                        <a asp-action="Edit" class="btn btn-warning" asp-route-id="@item.PaymentId"><i class="far fa-edit"></i></a>
+                        <a asp-action="Details" class="btn btn-info" asp-route-id="@item.PaymentId"><i class="fas fa-info-circle"></i></a>
+                        <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.PaymentId"><i class="fas fa-trash"></i></a>
+                        <a asp-action="Send" class="btn btn-success" asp-route-id="@item.PaymentId"><i class="fas fa-comment-alt"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
