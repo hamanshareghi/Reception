@@ -5,8 +5,7 @@
     
     <hr />
 
-    <button type="submit" class="btn btn-success">ثبت کاربرجدید</button>
-        <a asp-action="Index" class="btn btn-secondary">انصراف</a>
+    
     
 
     
@@ -42,7 +41,8 @@
             <label asp-for="Roles"></label>
             <select asp-for="Roles" class="form-control" asp-items="ViewBag.Roles"></select>
         </div>
-
+        <button type="submit" class="btn btn-success">ثبت کاربرجدید</button>
+        <a asp-action="Index" class="btn btn-secondary">انصراف</a>
     </form>
 </div>
 

@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Model.Entities;
 
 namespace Data.Context
@@ -24,16 +25,13 @@ namespace Data.Context
         public DbSet<OneData> OneDatas { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductGroup> ProductGroups { get; set; }
-
         public DbSet<Reception> Receptions { get; set; }
-        //public DbSet<Role> Roles { get; set; }
         public DbSet<Rule> Rules { get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<Shipping> Shippings { get; set; }
         public DbSet<Status> Status { get; set; }
         public DbSet<Video> Videos { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
-
         public DbSet<Duty> Duties { get; set; }
         public DbSet<DeviceDefect> DeviceDefects { get; set; }
         public DbSet<DeviceImage> DeviceImages { get; set; }
@@ -41,11 +39,18 @@ namespace Data.Context
         public DbSet<Debtor> Debtors { get; set; }
         public DbSet<RequestDevice> RequestDevices { get; set; }
         public DbSet<Payment> Payments { get; set; }
-
         public DbSet<AllMessage> AllMessages { get; set; }
+
+
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            //modelBuilder.Entity<AllMessage>().
+
+
+
             var cascadeFKs = modelBuilder.Model.GetEntityTypes()
                 .SelectMany(t => t.GetForeignKeys())
                 .Where(fk => !fk.IsOwnership && fk.DeleteBehavior == DeleteBehavior.Cascade);
@@ -106,5 +111,6 @@ namespace Data.Context
                 .HasQueryFilter(u => !u.IsDelete);
             base.OnModelCreating(modelBuilder);
         }
+
     }
 }

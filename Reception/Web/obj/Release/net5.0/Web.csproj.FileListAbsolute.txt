@@ -302,3 +302,13 @@ D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Views\Le
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Views\Learn\Faqs.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Views\Learn\Videos.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Views\Shared\_Header.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Areas\Admin\Views\AllMessages\Create.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Areas\Admin\Views\AllMessages\Delete.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Areas\Admin\Views\AllMessages\Details.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Areas\Admin\Views\AllMessages\Edit.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Areas\Admin\Views\AllMessages\Index.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Areas\Admin\Views\Payments\Create.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Areas\Admin\Views\Payments\Delete.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Areas\Admin\Views\Payments\Details.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Areas\Admin\Views\Payments\Edit.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Areas\Admin\Views\Payments\Index.cshtml.g.cs

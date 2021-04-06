@@ -146,6 +146,11 @@ D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\scopedcss\bundle
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Web.TagHelpers.input.cache
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Web.TagHelpers.output.cache
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Web.RazorCoreGenerate.cache
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\AllMessages\Create.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\AllMessages\Delete.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\AllMessages\Details.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\AllMessages\Edit.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\AllMessages\Index.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\Brands\Create.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\Brands\Delete.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\Brands\Details.cshtml.g.cs
@@ -206,6 +211,11 @@ D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admi
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\OneDatas\Details.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\OneDatas\Edit.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\OneDatas\Index.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\Payments\Create.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\Payments\Delete.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\Payments\Details.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\Payments\Edit.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\Payments\Index.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\ProductGroups\Create.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\ProductGroups\Delete.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\ProductGroups\Details.cshtml.g.cs

@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Model.Entities.AllMessage>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CurrentUserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SmsDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Kind)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SmsStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InsertDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsDelete)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpDateTime)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CurrentUserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SmsDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kind)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SmsStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Users.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InsertDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsDelete)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpDateTime)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.SmsId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.SmsId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.SmsId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

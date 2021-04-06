@@ -16,10 +16,10 @@ namespace Model.Entities
         public int SmsId { get; set; }
 
         [Display(Name = "کاربر")]
-        public string UserId { get; set; }
+        public string CurrentUserId { get; set; }
 
         [Display(Name = "مشتری")]
-        public string CustomerId { get; set; }
+        public string UserId { get; set; }
 
         [Display(Name = "تاریخ")]
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
@@ -35,8 +35,8 @@ namespace Model.Entities
 
         #region Relation
         [Display(Name = "مشتری")]
-        [ForeignKey(nameof(CustomerId))]
-        public DbSet<ApplicationUser> Users { get; set; }
+        [ForeignKey(nameof(UserId))]
+        public ApplicationUser Users { get; set; }
 
         #endregion
 

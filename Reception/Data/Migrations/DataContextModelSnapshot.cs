@@ -123,6 +123,47 @@ namespace Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Model.Entities.AllMessage", b =>
+                {
+                    b.Property<int>("SmsId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CurrentUserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("InsertDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Kind")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("SmsDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SmsStatus")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("SmsId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AllMessages");
+                });
+
             modelBuilder.Entity("Model.Entities.ApplicationRole", b =>
                 {
                     b.Property<string>("Id")
@@ -729,6 +770,10 @@ namespace Data.Migrations
                     b.Property<int>("Price")
                         .HasColumnType("int");
 
+                    b.Property<string>("Recipt")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
                     b.Property<string>("Source")
                         .IsRequired()
                         .HasMaxLength(500)
@@ -1172,6 +1217,15 @@ namespace Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Model.Entities.AllMessage", b =>
+                {
+                    b.HasOne("Model.Entities.ApplicationUser", "Users")
+                        .WithMany("AllMessages")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Users");
+                });
+
             modelBuilder.Entity("Model.Entities.Cost", b =>
                 {
                     b.HasOne("Model.Entities.CostDefine", "CostDefine")
@@ -1356,6 +1410,8 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Model.Entities.ApplicationUser", b =>
                 {
+                    b.Navigation("AllMessages");
+
                     b.Navigation("Costs");
 
                     b.Navigation("Debtors");

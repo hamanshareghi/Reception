@@ -86,6 +86,7 @@ namespace Web.Areas.Admin.Controllers
                 }
             }
 
+
             var allRoles = roleManager.Roles.Select(r => new SelectListItem()
             {
                 Text = r.Name,
