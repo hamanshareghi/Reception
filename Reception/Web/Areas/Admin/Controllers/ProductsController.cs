@@ -28,10 +28,15 @@ namespace Web.Areas.Admin.Controllers
         }
 
         // GET: Admin/Products
-        public async Task<IActionResult> Index()
+        public IActionResult Index(string search,int take,int pageId=1)
         {
+            if (!string.IsNullOrEmpty(search))
+            {
+                ViewBag.Search = search;
+                return View(_product.GetProductBySearch(search,25, pageId = 1));
+            }
 
-            return View(_product.GetAll());
+            return View(_product.GetAll(25,pageId));
         }
 
         // GET: Admin/Products/Details/5

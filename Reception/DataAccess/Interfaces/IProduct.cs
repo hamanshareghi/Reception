@@ -21,6 +21,8 @@ namespace DataAccess.Interfaces
         //List<Product> GetSpecial(int count);
         bool ProductExist();
 
+        Tuple<List<Product>,int> GetAll(int take,int pageId=1);
+        Tuple<List<Product>,int> GetProductBySearch(string search,int take,int pageId=1);
         //bool ShortKeyExist(string shortKey);
         //Product GetByShortKey(string shortKey);
         //Tuple<Product, Product> GetTwoProductForOffer();

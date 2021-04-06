@@ -112,6 +112,62 @@ namespace DataAccess.Services
             return _context.Products.Any();
         }
 
+        public Tuple<List<Product>,int> GetAll(int take, int pageId = 1)
+        {
+            int skip = (pageId - 1) * take;
+            int pageCount = _context.Products.Count();
+            if (pageCount % take != 0)
+            {
+                pageCount = pageCount / take;
+                pageCount++;
+            }
+            else
+            {
+                pageCount = pageCount / take;
+            }
+            var query = _context.Products
+                .Include(p => p.ProductGroup)
+                .Include(p => p.Brand)
+                .OrderByDescending(s => s.UpDateTime)
+                .Skip(skip)
+                .Take(take);
+            return Tuple.Create(query.ToList(), pageCount);
+        }
+
+        public Tuple<List<Product>,int> GetProductBySearch(string search, int take, int pageId = 1)
+        {
+            int skip = (pageId - 1) * take;
+            int pageCount = _context.Products.Count(
+                s=>s.Brand.Title.ToLower().Contains(search)
+                || s.ProductGroup.GroupName.ToLower().Contains(search)
+                || s.Name.ToLower().Contains(search)
+                || s.ShortText.ToLower().Contains(search)
+                
+                );
+            if (pageCount % take != 0)
+            {
+                pageCount = pageCount / take;
+                pageCount++;
+            }
+            else
+            {
+                pageCount = pageCount / take;
+            }
+            var query = _context.Products
+                .Include(p => p.ProductGroup)
+                .Include(p => p.Brand)
+                .Where(
+                    s => s.Brand.Title.ToLower().Contains(search)
+                         || s.ProductGroup.GroupName.ToLower().Contains(search)
+                         || s.Name.ToLower().Contains(search)
+                         || s.ShortText.ToLower().Contains(search)
+
+                )
+                .OrderByDescending(s => s.UpDateTime)
+                .Skip(skip)
+                .Take(take);
+            return Tuple.Create(query.ToList(), pageCount);
+        }
 
 
         //public bool ShortKeyExist(string shortKey)
