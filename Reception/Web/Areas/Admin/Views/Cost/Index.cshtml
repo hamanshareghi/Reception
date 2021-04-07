@@ -90,13 +90,13 @@
                     </td>
 
                     <td>
-                        <td>
+                       
                             <a asp-action="Edit" class="btn btn-icon btn-warning btn-sm" title="ویرایش" asp-route-id="@item.CostId"><i class="far fa-edit"></i></a>
                             <a asp-action="Details" class="btn btn-icon btn-info btn-sm" title="شرح" asp-route-id="@item.CostId"><i class="fas fa-info-circle"></i></a>
                             <a asp-action="Delete" class="btn btn-icon btn-danger btn-sm" title="حذف" asp-route-id="@item.CostId"><i class="fas fa-trash"></i></a>
                             <a asp-action="Send" class="btn btn-icon btn-success btn-sm" title="پیامک" asp-route-id="@item.CostId"><i class="fas fa-comment-alt"></i></a>
 
-                        </td>
+                      
 
                     </td>
                 </tr>
@@ -121,13 +121,13 @@
                     <li class="page-item">
                         @if (!string.IsNullOrEmpty(query))
                         {
-                            <a class="page-link" href="/Cost/Index?pageId=@i&search=@query">
+                            <a class="page-link" href="/Admin/Cost/Index?pageId=@i&search=@query">
                                 @i
                             </a>
                         }
                         else
                         {
-                            <a class="page-link" href="/Cost/Index?pageId=@i">
+                            <a class="page-link" href="/Admin/Cost/Index?pageId=@i">
                                 @i
                             </a>
                         }

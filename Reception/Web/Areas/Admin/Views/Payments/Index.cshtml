@@ -124,9 +124,36 @@
 
                     </td>
                 </tr>
+                row++;
             }
         </tbody>
     </table>
 </div>
+<div class="container">
+@if (Model.Item2 > 1)
+{
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            @for (int i = 1; i <= Model.Item2; i++)
+            {
+                <li class="page-item">
+                    @if (!string.IsNullOrEmpty(query))
+                    {
+                        <a class="page-link" href="/Admin/Payments/Index?pageId=@i&search=@query">
+                            @i
+                        </a>
+                    }
+                    else
+                    {
+                        <a class="page-link" href="/Admin/Payments/Index?pageId=@i">
+                            @i
+                        </a>
+                    }
+                </li>
+            }
 
+
+        </ul>
+    </nav>
+}
 
