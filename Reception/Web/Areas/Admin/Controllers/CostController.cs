@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Common.Library;
 using DataAccess.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -10,6 +11,7 @@ using Model.Entities;
 
 namespace Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admins,SuperAdmin")]
     [Area("Admin")]
     public class CostController : Controller
     {
@@ -70,7 +72,7 @@ namespace Web.Areas.Admin.Controllers
                 cost.UserId = _userManager.GetUserId(User);
                 _cost.Add(cost);
                 
-                return RedirectToAction(nameof(Send), "Cost",new {area="Admin"});
+                return RedirectToAction(nameof(Index), "Cost",new {area="Admin"});
             }
             ViewData["CostDefineId"] = new SelectList(_costDefine.GetAll(), "CostDefineId", "Name");
             return View(cost);

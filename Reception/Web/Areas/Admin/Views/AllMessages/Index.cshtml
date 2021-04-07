@@ -73,9 +73,13 @@
                 @Html.DisplayFor(modelItem => item.UpDateTime)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.SmsId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.SmsId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.SmsId">Delete</a>
+                <td>
+                    <a asp-action="Edit" class="btn btn-icon btn-warning btn-sm" title="ویرایش" asp-route-id="@item.SmsId"><i class="far fa-edit"></i></a>
+                    <a asp-action="Details" class="btn btn-icon btn-info btn-sm" title="شرح" asp-route-id="@item.SmsId"><i class="fas fa-info-circle"></i></a>
+                    <a asp-action="Delete" class="btn btn-icon btn-danger btn-sm" title="حذف" asp-route-id="@item.SmsId"><i class="fas fa-trash"></i></a>
+                   @* <a asp-action="Send" class="btn btn-icon btn-success btn-sm" title="پیامک" asp-route-id="@item.SmsId"><i class="fas fa-comment-alt"></i></a>*@
+
+                </td>
             </td>
         </tr>
 }

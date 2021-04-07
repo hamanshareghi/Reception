@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Common.Library;
 using DataAccess.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -11,6 +12,7 @@ using Model.Entities;
 
 namespace Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admins,SuperAdmin")]
     [Area("Admin")]
     public class DebtorController : Controller
     {

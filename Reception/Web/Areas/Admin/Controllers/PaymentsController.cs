@@ -9,11 +9,13 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Data.Context;
 using DataAccess.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Model.Entities;
 
 namespace Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admins,SuperAdmin")]
     [Area("Admin")]
     public class PaymentsController : Controller
     {

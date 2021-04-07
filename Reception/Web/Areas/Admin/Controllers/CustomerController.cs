@@ -2,12 +2,14 @@
 using System.Threading.Tasks;
 using Data.ViewModels.Customer;
 using DataAccess.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Model.Entities;
 
 namespace Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admins,SuperAdmin")]
     [Area("Admin")]
     public class CustomerController : Controller
     {

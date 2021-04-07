@@ -9,6 +9,7 @@ using DataAccess.Interfaces;
 using Kavenegar;
 using Kavenegar.Models;
 using Kavenegar.Models.Enums;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -17,6 +18,7 @@ using Model.Entities;
 
 namespace Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admins,SuperAdmin")]
     [Area("Admin")]
     public class ReceptionsController : Controller
     {
@@ -97,6 +99,10 @@ namespace Web.Areas.Admin.Controllers
                         new PersianCalendar()
                     );
                 }
+                else
+                {
+                    reception.ReceptionDate = DateTime.Now;
+                }
 
 
                 int newReceptionId = _reception.Add(reception);
@@ -175,6 +181,10 @@ namespace Web.Areas.Admin.Controllers
                             new PersianCalendar()
                         );
                     }
+                    else
+                    {
+                        reception.ReceptionDate=DateTime.Now;
+                    }
                     _reception.Update(reception);
                 }
                 catch (DbUpdateConcurrencyException)
@@ -229,28 +239,21 @@ namespace Web.Areas.Admin.Controllers
             return _reception.Exist(id);
         }
 
+
+
         public IActionResult Send(int id)
         {
-            SendSms(id);
-            return RedirectToAction("Index", "Receptions", new {area = "Admin"});
-        }
 
-        private void SendSms(int id)
-        {
 
-            #region VerifyLookupAsync
-
-            KavenegarApi kavenegar = new KavenegarApi("326C4D6F466E46637061714A747930487875702B3072737671766C7045572F4E4345306456574D713953633D");
-
-            SendResult result = null;
 
             Reception newReception = _reception.GetById(id);
-            string receptor = newReception.Customer.Contact;
+            string receptor = newReception.Customer.PhoneNumber;
             string token = newReception.Customer.FullName.Replace(" ", "-");
             string token2 = newReception.ReceptionId.ToString();
-            string token3 = newReception.ReceptionDate.ToShamsiDot();
-            result = kavenegar.VerifyLookup(receptor, token, token2, token3, "ReceptionWithName", VerifyLookupType.Sms);
-            #endregion
+            string token3 = newReception.Product.Name.Replace(" ","-");
+            string token10 = newReception.ReceptionDate.ToShamsi().Replace(" ", "-"); 
+            SendMessage.Send(receptor, token, token2, token3, token10, null, "Reception");
+            return RedirectToAction("Index", "Receptions", new { area = "Admin" });
         }
     }
 }

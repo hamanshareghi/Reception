@@ -1,4 +1,5 @@
-﻿@model Model.Entities.Reception
+﻿@using Common.Library
+@model Model.Entities.Reception
 
 @{
     ViewData["Title"] = "Create";
@@ -28,8 +29,9 @@
                 <div class="dropdown bootstrap-select form-control mb-5 ">
                     <label class="control-label ">ایرادات</label>
 
-                    <select class="form-control selectpicker" data-live-search="true" multiple="" name="defectsList" id="defectsList" tabindex="null" asp-items="ViewBag.DefectId">
+                    <select class="form-control selectpicker" value="@DateTime.Now.ToShamsi()" data-live-search="true" multiple="" name="defectsList" id="defectsList" tabindex="null" asp-for="ReceptionDate" asp-items="ViewBag.DefectId">
                     </select>
+                    <span asp-validation-for="ReceptionDate"></span>
                 </div>
 
 

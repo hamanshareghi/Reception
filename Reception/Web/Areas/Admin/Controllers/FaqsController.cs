@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Threading.Tasks;
 using DataAccess.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Model.Entities;
 
 namespace Web.Areas.Admin.Controllers
 {
-    //[Authorize(Roles = "SuperAdmin,Admins")]
+    [Authorize(Roles = "Admins,SuperAdmin")]
     [Area("Admin")]
     public class FaqsController : Controller
     {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using DataAccess.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Model.Entities;
@@ -8,6 +9,7 @@ using Model.Entities;
 namespace Web.Areas.Admin.Controllers
 {
 
+    [Authorize(Roles = "Admins,SuperAdmin")]
     [Area("Admin")]
 
     public class OneDatasController : Controller
