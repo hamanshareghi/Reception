@@ -64,7 +64,9 @@
                 <th>
                     شرح
                 </th>
+                <th>وضعیت</th>
                 <th>دستورات</th>
+                <th>عملیات</th>
             </tr>
         </thead>
         <tbody>
@@ -97,9 +99,24 @@
                         @Html.Raw(item.Description)
                     </td>
                     <td>
+                        @if (item.PayStatus == PayStatus.Paid)
+                        {
+                            <a class="btn btn-success btn-sm btn-icon" title="پرداخت شده"><i class="fas fa-check-square"></i></a>   
+                        }
+                        else
+                        {
+                            <a class="btn btn-danger btn-sm btn-icon" title="پرداخت نشده"><i class="fas fa-check-square"></i></a>   
+
+
+                        }
+                    </td>
+                    <td>
                         <a asp-action="Edit" class="btn btn-icon btn-warning btn-sm" title="ویرایش" asp-route-id="@item.DebtorId"><i class="far fa-edit"></i></a>
                         <a asp-action="Details" class="btn btn-icon btn-info btn-sm" title="شرح" asp-route-id="@item.DebtorId"><i class="fas fa-info-circle"></i></a>
                         <a asp-action="Delete" class="btn btn-icon btn-danger btn-sm" title="حذف" asp-route-id="@item.DebtorId"><i class="fas fa-trash"></i></a>
+
+                    </td>
+                    <td>
                         <a asp-action="Send" class="btn btn-icon btn-success btn-sm" title="پیامک" asp-route-id="@item.DebtorId"><i class="fas fa-comment-alt"></i></a>
 
                     </td>
@@ -144,6 +161,6 @@
         </nav>
     }
 
-    
+
 </div>
 

@@ -13,8 +13,12 @@ namespace Model.Entities
     {
         [Key]
         public int DebtorId { get; set; }
-        [Display(Name = "کاربر")]
+        [Display(Name = "مشتری")]
         public string UserId { get; set; }
+
+        [Display(Name = "کاربر")]
+        [MaxLength(100, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
+        public string CurrentUser { get; set; }
 
         [Display(Name = "بابت")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]

@@ -69,7 +69,7 @@ namespace Web.Areas.Admin.Controllers
                 debtor.InsertDate = DateTime.Now;
                 debtor.UpDateTime=DateTime.Now;
                 debtor.PayStatus = PayStatus.NotPaid;
-                debtor.UserId = _userManager.GetUserId(User);
+                debtor.CurrentUser = _userManager.GetUserId(User);
 
                 _debtor.Add(debtor);
 
