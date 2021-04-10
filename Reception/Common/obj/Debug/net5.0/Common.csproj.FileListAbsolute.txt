@@ -9,3 +9,4 @@ D:\Asp.Net Core\MyCode\Reception\Reception\Common\obj\Debug\net5.0\Common.csproj
 D:\Asp.Net Core\MyCode\Reception\Reception\Common\obj\Debug\net5.0\Common.dll
 D:\Asp.Net Core\MyCode\Reception\Reception\Common\obj\Debug\net5.0\ref\Common.dll
 D:\Asp.Net Core\MyCode\Reception\Reception\Common\obj\Debug\net5.0\Common.pdb
+D:\Asp.Net Core\MyCode\Reception\Reception\Common\obj\Debug\net5.0\Common.csprojAssemblyReference.cache

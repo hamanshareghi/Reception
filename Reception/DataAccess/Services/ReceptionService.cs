@@ -27,7 +27,9 @@ namespace DataAccess.Services
                 .Include(s=>s.Duties)
                 .Include(s=>s.DeviceDefects)
                 .Include(s=>s.DeviceImages)
+                .OrderByDescending(s=>s.UpDateTime)
                 .ToList();
+
         }
 
         public Reception GetById(int id)
@@ -85,6 +87,7 @@ namespace DataAccess.Services
                 .Include(s => s.Duties)
                 .Include(s => s.DeviceDefects)
                 .Include(s => s.DeviceImages)
+                .OrderByDescending(s=>s.UpDateTime)
                 .Skip(skip)
                 .Take(take);
             return Tuple.Create(query.ToList(), pageCount);
@@ -133,9 +136,19 @@ namespace DataAccess.Services
                          || s.Serial.ToLower().Contains(search)
                          || s.Customer.PhoneNumber.ToLower().Contains(search)
 
-                ).Skip(skip)
+                )
+                .OrderByDescending(s => s.UpDateTime)
+                .Skip(skip)
                 .Take(take);
             return Tuple.Create(query.ToList(), pageCount);
+        }
+
+        public void UpdateReceptionStatus(Reception reception)
+        {
+            reception.ReceptionStatus = ReceptionStatus.Done;
+            reception.EndDate=DateTime.Now;
+            _context.Receptions.Update(reception);
+            _context.SaveChanges();
         }
     }
 }

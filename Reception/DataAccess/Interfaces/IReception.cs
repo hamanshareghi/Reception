@@ -17,5 +17,6 @@ namespace DataAccess.Interfaces
         bool Exist(int id);
         Tuple<List<Reception>, int> GetAll(int take, int pageId = 1);
         Tuple<List<Reception>, int> GetReceptionBySearch(string search,int take, int pageId = 1);
+        void UpdateReceptionStatus(Reception reception);
     }
 }

@@ -44,6 +44,13 @@ namespace Model.Entities
         [Display(Name = "شرح")]
         public string Description { get; set; }
 
+        [Display(Name = "وضعیت")]
+        public ReceptionStatus ReceptionStatus { get; set; }
+
+        [Display(Name = "پذیرش")]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
+        public DateTime EndDate { get; set; }
+
         #region Relation
 
         [Display(Name = "دستگاه")]
@@ -66,5 +73,10 @@ namespace Model.Entities
 
     }
 
-  
+
+    public enum ReceptionStatus
+    {
+        Done=1,
+        NotYet =2
+    }
 }

@@ -85,10 +85,10 @@ namespace Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                reception.InsertDate = DateTime.Now;
+                
                 reception.UpDateTime = DateTime.Now;
                 reception.UserId = _userManager.GetUserId(User);
-
+                reception.ReceptionStatus = ReceptionStatus.NotYet;
 
                 if (date != "")
                 {
@@ -99,15 +99,8 @@ namespace Web.Areas.Admin.Controllers
                         new PersianCalendar()
                     );
                 }
-                else
-                {
-                    reception.ReceptionDate = DateTime.Now;
-                }
-
-
+                reception.InsertDate = reception.ReceptionDate;
                 int newReceptionId = _reception.Add(reception);
-
-
                 foreach (var item in defectsList)
                 {
                     _deviceDefect.Add(new DeviceDefect()
@@ -181,10 +174,7 @@ namespace Web.Areas.Admin.Controllers
                             new PersianCalendar()
                         );
                     }
-                    else
-                    {
-                        reception.ReceptionDate=DateTime.Now;
-                    }
+
                     _reception.Update(reception);
                 }
                 catch (DbUpdateConcurrencyException)
@@ -243,16 +233,29 @@ namespace Web.Areas.Admin.Controllers
 
         public IActionResult Send(int id)
         {
-
-
-
             Reception newReception = _reception.GetById(id);
             string receptor = newReception.Customer.PhoneNumber;
             string token = newReception.Customer.FullName.Replace(" ", "-");
             string token2 = newReception.ReceptionId.ToString();
-            string token3 = newReception.Product.Name.Replace(" ","-");
-            string token10 = newReception.ReceptionDate.ToShamsi().Replace(" ", "-"); 
-            SendMessage.Send(receptor, token, token2, token3, token10, null, "Reception");
+            string token3 = newReception.Product.Name.Replace(" ", "-");
+
+            if (newReception.ReceptionStatus == ReceptionStatus.NotYet)
+            {
+                string token10 = newReception.ReceptionDate.ToShamsi().Replace(" ", "-");
+                SendMessage.Send(receptor, token, token2, token3, token10, null, "Reception");
+            }
+            else
+            {
+                SendMessage.Send(receptor, token, token2, token3, null, null, "FinishWork");
+            }
+            return RedirectToAction("Index", "Receptions", new { area = "Admin" });
+        }
+
+        public IActionResult Finish(int id)
+        {
+
+            Reception newReception = _reception.GetById(id);
+            _reception.UpdateReceptionStatus(newReception);
             return RedirectToAction("Index", "Receptions", new { area = "Admin" });
         }
     }

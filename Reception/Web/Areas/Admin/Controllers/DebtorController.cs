@@ -61,7 +61,7 @@ namespace Web.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DebtorId,UserId,Title,Price,Description,PayStatus,InsertDate,IsDelete,UpDateTime")] Debtor debtor)
+        public async Task<IActionResult> Create([Bind("DebtorId,UserId,CurrentUser,Title,Price,Description,PayStatus,InsertDate,IsDelete,UpDateTime")] Debtor debtor)
         {
             if (ModelState.IsValid)
             {
@@ -97,7 +97,7 @@ namespace Web.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("DebtorId,UserId,Title,Price,Description,PayStatus,InsertDate,IsDelete,UpDateTime")] Debtor debtor)
+        public async Task<IActionResult> Edit(int id, [Bind("DebtorId,UserId,CurrentUser,Title,Price,Description,PayStatus,InsertDate,IsDelete,UpDateTime")] Debtor debtor)
         {
             if (id != debtor.DebtorId)
             {

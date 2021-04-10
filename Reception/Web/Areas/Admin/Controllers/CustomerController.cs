@@ -32,6 +32,7 @@ namespace Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddCustomer(AddCustomerViewModel model)
         {
             if (ModelState.IsValid)
@@ -114,6 +115,8 @@ namespace Web.Areas.Admin.Controllers
             return View(result);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditCustomer(EditCustomerViewModel model)
         {
 
