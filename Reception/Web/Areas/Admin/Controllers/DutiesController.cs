@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Threading.Tasks;
 using DataAccess.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -71,12 +72,26 @@ namespace Web.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DutyId,ReceptionId,ServiceId,ShippingId,Price,ActionDate,Description,StatusId,InsertDate,IsDelete,UpDateTime")] Duty duty)
+        public async Task<IActionResult> Create([Bind("DutyId,ReceptionId,ServiceId,ShippingId,Price,ActionDate,Description,StatusId,InsertDate,IsDelete,UpDateTime")] Duty duty ,string date)
         {
             if (ModelState.IsValid)
             {
                 duty.InsertDate=DateTime.Now;
                 duty.UpDateTime=DateTime.Now;
+              
+                if (date != "")
+                {
+                    string[] std = date.Split('/');
+                    duty.ActionDate = new DateTime(int.Parse(std[0]),
+                        int.Parse(std[1]),
+                        int.Parse(std[2]),
+                        new PersianCalendar()
+                    );
+                }
+                else
+                {
+                    duty.ActionDate = DateTime.Now;
+                }
                 _duty.Add(duty);
                 return RedirectToAction(nameof(Index),"Duties",new {area="Admin"});
             }
@@ -112,7 +127,7 @@ namespace Web.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("DutyId,ReceptionId,ServiceId,ShippingId,Price,ActionDate,Description,StatusId,InsertDate,IsDelete,UpDateTime")] Duty duty)
+        public async Task<IActionResult> Edit(int id, [Bind("DutyId,ReceptionId,ServiceId,ShippingId,Price,ActionDate,Description,StatusId,InsertDate,IsDelete,UpDateTime")] Duty duty,string date)
         {
             if (id != duty.DutyId)
             {

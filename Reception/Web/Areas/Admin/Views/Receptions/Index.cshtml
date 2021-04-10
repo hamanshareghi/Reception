@@ -119,16 +119,16 @@
                     @Html.Raw(item.Description)
                 </td>*@
                 <td>
-                    <a asp-controller="Duties" asp-action="Create" title="خدمات" class="btn btn-success btn-sm mr-3" asp-route-id="@item.ReceptionId">
-                        <i class="fas fa-calendar-plus"></i> ثبت خدمات
+                    <a asp-controller="Duties" asp-action="Create" title="خدمات" class="btn btn-icon btn-success btn-sm" asp-route-id="@item.ReceptionId">
+                        <i class="fas fa-calendar-plus"></i>
                     </a>
+                    <a asp-action="Send" class="btn btn-icon btn-success btn-sm" title="پیامک" asp-route-id="@item.ReceptionId"><i class="fas fa-comment-alt"></i></a>
 
                 </td>
                 <td>
                     <a asp-action="Edit" class="btn btn-icon btn-warning btn-sm" title="ویرایش" asp-route-id="@item.ReceptionId"><i class="far fa-edit"></i></a>
                     <a asp-action="Details" class="btn btn-icon btn-info btn-sm" title="شرح" asp-route-id="@item.ReceptionId"><i class="fas fa-info-circle"></i></a>
                     <a asp-action="Delete" class="btn btn-icon btn-danger btn-sm" title="حذف" asp-route-id="@item.ReceptionId"><i class="fas fa-trash"></i></a>
-                    <a asp-action="Send" class="btn btn-icon btn-success btn-sm" title="پیامک" asp-route-id="@item.ReceptionId"><i class="fas fa-comment-alt"></i></a>
 
                 </td>
             </tr>

@@ -108,7 +108,7 @@ namespace Web.Areas.Admin.Controllers
             {
                 try
                 {
-                    debtor.UserId = _userManager.GetUserId(User);
+                    debtor.CurrentUser = _userManager.GetUserId(User);
                     debtor.UpDateTime = DateTime.Now;
                     _debtor.Update(debtor);
 
