@@ -3,5 +3,84 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Welcome</h1>
+<div class="row mb-10">
 
+
+    <div class="col-lg-6 col-xl-4 mb-10">
+        <!--begin::کال اوت-->
+        <div class="card card-custom mb-2 bg-diagonal">
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between p-4 flex-lg-wrap flex-xl-nowrap">
+                    <div class="d-flex flex-column mr-5">
+                        <a href="" class="h4 text-dark text-hover-primary mb-5">
+                            پذیرش تمام نشده
+                        </a>
+                        <p class="text-dark font-weight-bold">
+                            تعداد کل پذیرش تکمیل نشده : @ViewData["ReceptionNotYet"].ToString()
+
+                        </p>
+                    </div>
+                    <div class="ml-6 ml-lg-0 ml-xxl-6 flex-shrink-0">
+                        <a asp-area="Admin" asp-controller="Receptions" asp-action="Index" class="btn font-weight-bolder text-uppercase btn-light-primary py-4 px-6">
+                            پذیرش
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end::کال اوت-->
+
+    </div>
+    <div class="col-lg-6 col-xl-4 mb-10">
+        <!--begin::کال اوت-->
+        <div class="card card-custom mb-2 bg-diagonal">
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between p-4 flex-lg-wrap flex-xl-nowrap">
+                    <div class="d-flex flex-column mr-5">
+                        <a href="" class="h4 text-dark text-hover-primary mb-5">
+                            پذیرش تمام شده
+                        </a>
+                        <p class="text-dark">
+                            تعداد کل پذیرش تکمیل شده : @ViewData["ReceptionDone"].ToString()
+                            </p>
+                    </div>
+                    <div class="ml-6 ml-lg-0 ml-xxl-6 flex-shrink-0">
+                        <a asp-area="Admin" asp-controller="Receptions" asp-action="Index" class="btn font-weight-bolder text-uppercase btn-light-warning py-4 px-6">
+                            پذیرش
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end::کال اوت-->
+
+    </div>
+    <div class="col-lg-6 col-xl-4 mb-10">
+        <!--begin::کال اوت-->
+        <div class="card card-custom mb-2 bg-diagonal">
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between p-4 flex-lg-wrap flex-xl-nowrap">
+                    <div class="d-flex flex-column mr-5">
+                        <a href="" class="h4 text-dark text-hover-primary mb-5">
+                            مشتریان
+                        </a>
+                        <p class="text-dark font-weight-bold">
+                            تعداد کل مشتریان ثبت شده : @ViewData["CustomerCount"].ToString()
+                        </p>
+                    </div>
+                    <div class="ml-6 ml-lg-0 ml-xxl-6 flex-shrink-0">
+                        <a asp-area="Admin" asp-controller="Customer" asp-action="Index" class="btn font-weight-bolder text-uppercase btn-light-success py-4 px-6">
+                            مشتریان
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end::کال اوت-->
+
+    </div>
+
+
+
+
+</div>

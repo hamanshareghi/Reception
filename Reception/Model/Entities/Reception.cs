@@ -77,6 +77,6 @@ namespace Model.Entities
     public enum ReceptionStatus
     {
         Done=1,
-        NotYet =2
+        NotYet =0
     }
 }

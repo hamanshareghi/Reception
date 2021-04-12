@@ -11,5 +11,6 @@ namespace DataAccess.Interfaces
     {
         Tuple<List<ApplicationUser>,int> GetAll(int pageId=1);
         Tuple<List<ApplicationUser>,int> GetUserBySearch(string search,int pageId=1);
+        int GetCustomerCount();
     }
 }

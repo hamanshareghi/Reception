@@ -79,5 +79,10 @@ namespace DataAccess.Services
                 .ToList();
             return Tuple.Create(model, pageCount);
         }
+
+        public int GetCustomerCount()
+        {
+            return _userManager.Users.Count();
+        }
     }
 }

@@ -150,5 +150,17 @@ namespace DataAccess.Services
             _context.Receptions.Update(reception);
             _context.SaveChanges();
         }
+
+        public int GetReceptionCountFinish()
+        {
+            return _context.Receptions.Count(s => s.ReceptionStatus == ReceptionStatus.Done);
+        }
+
+        public int GetReceptionCountNotFinish()
+        {
+            return _context.Receptions.Count(s => s.ReceptionStatus == ReceptionStatus.NotYet);
+        }
+
+
     }
 }
