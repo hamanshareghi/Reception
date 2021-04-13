@@ -118,7 +118,7 @@ namespace Web.Controllers
 
 
 
-        [HttpPost]
+        //[HttpPost]
         
         public async Task<IActionResult> SignOut()
         {

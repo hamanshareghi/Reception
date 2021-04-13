@@ -9,3 +9,4 @@ D:\Asp.Net Core\MyCode\Reception\Reception\Model\obj\Debug\net5.0\Model.csproj.C
 D:\Asp.Net Core\MyCode\Reception\Reception\Model\obj\Debug\net5.0\Model.dll
 D:\Asp.Net Core\MyCode\Reception\Reception\Model\obj\Debug\net5.0\ref\Model.dll
 D:\Asp.Net Core\MyCode\Reception\Reception\Model\obj\Debug\net5.0\Model.pdb
+D:\Asp.Net Core\MyCode\Reception\Reception\Model\obj\Debug\net5.0\Model.csprojAssemblyReference.cache
