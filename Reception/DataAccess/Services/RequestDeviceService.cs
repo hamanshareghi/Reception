@@ -122,5 +122,10 @@ namespace DataAccess.Services
                 .Take(take);
             return Tuple.Create(query.ToList(), pageCount);
         }
+
+        public int RequestCount()
+        {
+            return _context.RequestDevices.Count();
+        }
     }
 }

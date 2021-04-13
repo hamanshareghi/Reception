@@ -1,12 +1,14 @@
 ﻿
 @{
     ViewData["Title"] = "Index";
+    int sum = Convert.ToInt32(ViewData["SumCost"]);
+    int sumPay = Convert.ToInt32(ViewData["SumPay"]);
 }
 
 <div class="row mb-10">
 
 
-    <div class="col-lg-6 col-xl-4 mb-10">
+    <div class="col-lg-4 col-md-4 col-sm-12 mb-10">
         <!--begin::کال اوت-->
         <div class="card card-custom mb-2 bg-diagonal">
             <div class="card-body">
@@ -31,7 +33,7 @@
         <!--end::کال اوت-->
 
     </div>
-    <div class="col-lg-6 col-xl-4 mb-10">
+    <div class="col-lg-4 col-md-4 col-sm-12 mb-10">
         <!--begin::کال اوت-->
         <div class="card card-custom mb-2 bg-diagonal">
             <div class="card-body">
@@ -42,7 +44,7 @@
                         </a>
                         <p class="text-dark">
                             تعداد کل پذیرش تکمیل شده : @ViewData["ReceptionDone"].ToString()
-                            </p>
+                        </p>
                     </div>
                     <div class="ml-6 ml-lg-0 ml-xxl-6 flex-shrink-0">
                         <a asp-area="Admin" asp-controller="Receptions" asp-action="Index" class="btn font-weight-bolder text-uppercase btn-light-warning py-4 px-6">
@@ -55,7 +57,7 @@
         <!--end::کال اوت-->
 
     </div>
-    <div class="col-lg-6 col-xl-4 mb-10">
+    <div class="col-lg-4 col-md-4 col-sm-12 mb-10">
         <!--begin::کال اوت-->
         <div class="card card-custom mb-2 bg-diagonal">
             <div class="card-body">
@@ -80,7 +82,109 @@
 
     </div>
 
+    <div class="col-lg-4 col-md-4 col-sm-12 mb-10">
+        <!--begin::کال اوت-->
+        <div class="card card-custom mb-2 bg-diagonal">
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between p-4 flex-lg-wrap flex-xl-nowrap">
+                    <div class="d-flex flex-column mr-5">
+                        <a href="" class="h4 text-dark text-hover-primary mb-5">
+                            درخواست ها
+                        </a>
+                        <p class="text-dark font-weight-bold">
+                            تعداد کل درخواست ثبت شده : @ViewData["Request"].ToString()
+                        </p>
+                    </div>
+                    <div class="ml-6 ml-lg-0 ml-xxl-6 flex-shrink-0">
+                        <a asp-area="Admin" asp-controller="RequestDevices" asp-action="Index" class="btn font-weight-bolder text-uppercase btn-light-success py-4 px-6">
+                            درخواست ها
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end::کال اوت-->
 
-
+    </div>
+    
+    
 
 </div>
+@if (User.IsInRole("SuperAdmin"))
+{
+<div class="row mb-10">
+
+    <div class="col-lg-4 col-md-4 col-sm-12 mb-10">
+        <!--begin::کال اوت-->
+        <div class="card card-custom mb-2 bg-diagonal">
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between p-4 flex-lg-wrap flex-xl-nowrap">
+                    <div class="d-flex flex-column mr-5">
+                        <a href="" class="h4 text-dark text-hover-primary mb-5">
+                            پیام ها
+                        </a>
+                        <p class="text-dark font-weight-bold">
+                            تعداد کل پیام های ارسالی :
+                        </p>
+                    </div>
+                    <div class="ml-6 ml-lg-0 ml-xxl-6 flex-shrink-0">
+                        <a asp-area="Admin" asp-controller="AllMessages" asp-action="Index" class="btn font-weight-bolder text-uppercase btn-light-info py-4 px-6">
+                            پیام ها
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end::کال اوت-->
+
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-12 mb-10">
+        <!--begin::کال اوت-->
+        <div class="card card-custom mb-2 bg-diagonal">
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between p-4 flex-lg-wrap flex-xl-nowrap">
+                    <div class="d-flex flex-column mr-5">
+                        <a href="" class="h4 text-dark text-hover-primary mb-5">
+                            هزینه ها
+                        </a>
+                        <p class="text-dark font-weight-bold">
+                            جمع کل مبالغ هزینه ها : @sum.ToString("#,0") تومان
+                        </p>
+                    </div>
+                    <div class="ml-6 ml-lg-0 ml-xxl-6 flex-shrink-0">
+                        <a asp-area="Admin" asp-controller="Cost" asp-action="Index" class="btn font-weight-bolder text-uppercase btn-bg-warning py-4 px-6">
+                            هزینه ها
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end::کال اوت-->
+
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-12 mb-10">
+        <!--begin::کال اوت-->
+        <div class="card card-custom mb-2 bg-diagonal">
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between p-4 flex-lg-wrap flex-xl-nowrap">
+                    <div class="d-flex flex-column mr-5">
+                        <a href="" class="h4 text-dark text-hover-primary mb-5">
+                            پرداختی ها
+                        </a>
+                        <p class="text-dark font-weight-bold">
+                            جمع کل مبالغ پرداختی ها : @sumPay.ToString("#,0") تومان
+                        </p>
+                    </div>
+                    <div class="ml-6 ml-lg-0 ml-xxl-6 flex-shrink-0">
+                        <a asp-area="Admin" asp-controller="Payments" asp-action="Index" class="btn font-weight-bolder text-uppercase btn-bg-primary py-4 px-6">
+                            پرداختی ها
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end::کال اوت-->
+
+    </div>
+</div>
+}

@@ -23,6 +23,7 @@ namespace DataAccess.Services
         {
             return _context.Payments
                 .Include(s => s.User)
+                .OrderByDescending(s=>s.PaymentDate)
                 .ToList();
         }
 
@@ -42,7 +43,7 @@ namespace DataAccess.Services
             }
             var query = _context.Payments
                 .Include(s => s.User)
-
+                .OrderByDescending(s => s.PaymentDate)
                 .Skip(skip)
                 .Take(take);
             return Tuple.Create(query.ToList(), pageCount);
@@ -83,6 +84,8 @@ namespace DataAccess.Services
                          || s.Recipt.ToLower().Contains(search)
                          || s.User.PhoneNumber.Contains(search)
                 )
+                .OrderByDescending(s => s.PaymentDate)
+
                 .Skip(skip)
                 .Take(take);
             return Tuple.Create(query.ToList(), pageCount);
@@ -116,6 +119,11 @@ namespace DataAccess.Services
         public bool Exist(int id)
         {
             return _context.Payments.Any(s => s.PaymentId == id);
+        }
+
+        public int SumPay()
+        {
+            return _context.Payments.Sum(s => s.Price);
         }
     }
 }

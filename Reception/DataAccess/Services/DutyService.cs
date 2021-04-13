@@ -24,6 +24,7 @@ namespace DataAccess.Services
         {
             return _context.Duties
                 .Include(d => d.Reception)
+                .ThenInclude(s=>s.Customer)
                 .Include(d => d.Service)
                 .Include(d => d.Shipping)
                 .Include(d => d.Status)
@@ -31,15 +32,16 @@ namespace DataAccess.Services
                 .ToList();
         }
 
-        public Task<Duty> GetById(int id)
+        public Duty GetById(int id)
         {
             return _context.Duties
                 .Include(d => d.Reception)
+                .ThenInclude(s => s.Customer)
                 .Include(d => d.Service)
                 .Include(d => d.Shipping)
                 .Include(d => d.Status)
                 .OrderByDescending(s => s.UpDateTime)
-                .FirstOrDefaultAsync(s => s.DutyId == id);
+                .FirstOrDefault(s => s.DutyId == id);
         }
 
         public void Add(Duty duty)
@@ -81,6 +83,7 @@ namespace DataAccess.Services
 
             var query = _context.Duties
                 .Include(d => d.Reception)
+                .ThenInclude(s => s.Customer)
                 .Include(d => d.Service)
                 .Include(d => d.Shipping)
                 .Include(d => d.Status)
@@ -112,6 +115,7 @@ namespace DataAccess.Services
 
             var query = _context.Duties
                 .Include(d => d.Reception)
+                .ThenInclude(s => s.Customer)
                 .Include(d => d.Service)
                 .Include(d => d.Shipping)
                 .Include(d => d.Status)

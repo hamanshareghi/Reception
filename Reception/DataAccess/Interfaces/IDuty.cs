@@ -10,7 +10,7 @@ namespace DataAccess.Interfaces
     public interface IDuty
     {
         List<Duty> GetAll();
-        Task<Duty> GetById(int id);
+        Duty GetById(int id);
         void Add(Duty duty);
         void Update(Duty duty);
         void Delete(Duty duty);

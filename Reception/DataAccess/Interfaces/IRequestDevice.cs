@@ -17,5 +17,6 @@ namespace DataAccess.Interfaces
         bool Exist(int id);
         Tuple<List<RequestDevice>, int> GetAll(int take, int pageId = 1);
         Tuple<List<RequestDevice>, int> GetRequestDeViceBySearch(string search,int take, int pageId = 1);
+        int RequestCount();
     }
 }

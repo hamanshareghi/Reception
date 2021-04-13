@@ -15,11 +15,19 @@ namespace Web.Areas.Admin.Controllers
     {
         private ICustomer _customer;
         private IReception _reception;
+        private IRequestDevice _requestDevice;
+        private IAllMessage _allMessage;
+        private ICost _cost;
+        private IPayment _payment;
 
-        public HomeController(ICustomer customer, IReception reception)
+        public HomeController(ICustomer customer, IReception reception, IRequestDevice requestDevice, IAllMessage allMessage, ICost cost, IPayment payment)
         {
             _customer = customer;
             _reception = reception;
+            _requestDevice = requestDevice;
+            _allMessage = allMessage;
+            _cost = cost;
+            _payment = payment;
         }
 
 
@@ -29,6 +37,10 @@ namespace Web.Areas.Admin.Controllers
             ViewData["CustomerCount"] = _customer.GetCustomerCount();
             ViewData["ReceptionDone"] = _reception.GetReceptionCountFinish();
             ViewData["ReceptionNotYet"] = _reception.GetReceptionCountNotFinish();
+            ViewData["Request"] = _requestDevice.RequestCount();
+            ViewData["Sms"] = _allMessage.GetAllMessageCount();
+            ViewData["SumCost"] = _cost.SumCost();
+            ViewData["SumPay"] = _payment.SumPay();
 
             return View();
         }

@@ -138,6 +138,11 @@ namespace DataAccess.Services
             return query.ToList();
         }
 
+        public int SumCost()
+        {
+            return _context.Costs.Sum(s => s.Price);
+        }
+
         public List<Cost> GetAll()
         {
             return _context.Costs

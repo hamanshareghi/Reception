@@ -12,6 +12,9 @@
             <form asp-action="Edit">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="RequestDeviceId" />
+                <input type="hidden" asp-for="InsertDate" />
+                <input type="hidden" asp-for="UserId" />
+
                 <div class="dropdown bootstrap-select form-control mb-5">
                     <label asp-for="CustomerId" class="control-label"></label>
                     <select class="form-control selectpicker" asp-for="CustomerId" data-live-search="true" tabindex="null" asp-items="ViewBag.CustomerId">
