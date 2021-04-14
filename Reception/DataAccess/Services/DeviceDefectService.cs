@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Data.Context;
 using DataAccess.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Model.Entities;
 
 namespace DataAccess.Services
@@ -36,6 +37,7 @@ namespace DataAccess.Services
         public List<DeviceDefect> GetDefectsByReception(int id)
         {
             return _context.DeviceDefects
+                .Include(s=>s.Defect)
                 .Where(s => s.ReceptionId == id)
                 .OrderByDescending(s => s.InsertDate)
                 .ToList();

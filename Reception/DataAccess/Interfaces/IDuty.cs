@@ -17,5 +17,6 @@ namespace DataAccess.Interfaces
         bool Exist(int id);
         Tuple<List<Duty>, int> GetAll(int take, int pageId = 1);
         Tuple<List<Duty>, int> GetDutyBySearch(string search,int take, int pageId = 1);
+        List<Duty> GetDutiesByReception(int id);
     }
 }

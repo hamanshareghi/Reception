@@ -28,14 +28,16 @@ namespace Web.Areas.Admin.Controllers
         private IDeviceDefect _deviceDefect;
         private IReception _reception;
         private UserManager<ApplicationUser> _userManager;
+        private IDuty _duty;
 
-        public ReceptionsController(IProduct product, IDefect defect, IDeviceDefect deviceDefect, IReception reception, UserManager<ApplicationUser> userManager)
+        public ReceptionsController(IProduct product, IDefect defect, IDeviceDefect deviceDefect, IReception reception, UserManager<ApplicationUser> userManager, IDuty duty)
         {
             _product = product;
             _defect = defect;
             _deviceDefect = deviceDefect;
             _reception = reception;
             _userManager = userManager;
+            _duty = duty;
         }
         // GET: Receptions
         public IActionResult Index(string search, int take, int pageId = 1)
@@ -56,6 +58,7 @@ namespace Web.Areas.Admin.Controllers
                 return NotFound();
             }
             ViewData["Defects"] = _deviceDefect.GetDefectsByReception(id.Value);
+            ViewData["Duty"] = _duty.GetDutiesByReception(id.Value);
             var reception = _reception.GetById(id.Value);
             if (reception == null)
             {

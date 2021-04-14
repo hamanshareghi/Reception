@@ -129,5 +129,16 @@ namespace DataAccess.Services
                              .Take(take);
             return Tuple.Create(query.ToList(), pageCount);
         }
+
+        public List<Duty> GetDutiesByReception(int id)
+        {
+            return _context.Duties
+                .Include(s => s.Service)
+                .Include(s=>s.Shipping)
+                .Include(s=>s.Status)
+                .Where(s => s.ReceptionId == id)
+                .OrderBy(s => s.ActionDate)
+                .ToList();
+        }
     }
 }
