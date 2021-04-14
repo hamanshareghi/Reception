@@ -100,5 +100,7 @@ namespace DataAccess.Services
             _context.Defects.Update(defect);
             _context.SaveChanges();
         }
+
+        
     }
 }

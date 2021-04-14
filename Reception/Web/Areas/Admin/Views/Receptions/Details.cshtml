@@ -3,73 +3,127 @@
 
 @{
     ViewData["Title"] = "Details";
+    var listDefect = ViewData["Defects"] as List<DeviceDefect>;
 }
 
 <div class="container">
-    <h1>شرح پذیرش</h1>
+    <div class="row">
+        <div class="col-lg-6">
+            <!--begin::نمونه-->
+            <!--begin::Card-->
+            <div class="card card-custom">
+                <div class="card-header ribbon ribbon-clip ribbon-right">
+                    <div class="ribbon-target" style="top: 12px;">
+                        <span class="ribbon-inner bg-success"></span>پذیرش
+                    </div>
+                    <div class="card-title">
+                        <h3 class="card-label">
+                            اطلاعات پذیرش
+                            @* <small>زیر عنوان</small>*@
+                        </h3>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Serial)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Serial)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.UserId)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.UserId)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.ReceptionDate)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Model.ReceptionDate.ToShamsi()
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Description)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.Raw(Model.Description)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Product)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Product.Name)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Customer)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Customer.FullName)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Customer.Contact)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Customer.Contact)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.InsertDate)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Model.InsertDate.ToShamsi()
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.UpDateTime)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Model.UpDateTime?.ToShamsi()
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            <!--end::Card-->
 
-    <div>
-        <hr />
-        <dl class="row">
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Serial)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Serial)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.UserId)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.UserId)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.ReceptionDate)
-            </dt>
-            <dd class="col-sm-10">
-                @Model.ReceptionDate.ToShamsi()
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Description)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.Raw(Model.Description)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Product)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Product.Name)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Customer)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Customer.FullName)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Customer.Contact)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Customer.Contact)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.InsertDate)
-            </dt>
-            <dd class="col-sm-10">
-                @Model.InsertDate.ToShamsi()
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.UpDateTime)
-            </dt>
-            <dd class="col-sm-10">
-                @Model.UpDateTime?.ToShamsi()
-            </dd>
-        </dl>
+
+        </div>
+        <div class="col-lg-6">
+
+            <div class="card card-custom">
+                <div class="card-header ribbon ribbon-clip ribbon-right">
+                    <div class="ribbon-target" style="top: 12px;">
+                        <span class="ribbon-inner bg-warning"></span>ایرادات
+                    </div>
+                    <div class="card-title">
+                        <h3 class="card-label">
+                            شرح ایرادات دستگاه به گفته مشتری
+                            @*<small>زیر عنوان</small>*@
+                        </h3>
+                    </div>
+                </div>
+                <div class="card-body">
+                    @foreach (var item in listDefect)
+                    {
+                        <div class="d-flex align-items-center mb-10">
+                            <!--begin::سیمبل-->
+                            <div class="symbol symbol-40 symbol-light-primary mr-5">
+                                <i class="fa fa-comment-alt text-success mr-5"></i>
+                            </div>
+                            <!--end::سیمبل-->
+                            <!--begin::متن-->
+                            <div class="d-flex flex-column font-weight-bold">
+                                <span  class="text-dark text-hover-primary mb-1 font-size-lg">@item.Defect.Name</span>
+                               @* <span class="text-muted">مدیر پروژه</span>*@
+                            </div>
+                            <!--end::متن-->
+                        </div>
+                    }
+
+                </div>
+            </div>
+
+        </div>
     </div>
-    <div>
-        <a asp-action="Edit" class="btn btn-warning" asp-route-id="@Model.ReceptionId">ویرایش پذیرش</a>
-        <a asp-action="Index" class="btn btn-info">بازگشت به لیست</a>
-    </div>
+
 </div>
+
 

@@ -125,8 +125,7 @@
                     @Html.Raw(item.Description)
                 </td>*@
                 <td>
-                    <a asp-controller="Duties" asp-action="Create" title="خدمات" class="btn btn-icon btn-success btn-sm" asp-route-id="@item.ReceptionId"><i class="fas fa-calendar-plus"></i>
-                    </a>
+                    <a asp-controller="Duties" asp-action="Create" title="خدمات" class="btn btn-icon btn-success btn-sm" asp-route-id="@item.ReceptionId"><i class="fas fa-calendar-plus"></i></a>
                     <a asp-action="Send" class="btn btn-icon btn-success btn-sm" title="پیامک" asp-route-id="@item.ReceptionId"><i class="fas fa-comment-alt"></i></a>
                     <a asp-action="Finish" class="btn btn-icon btn-bg-dark btn-sm" title="اتمام" asp-route-id="@item.ReceptionId"><i class="fas fa-clipboard-list"></i></a>
 

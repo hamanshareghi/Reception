@@ -17,5 +17,6 @@ namespace DataAccess.Interfaces
         void Delete(Defect defect);
         bool Exist(int id);
         Tuple<List<Defect>, int> GetDefectBySearch(string search, int take, int pageId = 1);
+        
     }
 }

@@ -90,6 +90,7 @@ namespace Web.Areas.Admin.Controllers
                     );
                 }
 
+
                 _duty.Add(duty);
                 return RedirectToAction(nameof(Index), "Duties", new { area = "Admin" });
             }

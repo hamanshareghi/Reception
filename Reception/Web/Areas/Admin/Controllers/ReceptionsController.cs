@@ -55,7 +55,7 @@ namespace Web.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-
+            ViewData["Defects"] = _deviceDefect.GetDefectsByReception(id.Value);
             var reception = _reception.GetById(id.Value);
             if (reception == null)
             {
@@ -114,6 +114,13 @@ namespace Web.Areas.Admin.Controllers
                     });
 
                 }
+                Reception newReception = _reception.GetById(newReceptionId);
+                string receptor = newReception.Customer.PhoneNumber;
+                string token = newReception.Customer.FullName.Replace(" ", "-");
+                string token2 = newReception.ReceptionId.ToString();
+                string token3 = newReception.Product.Name.Replace(" ", "-");
+                string token10 = newReception.ReceptionDate.ToShamsi().Replace(" ", "-");
+                SendMessage.Send(receptor, token, token2, token3, token10, null, "Reception");
                 //SendSms(newReceptionId);
 
 

@@ -32,5 +32,14 @@ namespace DataAccess.Services
             _context.DeviceDefects.Add(deviceDefect);
             _context.SaveChanges();
         }
+
+        public List<DeviceDefect> GetDefectsByReception(int id)
+        {
+            return _context.DeviceDefects
+                .Where(s => s.ReceptionId == id)
+                .OrderByDescending(s => s.InsertDate)
+                .ToList();
+
+        }
     }
 }

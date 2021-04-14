@@ -12,5 +12,6 @@ namespace DataAccess.Interfaces
         IEnumerable<DeviceDefect> GetAll();
         DeviceDefect GetById(int id);
         void Add(DeviceDefect deviceDefect);
+        List<DeviceDefect> GetDefectsByReception(int id);
     }
 }

@@ -22,7 +22,7 @@ namespace Model.Entities
         public string Contact { get; set; }
 
         [Display(Name = "آدرس")]
-        [MaxLength(400, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
+        [StringLength(400, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
         public string Address { get; set; }
 
         [Display(Name = "سمت")]
