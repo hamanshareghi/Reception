@@ -22,10 +22,11 @@ namespace DataAccess.Services
             _context = context;
         }
 
-        public void Add(Cost cost)
+        public int Add(Cost cost)
         {
             _context.Costs.Add(cost);
             _context.SaveChanges();
+            return cost.CostId;
         }
 
         public void Delete(Cost cost)
@@ -58,6 +59,7 @@ namespace DataAccess.Services
 
             var query = _context.Costs
                 .Include(s => s.CostDefine)
+                .Include(s => s.User)
                 .OrderByDescending(s=>s.UpDateTime)
                 .Skip(skip)
                 .Take(take);
@@ -85,6 +87,8 @@ namespace DataAccess.Services
 
             var query = _context.Costs
                 .Include(s => s.CostDefine)
+                .Include(s => s.User)
+
                 .Where(
                     s => s.Description.ToLower().Contains(search)
                          || s.Price.ToString().ToLower().Contains(search)
@@ -147,6 +151,8 @@ namespace DataAccess.Services
         {
             return _context.Costs
                 .Include(s => s.CostDefine)
+                .Include(s => s.User)
+
                 .OrderByDescending(s => s.UpDateTime)
                 .ToList();
         }
@@ -155,6 +161,8 @@ namespace DataAccess.Services
         {
             return _context.Costs
                 .Include(s => s.CostDefine)
+                .Include(s => s.User)
+
                 .FirstOrDefault(s => s.CostId == id);
         }
 

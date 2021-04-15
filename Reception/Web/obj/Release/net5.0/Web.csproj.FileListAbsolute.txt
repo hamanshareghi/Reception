@@ -312,3 +312,4 @@ D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Areas\Ad
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Areas\Admin\Views\Payments\Details.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Areas\Admin\Views\Payments\Edit.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Areas\Admin\Views\Payments\Index.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\bin\Release\net5.0\Microsoft.Extensions.Primitives.dll

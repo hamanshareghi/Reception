@@ -82,7 +82,7 @@ namespace DataAccess.Services
 
         public int GetCustomerCount()
         {
-            return _userManager.Users.Count();
+            return  _userManager.Users.Count();
         }
     }
 }

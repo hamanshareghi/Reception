@@ -1,87 +1,117 @@
-﻿@model IEnumerable<Model.Entities.AllMessage>
+﻿@using Common.Library
+@model IEnumerable<Model.Entities.AllMessage>
 
 @{
     ViewData["Title"] = "Index";
+    int row = 1;
+    string query = " ";
+    if (ViewBag.Search != null)
+    {
+        query = ViewBag.Search.ToString();
+    }
 }
 
-<h1>Index</h1>
+<div class="container">
+    <h1>پیام ها</h1>
+    <div class="mb-7">
+        <form asp-area="Admin" asp-controller="AllMessages" asp-action="Index" method="get">
+            <div class="row align-items-center">
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.CurrentUserId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SmsDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Kind)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SmsStatus)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Users)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.InsertDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsDelete)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UpDateTime)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CurrentUserId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SmsDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Kind)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SmsStatus)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Users.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.InsertDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsDelete)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpDateTime)
-            </td>
-            <td>
-                <td>
-                    <a asp-action="Edit" class="btn btn-icon btn-warning btn-sm" title="ویرایش" asp-route-id="@item.SmsId"><i class="far fa-edit"></i></a>
-                    <a asp-action="Details" class="btn btn-icon btn-info btn-sm" title="شرح" asp-route-id="@item.SmsId"><i class="fas fa-info-circle"></i></a>
-                    <a asp-action="Delete" class="btn btn-icon btn-danger btn-sm" title="حذف" asp-route-id="@item.SmsId"><i class="fas fa-trash"></i></a>
-                   @* <a asp-action="Send" class="btn btn-icon btn-success btn-sm" title="پیامک" asp-route-id="@item.SmsId"><i class="fas fa-comment-alt"></i></a>*@
+                <div class="col-lg-10 col-xl-10">
+                    <div class="row align-items-center">
+                        <div class="col-md-10 my-2 my-md-0">
+                            <div class="input-icon">
+                                <input type="text" name="search" class="form-control" placeholder="جستجو..." id="kt_datatable_search_query">
+                                <span>
+                                    <i class="flaticon2-search-1 text-muted"></i>
+                                </span>
+                            </div>
+                        </div>
 
-                </td>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-xl-2 mt-5 mt-lg-0">
+                    <button type="submit" class="btn btn-light-primary px-6 font-weight-bold">
+                        جستجو
+                    </button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+    <hr />
+    <p>
+        <a asp-area="Admin" asp-controller="AllMessages" asp-action="Create" class="btn btn-success">پیام جدید</a>
+        <a asp-area="Admin" asp-controller="AllMessages" asp-action="Index" class="btn btn-info">بروزرسانی</a>
+    </p>
+    <table class="table table-bordered table-responsive table-striped">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SmsDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CurrentUserId)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Kind)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.SmsStatus)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+
+
+                <th>دستورات</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @row
+                    </td>
+                    <td>
+                        <p class="text-danger font-weight-bold">
+                            @item.SmsDate.ToShamsi()
+                        </p>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Users.FullName)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Kind)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SmsStatus)
+                    </td>
+
+                    <td>
+                        @Html.Raw(item.Description)
+                    </td>
+
+                    <td>
+                        <a asp-action="Edit" class="btn btn-icon btn-warning btn-sm" title="ویرایش" asp-route-id="@item.SmsId"><i class="far fa-edit"></i></a>
+                        <a asp-action="Details" class="btn btn-icon btn-info btn-sm" title="شرح" asp-route-id="@item.SmsId"><i class="fas fa-info-circle"></i></a>
+                        <a asp-action="Delete" class="btn btn-icon btn-danger btn-sm" title="حذف" asp-route-id="@item.SmsId"><i class="fas fa-trash"></i></a>
+                        @* <a asp-action="Send" class="btn btn-icon btn-success btn-sm" title="پیامک" asp-route-id="@item.SmsId"><i class="fas fa-comment-alt"></i></a>*@
+
+                    </td>
+
+                </tr>
+                row++;
+            }
+        </tbody>
+    </table>
+</div>
+

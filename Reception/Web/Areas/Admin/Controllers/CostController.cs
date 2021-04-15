@@ -18,12 +18,14 @@ namespace Web.Areas.Admin.Controllers
         private ICost _cost;
         private ICostDefine _costDefine;
         private UserManager<ApplicationUser> _userManager;
+        private IAllMessage _allMessage;
 
-        public CostController(ICost cost, ICostDefine costDefine, UserManager<ApplicationUser> userManager)
+        public CostController(ICost cost, ICostDefine costDefine, UserManager<ApplicationUser> userManager, IAllMessage allMessage)
         {
             _cost = cost;
             _costDefine = costDefine;
             _userManager = userManager;
+            _allMessage = allMessage;
         }
 
         public  IActionResult Index(string search ,int take,int pageId=1)
@@ -70,8 +72,29 @@ namespace Web.Areas.Admin.Controllers
                 cost.InsertDate = DateTime.Now;
                 cost.UpDateTime=DateTime.Now;
                 cost.UserId = _userManager.GetUserId(User);
-                _cost.Add(cost);
-                
+                int newCost= _cost.Add(cost);
+                var model = _cost.GetById(newCost);
+                string receptor = "09121950430";
+                //var name = _userManager.FindByIdAsync(model.UserId);
+
+                string token = model.User.FullName.Replace(" ","-");
+                string token2 = model.Price.ToString();
+                string token3 = model.CostDefine.Name.Replace(" ", "-");
+                SendMessage.Send(receptor, token, token2, token3, null, null, "Cost");
+                AllMessage message = new AllMessage()
+                {
+                    InsertDate = DateTime.Now,
+                    UpDateTime = DateTime.Now,
+                    IsDelete = false,
+                    Kind = SmsKind.Cost,
+                    SmsDate = DateTime.Now,
+                    CurrentUserId = _userManager.GetUserId(User),
+                    SmsStatus = "Sent",
+                    Description = $"کاربر: {token} مبلغ: {token2} بابت: {token3} ",
+                    UserId = model.UserId
+                };
+                _allMessage.Add(message);
+
                 return RedirectToAction(nameof(Index), "Cost",new {area="Admin"});
             }
             ViewData["CostDefineId"] = new SelectList(_costDefine.GetAll(), "CostDefineId", "Name");

@@ -29,8 +29,9 @@ namespace Web.Areas.Admin.Controllers
         private IReception _reception;
         private UserManager<ApplicationUser> _userManager;
         private IDuty _duty;
+        private IAllMessage _message;
 
-        public ReceptionsController(IProduct product, IDefect defect, IDeviceDefect deviceDefect, IReception reception, UserManager<ApplicationUser> userManager, IDuty duty)
+        public ReceptionsController(IProduct product, IDefect defect, IDeviceDefect deviceDefect, IReception reception, UserManager<ApplicationUser> userManager, IDuty duty, IAllMessage message)
         {
             _product = product;
             _defect = defect;
@@ -38,6 +39,7 @@ namespace Web.Areas.Admin.Controllers
             _reception = reception;
             _userManager = userManager;
             _duty = duty;
+            _message = message;
         }
         // GET: Receptions
         public IActionResult Index(string search, int take, int pageId = 1)
@@ -125,7 +127,19 @@ namespace Web.Areas.Admin.Controllers
                 string token10 = newReception.ReceptionDate.ToShamsi().Replace(" ", "-");
                 SendMessage.Send(receptor, token, token2, token3, token10, null, "Reception");
                 //SendSms(newReceptionId);
-
+                AllMessage message = new AllMessage()
+                {
+                    InsertDate = DateTime.Now,
+                    UpDateTime = DateTime.Now,
+                    IsDelete = false,
+                    Kind = SmsKind.Reception,
+                    SmsDate = DateTime.Now,
+                    CurrentUserId = _userManager.GetUserId(User),
+                    SmsStatus = "Sent",
+                    Description = $"کاربر: {token} -{receptor} پذیرش: {token2} دستگاه: {token3} تاریخ: {token10} پذیرش شد",
+                    UserId = newReception.CustomerId
+                };
+                _message.Add(message);
 
                 return RedirectToAction(nameof(Index), "Receptions", new { area = "Admin" });
             }

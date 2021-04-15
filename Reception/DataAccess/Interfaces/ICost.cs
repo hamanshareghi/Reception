@@ -11,7 +11,7 @@ namespace DataAccess.Interfaces
     {
         List<Cost> GetAll();
         Cost GetById(int id);
-        void Add(Cost cost);
+        int Add(Cost cost);
         void Update(Cost cost);
         void Delete(Cost cost);
         bool Exist(int id);
