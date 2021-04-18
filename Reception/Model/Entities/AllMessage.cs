@@ -52,8 +52,8 @@ namespace Model.Entities
         RequestDevice=6,
         Leave=7,
         Shipping=8,
-        Ticket=9
-
+        Ticket=9,
+        Service=10
     }
 
 }

@@ -61,6 +61,7 @@ namespace Web.Areas.Admin.Controllers
                 service.UpDateTime=DateTime.Now;
                 //service.UserId = _userManager.GetUserId(User);
 
+
                 _service.Add(service);
 
                 return RedirectToAction(nameof(Index), "Service",new {area="Admin"});
@@ -148,5 +149,6 @@ namespace Web.Areas.Admin.Controllers
         {
             return _service.Exist(id);
         }
+        
     }
 }

@@ -44,10 +44,11 @@ namespace DataAccess.Services
                 .FirstOrDefault(s => s.DutyId == id);
         }
 
-        public void Add(Duty duty)
+        public int Add(Duty duty)
         {
             _context.Duties.Add(duty);
             _context.SaveChanges();
+            return duty.DutyId;
         }
 
         public void Update(Duty duty)

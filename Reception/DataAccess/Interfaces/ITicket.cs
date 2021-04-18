@@ -10,7 +10,7 @@ namespace DataAccess.Interfaces
     public interface ITicket
     {
         Task<List<Ticket>> GetAll();
-        Task<Ticket> GetById(int id);
+        Ticket GetById(int id);
         void Add(Ticket ticket);
         void Update(Ticket ticket);
         void Delete(Ticket ticket);

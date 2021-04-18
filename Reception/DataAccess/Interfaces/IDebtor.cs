@@ -12,7 +12,7 @@ namespace DataAccess.Interfaces
         List<Debtor> GetAll();
         Tuple<List<Debtor>,int> GetAll(int take, int pageId = 1);
         Debtor GetById(int id);
-        void Add(Debtor debtor);
+        int Add(Debtor debtor);
         void Update(Debtor debtor);
         void Delete(Debtor debtor);
         bool Exist(int id);

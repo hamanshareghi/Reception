@@ -38,7 +38,7 @@ namespace Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var ticket = await _ticket.GetById(id.Value);
+            var ticket =  _ticket.GetById(id.Value);
             if (ticket == null)
             {
                 return NotFound();
@@ -69,7 +69,7 @@ namespace Web.Areas.Admin.Controllers
                 ticket.UserId = _userManager.GetUserId(User);
 
                 _ticket.Add(ticket);
-                return RedirectToAction(nameof(Index),"Tickets");
+                return RedirectToAction(nameof(Index), "Tickets", new { area = "Admin" });
             }
             ViewData["Reciver"] = new SelectList(await _userManager.Users.ToListAsync(), "Id", "FullName");
             return View(ticket);
@@ -83,7 +83,7 @@ namespace Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var ticket = await _ticket.GetById(id.Value);
+            var ticket =  _ticket.GetById(id.Value);
             if (ticket == null)
             {
                 return NotFound();
@@ -124,7 +124,7 @@ namespace Web.Areas.Admin.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index),"Tickets");
+                return RedirectToAction(nameof(Index), "Tickets", new { area = "Admin" });
             }
             ViewData["Reciver"] = new SelectList(await _userManager.Users.ToListAsync(), "Id", "FullName");
             return View(ticket);
@@ -138,7 +138,7 @@ namespace Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var ticket = await _ticket.GetById(id.Value);
+            var ticket =  _ticket.GetById(id.Value);
             if (ticket == null)
             {
                 return NotFound();
@@ -152,9 +152,9 @@ namespace Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var ticket = await _ticket.GetById(id);
+            var ticket =  _ticket.GetById(id);
             _ticket.Delete(ticket);
-            return RedirectToAction(nameof(Index),"Tickets");
+            return RedirectToAction(nameof(Index),"Tickets",new {area="Admin"});
         }
 
         private bool TicketExists(int id)

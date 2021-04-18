@@ -26,12 +26,12 @@ namespace DataAccess.Services
                 .ToListAsync();
         }
 
-        public Task<Ticket> GetById(int id)
+        public Ticket GetById(int id)
         {
             return _context.Tickets
                 .Include(s => s.User)
                 .OrderByDescending(s => s.UpDateTime)
-                .FirstOrDefaultAsync(s => s.TicketId == id);
+                .FirstOrDefault(s => s.TicketId == id);
         }
 
         public void Add(Ticket ticket)

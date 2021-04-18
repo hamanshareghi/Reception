@@ -11,7 +11,7 @@ namespace DataAccess.Interfaces
     {
         List<Duty> GetAll();
         Duty GetById(int id);
-        void Add(Duty duty);
+        int Add(Duty duty);
         void Update(Duty duty);
         void Delete(Duty duty);
         bool Exist(int id);

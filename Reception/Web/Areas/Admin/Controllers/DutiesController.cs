@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Common.Library;
 using DataAccess.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -20,14 +21,18 @@ namespace Web.Areas.Admin.Controllers
         private IService _service;
         private IStatus _status;
         private IShipping _shipping;
+        private UserManager<ApplicationUser> _userManager;
+        private IAllMessage _allMessage;
 
-        public DutiesController(IDuty duty, IReception reception, IService service, IStatus status, IShipping shipping)
+        public DutiesController(IDuty duty, IReception reception, IService service, IStatus status, IShipping shipping, UserManager<ApplicationUser> userManager, IAllMessage allMessage)
         {
             _duty = duty;
             _reception = reception;
             _service = service;
             _status = status;
             _shipping = shipping;
+            _userManager = userManager;
+            _allMessage = allMessage;
         }
 
         // GET: Duties
@@ -79,7 +84,7 @@ namespace Web.Areas.Admin.Controllers
             {
                 duty.InsertDate = DateTime.Now;
                 duty.UpDateTime = DateTime.Now;
-
+                string customerId = duty.Reception.CustomerId;
                 if (date != "")
                 {
                     string[] std = date.Split('/');
@@ -91,7 +96,27 @@ namespace Web.Areas.Admin.Controllers
                 }
 
 
-                _duty.Add(duty);
+                var newId=_duty.Add(duty);
+                Duty newDuty = _duty.GetById(newId);
+                string receptor = newDuty.Reception.Customer.PhoneNumber;
+                string token = newDuty.Reception.Customer.FullName.Replace(" ", "-");
+                string token2 = newDuty.ReceptionId.ToString();
+                string token3 = newDuty.Service.Name.Replace(" ", "-");
+                string token10 = newDuty.Status.Name.Replace(" ", "-");
+                SendMessage.Send(receptor, token, token2, token3, token10, null, "Service");
+                AllMessage message = new AllMessage()
+                {
+                    InsertDate = DateTime.Now,
+                    UpDateTime = DateTime.Now,
+                    IsDelete = false,
+                    Kind = SmsKind.Service,
+                    SmsDate = DateTime.Now,
+                    CurrentUserId = customerId,
+                    SmsStatus = "Sent",
+                    Description = $"کاربر: {token} -{receptor} پذیرش: {token2} خدمات: {token3} وضعیت: {token10} انجام شد",
+                    UserId = _userManager.GetUserId(User)
+                };
+                _allMessage.Add(message);
                 return RedirectToAction(nameof(Index), "Duties", new { area = "Admin" });
             }
             ViewData["ReceptionId"] = new SelectList(_reception.GetAll(), "ReceptionId", "ReceptionId");

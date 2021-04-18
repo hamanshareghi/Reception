@@ -18,11 +18,13 @@ namespace Web.Areas.Admin.Controllers
     {
         private IDebtor _debtor;
         private UserManager<ApplicationUser> _userManager;
+        private IAllMessage _allMessage;
 
-        public DebtorController(IDebtor debtor, UserManager<ApplicationUser> userManager)
+        public DebtorController(IDebtor debtor, UserManager<ApplicationUser> userManager, IAllMessage allMessage)
         {
             _debtor = debtor;
             _userManager = userManager;
+            _allMessage = allMessage;
         }
 
         public IActionResult Index(string search,int pageId=1)
@@ -71,8 +73,24 @@ namespace Web.Areas.Admin.Controllers
                 debtor.PayStatus = PayStatus.NotPaid;
                 debtor.CurrentUser = _userManager.GetUserId(User);
 
-                _debtor.Add(debtor);
-
+                int newDebtor= _debtor.Add(debtor);
+                var model = _debtor.GetById(newDebtor);
+                string receptor = model.User.PhoneNumber;
+                string token = model.User.FullName.Replace(" ", "-");
+                string token2 = model.Price.ToString("#,0") + "-تومان";
+                AllMessage message = new AllMessage()
+                {
+                    InsertDate = DateTime.Now,
+                    UpDateTime = DateTime.Now,
+                    IsDelete = false,
+                    Kind = SmsKind.Debtor,
+                    SmsDate = DateTime.Now,
+                    CurrentUserId = _userManager.GetUserId(User),
+                    SmsStatus = "Sent",
+                    Description = $"کاربر: {token} مانده حساب: {token2} لطفا جهت تسویه اقدام بفرمایید",
+                    UserId = model.UserId
+                };
+                _allMessage.Add(message);
                 return RedirectToAction(nameof(Index), "Debtor", new { area = "Admin" });
             }
             ViewData["UserId"] = new SelectList(_userManager.Users.ToList(), "Id", "FullName");
@@ -170,6 +188,8 @@ namespace Web.Areas.Admin.Controllers
             string token2 = model.Price.ToString("#,0") + "-تومان";
 
             SendMessage.Send(receptor, token, token2, null, null, null, "Debtor");
+
+
             return RedirectToAction("Index", "Debtor", new { area = "Admin" });
         }
     }

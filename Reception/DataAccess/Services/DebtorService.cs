@@ -20,10 +20,11 @@ namespace DataAccess.Services
             _context = context;
         }
 
-        public void Add(Debtor debtor)
+        public int Add(Debtor debtor)
         {
             _context.Debtors.Add(debtor);
             _context.SaveChanges();
+            return debtor.DebtorId;
         }
 
         public void Delete(Debtor debtor)

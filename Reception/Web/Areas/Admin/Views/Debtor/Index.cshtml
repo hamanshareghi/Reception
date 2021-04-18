@@ -113,7 +113,11 @@
                     <td>
                         <a asp-action="Edit" class="btn btn-icon btn-warning btn-sm" title="ویرایش" asp-route-id="@item.DebtorId"><i class="far fa-edit"></i></a>
                         <a asp-action="Details" class="btn btn-icon btn-info btn-sm" title="شرح" asp-route-id="@item.DebtorId"><i class="fas fa-info-circle"></i></a>
-                        <a asp-action="Delete" class="btn btn-icon btn-danger btn-sm" title="حذف" asp-route-id="@item.DebtorId"><i class="fas fa-trash"></i></a>
+                       @if (User.IsInRole("SuperAdmin"))
+                       {
+                           <a asp-action="Delete" class="btn btn-icon btn-danger btn-sm" title="حذف" asp-route-id="@item.DebtorId"><i class="fas fa-trash"></i></a>
+
+                       }
 
                     </td>
                     <td>

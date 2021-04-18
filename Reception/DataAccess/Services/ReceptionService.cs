@@ -105,7 +105,8 @@ namespace DataAccess.Services
                 .Count(
                     s => s.Description.ToLower().Contains(search)
                          || s.Customer.FullName.ToLower().Contains(search)
-                         || s.ReceptionDate.ToShamsi().ToLower().Contains(search)
+                         || s.ReceptionId.ToString().ToLower().Contains(search)
+                         //|| s.ReceptionDate.ToShamsi().ToLower().Contains(search)
                          || s.Product.Name.Contains(search)
                          || s.Product.ProductGroup.GroupName.Contains(search)
                          || s.Serial.ToLower().Contains(search)
@@ -130,7 +131,8 @@ namespace DataAccess.Services
                 .Where(
                     s => s.Description.ToLower().Contains(search)
                          || s.Customer.FullName.ToLower().Contains(search)
-                         || s.ReceptionDate.ToShamsi().ToLower().Contains(search)
+                         || s.ReceptionId.ToString().ToLower().Contains(search)
+                         //|| s.ReceptionDate.ToShamsi().ToLower().Contains(search)
                          || s.Product.Name.Contains(search)
                          || s.Product.ProductGroup.GroupName.Contains(search)
                          || s.Serial.ToLower().Contains(search)

@@ -1,5 +1,5 @@
 ﻿@using Common.Library
-@model Tuple<List<Model.Entities.Payment>,int>
+@model Tuple<List<Model.Entities.Payment>, int>
 
 @{
     ViewData["Title"] = "Index";
@@ -47,37 +47,38 @@
     </p>
     <table class="table table-striped table-responsive table-bordered">
         <thead>
-        <tr>
-            <th>
-                #
+            <tr>
+                <th>
+                    #
                 </th>
-            <th>
-                تاریخ
-            </th>
-            <th>
-                مبلغ
-            </th>
-            <th>
-                از حساب
-            </th>
-            <th>
-               به حساب
-            </th>
-            <th>
-                فیش
-            </th>
-            <th>
-                شرح
-            </th>
-            <th>
-                کاربر
-            </th>
+                <th>
+                    تاریخ
+                </th>
+                <th>
+                    مبلغ
+                </th>
+                <th>
+                    از حساب
+                </th>
+                <th>
+                    به حساب
+                </th>
+                <th>
+                    فیش
+                </th>
+                <th>
+                    شرح
+                </th>
+                <th>
+                    کاربر
+                </th>
 
-            <th>
-                بروزرسانی
-            </th>
-            <th>دستورات</th>
-        </tr>
+                <th>
+                    بروزرسانی
+                </th>
+                <th>دستورات</th>
+                <th>عملیات</th>
+            </tr>
         </thead>
         <tbody>
             @foreach (var item in Model.Item1)
@@ -120,9 +121,13 @@
                     <td>
                         <a asp-action="Edit" class="btn btn-icon btn-warning btn-sm" title="ویرایش" asp-route-id="@item.PaymentId"><i class="far fa-edit"></i></a>
                         <a asp-action="Details" class="btn btn-icon btn-info btn-sm" title="شرح" asp-route-id="@item.PaymentId"><i class="fas fa-info-circle"></i></a>
-                        <a asp-action="Delete" class="btn btn-icon btn-danger btn-sm" title="حذف" asp-route-id="@item.PaymentId"><i class="fas fa-trash"></i></a>
+                        @if (User.IsInRole("SuperAdmin"))
+                        {
+                            <a asp-action="Delete" class="btn btn-icon btn-danger btn-sm" title="حذف" asp-route-id="@item.PaymentId"><i class="fas fa-trash"></i></a>
+                        }
+                    </td>
+                    <td>
                         <a asp-action="Send" class="btn btn-icon btn-success btn-sm" title="پیامک" asp-route-id="@item.PaymentId"><i class="fas fa-comment-alt"></i></a>
-
                     </td>
                 </tr>
                 row++;
@@ -131,30 +136,31 @@
     </table>
 </div>
 <div class="container">
-@if (Model.Item2 > 1)
-{
-    <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-            @for (int i = 1; i <= Model.Item2; i++)
-            {
-                <li class="page-item">
-                    @if (!string.IsNullOrEmpty(query))
-                    {
-                        <a class="page-link" href="/Admin/Payments/Index?pageId=@i&search=@query">
-                            @i
-                        </a>
-                    }
-                    else
-                    {
-                        <a class="page-link" href="/Admin/Payments/Index?pageId=@i">
-                            @i
-                        </a>
-                    }
-                </li>
-            }
+    @if (Model.Item2 > 1)
+    {
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                @for (int i = 1; i <= Model.Item2; i++)
+                {
+                    <li class="page-item">
+                        @if (!string.IsNullOrEmpty(query))
+                        {
+                            <a class="page-link" href="/Admin/Payments/Index?pageId=@i&search=@query">
+                                @i
+                            </a>
+                        }
+                        else
+                        {
+                            <a class="page-link" href="/Admin/Payments/Index?pageId=@i">
+                                @i
+                            </a>
+                        }
+                    </li>
+                }
 
 
-        </ul>
-    </nav>
-}
+            </ul>
+        </nav>
+    }
 
+</div>

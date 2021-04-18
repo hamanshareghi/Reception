@@ -40,6 +40,7 @@
     <hr />
     <p>
         <a asp-area="Admin" asp-controller="Customer" asp-action="AddCustomer" class="btn btn-success">ثبت مشتری جدید</a>
+        <a asp-area="Admin" asp-controller="Customer" asp-action="Index" class="btn btn-info">بروزرسانی</a>
     </p>
     <table class="table table-bordered table-striped table-responsive">
         <thead>
@@ -97,14 +98,11 @@
                 <td>
                     <a asp-action="EditCustomer" class="btn btn-icon btn-warning btn-sm" title="ویرایش" asp-route-id="@item.Id"><i class="far fa-edit"></i></a>
                     @*<a asp-action="Details" class="btn btn-info" asp-route-id="@item.Id"><i class="fas fa-info-circle"></i></a>*@
-                    <a asp-action="Delete" class="btn btn-icon btn-danger btn-sm" title="حذف" asp-route-id="@item.Id"><i class="fas fa-trash"></i></a>
-                    @*<td>
-                        <a asp-action="Edit" class="btn btn-icon btn-warning btn-sm" title="ویرایش" asp-route-id="@item.ReceptionId"><i class="far fa-edit"></i></a>
-                        <a asp-action="Details" class="btn btn-icon btn-info btn-sm" title="شرح" asp-route-id="@item.ReceptionId"><i class="fas fa-info-circle"></i></a>
-                        <a asp-action="Delete" class="btn btn-icon btn-danger btn-sm" title="حذف" asp-route-id="@item.ReceptionId"><i class="fas fa-trash"></i></a>
-                        <a asp-action="Send" class="btn btn-icon btn-success btn-sm" title="پیامک" asp-route-id="@item.ReceptionId"><i class="fas fa-comment-alt"></i></a>
+                  @if (User.IsInRole("SuperAdmin"))
+                  {
+                      <a asp-action="Delete" class="btn btn-icon btn-danger btn-sm" title="حذف" asp-route-id="@item.Id"><i class="fas fa-trash"></i></a>
+                  }
 
-                    </td>*@
                 </td>
             </tr>
             row += 1;
