@@ -3,6 +3,7 @@
     ViewData["Title"] = "Index";
     int sum = Convert.ToInt32(ViewData["SumCost"]);
     int sumPay = Convert.ToInt32(ViewData["SumPay"]);
+    int sms = Convert.ToInt32(ViewData["Sms"]);
 }
 
 <div class="row mb-10">
@@ -124,7 +125,7 @@
                             پیام ها
                         </a>
                         <p class="text-dark font-weight-bold">
-                            تعداد کل پیام های ارسالی :
+                            تعداد کل پیام های ارسالی : @sms.ToString()
                         </p>
                     </div>
                     <div class="ml-6 ml-lg-0 ml-xxl-6 flex-shrink-0">
