@@ -18,12 +18,14 @@ namespace Web.Areas.Admin.Controllers
         private UserManager<ApplicationUser> _userManager;
         private IProduct _product;
         private IRequestDevice _requestDevice;
+        private IAllMessage _allMessage;
 
-        public RequestDevicesController(UserManager<ApplicationUser> userManager, IProduct product, IRequestDevice requestDevice)
+        public RequestDevicesController(UserManager<ApplicationUser> userManager, IProduct product, IRequestDevice requestDevice, IAllMessage allMessage)
         {
             _userManager = userManager;
             _product = product;
             _requestDevice = requestDevice;
+            _allMessage = allMessage;
         }
 
         // GET: RequestDevices
@@ -76,7 +78,29 @@ namespace Web.Areas.Admin.Controllers
                 requestDevice.ViewStatus = false;
                 requestDevice.UserId = _userManager.GetUserId(User);
 
-                _requestDevice.Add(requestDevice);
+                var requestId= _requestDevice.Add(requestDevice);
+                RequestDevice model = _requestDevice.GetById(requestId);
+                string receptor = model.User.Contact;
+                string token = model.User.FullName.Replace(" ", "-");
+                string token2 = model.Product.Name.Replace(" ", "-");
+                string customerId = model.CustomerId;
+                string template = "RequestDevice";
+                SendMessage.Send(receptor, token, token2, null, null, null, template);
+                AllMessage message = new AllMessage()
+                {
+                    InsertDate = DateTime.Now,
+                    UpDateTime = DateTime.Now,
+                    IsDelete = false,
+                    Kind = SmsKind.RequestDevice,
+                    SmsDate = DateTime.Now,
+                    CurrentUserId = customerId,
+                    SmsStatus = "Sent",
+                    Description = $"کاربر: {token}  دستگاه: {token2} درخواست ثبت شد",
+
+                    UserId = _userManager.GetUserId(User)
+                };
+                _allMessage.Add(message);
+
                 return RedirectToAction(nameof(Index), "RequestDevices", new { area = "Admin" });
             }
             ViewData["ProductId"] = new SelectList(_product.GetAll(), "ProductId", "Name");

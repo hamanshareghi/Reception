@@ -2641,6 +2641,10 @@ D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\www
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\Theme\plugins\global\plugins.bundle.css
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\Theme\plugins\global\plugins.bundle.js
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\Theme\plugins\global\plugins.bundle.rtl.css
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\UserTheme\Bootstrap5\css\bootstrap.min.css
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\UserTheme\Bootstrap5\js\bootstrap.bundle.min.js
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\UserTheme\Bootstrap5\js\bootstrap.min.js
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\UserTheme\Bootstrap5\js\popper.min.js
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\appsettings.Development.json
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\appsettings.json
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\libman.json

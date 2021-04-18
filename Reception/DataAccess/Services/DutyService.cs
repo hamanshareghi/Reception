@@ -135,6 +135,8 @@ namespace DataAccess.Services
         {
             return _context.Duties
                 .Include(s => s.Service)
+                .Include(s=>s.Reception)
+                .ThenInclude(s=>s.Customer)
                 .Include(s=>s.Shipping)
                 .Include(s=>s.Status)
                 .Where(s => s.ReceptionId == id)

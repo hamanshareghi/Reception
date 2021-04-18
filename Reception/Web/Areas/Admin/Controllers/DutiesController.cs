@@ -84,7 +84,6 @@ namespace Web.Areas.Admin.Controllers
             {
                 duty.InsertDate = DateTime.Now;
                 duty.UpDateTime = DateTime.Now;
-                string customerId = duty.Reception.CustomerId;
                 if (date != "")
                 {
                     string[] std = date.Split('/');
@@ -98,6 +97,7 @@ namespace Web.Areas.Admin.Controllers
 
                 var newId=_duty.Add(duty);
                 Duty newDuty = _duty.GetById(newId);
+                string customerId = newDuty.Reception.Customer.Id;
                 string receptor = newDuty.Reception.Customer.PhoneNumber;
                 string token = newDuty.Reception.Customer.FullName.Replace(" ", "-");
                 string token2 = newDuty.ReceptionId.ToString();
