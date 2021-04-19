@@ -1,7 +1,72 @@
-﻿
+﻿@model Data.ViewModels.Customer.EditInfoViewModel
+@using Common.Library
 @{
     ViewData["Title"] = "EditProfile";
 }
 
-<h1>EditProfile</h1>
+<div class="card card-custom bg-white rounded p-10 card-border border-light-primary gutter-b card-stretch card-shadowless">
+
+    <!--begin::Body-->
+    <div class="card-body pt-2">
+        <form asp-area="UserPanel" asp-controller="Manage" asp-action="EditProfile" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <input type="hidden" asp-for="CurrentId" />
+            <input type="hidden" asp-for="Contact" />
+            <div class="form-group row">
+                <label asp-for="FullName" class="col-xl-3 col-lg-3 col-form-label text-right"></label>
+                <div class="col-lg-9 col-xl-6">
+                    <input asp-for="FullName" class="form-control form-control-lg form-control-solid"  type="text">
+                    <span asp-validation-for="FullName" class="text-danger"></span>    
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="Email" class="col-xl-3 col-lg-3 col-form-label text-right"></label>
+                <div class="col-lg-9 col-xl-6">
+                    <input asp-for="Email" class="form-control form-control-lg form-control-solid"  type="text">
+                    <span asp-validation-for="Email" class="text-danger"></span>    
+
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="Address" class="col-xl-3 col-lg-3 col-form-label text-right"></label>
+                <div class="col-lg-9 col-xl-6">
+                    <input asp-for="Address" class="form-control form-control-lg form-control-solid"  type="text">
+                    <span asp-validation-for="Address" class="text-danger"></span>    
+
+                </div>
+            </div>
+
+            @*<div class="form-group row">
+                <label asp-for="UpDateTime" class="col-xl-3 col-lg-3 col-form-label text-right"></label>
+                <div class="col-lg-9 col-xl-6">
+                    <input asp-for="UpDateTime" class="form-control form-control-lg form-control-solid" disabled="disabled" value="@Model.UpDateTime?.ToShamsi()" type="text">
+                    <span asp-validation-for="FullName" class="text-danger"></span>    
+
+                </div>
+            </div>*@
+            <div class="form-group row">
+                <label asp-for="Description" class="col-xl-3 col-lg-3 col-form-label text-right"></label>
+                <div class="col-lg-9 col-xl-6">
+                    <input asp-for="Description" class="form-control form-control-lg form-control-solid"  type="text">
+                    <span asp-validation-for="Description" class="text-danger"></span>    
+
+                </div>
+            </div>
+            <div class="d-flex justify-content-between border-top mt-5 pt-10">
+                <div>
+                    <button type="submit" class="btn btn-primary font-weight-bold text-uppercase px-5 py-2" >
+                        ویرایش اطلاعات
+                    </button>
+                    <a asp-area="UserPanel" asp-controller="Manage" asp-action="ShowInfo" class="btn btn-info font-weight-bold text-uppercase px-5 py-2" >
+                        بازگشت به لیست
+                    </a>
+                </div>
+            </div>
+        </form>
+        
+
+    </div>
+    <!--end::Body-->
+</div>
 
