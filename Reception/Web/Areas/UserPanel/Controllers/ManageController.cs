@@ -20,6 +20,7 @@ namespace Web.Areas.UserPanel.Controllers
             _userManager = userManager;
             _signInManager = signInManager;
         }
+        [Route("Profile")]
         public async Task<IActionResult> ShowInfo()
         {
             var user = await  _userManager.GetUserAsync(User);

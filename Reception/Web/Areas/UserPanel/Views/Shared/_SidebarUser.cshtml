@@ -1,8 +1,18 @@
-﻿<div class="card card-custom bg-white rounded p-10 card-border border-light-success gutter-b card-stretch card-shadowless">
-
+﻿<div class="card card-custom ">
+    <div class="card-header ribbon ribbon-clip ribbon-right">
+        <div class="ribbon-target" style="top: 12px;">
+            <span class="ribbon-inner bg-danger"></span>منو کاربری
+        </div>
+        <div class="card-title">
+            <h3 class="card-label">
+                خدمات
+                @* <small>زیر عنوان</small>*@
+            </h3>
+        </div>
+    </div>
     <!--begin::Body-->
     <div class="card-body" style="position: relative;">
-        <div class="d-flex align-items-center mb-6">
+        <div class="d-flex align-items-center mb-2">
 
             <!--begin::متن-->
             <div class="d-flex flex-column flex-grow-1 py-2">
@@ -14,11 +24,11 @@
             <!--end::متن-->
 
         </div>
-        <div class="d-flex align-items-center mb-6">
+        <div class="d-flex align-items-center mb-2">
 
             <!--begin::متن-->
             <div class="d-flex flex-column flex-grow-1 py-2">
-                <a href="#" class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1">
+                <a asp-area="UserPanel" asp-controller="Manage" asp-action="ChangePassword" class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1">
                     تغییر رمز عبور
                 </a>
 
@@ -26,7 +36,7 @@
             <!--end::متن-->
 
         </div>
-        <div class="d-flex align-items-center mb-6">
+        <div class="d-flex align-items-center mb-2">
 
             <!--begin::متن-->
             <div class="d-flex flex-column flex-grow-1 py-2">
@@ -38,31 +48,30 @@
             <!--end::متن-->
 
         </div>
-        <div class="d-flex align-items-center mb-6">
+        <div class="d-flex align-items-center mb-2">
 
             <!--begin::متن-->
             <div class="d-flex flex-column flex-grow-1 py-2">
-                <a href="#" class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1">
+                <a asp-area="UserPanel" asp-controller="Home" asp-action="ShowOrder" class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1">
                     سفارشات
                 </a>
-
             </div>
             <!--end::متن-->
 
         </div>
-        <div class="d-flex align-items-center mb-6">
+        <!--<div class="d-flex align-items-center mb-2">-->
 
             <!--begin::متن-->
-            <div class="d-flex flex-column flex-grow-1 py-2">
-                <a href="#" class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1">
+            <!--<div class="d-flex flex-column flex-grow-1 py-2">
+                <a asp-area="UserPanel" asp-controller="Home" asp-action="FollowOrder" class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1">
                     پیگیری
                 </a>
 
-            </div>
+            </div>-->
             <!--end::متن-->
 
-        </div>
-        <div class="d-flex align-items-center mb-6">
+        <!--</div>-->
+        <div class="d-flex align-items-center mb-2">
 
             <!--begin::متن-->
             <div class="d-flex flex-column flex-grow-1 py-2">
@@ -74,7 +83,7 @@
             <!--end::متن-->
 
         </div>
-        <div class="d-flex align-items-center mb-6">
+        <div class="d-flex align-items-center mb-2">
 
             <!--begin::متن-->
             <div class="d-flex flex-column flex-grow-1 py-2">
@@ -86,7 +95,7 @@
             <!--end::متن-->
 
         </div>
-        <div class="d-flex align-items-center mb-6">
+        <div class="d-flex align-items-center mb-2">
 
             <!--begin::متن-->
             <div class="d-flex flex-column flex-grow-1 py-2">
@@ -98,7 +107,7 @@
             <!--end::متن-->
 
         </div>
-        <div class="d-flex align-items-center mb-6">
+        <div class="d-flex align-items-center mb-2">
 
             <!--begin::متن-->
             <div class="d-flex flex-column flex-grow-1 py-2">

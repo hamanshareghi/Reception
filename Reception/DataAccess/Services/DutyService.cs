@@ -143,5 +143,18 @@ namespace DataAccess.Services
                 .OrderBy(s => s.ActionDate)
                 .ToList();
         }
+
+        public List<Duty> GetDutiesByReceptionAndUser(string id, int receptionId)
+        {
+            return _context.Duties
+                .Include(s => s.Service)
+                .Include(s => s.Reception)
+                .ThenInclude(s => s.Customer)
+                .Include(s => s.Shipping)
+                .Include(s => s.Status)
+                .Where(s =>s.Reception.CustomerId== id &&  s.ReceptionId == receptionId)
+                .OrderBy(s => s.ActionDate)
+                .ToList();
+        }
     }
 }

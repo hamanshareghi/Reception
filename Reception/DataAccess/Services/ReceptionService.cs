@@ -163,6 +163,36 @@ namespace DataAccess.Services
             return _context.Receptions.Count(s => s.ReceptionStatus == ReceptionStatus.NotYet);
         }
 
-
+        public Tuple<List<Reception>, int> GetUserReception(string id, int take, int pageId = 1)
+        {
+            int skip = (pageId - 1) * take;
+            int pageCount = _context.Receptions
+                .Include(r => r.Customer)
+                .Include(r => r.Product)
+                .Include(s => s.Duties)
+                .Include(s => s.DeviceDefects)
+                .Include(s => s.DeviceImages)
+                .Count(s => s.CustomerId== id);
+            if (pageCount % take != 0)
+            {
+                pageCount = pageCount / take;
+                pageCount++;
+            }
+            else
+            {
+                pageCount = pageCount / take;
+            }
+            var query = _context.Receptions
+                .Include(r => r.Customer)
+                .Include(r => r.Product)
+                .Include(s => s.Duties)
+                .Include(s => s.DeviceDefects)
+                .Include(s => s.DeviceImages)
+                .Where(s => s.CustomerId== id)
+                .OrderByDescending(s => s.UpDateTime)
+                .Skip(skip)
+                .Take(take);
+            return Tuple.Create(query.ToList(), pageCount);
+        }
     }
 }

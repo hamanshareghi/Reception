@@ -4,8 +4,18 @@
     ViewData["Title"] = "EditProfile";
 }
 
-<div class="card card-custom bg-white rounded p-10 card-border border-light-primary gutter-b card-stretch card-shadowless">
-
+<div class="card card-custom ">
+    <div class="card-header ribbon ribbon-clip ribbon-right">
+        <div class="ribbon-target" style="top: 12px;">
+            <span class="ribbon-inner bg-success"></span>ویرایش اطلاعات
+        </div>
+        <div class="card-title">
+            <h3 class="card-label">
+                نمایش اطلاعات
+                @* <small>زیر عنوان</small>*@
+            </h3>
+        </div>
+    </div>
     <!--begin::Body-->
     <div class="card-body pt-2">
         <form asp-area="UserPanel" asp-controller="Manage" asp-action="EditProfile" method="post">
@@ -55,7 +65,7 @@
             </div>
             <div class="d-flex justify-content-between border-top mt-5 pt-10">
                 <div>
-                    <button type="submit" class="btn btn-primary font-weight-bold text-uppercase px-5 py-2" >
+                    <button type="submit" class="btn btn-warning font-weight-bold text-uppercase px-5 py-2" >
                         ویرایش اطلاعات
                     </button>
                     <a asp-area="UserPanel" asp-controller="Manage" asp-action="ShowInfo" class="btn btn-info font-weight-bold text-uppercase px-5 py-2" >

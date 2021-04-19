@@ -20,5 +20,6 @@ namespace DataAccess.Interfaces
         void UpdateReceptionStatus(Reception reception);
         int GetReceptionCountFinish();
         int GetReceptionCountNotFinish();
+        Tuple<List<Reception>, int> GetUserReception(string id, int take, int pageId = 1);
     }
 }
