@@ -105,7 +105,7 @@ namespace Web.Areas.UserPanel.Controllers
         public async Task<IActionResult> SignOut()
         {
             await _signInManager.SignOutAsync();
-            return Redirect("/Authorize/Login");
+            return Redirect("/Account/Login");
         }
 
     }

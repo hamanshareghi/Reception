@@ -1,0 +1,94 @@
+﻿@using Common.Library
+@model Tuple<List<Model.Entities.AllMessage>,int>
+
+@{
+    ViewData["Title"] = "ShowMessages";
+    int row = 1;
+}
+
+<div class="container">
+    <h1>پیام ها</h1>
+
+    <div class="mb-7">
+        <form asp-area="UserPanel" asp-controller="Home" asp-action="ShowMessages" method="get">
+            <div class="row align-items-center">
+
+                <div class="col-lg-10 col-xl-10">
+                    <div class="row align-items-center">
+                        <div class="col-md-10 my-2 my-md-0">
+                            <div class="input-icon">
+                                <input type="text" name="search" class="form-control" placeholder="جستجو..." id="kt_datatable_search_query">
+                                <span>
+                                    <i class="flaticon2-search-1 text-muted"></i>
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-2 col-xl-2 mt-5 mt-lg-0">
+                    <button type="submit" class="btn btn-light-primary px-6 font-weight-bold">
+                        جستجو
+                    </button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+    <hr />
+    <p>
+        <a asp-area="UserPanel" asp-controller="Home" asp-action="ShowMessages" class="btn btn-info">بروزرسانی</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    ارسال
+                </th>
+               
+                <th>
+                   نوع
+                </th>
+
+                <th>
+                   وضعیت
+                </th>
+                <th>
+                    شرح
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Item1)
+            {
+                <tr>
+                    <td>
+                        @row
+                    </td>
+                    <td>
+                        <p class="text-danger font-weight-bold">
+                            @item.SmsDate.ToShamsi()
+                        </p>
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Kind)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SmsStatus)
+                    </td>
+
+                    <td>
+                        @Html.Raw(item.Description)
+                    </td>
+                </tr>
+                row++;
+            }
+        </tbody>
+    </table>
+</div>
+

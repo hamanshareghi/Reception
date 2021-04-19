@@ -327,3 +327,4 @@ D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\User
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\UserPanel\Views\Manage\ChangePassword.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\UserPanel\Views\Manage\ShowInfo.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\UserPanel\Views\Manage\EditProfile.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\UserPanel\Views\Home\ShowMessages.cshtml.g.cs

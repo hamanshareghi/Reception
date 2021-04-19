@@ -14,5 +14,6 @@ namespace DataAccess.Interfaces
         Tuple<List<AllMessage>, int> GetAll();
 
         int GetAllMessageCount();
+        Tuple<List<AllMessage>, int> GetUserMessage(string id,int take,int pageId=1);
     }
 }
