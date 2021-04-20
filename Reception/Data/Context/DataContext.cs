@@ -40,8 +40,7 @@ namespace Data.Context
         public DbSet<RequestDevice> RequestDevices { get; set; }
         public DbSet<Payment> Payments { get; set; }
         public DbSet<AllMessage> AllMessages { get; set; }
-
-
+        public DbSet<Sale> Sales { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -108,6 +107,8 @@ namespace Data.Context
             modelBuilder.Entity<Payment>()
                 .HasQueryFilter(u => !u.IsDelete);
             modelBuilder.Entity<AllMessage>()
+                .HasQueryFilter(u => !u.IsDelete);
+            modelBuilder.Entity<Sale>()
                 .HasQueryFilter(u => !u.IsDelete);
             base.OnModelCreating(modelBuilder);
         }

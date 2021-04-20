@@ -55,6 +55,7 @@ namespace Model.Entities
         public ICollection<Payment> Payments { get; set; }
         public ICollection<Cost> Costs { get; set; }
         public ICollection<AllMessage> AllMessages { get; set; }
+        public ICollection<Sale> Sales { get; set; }
 
         #endregion
 

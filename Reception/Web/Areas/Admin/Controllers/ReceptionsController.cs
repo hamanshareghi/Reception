@@ -126,10 +126,9 @@ namespace Web.Areas.Admin.Controllers
                 string token3 = newReception.Product.Name.Replace(" ", "-");
                 string token10 = newReception.ReceptionDate.ToShamsi().Replace(" ", "-");
                 SendMessage.Send(receptor, token, token2, token3, token10, null, "Reception");
-                //SendSms(newReceptionId);
                 AllMessage message = new AllMessage()
                 {
-                    InsertDate = DateTime.Now,
+                    InsertDate = DateTime.Now, 
                     UpDateTime = DateTime.Now,
                     IsDelete = false,
                     Kind = SmsKind.Reception,
@@ -270,6 +269,25 @@ namespace Web.Areas.Admin.Controllers
             }
             else
             {
+                 receptor = newReception.Customer.PhoneNumber;
+                 token = newReception.Customer.FullName.Replace(" ", "-");
+                 token2 = newReception.ReceptionId.ToString();
+                 token3 = newReception.Product.Name.Replace(" ", "-");
+                //string token10 = newReception.ReceptionDate.ToShamsi().Replace(" ", "-");
+                SendMessage.Send(receptor, token, token2, token3, null, null, "FinishWork");
+                AllMessage message = new AllMessage()
+                {
+                    InsertDate = DateTime.Now,
+                    UpDateTime = DateTime.Now,
+                    IsDelete = false,
+                    Kind = SmsKind.FinishWork,
+                    SmsDate = DateTime.Now,
+                    CurrentUserId = _userManager.GetUserId(User),
+                    SmsStatus = "Sent",
+                    Description = $"کاربر: {token} -{receptor} پذیرش: {token2} دستگاه: {token3} آماده تحویل شد",
+                    UserId = newReception.CustomerId
+                };
+                _message.Add(message);
                 SendMessage.Send(receptor, token, token2, token3, null, null, "FinishWork");
             }
             return RedirectToAction("Index", "Receptions", new { area = "Admin" });
@@ -277,7 +295,6 @@ namespace Web.Areas.Admin.Controllers
 
         public IActionResult Finish(int id)
         {
-
             Reception newReception = _reception.GetById(id);
             _reception.UpdateReceptionStatus(newReception);
             return RedirectToAction("Index", "Receptions", new { area = "Admin" });

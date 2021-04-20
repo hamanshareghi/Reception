@@ -58,9 +58,8 @@
                             </svg><!--end::Svg Icon-->
                         </span>
                     </a>
-                    <select class="form-control selectpicker" value="@DateTime.Now.ToShamsi()" data-live-search="true" multiple="" name="defectsList" id="defectsList" tabindex="null" asp-for="ReceptionDate" asp-items="ViewBag.DefectId">
+                    <select class="form-control selectpicker"  data-live-search="true" multiple="" name="defectsList" id="defectsList" tabindex="null"  asp-items="ViewBag.DefectId">
                     </select>
-                    <span asp-validation-for="ReceptionDate"></span>
                 </div>
 
 
@@ -74,7 +73,8 @@
 
                         <label asp-for="ReceptionDate" class="control-label"></label>
 
-                        <input type="text" id="date" name="date" class="form-control w-100">
+                        <input type="text" id="date" name="date" value="@DateTime.Now.ToShamsi()" class="form-control w-100">
+                        <span asp-validation-for="ReceptionDate"></span>
 
                     </div>
                 </div>

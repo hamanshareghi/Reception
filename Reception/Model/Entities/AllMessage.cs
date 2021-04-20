@@ -53,7 +53,8 @@ namespace Model.Entities
         Leave=7,
         Shipping=8,
         Ticket=9,
-        Service=10
+        Service=10,
+        FinishWork=11,
     }
 
 }

@@ -23,6 +23,16 @@ namespace Model.Entities
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public string Name { get; set; }
 
+        [Display(Name = "مبلغ")]
+        [DataType(DataType.Currency)]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        public int Price { get; set; }
+
+        [Display(Name = "گارانتی")]
+        [MaxLength(300, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        public string Warranty { get; set; }
+
         [Display(Name = "توضیحات کوتاه")]
         [MaxLength(400, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
         public string ShortText { get; set; }
@@ -49,6 +59,7 @@ namespace Model.Entities
 
         public ICollection<Reception> Receptions { get; set; }
         public ICollection<RequestDevice> RequestDevices { get; set; }
+        public ICollection<Sale> Sales { get; set; }
 
         #endregion
     }

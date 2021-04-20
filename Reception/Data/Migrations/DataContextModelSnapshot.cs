@@ -16,7 +16,7 @@ namespace Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.4")
+                .HasAnnotation("ProductVersion", "5.0.5")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -823,6 +823,9 @@ namespace Data.Migrations
                     b.Property<int?>("ParentId")
                         .HasColumnType("int");
 
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
                     b.Property<int>("ProductGroupId")
                         .HasColumnType("int");
 
@@ -832,6 +835,11 @@ namespace Data.Migrations
 
                     b.Property<DateTime?>("UpDateTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Warranty")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.HasKey("ProductId");
 
@@ -1002,6 +1010,57 @@ namespace Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Rules");
+                });
+
+            modelBuilder.Entity("Model.Entities.Sale", b =>
+                {
+                    b.Property<int>("SaleId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CurrentId")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("InsertDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("SaleDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ShortKey")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<DateTime?>("UpDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("SaleId");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Sales");
                 });
 
             modelBuilder.Entity("Model.Entities.Service", b =>
@@ -1412,6 +1471,23 @@ namespace Data.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Model.Entities.Sale", b =>
+                {
+                    b.HasOne("Model.Entities.Product", "Product")
+                        .WithMany("Sales")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Model.Entities.ApplicationUser", "User")
+                        .WithMany("Sales")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Product");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Model.Entities.Ticket", b =>
                 {
                     b.HasOne("Model.Entities.ApplicationUser", "User")
@@ -1437,6 +1513,8 @@ namespace Data.Migrations
 
                     b.Navigation("RequestDevices");
 
+                    b.Navigation("Sales");
+
                     b.Navigation("Tickets");
                 });
 
@@ -1460,6 +1538,8 @@ namespace Data.Migrations
                     b.Navigation("Receptions");
 
                     b.Navigation("RequestDevices");
+
+                    b.Navigation("Sales");
                 });
 
             modelBuilder.Entity("Model.Entities.ProductGroup", b =>

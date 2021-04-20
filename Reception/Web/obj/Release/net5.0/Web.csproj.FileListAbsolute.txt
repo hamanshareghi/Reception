@@ -323,3 +323,11 @@ D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Areas\Us
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Areas\UserPanel\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Areas\UserPanel\Views\_ViewImports.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Areas\UserPanel\Views\_ViewStart.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Areas\UserPanel\Views\Home\FollowOrder.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Areas\UserPanel\Views\Home\OrderDetail.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Areas\UserPanel\Views\Home\ShowMessages.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Areas\UserPanel\Views\Home\ShowOrder.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Areas\UserPanel\Views\Manage\ChangePassword.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Areas\UserPanel\Views\Manage\EditProfile.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Areas\UserPanel\Views\Manage\ShowInfo.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\Razor\Areas\UserPanel\Views\Shared\_SidebarUser.cshtml.g.cs
