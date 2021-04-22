@@ -119,6 +119,7 @@ namespace Web.Areas.Admin.Controllers
                     });
 
                 }
+
                 Reception newReception = _reception.GetById(newReceptionId);
                 string receptor = newReception.Customer.PhoneNumber;
                 string token = newReception.Customer.FullName.Replace(" ", "-");

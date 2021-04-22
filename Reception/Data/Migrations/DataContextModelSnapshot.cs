@@ -1023,7 +1023,6 @@ namespace Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("CurrentId")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
@@ -1043,8 +1042,10 @@ namespace Data.Migrations
                     b.Property<DateTime>("SaleDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("SalePrice")
+                        .HasColumnType("int");
+
                     b.Property<string>("ShortKey")
-                        .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 

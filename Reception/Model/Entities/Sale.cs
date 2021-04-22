@@ -19,7 +19,6 @@ namespace Model.Entities
 
         [Display(Name = "کاربر")]
         [MaxLength(100, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
-        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public string CurrentId { get; set; }
 
         [Display(Name = "تاریخ")]
@@ -32,9 +31,11 @@ namespace Model.Entities
         [Display(Name = "تعداد")]
         public int Count { get; set; }
 
+        [Display(Name = "فروش")]
+        public int SalePrice { get; set; }
+
         [Display(Name = "لینک")]
         [MaxLength(10, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
-        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public string ShortKey { get; set; }
 
         [Display(Name = "شرح")]
