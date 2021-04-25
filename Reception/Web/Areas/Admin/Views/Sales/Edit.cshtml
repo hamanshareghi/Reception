@@ -1,73 +1,103 @@
-﻿@model Model.Entities.Sale
+﻿@using Common.Library
+@model Model.Entities.Sale
+    <link href="~/lib/Kendo/css/kendo.common.min.css" rel="stylesheet" />
+    <link href="~/lib/Kendo/css/kendo.default.min.css" rel="stylesheet" />
+    <div class="container">
+        <h4>ویرایش فروش</h4>
+        <hr />
+        <div class="row">
+            <div class="col-md-12 mx-auto">
+                <form asp-area="Admin" asp-controller="Sales" asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="SaleId" />
+                    <input type="hidden" asp-for="SaleDate" />
+                    <input type="hidden" asp-for="CurrentId" />
+                    <input type="hidden" asp-for="Count" />
+                    <input type="hidden" asp-for="ShortKey" />
 
-<h4>Sale</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="SaleId" />
-            <div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
-                <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId"></select>
-                <span asp-validation-for="UserId" class="text-danger"></span>
+                    <div class="row">
+                        <div class="form-group col-lg-3 col-md-3 col-sm-12">
+                            <label asp-for="SaleDate" class="control-label"></label>
+                            <input type="text" id="date" name="date" value="@DateTime.Now.ToShamsi()" class="form-control w-100">
+                            <span asp-validation-for="SaleDate"></span>
+                        </div>
+
+                        <div class=" form-group col-lg-9 col-md-9 col-sm-12">
+                            <label asp-for="UserId" class="control-label"></label>
+                            <select class="form-control selectpicker" asp-for="UserId" data-live-search="true" tabindex="null" asp-items="ViewBag.CustomerId">
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="form-group col-lg-9 col-md-9 col-sm-12">
+                            <label asp-for="ProductId" class="control-label"></label>
+                            <select class="form-control selectpicker" asp-for="ProductId" data-live-search="true" tabindex="null" asp-items="ViewBag.ProductId">
+                            </select>
+                        </div>
+                        <div class="form-group col-lg-3 col-md-3 col-sm-12">
+                            <label asp-for="SalePrice" class="control-label"></label>
+                            <input asp-for="SalePrice" class="form-control" />
+                            <span asp-validation-for="SaleDate" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        <textarea asp-for="Description" class="form-control" id="editor"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+
+
+                    <div class="form-group">
+                        <input type="submit" value="ثبت تغییرات" class="btn btn-warning" />
+                        <a asp-action="Index" class="btn btn-info">بازگشت به لیست</a>
+
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <label asp-for="CurrentId" class="control-label"></label>
-                <input asp-for="CurrentId" class="form-control" />
-                <span asp-validation-for="CurrentId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SaleDate" class="control-label"></label>
-                <input asp-for="SaleDate" class="form-control" />
-                <span asp-validation-for="SaleDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ProductId" class="control-label"></label>
-                <select asp-for="ProductId" class="form-control" asp-items="ViewBag.ProductId"></select>
-                <span asp-validation-for="ProductId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Count" class="control-label"></label>
-                <input asp-for="Count" class="form-control" />
-                <span asp-validation-for="Count" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ShortKey" class="control-label"></label>
-                <input asp-for="ShortKey" class="form-control" />
-                <span asp-validation-for="ShortKey" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="InsertDate" class="control-label"></label>
-                <input asp-for="InsertDate" class="form-control" />
-                <span asp-validation-for="InsertDate" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsDelete" /> @Html.DisplayNameFor(model => model.IsDelete)
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="UpDateTime" class="control-label"></label>
-                <input asp-for="UpDateTime" class="form-control" />
-                <span asp-validation-for="UpDateTime" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        <script src="~/lib/ckeditor5/ckeditor.js"></script>
+
+        <script>
+            ClassicEditor
+                .create(document.querySelector('#editor'), {
+                    // The language code is defined in the https://en.wikipedia.org/wiki/ISO_639-1 standard.
+                    language: 'fa'
+                })
+                .then(editor => {
+                    console.log(editor);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        </script>
+        <script src="~/lib/Kendo/js/jquery-1.12.4.min.js"></script>
+
+        <script src="~/lib/Kendo/js/JalaliDate.js"></script>
+        <script src="~/lib/Kendo/js/kendo.web.js"></script>
+        <script src="~/lib/Kendo/js/fa-IR.js"></script>
+        <script src="~/lib/Kendo/js/kendo.calendar.fa.js"></script>
+        <script src="~/lib/Kendo/js/kendo.datepicker.fa.js"></script>
+        <script>
+            $(document).ready(function () {
+
+                // create DatePicker from input HTML element
+                //$("#datepicker").kendoDatePicker({ culture: "en-US" });
+                $("#date").kendoDatePickerShamsi({ culture: "fa-IR" });
+                //$("#datepickerTo").kendoDatePickerShamsi({ culture: "fa-IR" });
+
+                //$("#calendar").kendoCalendar({ culture: "en-US" });
+                //$("#calendarShamsi").kendoCalendarShamsi({ culture: "fa-IR" });
+
+                //$("#timepicker").kendoTimePicker();
+            });
+        </script>
+    }

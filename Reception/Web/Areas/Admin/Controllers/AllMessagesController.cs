@@ -6,7 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Data.Context;
+using DataAccess.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Model.Entities;
 
 namespace Web.Areas.Admin.Controllers
@@ -15,18 +17,23 @@ namespace Web.Areas.Admin.Controllers
     [Area("Admin")]
     public class AllMessagesController : Controller
     {
-        private readonly DataContext _context;
+        private IAllMessage _allMessage;
+        private UserManager<ApplicationUser> _userManager;
 
-        public AllMessagesController(DataContext context)
+        public AllMessagesController(IAllMessage allMessage, UserManager<ApplicationUser> userManager)
         {
-            _context = context;
+            _allMessage = allMessage;
+            _userManager = userManager;
         }
-
         // GET: Admin/AllMessages
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string search,int pageId=1)
         {
-            var dataContext = _context.AllMessages.Include(a => a.Users);
-            return View(await dataContext.ToListAsync());
+            if (!string.IsNullOrEmpty(search))
+            {
+                ViewBag.Search = search;
+                return View(_allMessage.GetMessageBySearch(search, 25, pageId));
+            }
+            return View(_allMessage.GetAll(25,pageId));
         }
 
         // GET: Admin/AllMessages/Details/5
@@ -37,9 +44,7 @@ namespace Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var allMessage = await _context.AllMessages
-                .Include(a => a.Users)
-                .FirstOrDefaultAsync(m => m.SmsId == id);
+            var allMessage = _allMessage.GetById(id.Value);
             if (allMessage == null)
             {
                 return NotFound();
@@ -51,7 +56,7 @@ namespace Web.Areas.Admin.Controllers
         // GET: Admin/AllMessages/Create
         public IActionResult Create()
         {
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
+            ViewData["UserId"] = new SelectList(_userManager.Users.ToList(), "Id", "FullName");
             return View();
         }
 
@@ -64,11 +69,11 @@ namespace Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(allMessage);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                _allMessage.Add(allMessage);
+                
+                return RedirectToAction(nameof(Index),"AllMessages",new {area="Admin"});
             }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", allMessage.UserId);
+            ViewData["UserId"] = new SelectList(_userManager.Users.ToList(), "Id", "FullName");
             return View(allMessage);
         }
 
@@ -80,12 +85,12 @@ namespace Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var allMessage = await _context.AllMessages.FindAsync(id);
+            var allMessage = _allMessage.GetById(id.Value);
             if (allMessage == null)
             {
                 return NotFound();
             }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", allMessage.UserId);
+            ViewData["UserId"] = new SelectList(_userManager.Users.ToList(), "Id", "FullName");
             return View(allMessage);
         }
 
@@ -105,8 +110,7 @@ namespace Web.Areas.Admin.Controllers
             {
                 try
                 {
-                    _context.Update(allMessage);
-                    await _context.SaveChangesAsync();
+                    _allMessage.Update(allMessage);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -119,9 +123,9 @@ namespace Web.Areas.Admin.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index),"Sales",new {area="Admin"});
             }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", allMessage.UserId);
+            ViewData["UserId"] = new SelectList(_userManager.Users.ToList(), "Id", "FullName");
             return View(allMessage);
         }
 
@@ -133,9 +137,7 @@ namespace Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var allMessage = await _context.AllMessages
-                .Include(a => a.Users)
-                .FirstOrDefaultAsync(m => m.SmsId == id);
+            var allMessage = _allMessage.GetById(id.Value);
             if (allMessage == null)
             {
                 return NotFound();
@@ -149,15 +151,14 @@ namespace Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var allMessage = await _context.AllMessages.FindAsync(id);
-            _context.AllMessages.Remove(allMessage);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            var allMessage = _allMessage.GetById(id);
+            _allMessage.Delete(allMessage);
+            return RedirectToAction(nameof(Index),"Sales",new {area="Admin"});
         }
 
         private bool AllMessageExists(int id)
         {
-            return _context.AllMessages.Any(e => e.SmsId == id);
+            return _allMessage.Exist(id);
         }
     }
 }

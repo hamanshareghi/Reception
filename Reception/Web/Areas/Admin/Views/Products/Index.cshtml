@@ -55,6 +55,12 @@
                     گروه
                 </th>
                 <th>
+                    گارانتی
+                </th>
+                <th>
+                    قیمت
+                </th>
+                <th>
                     تصویر
                 </th>
 
@@ -74,7 +80,14 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.ProductGroup.GroupName)
                     </td>
-
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Warranty)
+                    </td>
+                    <td>
+                        <p class="text-danger font-weight-bold">
+                            @item.Price.ToString("#,0") تومان
+                        </p>
+                    </td>
                     <td>
                         <img src="~/img/Products/@item.Image" class="img-thumbnail w-25" alt="@item.ProductGroup.GroupName" />
                     </td>

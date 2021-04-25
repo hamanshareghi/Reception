@@ -78,7 +78,7 @@ namespace Web.Areas.Admin.Controllers
                 //var name = _userManager.FindByIdAsync(model.UserId);
 
                 string token = model.User.FullName.Replace(" ","-");
-                string token2 = model.Price.ToString();
+                string token2 = model.Price.ToString("#,0") + "تومان";
                 string token3 = model.CostDefine.Name.Replace(" ", "-");
                 SendMessage.Send(receptor, token, token2, token3, null, null, "Cost");
                 AllMessage message = new AllMessage()
@@ -192,7 +192,7 @@ namespace Web.Areas.Admin.Controllers
             //var name = _userManager.FindByIdAsync(model.UserId);
 
             string token = model.UserId.Substring(0, 5);
-            string token2 = model.Price.ToString();
+            string token2 = model.Price.ToString("#,0")+"تومان" ;
             string token3 = model.CostDefine.Name.Replace(" ", "-");
             SendMessage.Send(receptor, token, token2, token3,null,null, "Cost");
             return RedirectToAction("Index", "Cost", new {area = "Admin"});

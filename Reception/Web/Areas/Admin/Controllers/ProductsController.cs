@@ -71,7 +71,7 @@ namespace Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProductId,ProductGroupId,InsertDate,Name,Text,ShortText,Tag,Image,InOff,IsActive,VisitCount,BrandId,TabTitle,PageTitle,ShortKey,Price")] Product product,IFormFile imgUp)
+        public async Task<IActionResult> Create([Bind("ProductId,ProductGroupId,InsertDate,ParentId,Name,Price,Warranty,ShortText,Image,BrandId,IsDelete,UpdateTime")] Product product,IFormFile imgUp)
         {
             if (ModelState.IsValid)
             {
@@ -121,7 +121,7 @@ namespace Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProductId,ProductGroupId,Name,Text,ShortText,Tag,Image,InOff,IsActive,VisitCount,BrandId,TabTitle,PageTitle,ShortKey,Price")] Product product,IFormFile imgUp)
+        public async Task<IActionResult> Edit(int id, [Bind("ProductId,ProductGroupId,InsertDate,ParentId,Name,Price,Warranty,ShortText,Image,BrandId,IsDelete,UpdateTime")] Product product,IFormFile imgUp)
         {
             if (id != product.ProductId)
             {

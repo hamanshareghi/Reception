@@ -2,6 +2,11 @@
 @model Tuple<List<Model.Entities.Sale>, int>
 @{
     int row = 1;
+    string query = " ";
+    if (ViewBag.Search != null)
+    {
+        query = ViewBag.Search.ToString();
+    }
 }
 
 <div class="container">
@@ -66,6 +71,7 @@
                 شرح
             </th>
 
+            <th>عملیات</th>
             <th>دستورات</th>
         </tr>
         </thead>
@@ -100,17 +106,57 @@
                     @Html.Raw(item.Description)
                 </td>
 
+                <td>
+                    <a asp-action="Send" class="btn btn-icon btn-success btn-sm" title="پیامک" asp-route-id="@item.SaleId"><i class="fas fa-comment-alt"></i></a>
 
+                </td>
 
                 <td>
                     <a asp-action="Edit" class="btn btn-icon btn-warning btn-sm" title="ویرایش" asp-route-id="@item.SaleId"><i class="far fa-edit"></i></a>
                     <a asp-action="Details" class="btn btn-icon btn-info btn-sm" title="شرح" asp-route-id="@item.SaleId"><i class="fas fa-info-circle"></i></a>
-                    <a asp-action="Delete" class="btn btn-icon btn-danger btn-sm" title="حذف" asp-route-id="@item.SaleId"><i class="fas fa-trash"></i></a>
+                    @{
+                        if (User.IsInRole("SuperAdmin"))
+                        {
+                            <a asp-action="Delete" class="btn btn-icon btn-danger btn-sm" title="حذف" asp-route-id="@item.SaleId"><i class="fas fa-trash"></i></a>
+                        }
+                    }
+
+
                 </td>
             </tr>
             row++;
         }
         </tbody>
     </table>
+
+</div>
+<div class="container">
+    @if (Model.Item2 > 1)
+    {
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                @for (int i = 1; i <= Model.Item2; i++)
+                {
+                    <li class="page-item">
+                        @if (!string.IsNullOrEmpty(query))
+                        {
+                            <a class="page-link" href="/Admin/Sales/Index?pageId=@i&search=@query">
+                                @i
+                            </a>
+                        }
+                        else
+                        {
+                            <a class="page-link" href="/Sales/Receptions/Index?pageId=@i">
+                                @i
+                            </a>
+                        }
+                    </li>
+                }
+
+
+            </ul>
+        </nav>
+    }
+
 
 </div>

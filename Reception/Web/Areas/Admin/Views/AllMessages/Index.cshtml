@@ -1,5 +1,5 @@
 ﻿@using Common.Library
-@model IEnumerable<Model.Entities.AllMessage>
+@model Tuple<List<Model.Entities.AllMessage>, int>
 
 @{
     ViewData["Title"] = "Index";
@@ -51,21 +51,21 @@
                     #
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.SmsDate)
+                    تاریخ
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.CurrentUserId)
-                </th>
-
-                <th>
-                    @Html.DisplayNameFor(model => model.Kind)
+                    کاربر
                 </th>
 
                 <th>
-                    @Html.DisplayNameFor(model => model.SmsStatus)
+                    نوع
+                </th>
+
+                <th>
+                    وضعیت
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Description)
+                    شرح
                 </th>
 
 
@@ -73,7 +73,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
+            @foreach (var item in Model.Item1)
             {
                 <tr>
                     <td>
@@ -115,3 +115,33 @@
     </table>
 </div>
 
+<div class="container">
+    @if (Model.Item2 > 1)
+    {
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                @for (int i = 1; i <= Model.Item2; i++)
+                {
+                    <li class="page-item">
+                        @if (!string.IsNullOrEmpty(query))
+                        {
+                            <a class="page-link" href="/Admin/AllMessages/Index?pageId=@i&search=@query">
+                                @i
+                            </a>
+                        }
+                        else
+                        {
+                            <a class="page-link" href="/Sales/AllMessages/Index?pageId=@i">
+                                @i
+                            </a>
+                        }
+                    </li>
+                }
+
+
+            </ul>
+        </nav>
+    }
+
+
+</div>

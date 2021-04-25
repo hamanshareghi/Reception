@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using Common.Library;
 using DataAccess.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -83,7 +84,6 @@ namespace Web.Areas.Admin.Controllers
 
                 int saleId= _sale.Add(sale);
 
-
                 return RedirectToAction(nameof(Index), "Sales", new { area = "Admin" });
             }
             ViewData["CustomerId"] = new SelectList(_userManager.Users.ToList(), "Id", "FullName");
@@ -124,8 +124,21 @@ namespace Web.Areas.Admin.Controllers
             {
                 try
                 {
+                    sale.CurrentId = _userManager.GetUserId(User);
+                    sale.Count = 1;
+                    sale.ShortKey ??= GenerateShortKey(5);
 
+                    if (date != "")
+                    {
+                        string[] std = date.Split('/');
+                        sale.SaleDate = new DateTime(int.Parse(std[0]),
+                            int.Parse(std[1]),
+                            int.Parse(std[2]),
+                            new PersianCalendar()
+                        );
+                    }
                     sale.UpDateTime = DateTime.Now;
+
                     _sale.Update(sale);
                 }
                 catch (DbUpdateConcurrencyException)
@@ -187,6 +200,17 @@ namespace Web.Areas.Admin.Controllers
             }
 
             return shortKey;
+        }
+
+        public IActionResult Send(int id)
+        {
+            Sale model = _sale.GetById(id);
+            string receptor = model.User.Contact;
+            string token = model.User.FullName.Replace(" ", "-");
+            string token2 = model.Product.Name.Replace(" ", "-");
+            string template = "Sale";
+            SendMessage.Send(receptor, token, token2, null, null, null, template);
+            return RedirectToAction("Index", "Sales", new { area = "Admin" });
         }
 
     }
