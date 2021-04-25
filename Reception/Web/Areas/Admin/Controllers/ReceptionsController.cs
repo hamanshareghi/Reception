@@ -267,6 +267,19 @@ namespace Web.Areas.Admin.Controllers
             {
                 string token10 = newReception.ReceptionDate.ToShamsi().Replace(" ", "-");
                 SendMessage.Send(receptor, token, token2, token3, token10, null, "Reception");
+                AllMessage message = new AllMessage()
+                {
+                    InsertDate = DateTime.Now,
+                    UpDateTime = DateTime.Now,
+                    IsDelete = false,
+                    Kind = SmsKind.Reception,
+                    SmsDate = DateTime.Now,
+                    CurrentUserId = _userManager.GetUserId(User),
+                    SmsStatus = "Sent",
+                    Description = $"کاربر: {token} -{receptor} پذیرش: {token2} دستگاه: {token3} تاریخ: {token10} پذیرش شد",
+                    UserId = newReception.CustomerId
+                };
+                _message.Add(message);
             }
             else
             {
@@ -289,7 +302,7 @@ namespace Web.Areas.Admin.Controllers
                     UserId = newReception.CustomerId
                 };
                 _message.Add(message);
-                SendMessage.Send(receptor, token, token2, token3, null, null, "FinishWork");
+                //SendMessage.Send(receptor, token, token2, token3, null, null, "FinishWork");
             }
             return RedirectToAction("Index", "Receptions", new { area = "Admin" });
         }

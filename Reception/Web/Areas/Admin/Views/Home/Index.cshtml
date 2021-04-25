@@ -4,6 +4,8 @@
     int sum = Convert.ToInt32(ViewData["SumCost"]);
     int sumPay = Convert.ToInt32(ViewData["SumPay"]);
     int sms = Convert.ToInt32(ViewData["Sms"]);
+    int saleCount = Convert.ToInt32(ViewData["SaleCount"]);
+    int sumSale = Convert.ToInt32(ViewData["SumCount"]);
 }
 
 <div class="row mb-10">
@@ -107,6 +109,30 @@
         <!--end::کال اوت-->
 
     </div>
+    <div class="col-lg-4 col-md-4 col-sm-12 mb-10">
+        <!--begin::کال اوت-->
+        <div class="card card-custom mb-2 bg-diagonal">
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between p-4 flex-lg-wrap flex-xl-nowrap">
+                    <div class="d-flex flex-column mr-5">
+                        <a href="" class="h4 text-dark text-hover-primary mb-5">
+                            تعداد فروش
+                        </a>
+                        <p class="text-dark font-weight-bold">
+                            تعداد کل فروش ثبت شده : @saleCount.ToString()
+                        </p>
+                    </div>
+                    <div class="ml-6 ml-lg-0 ml-xxl-6 flex-shrink-0">
+                        <a asp-area="Admin" asp-controller="Sales" asp-action="Index" class="btn font-weight-bolder text-uppercase btn-light-success py-4 px-6">
+                            فروش
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end::کال اوت-->
+
+    </div>
     
     
 
@@ -179,6 +205,30 @@
                     <div class="ml-6 ml-lg-0 ml-xxl-6 flex-shrink-0">
                         <a asp-area="Admin" asp-controller="Payments" asp-action="Index" class="btn font-weight-bolder text-uppercase btn-bg-primary py-4 px-6">
                             پرداختی ها
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end::کال اوت-->
+        
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-12 mb-10">
+        <!--begin::کال اوت-->
+        <div class="card card-custom mb-2 bg-diagonal">
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between p-4 flex-lg-wrap flex-xl-nowrap">
+                    <div class="d-flex flex-column mr-5">
+                        <a href="" class="h4 text-dark text-hover-primary mb-5">
+                            جمع فروش
+                        </a>
+                        <p class="text-dark font-weight-bold">
+                            جمع کل فروش شده : @sumSale.ToString("#,0") تومان
+                        </p>
+                    </div>
+                    <div class="ml-6 ml-lg-0 ml-xxl-6 flex-shrink-0">
+                        <a asp-area="Admin" asp-controller="Sales" asp-action="Index" class="btn font-weight-bolder text-uppercase btn-light-success py-4 px-6">
+                            فروش
                         </a>
                     </div>
                 </div>

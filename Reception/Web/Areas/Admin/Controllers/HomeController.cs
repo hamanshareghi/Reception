@@ -19,8 +19,9 @@ namespace Web.Areas.Admin.Controllers
         private IAllMessage _allMessage;
         private ICost _cost;
         private IPayment _payment;
+        private ISale _sale;
 
-        public HomeController(ICustomer customer, IReception reception, IRequestDevice requestDevice, IAllMessage allMessage, ICost cost, IPayment payment)
+        public HomeController(ICustomer customer, IReception reception, IRequestDevice requestDevice, IAllMessage allMessage, ICost cost, IPayment payment, ISale sale)
         {
             _customer = customer;
             _reception = reception;
@@ -28,6 +29,7 @@ namespace Web.Areas.Admin.Controllers
             _allMessage = allMessage;
             _cost = cost;
             _payment = payment;
+            _sale = sale;
         }
 
 
@@ -41,6 +43,9 @@ namespace Web.Areas.Admin.Controllers
             ViewData["Sms"] = _allMessage.GetAllMessageCount();
             ViewData["SumCost"] = _cost.SumCost();
             ViewData["SumPay"] = _payment.SumPay();
+            ViewData["SaleCount"] = _sale.SaleCount();
+            ViewData["SumSale"] = _sale.SumSale();
+
 
             return View();
         }

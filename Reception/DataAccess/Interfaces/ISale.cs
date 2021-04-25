@@ -17,5 +17,7 @@ namespace DataAccess.Interfaces
         bool Exist(int id);
         Sale GetById(int id);
         bool ExitsShortKey(string shortKey);
+        int SumSale();
+        int SaleCount();
     }
 }

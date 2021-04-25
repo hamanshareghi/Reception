@@ -129,5 +129,15 @@ namespace DataAccess.Services
         {
             return _context.Sales.Any(s => s.ShortKey == shortKey);
         }
+
+        public int SumSale()
+        {
+            return _context.Sales.Sum(s => s.SalePrice);
+        }
+
+        public int SaleCount()
+        {
+            return _context.Sales.Count();
+        }
     }
 }

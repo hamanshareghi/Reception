@@ -24,9 +24,14 @@ namespace Web.Areas.Admin.Controllers
         }
 
         // GET: Admin/Brands
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string search,int take,int pageId=1)
         {
-            return View(_brand.GetAll(12));
+            if (!string.IsNullOrEmpty(search))
+            {
+                ViewBag.Search = search;
+                return View(_brand.GetBrandBySearch(search, 25, pageId));
+            }
+            return View(_brand.GetAll(25,pageId));
         }
 
         // GET: Admin/Brands/Details/5

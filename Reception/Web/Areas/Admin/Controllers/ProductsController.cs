@@ -62,7 +62,7 @@ namespace Web.Areas.Admin.Controllers
         public IActionResult Create()
         {
             ViewData["ProductGroupId"] = new SelectList(_productgroup.GetAll(), "ProductGroupId", "GroupName");
-            ViewData["BrandId"] = new SelectList(_brand.GetAll(0), "BrandId", "Title");
+            ViewData["BrandId"] = new SelectList(_brand.GetAll(), "BrandId", "Title");
             return View();
         }
 
@@ -91,10 +91,10 @@ namespace Web.Areas.Admin.Controllers
                 product.UpDateTime=DateTime.Now;
                 //product.ShortKey = GenerateShortKey(4);
                 _product.Add(product,imgUp);
-                return RedirectToAction(nameof(Index),"Products");
+                return RedirectToAction(nameof(Index),"Products",new {area="Admin"});
             }
             ViewData["ProductGroupId"] = new SelectList(_productgroup.GetAll(), "ProductGroupId", "GroupName");
-            ViewData["BrandId"] = new SelectList(_brand.GetAll(0), "BrandId", "Title");
+            ViewData["BrandId"] = new SelectList(_brand.GetAll(), "BrandId", "Title");
             return View(product);
         }
 
@@ -112,7 +112,7 @@ namespace Web.Areas.Admin.Controllers
                 return NotFound();
             }
             ViewData["ProductGroupId"] = new SelectList(_productgroup.GetAll(), "ProductGroupId", "GroupName");
-            ViewData["BrandId"] = new SelectList(_brand.GetAll(0), "BrandId", "Title");
+            ViewData["BrandId"] = new SelectList(_brand.GetAll(), "BrandId", "Title");
             return View(product);
         }
 
@@ -156,10 +156,10 @@ namespace Web.Areas.Admin.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index), "Products");
+                return RedirectToAction(nameof(Index), "Products", new { area = "Admin" });
             }
             ViewData["ProductGroupId"] = new SelectList(_productgroup.GetAll(), "ProductGroupId", "GroupName");
-            ViewData["BrandId"] = new SelectList(_brand.GetAll(0), "BrandId", "Title");
+            ViewData["BrandId"] = new SelectList(_brand.GetAll(), "BrandId", "Title");
             return View(product);
         }
 
@@ -187,7 +187,7 @@ namespace Web.Areas.Admin.Controllers
         {
             var product = _product.GetById(id);
             _product.Delete(product);
-            return RedirectToAction(nameof(Index),"Products");
+            return RedirectToAction(nameof(Index), "Products", new { area = "Admin" });
         }
 
         private bool ProductExists(int id)
