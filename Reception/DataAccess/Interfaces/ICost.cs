@@ -17,7 +17,6 @@ namespace DataAccess.Interfaces
         bool Exist(int id);
         Tuple<List<Cost>, int> GetAll(int take, int pageId = 1);
         Tuple<List<Cost>, int> GetCostBySearch(string search,int take, int pageId = 1);
-
         List<Cost> GetCostFromToDate(string search, string strDate, string endDate);
         int SumCost();
     }

@@ -29,6 +29,7 @@ namespace Web.Areas.Admin.Controllers
 
         public IActionResult Index(string search,int pageId=1)
         {
+            ViewData["Sum"] = _debtor.SumDebtor();
             if (!string.IsNullOrEmpty(search))
             {
                 ViewBag.Search = search;

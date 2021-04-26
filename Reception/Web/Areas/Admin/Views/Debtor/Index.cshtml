@@ -7,9 +7,10 @@
     {
         query = ViewBag.Search.ToString();
     }
+    int sum =Convert.ToInt32(ViewData["Sum"]);
 }
 <div class="container">
-    <h1> بدهکاران</h1>
+    <h1 class="alert alert-success font-weight-bold"> جمع مبلغ بدهی مشتریان : @sum.ToString("#,0") تومان </h1>
     <div class="mb-7">
         <form asp-area="Admin" asp-controller="Debtor" asp-action="Index" method="get">
             <div class="row align-items-center">

@@ -80,6 +80,13 @@ namespace DataAccess.Services
             throw new NotImplementedException();
         }
 
+        public int SumDebtor()
+        {
+            return _context.Debtors
+                .Where(s => s.PayStatus == PayStatus.NotPaid)
+                .Sum(s => s.Price);
+        }
+
         public List<Debtor> GetAll()
         {
             return _context.Debtors.ToList();
@@ -102,6 +109,7 @@ namespace DataAccess.Services
             }
             var query = _context.Debtors
                 .Include(s => s.User)
+
                 .Skip(skip)
                 .Take(take);
             return Tuple.Create(query.ToList(), pageCount);

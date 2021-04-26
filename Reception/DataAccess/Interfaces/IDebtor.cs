@@ -18,6 +18,6 @@ namespace DataAccess.Interfaces
         bool Exist(int id);
         Tuple<List<Debtor>, int> GetDebtorBySearch(string search,int take,int pageId);
         List<Debtor> GetDebtorFromToDate(string search, DateTime start, DateTime end);
-        
+        int SumDebtor();
     }
 }
