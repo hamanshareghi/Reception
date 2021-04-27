@@ -125,7 +125,9 @@ namespace DataAccess.Services
                 );
             }
 
-            IQueryable<Cost> query = _context.Costs.Include(s => s.CostDefine);
+            IQueryable<Cost> query = _context.Costs
+                .Include(s=>s.User)
+                .Include(s => s.CostDefine);
             if (!string.IsNullOrEmpty(search))
             {
                 query = query.Where(s => s.Description.ToLower().Contains(search)
@@ -134,7 +136,7 @@ namespace DataAccess.Services
                 );
             }
 
-            if (fromDate != null && endDate != null)
+            if (fromDate != null && toDate != null)
             {
                 query = query.Where(s => s.UpDateTime >= fromDate && s.UpDateTime <= toDate);
             }

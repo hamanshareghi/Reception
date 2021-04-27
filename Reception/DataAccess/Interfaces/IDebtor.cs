@@ -17,7 +17,7 @@ namespace DataAccess.Interfaces
         void Delete(Debtor debtor);
         bool Exist(int id);
         Tuple<List<Debtor>, int> GetDebtorBySearch(string search,int take,int pageId);
-        List<Debtor> GetDebtorFromToDate(string search, DateTime start, DateTime end);
+        List<Debtor> GetDebtorFromToDate(string search, string strDate, string endDate);
         int SumDebtor();
     }
 }

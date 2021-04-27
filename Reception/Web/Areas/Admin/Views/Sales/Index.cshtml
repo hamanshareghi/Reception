@@ -61,11 +61,14 @@
                 تعداد
             </th>
             <th>
-                لینک
+                قیمت
             </th>
             <th>
-                کاربر
+                لینک
             </th>
+            @*<th>
+                کاربر
+            </th>*@
 
             <th>
                 شرح
@@ -97,11 +100,16 @@
                     @Html.DisplayFor(modelItem => item.Count)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ShortKey)
+                    <p class="text-danger font-weight-bold">
+                        @item.SalePrice.ToString("#,0") تومان
+                    </p>
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.User.FullName)
+                    @Html.DisplayFor(modelItem => item.ShortKey)
                 </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.CurrentId.FullName)
+                </td>*@
                 <td>
                     @Html.Raw(item.Description)
                 </td>

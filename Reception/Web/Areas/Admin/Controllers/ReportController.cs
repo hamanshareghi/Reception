@@ -34,12 +34,16 @@ namespace Web.Areas.Admin.Controllers
             return View();
         }
 
-
-
+        [HttpGet]
+        public IActionResult Debtors(string search,string strDate,string endDate)
+        {
+            var model = _debtor.GetDebtorFromToDate(search,strDate,endDate);
+            return View(model);
+        }
+        [HttpPost]
         public IActionResult Debtors()
         {
-            var model = _debtor.GetAll();
-            return View(model);
+            return View();
         }
     }
 }

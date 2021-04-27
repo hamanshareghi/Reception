@@ -67,7 +67,6 @@
             کاربر
         </th>
 
-        <th>دستورات</th>
     </tr>
     </thead>
     <tbody>
@@ -86,19 +85,23 @@
                 </p>
             </td>
             <td>
-                <p class="text-primary">
+                <p class="text-info font-weight-bold">
                     @item.InsertDate.ToShamsiDot()
                 </p>
 
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.UserId)
+                @Html.DisplayFor(modelItem => item.User.FullName)
             </td>
 
            
         </tr>
         row++;
     }
+    <tr>
+        <td colspan="2" class="text-black-50 font-weight-bold">مجموع</td>
+        <td colspan="1" class="text-center font-weight-bold text-primary">@Model.Sum(c => c.Price).ToString("#,0") تومان</td>
+    </tr>
     </tbody>
 </table>
 

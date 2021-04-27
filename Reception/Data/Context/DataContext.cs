@@ -13,8 +13,6 @@ namespace Data.Context
 
         }
 
-
-
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Carousel> Carousels { get; set; }
         public DbSet<CostDefine> CostDefines { get; set; }
@@ -47,8 +45,6 @@ namespace Data.Context
         {
 
             //modelBuilder.Entity<AllMessage>().
-
-
 
             var cascadeFKs = modelBuilder.Model.GetEntityTypes()
                 .SelectMany(t => t.GetForeignKeys())

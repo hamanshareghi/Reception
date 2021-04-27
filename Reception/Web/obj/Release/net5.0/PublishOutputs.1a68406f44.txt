@@ -459,6 +459,8 @@ D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\www
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\lib\Kendo\js\kendo.calendar.fa.js
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\lib\Kendo\js\kendo.datepicker.fa.js
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\lib\Kendo\js\kendo.web.js
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\lib\Sweetalert2\sweetalert2.min.css
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\lib\Sweetalert2\sweetalert2.min.js
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\select2\css\select2.css
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\select2\css\select2.min.css
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\select2\js\i18n\af.js

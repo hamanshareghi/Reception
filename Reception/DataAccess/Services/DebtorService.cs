@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Model.Entities;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -75,9 +76,49 @@ namespace DataAccess.Services
 
         }
 
-        public List<Debtor> GetDebtorFromToDate(string search, DateTime start, DateTime end)
+        public List<Debtor> GetDebtorFromToDate(string search, string strDate, string endDate)
         {
-            throw new NotImplementedException();
+            DateTime fromDate = default;
+            DateTime toDate = default;
+            if (strDate != null)
+            {
+                string[] std = strDate.Split('/');
+                fromDate = new DateTime(int.Parse(std[0]),
+                    int.Parse(std[1]),
+                    int.Parse(std[2]),
+                    new PersianCalendar()
+                );
+            }
+            if (endDate != null)
+            {
+                string[] std1 = endDate.Split('/');
+                toDate = new DateTime(int.Parse(std1[0]),
+                    int.Parse(std1[1]),
+                    int.Parse(std1[2]),
+                    new PersianCalendar()
+                );
+            }
+            IQueryable<Debtor> query = _context.Debtors
+                .Include(s => s.User)
+                .Where(s=>s.PayStatus == PayStatus.NotPaid);
+            if (!string.IsNullOrEmpty(search))
+            {
+                query = query.Where(
+                    s => s.User.FullName.ToLower().Contains(search)
+                         || s.User.PhoneNumber.ToLower().Contains(search)
+                         || s.Description.ToLower().Contains(search)
+                         || s.Title.ToLower().Contains(search)
+                );
+            }
+
+            if (fromDate != null && toDate != null)
+            {
+                query = query.Where(s => s.UpDateTime >= fromDate && s.UpDateTime <= toDate);
+
+            }
+
+            return query.ToList();
+
         }
 
         public int SumDebtor()
