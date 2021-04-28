@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Library;
 using Data.Context;
 using DataAccess.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -145,12 +146,24 @@ namespace DataAccess.Services
 
         public int TodaySumSale()
         {
-            DateTime today=DateTime.Now;
-            DateTime tomarrow = DateTime.Now.AddDays(1);
-            var query =  _context.Sales
-                .Where(s => s.SaleDate.Date == today ).ToList();
-            int sum = query.Sum(s => s.SalePrice);
-            return sum;
+            string strDate = DateTime.Now.ToShamsi();
+            DateTime today = default;
+            if (!string.IsNullOrEmpty(strDate))
+            {
+                string[] std = strDate.Split("/");
+                today = new DateTime(
+                               int.Parse(std[0]),
+                               int.Parse(std[1]),
+                               int.Parse(std[2]),
+                               new PersianCalendar()
+                           );
+            }
+
+
+            return _context.Sales
+                .Where(s => s.SaleDate >= today).
+                Sum(s => s.SalePrice);
+
         }
 
         public List<Sale> GetSaleFromToDate(string search, string strDate, string endDate)

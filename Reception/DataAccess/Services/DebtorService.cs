@@ -150,7 +150,7 @@ namespace DataAccess.Services
             }
             var query = _context.Debtors
                 .Include(s => s.User)
-
+                .Where(s=>s.PayStatus== PayStatus.NotPaid)
                 .Skip(skip)
                 .Take(take);
             return Tuple.Create(query.ToList(), pageCount);
