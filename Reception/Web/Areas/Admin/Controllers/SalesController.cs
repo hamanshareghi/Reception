@@ -19,12 +19,14 @@ namespace Web.Areas.Admin.Controllers
         private ISale _sale;
         private UserManager<ApplicationUser> _userManager;
         private IProduct _product;
+        private IAllMessage _allMessage;
 
-        public SalesController(ISale sale, UserManager<ApplicationUser> userManager, IProduct product)
+        public SalesController(ISale sale, UserManager<ApplicationUser> userManager, IProduct product, IAllMessage allMessage)
         {
             _sale = sale;
             _userManager = userManager;
             _product = product;
+            _allMessage = allMessage;
         }
         public IActionResult Index(string search, int pageId = 1)
         {
@@ -83,6 +85,12 @@ namespace Web.Areas.Admin.Controllers
                 }
 
                 int saleId= _sale.Add(sale);
+                Sale model = _sale.GetById(saleId);
+                string receptor = "09121950430";
+                string token = model.User.FullName.Replace(" ", "-");
+                string token2 = model.Product.Name.Replace(" ", "-");
+                string template = "Sale";
+                SendMessage.Send(receptor, token, token2, null, null, null, template);
 
                 return RedirectToAction(nameof(Index), "Sales", new { area = "Admin" });
             }
@@ -210,8 +218,24 @@ namespace Web.Areas.Admin.Controllers
             string token2 = model.Product.Name.Replace(" ", "-");
             string template = "Sale";
             SendMessage.Send(receptor, token, token2, null, null, null, template);
+
+            AllMessage message = new AllMessage()
+            {
+                InsertDate = DateTime.Now,
+                UpDateTime = DateTime.Now,
+                IsDelete = false,
+                Kind = SmsKind.Sale,
+                SmsDate = DateTime.Now,
+                CurrentUserId = _userManager.GetUserId(User),
+                SmsStatus = "Sent",
+                Description = $"کاربر: {token}  از خرید شما متشکریم شرح : {token2} ",
+                UserId = model.UserId
+            };
+            _allMessage.Add(message);
             return RedirectToAction("Index", "Sales", new { area = "Admin" });
         }
+
+
 
     }
 }

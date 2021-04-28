@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ using Model.Entities;
 
 namespace DataAccess.Services
 {
-    public class SaleService :ISale
+    public class SaleService : ISale
     {
         private DataContext _context;
 
@@ -36,7 +37,8 @@ namespace DataAccess.Services
             var query = _context.Sales
                 .Include(s => s.User)
                 .Include(s => s.Product)
-                .ThenInclude(s=>s.Brand)
+                .ThenInclude(s => s.Brand)
+                .OrderByDescending(s => s.UpDateTime)
                 .Skip(skip)
                 .Take(take);
             return Tuple.Create(query.ToList(), pageCount);
@@ -51,7 +53,7 @@ namespace DataAccess.Services
                 .Include(s => s.Product)
                 .ThenInclude(s => s.Brand)
                 .Count(
-                    s=>
+                    s =>
                         s.User.FullName.ToLower().Contains(search)
                         || s.User.PhoneNumber.ToLower().Contains(search)
                         || s.Description.ToLower().Contains(search)
@@ -74,8 +76,8 @@ namespace DataAccess.Services
             var query = _context.Sales
                 .Include(s => s.User)
                 .Include(s => s.Product)
-                .ThenInclude(s=>s.Brand)
-                . Where(
+                .ThenInclude(s => s.Brand)
+                .Where(
                     s =>
                         s.User.FullName.ToLower().Contains(search)
                         || s.User.PhoneNumber.ToLower().Contains(search)
@@ -86,6 +88,7 @@ namespace DataAccess.Services
                         || s.Product.Price.ToString().ToLower().Contains(search)
 
                 )
+                .OrderByDescending(s => s.UpDateTime)
                 .Skip(skip)
                 .Take(take);
             return Tuple.Create(query.ToList(), pageCount);
@@ -120,7 +123,7 @@ namespace DataAccess.Services
             return _context.Sales
                 .Include(s => s.User)
                 .Include(s => s.Product)
-                .OrderByDescending(s=>s.SaleDate)
+                .OrderByDescending(s => s.SaleDate)
                 .FirstOrDefault(s => s.SaleId == id);
 
         }
@@ -138,6 +141,71 @@ namespace DataAccess.Services
         public int SaleCount()
         {
             return _context.Sales.Count();
+        }
+
+        public int TodaySumSale()
+        {
+            DateTime today=DateTime.Now;
+            DateTime tomarrow = DateTime.Now.AddDays(1);
+            var query =  _context.Sales
+                .Where(s => s.SaleDate.Date == today ).ToList();
+            int sum = query.Sum(s => s.SalePrice);
+            return sum;
+        }
+
+        public List<Sale> GetSaleFromToDate(string search, string strDate, string endDate)
+        {
+            DateTime fromDate = DateTime.Now;
+            DateTime toDate = DateTime.Now.AddDays(1);
+
+            if (!string.IsNullOrEmpty(strDate))
+            {
+                string[] std = strDate.Split("/");
+                fromDate = new DateTime(int.Parse(std[0]),
+                    int.Parse(std[1]),
+                    int.Parse(std[2]),
+                    new PersianCalendar()
+                );
+            }
+
+            if (!string.IsNullOrEmpty(endDate))
+            {
+                string[] std1 = endDate.Split("/");
+                toDate = new DateTime(
+                    int.Parse(std1[0]),
+                    int.Parse(std1[1]),
+                    int.Parse(std1[2]),
+                    new PersianCalendar()
+                );
+            }
+
+            IQueryable<Sale> query = _context.Sales
+                .Include(s => s.User)
+                .Include(s => s.Product)
+                .ThenInclude(s => s.ProductGroup)
+                .Include(s => s.Product.Brand);
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                query = query.Where(
+                    s => s.User.PhoneNumber.ToLower().Contains(search)
+                    || s.User.FullName.ToLower().Contains(search)
+                    || s.Product.Brand.Title.ToLower().Contains(search)
+                    || s.Product.Name.ToLower().Contains(search)
+                    || s.Product.ProductGroup.GroupName.ToLower().Contains(search)
+                    || s.Description.ToLower().Contains(search)
+                    || s.ShortKey.ToLower().Contains(search)
+
+                    )
+                    .OrderByDescending(s => s.SaleDate);
+            }
+
+            if (fromDate != null && toDate != null)
+            {
+                query = query.Where(s => s.SaleDate >= fromDate && s.SaleDate <= toDate);
+
+            }
+            return query.ToList();
         }
     }
 }

@@ -86,15 +86,16 @@
                     @row
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Product.Name)
+                    <p class="text-info font-weight-bold">
+                        @item.SaleDate.ToShamsi()
+                    </p>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.User.FullName)
                 </td>
                 <td>
-                    <p class="text-info font-weight-bold">
-                        @item.SaleDate.ToShamsi()
-                    </p>
+                    @Html.DisplayFor(modelItem => item.Product.Name)
+
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Count)

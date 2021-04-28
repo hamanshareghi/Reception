@@ -39,7 +39,6 @@ namespace Model.Entities
         public string ShortKey { get; set; }
 
         [Display(Name = "شرح")]
-        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public string Description { get; set; }
 
         #region Relation

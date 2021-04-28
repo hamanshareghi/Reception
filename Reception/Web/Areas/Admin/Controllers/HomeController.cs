@@ -45,7 +45,7 @@ namespace Web.Areas.Admin.Controllers
             ViewData["SumPay"] = _payment.SumPay();
             ViewData["SaleCount"] = _sale.SaleCount();
             ViewData["SumSale"] = _sale.SumSale();
-
+            ViewData["TodaySale"] = _sale.TodaySumSale();
 
             return View();
         }

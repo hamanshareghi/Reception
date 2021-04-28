@@ -215,6 +215,19 @@ namespace Web.Areas.Admin.Controllers
                 template = "RequestDeviceComplete";
             }
             SendMessage.Send(receptor, token, token2, null, null, null, template);
+            AllMessage message = new AllMessage()
+            {
+                InsertDate = DateTime.Now,
+                UpDateTime = DateTime.Now,
+                IsDelete = false,
+                Kind = SmsKind.RequestDevice,
+                SmsDate = DateTime.Now,
+                CurrentUserId = _userManager.GetUserId(User),
+                SmsStatus = "Sent",
+                Description = $"کاربر: {token}  دستگاه: {token2} آماده تحویل میباشد",
+                UserId = model.UserId
+            };
+            _allMessage.Add(message);
             return RedirectToAction("Index", "RequestDevices", new { area = "Admin" });
         }
     }

@@ -55,6 +55,7 @@ namespace Model.Entities
         Ticket=9,
         Service=10,
         FinishWork=11,
+        Sale=12,
     }
 
 }

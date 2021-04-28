@@ -14,11 +14,13 @@ namespace Web.Areas.Admin.Controllers
     {
         private IDebtor _debtor;
         private ICost _cost;
+        private ISale _sale;
 
-        public ReportController(IDebtor debtor, ICost cost)
+        public ReportController(IDebtor debtor, ICost cost, ISale sale)
         {
             _debtor = debtor;
             _cost = cost;
+            _sale = sale;
         }
  
         [HttpGet]
@@ -42,6 +44,19 @@ namespace Web.Areas.Admin.Controllers
         }
         [HttpPost]
         public IActionResult Debtors()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Sale(string search, string strDate, string endDate)
+        {
+            var model = _sale.GetSaleFromToDate(search, strDate, endDate);
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Sale()
         {
             return View();
         }

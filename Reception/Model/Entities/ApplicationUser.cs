@@ -11,6 +11,8 @@ namespace Model.Entities
     {
         [Display(Name = "نام کامل")]
         [MaxLength(200, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+
         public string FullName { get; set; }
 
         [Display(Name = "مشتری")]
