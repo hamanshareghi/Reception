@@ -89,7 +89,7 @@ namespace Web.Areas.Admin.Controllers
                 string receptor = "09121950430";
                 string token = model.User.FullName.Replace(" ", "-");
                 string token2 = model.Product.Name.Replace(" ", "-");
-                string token3 = model.SalePrice.ToString("#,0") + " تومان";
+                string token3 = model.SalePrice.ToString("#,0").Replace(" ","-") + "تومان";
                 string template = "SaleInfo";
                 SendMessage.Send(receptor, token, token2, token3, null, null, template);
 

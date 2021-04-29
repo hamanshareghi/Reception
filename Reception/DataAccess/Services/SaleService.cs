@@ -110,7 +110,7 @@ namespace DataAccess.Services
 
         public void Delete(Sale sale)
         {
-            sale.IsDelete = false;
+            sale.IsDelete = true;
             Update(sale);
         }
 

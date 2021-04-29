@@ -61,7 +61,7 @@
         </dd>
     </dl>
     
-    <form asp-action="Delete">
+    <form asp-area="Admin" asp-controller="Sales" asp-action="Delete">
         <input type="hidden" asp-for="SaleId" />
         <input type="submit" value="حذف پذیرش" class="btn btn-danger" />
         <a asp-action="Index" class="btn btn-info">بازگشت به لیست</a>
