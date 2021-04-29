@@ -20,8 +20,10 @@ namespace Web.Areas.Admin.Controllers
         private ICost _cost;
         private IPayment _payment;
         private ISale _sale;
+        private IDebtor _debtor;
 
-        public HomeController(ICustomer customer, IReception reception, IRequestDevice requestDevice, IAllMessage allMessage, ICost cost, IPayment payment, ISale sale)
+
+        public HomeController(ICustomer customer, IReception reception, IRequestDevice requestDevice, IAllMessage allMessage, ICost cost, IPayment payment, ISale sale, IDebtor debtor)
         {
             _customer = customer;
             _reception = reception;
@@ -30,6 +32,7 @@ namespace Web.Areas.Admin.Controllers
             _cost = cost;
             _payment = payment;
             _sale = sale;
+            _debtor = debtor;
         }
 
 
@@ -46,6 +49,7 @@ namespace Web.Areas.Admin.Controllers
             ViewData["SaleCount"] = _sale.SaleCount();
             ViewData["SumSale"] = _sale.SumSale();
             ViewData["TodaySale"] = _sale.TodaySumSale();
+            ViewData["SumDebtor"] = _debtor.SumDebtor();
 
             return View();
         }

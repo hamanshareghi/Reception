@@ -8,6 +8,7 @@
     int saleCount = Convert.ToInt32(ViewData["SaleCount"]);
     int sumSale = Convert.ToInt32(ViewData["SumSale"]);
     int todaySale = Convert.ToInt32(ViewData["TodaySale"]);
+    int sumDebtor = Convert.ToInt32(ViewData["SumDebtor"]);
 }
 
 <div class="row mb-10">
@@ -254,6 +255,31 @@
                     <div class="ml-6 ml-lg-0 ml-xxl-6 flex-shrink-0">
                         <a asp-area="Admin" asp-controller="Report" asp-action="Sale" class="btn font-weight-bolder text-uppercase btn-light-success py-4 px-6">
                             فروش
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end::کال اوت-->
+        
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-12 mb-10">
+        <!--begin::کال اوت-->
+        <div class="card card-custom mb-2 bg-diagonal">
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between p-4 flex-lg-wrap flex-xl-nowrap">
+                    <div class="d-flex flex-column mr-5">
+                        <a href="" class="h4 text-dark text-hover-primary mb-5">
+                            بدهکاران
+                        </a>
+                        <p class="text-dark font-weight-bold">
+                            جمع مبلغ بدهکاران : @sumDebtor.ToString("#,0") تومان
+
+                        </p>
+                    </div>
+                    <div class="ml-6 ml-lg-0 ml-xxl-6 flex-shrink-0">
+                        <a asp-area="Admin" asp-controller="Report" asp-action="Debtors" class="btn font-weight-bolder text-uppercase btn-light-primary py-4 px-6">
+                            بدهکاران
                         </a>
                     </div>
                 </div>

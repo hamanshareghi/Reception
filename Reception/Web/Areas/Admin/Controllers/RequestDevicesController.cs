@@ -78,7 +78,7 @@ namespace Web.Areas.Admin.Controllers
                 requestDevice.ViewStatus = false;
                 requestDevice.UserId = _userManager.GetUserId(User);
 
-                var requestId= _requestDevice.Add(requestDevice);
+                var requestId = _requestDevice.Add(requestDevice);
                 RequestDevice model = _requestDevice.GetById(requestId);
                 string receptor = model.User.Contact;
                 string token = model.User.FullName.Replace(" ", "-");
@@ -201,6 +201,8 @@ namespace Web.Areas.Admin.Controllers
 
         public IActionResult Send(int id)
         {
+            bool flag = false;
+
             RequestDevice model = _requestDevice.GetById(id);
             string receptor = model.User.Contact;
             string token = model.User.FullName.Replace(" ", "-");
@@ -209,25 +211,32 @@ namespace Web.Areas.Admin.Controllers
             if (model.ViewStatus == false)
             {
                 template = "RequestDevice";
+                flag = false;
             }
             else
             {
                 template = "RequestDeviceComplete";
+                flag = true;
             }
             SendMessage.Send(receptor, token, token2, null, null, null, template);
-            AllMessage message = new AllMessage()
+            if (flag)
             {
-                InsertDate = DateTime.Now,
-                UpDateTime = DateTime.Now,
-                IsDelete = false,
-                Kind = SmsKind.RequestDevice,
-                SmsDate = DateTime.Now,
-                CurrentUserId = _userManager.GetUserId(User),
-                SmsStatus = "Sent",
-                Description = $"کاربر: {token}  دستگاه: {token2} آماده تحویل میباشد",
-                UserId = model.UserId
-            };
-            _allMessage.Add(message);
+                AllMessage message = new AllMessage()
+                {
+                    InsertDate = DateTime.Now,
+                    UpDateTime = DateTime.Now,
+                    IsDelete = false,
+                    Kind = SmsKind.RequestDevice,
+                    SmsDate = DateTime.Now,
+                    CurrentUserId = _userManager.GetUserId(User),
+                    SmsStatus = "Sent",
+                    Description = $"کاربر: {token}  دستگاه: {token2} آماده تحویل میباشد",
+                    UserId = model.UserId
+                };
+                _allMessage.Add(message);
+            }
+            
+
             return RedirectToAction("Index", "RequestDevices", new { area = "Admin" });
         }
     }
