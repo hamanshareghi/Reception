@@ -44,13 +44,17 @@ namespace Web.Areas.Admin.Controllers
             ViewData["ReceptionNotYet"] = _reception.GetReceptionCountNotFinish();
             ViewData["Request"] = _requestDevice.RequestCount();
             ViewData["Sms"] = _allMessage.GetAllMessageCount();
-            ViewData["SumCost"] = _cost.SumCost();
             ViewData["SumPay"] = _payment.SumPay();
+
+            ViewData["TodaySaleCount"] = _sale.TodaySaleCount();
             ViewData["SaleCount"] = _sale.SaleCount();
+
             ViewData["SumSale"] = _sale.SumSale();
             ViewData["TodaySale"] = _sale.TodaySumSale();
             ViewData["SumDebtor"] = _debtor.SumDebtor();
 
+            ViewData["SumCost"] = _cost.SumCost();
+            ViewData["TodaySumCost"] = _cost.TodayCost();
             return View();
         }
     }

@@ -149,6 +149,27 @@ namespace DataAccess.Services
             return _context.Costs.Sum(s => s.Price);
         }
 
+        public int TodayCost()
+        {
+            string strDate = DateTime.Now.ToShamsi();
+            DateTime today = default;
+            if (!string.IsNullOrEmpty(strDate))
+            {
+                string[] std = strDate.Split("/");
+                today = new DateTime(
+                    int.Parse(std[0]),
+                    int.Parse(std[1]),
+                    int.Parse(std[2]),
+                    new PersianCalendar()
+                );
+            }
+            //DateTime today=DateTime.Now;
+            ;
+            return _context.Costs
+                .Where(s => s.UpDateTime >= today)
+                .Sum(s => s.Price);
+        }
+
         public List<Cost> GetAll()
         {
             return _context.Costs

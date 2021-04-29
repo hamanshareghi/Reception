@@ -144,6 +144,27 @@ namespace DataAccess.Services
             return _context.Sales.Count();
         }
 
+        public int TodaySaleCount()
+        {
+            string strDate = DateTime.Now.ToShamsi();
+            DateTime today = default;
+            if (!string.IsNullOrEmpty(strDate))
+            {
+                string[] std = strDate.Split("/");
+                today = new DateTime(
+                    int.Parse(std[0]),
+                    int.Parse(std[1]),
+                    int.Parse(std[2]),
+                    new PersianCalendar()
+                );
+            }
+
+
+            return _context.Sales
+                .Count(s => s.SaleDate >= today)
+             ;
+        }
+
         public int TodaySumSale()
         {
             string strDate = DateTime.Now.ToShamsi();
@@ -161,8 +182,8 @@ namespace DataAccess.Services
 
 
             return _context.Sales
-                .Where(s => s.SaleDate >= today).
-                Sum(s => s.SalePrice);
+                .Where(s => s.SaleDate >= today)
+                .Sum(s => s.SalePrice);
 
         }
 

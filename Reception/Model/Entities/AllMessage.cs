@@ -56,6 +56,7 @@ namespace Model.Entities
         Service=10,
         FinishWork=11,
         Sale=12,
+        Payment=13,
     }
 
 }

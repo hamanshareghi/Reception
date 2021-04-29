@@ -22,11 +22,13 @@ namespace Web.Areas.Admin.Controllers
         private UserManager<ApplicationUser> _userManager;
 
         private IPayment _payment;
+        private IAllMessage _allMessage;
 
-        public PaymentsController(UserManager<ApplicationUser> userManager, IPayment payment)
+        public PaymentsController(UserManager<ApplicationUser> userManager, IPayment payment, IAllMessage allMessage)
         {
             _userManager = userManager;
             _payment = payment;
+            _allMessage = allMessage;
         }
         // GET: Admin/Payments
         public IActionResult Index(string search,int take,int pageId=1)
@@ -197,7 +199,21 @@ namespace Web.Areas.Admin.Controllers
             string token10 = model.Price.ToString("#,0")+"-تومان";
             string token20 = model.Recipt.Replace(" ","-");
             SendMessage.Send(receptor, token, token2, token3, token10, token20, "Payment");
+            AllMessage message = new AllMessage()
+            {
+                InsertDate = DateTime.Now,
+                UpDateTime = DateTime.Now,
+                IsDelete = false,
+                Kind = SmsKind.Payment,
+                SmsDate = DateTime.Now,
+                CurrentUserId = _userManager.GetUserId(User),
+                SmsStatus = "Sent",
+                Description = $"طرف: {token}  از حساب : {token2} به حساب {token3} مبلغ {token10} شماره فیش : {token20}",
+                UserId = _userManager.GetUserId(User)
+            };
+            _allMessage.Add(message);
             return RedirectToAction("Index", "Payments", new { area = "Admin" });
+
         }
     }
 }

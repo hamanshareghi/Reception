@@ -19,6 +19,7 @@ namespace DataAccess.Interfaces
         bool ExitsShortKey(string shortKey);
         int SumSale();
         int SaleCount();
+        int TodaySaleCount();
         int TodaySumSale();
         List<Sale> GetSaleFromToDate(string search, string strDate, string endDate);
     }

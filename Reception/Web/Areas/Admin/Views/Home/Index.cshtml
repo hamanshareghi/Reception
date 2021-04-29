@@ -3,9 +3,12 @@
 @{
     ViewData["Title"] = "Index";
     int sum = Convert.ToInt32(ViewData["SumCost"]);
+    int todayCost = Convert.ToInt32(ViewData["TodaySumCost"]);
     int sumPay = Convert.ToInt32(ViewData["SumPay"]);
     int sms = Convert.ToInt32(ViewData["Sms"]);
     int saleCount = Convert.ToInt32(ViewData["SaleCount"]);
+    int todaySaleCount = Convert.ToInt32(ViewData["TodaySaleCount"]);
+
     int sumSale = Convert.ToInt32(ViewData["SumSale"]);
     int todaySale = Convert.ToInt32(ViewData["TodaySale"]);
     int sumDebtor = Convert.ToInt32(ViewData["SumDebtor"]);
@@ -24,14 +27,17 @@
                             پذیرش تمام نشده
                         </a>
                         <p class="text-dark font-weight-bold">
-                            تعداد کل پذیرش تکمیل نشده : @ViewData["ReceptionNotYet"].ToString()
-
+                            تعداد کل پذیرش تکمیل نشده : <span class="text-danger font-weight-bold"> @ViewData["ReceptionNotYet"].ToString() </span>
                         </p>
+                        <p class="text-dark font-weight-bold">
+                            تعداد کل پذیرش تکمیل شده : <span class="text-info font-weight-bold"> @ViewData["ReceptionDone"].ToString() </span>
+</p>
                     </div>
                     <div class="ml-6 ml-lg-0 ml-xxl-6 flex-shrink-0">
                         <a asp-area="Admin" asp-controller="Receptions" asp-action="Index" class="btn font-weight-bolder text-uppercase btn-light-primary py-4 px-6">
                             پذیرش
                         </a>
+
                     </div>
                 </div>
             </div>
@@ -39,30 +45,7 @@
         <!--end::کال اوت-->
 
     </div>
-    <div class="col-lg-4 col-md-4 col-sm-12 mb-10">
-        <!--begin::کال اوت-->
-        <div class="card card-custom mb-2 bg-diagonal">
-            <div class="card-body">
-                <div class="d-flex align-items-center justify-content-between p-4 flex-lg-wrap flex-xl-nowrap">
-                    <div class="d-flex flex-column mr-5">
-                        <a href="" class="h4 text-dark text-hover-primary mb-5">
-                            پذیرش تمام شده
-                        </a>
-                        <p class="text-dark">
-                            تعداد کل پذیرش تکمیل شده : @ViewData["ReceptionDone"].ToString()
-                        </p>
-                    </div>
-                    <div class="ml-6 ml-lg-0 ml-xxl-6 flex-shrink-0">
-                        <a asp-area="Admin" asp-controller="Receptions" asp-action="Index" class="btn font-weight-bolder text-uppercase btn-light-warning py-4 px-6">
-                            پذیرش
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--end::کال اوت-->
-
-    </div>
+   
     <div class="col-lg-4 col-md-4 col-sm-12 mb-10">
         <!--begin::کال اوت-->
         <div class="card card-custom mb-2 bg-diagonal">
@@ -122,7 +105,10 @@
                             تعداد فروش
                         </a>
                         <p class="text-dark font-weight-bold">
-                            تعداد کل فروش ثبت شده : @saleCount.ToString()
+                            تعداد فروش روز : <span class="text-info"> @todaySaleCount.ToString() </span>
+                        </p>
+                        <p class="text-dark font-weight-bold">
+                            تعداد کل فروش  : <span class="text-success"> @saleCount.ToString() </span>
                         </p>
                     </div>
                     <div class="ml-6 ml-lg-0 ml-xxl-6 flex-shrink-0">
@@ -137,9 +123,9 @@
 
     </div>
     
-    <div class="col-lg-4 col-md-4 col-sm-12 mb-10">
+    <!--<div class="col-lg-4 col-md-4 col-sm-12 mb-10">-->
         <!--begin::کال اوت-->
-        <div class="card card-custom mb-2 bg-diagonal">
+        <!--<div class="card card-custom mb-2 bg-diagonal">
             <div class="card-body">
                 <div class="d-flex align-items-center justify-content-between p-4 flex-lg-wrap flex-xl-nowrap">
                     <div class="d-flex flex-column mr-5">
@@ -157,10 +143,10 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
         <!--end::کال اوت-->
 
-    </div>
+    <!--</div>-->
 
 </div>
 @if (User.IsInRole("SuperAdmin"))
@@ -201,7 +187,10 @@
                             هزینه ها
                         </a>
                         <p class="text-dark font-weight-bold">
-                            جمع کل مبالغ هزینه ها : @sum.ToString("#,0") تومان
+                            جمع هزینه امروز : @todayCost.ToString("#,0") تومان
+                        </p>
+                        <p class="text-dark font-weight-bold">
+                            جمع کل هزینه ها : @sum.ToString("#,0") تومان
                         </p>
                     </div>
                     <div class="ml-6 ml-lg-0 ml-xxl-6 flex-shrink-0">
@@ -248,9 +237,12 @@
                         <a href="" class="h4 text-dark text-hover-primary mb-5">
                             جمع فروش
                         </a>
-                        <p class="text-dark font-weight-bold">
-                            جمع کل فروش شده : @sumSale.ToString("#,0") تومان
+                        <p class="text-dark">
+                            جمع فروش روز  : <span class="text-info font-weight-bold">@todaySale.ToString("#,0") تومان</span> 
                         </p>
+                        <p class="text-dark font-weight-bold">
+                            جمع کل فروش  : <span class="text-success font-weight-bold"> @sumSale.ToString("#,0") تومان </span>
+</p>
                     </div>
                     <div class="ml-6 ml-lg-0 ml-xxl-6 flex-shrink-0">
                         <a asp-area="Admin" asp-controller="Report" asp-action="Sale" class="btn font-weight-bolder text-uppercase btn-light-success py-4 px-6">
