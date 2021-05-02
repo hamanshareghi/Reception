@@ -90,8 +90,9 @@ namespace Web.Areas.Admin.Controllers
                 string token = model.User.FullName.Replace(" ", "-");
                 string token2 = model.Product.Name.Replace(" ", "-");
                 string token3 = model.SalePrice.ToString("#,0").Replace(" ","-") + "تومان";
+                string token10 = model.SaleDate.ToShamsi().Replace(" ", "-");
                 string template = "SaleInfo";
-                SendMessage.Send(receptor, token, token2, token3, null, null, template);
+                SendMessage.Send(receptor, token, token2, token3, token10, null, template);
 
                 return RedirectToAction(nameof(Index), "Sales", new { area = "Admin" });
             }

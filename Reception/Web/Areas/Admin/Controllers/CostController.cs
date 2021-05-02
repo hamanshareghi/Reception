@@ -195,6 +195,19 @@ namespace Web.Areas.Admin.Controllers
             string token2 = model.Price.ToString("#,0")+"تومان" ;
             string token3 = model.CostDefine.Name.Replace(" ", "-");
             SendMessage.Send(receptor, token, token2, token3,null,null, "Cost");
+            AllMessage message = new AllMessage()
+            {
+                InsertDate = DateTime.Now,
+                UpDateTime = DateTime.Now,
+                IsDelete = false,
+                Kind = SmsKind.Cost,
+                SmsDate = DateTime.Now,
+                CurrentUserId = _userManager.GetUserId(User),
+                SmsStatus = "Sent",
+                Description = $"کاربر: {token} مبلغ: {token2} بابت: {token3} ",
+                UserId = model.UserId
+            };
+            _allMessage.Add(message);
             return RedirectToAction("Index", "Cost", new {area = "Admin"});
         }
     }

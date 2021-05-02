@@ -40,10 +40,14 @@ namespace Web.Areas.Admin.Controllers
         public IActionResult Index()
         {
             ViewData["CustomerCount"] = _customer.GetCustomerCount();
+
             ViewData["ReceptionDone"] = _reception.GetReceptionCountFinish();
             ViewData["ReceptionNotYet"] = _reception.GetReceptionCountNotFinish();
+
             ViewData["Request"] = _requestDevice.RequestCount();
+
             ViewData["Sms"] = _allMessage.GetAllMessageCount();
+
             ViewData["SumPay"] = _payment.SumPay();
 
             ViewData["TodaySaleCount"] = _sale.TodaySaleCount();

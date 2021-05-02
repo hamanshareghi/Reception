@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Common.Library;
 using Data.ViewModels.Customer;
 using DataAccess.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -17,12 +18,14 @@ namespace Web.Areas.Admin.Controllers
         private UserManager<ApplicationUser> _userManager;
         private ICustomer _customer;
         private RoleManager<ApplicationRole> _roleManager;
+        private IAllMessage _allMessage;
 
-        public CustomerController(UserManager<ApplicationUser> userManager, ICustomer customer, RoleManager<ApplicationRole> roleManager)
+        public CustomerController(UserManager<ApplicationUser> userManager, ICustomer customer, RoleManager<ApplicationRole> roleManager, IAllMessage allMessage)
         {
             _userManager = userManager;
             _customer = customer;
             _roleManager = roleManager;
+            _allMessage = allMessage;
         }
 
         [HttpGet]
@@ -177,6 +180,33 @@ namespace Web.Areas.Admin.Controllers
 
             }
             return View();
+        }
+
+        public async Task<IActionResult> Send(string id)
+        {
+            var model = await _customer.GetById(id);
+            string receptor = model.PhoneNumber;
+            //var name = _userManager.FindByIdAsync(model.UserId);
+
+            string token = model.FullName.Replace(" ", "-");
+            string token2 = model.PhoneNumber;
+            string token3 = "Password@1";
+            
+            SendMessage.Send(receptor, token, token2, token3, null, null, "CustomerInfo");
+            AllMessage message = new AllMessage()
+            {
+                InsertDate = DateTime.Now,
+                UpDateTime = DateTime.Now,
+                IsDelete = false,
+                Kind = SmsKind.Customer,
+                SmsDate = DateTime.Now,
+                CurrentUserId = _userManager.GetUserId(User),
+                SmsStatus = "Sent",
+                Description = $"کاربر: {token} نام کاربری: {token2} رمزعبور: {token3} ",
+                UserId = model.Id
+            };
+            _allMessage.Add(message);
+            return RedirectToAction("Index", "Customer", new { area = "Admin" });
         }
 
     }

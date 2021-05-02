@@ -84,5 +84,10 @@ namespace DataAccess.Services
         {
             return  _userManager.Users.Count();
         }
+
+        public async Task<ApplicationUser> GetById(string id)
+        {
+            return await _userManager.FindByIdAsync(id);
+        }
     }
 }

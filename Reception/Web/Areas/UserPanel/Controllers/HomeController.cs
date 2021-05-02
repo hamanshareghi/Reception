@@ -17,14 +17,16 @@ namespace Web.Areas.UserPanel.Controllers
         private IReception _reception;
         private IDuty _duty;
         private IDeviceDefect _deviceDefect;
+        private ISale _sale;
 
-        public HomeController(UserManager<ApplicationUser> userManager, IAllMessage allMessage, IReception reception, IDuty duty, IDeviceDefect deviceDefect)
+        public HomeController(UserManager<ApplicationUser> userManager, IAllMessage allMessage, IReception reception, IDuty duty, IDeviceDefect deviceDefect, ISale sale)
         {
             _userManager = userManager;
             _allMessage = allMessage;
             _reception = reception;
             _duty = duty;
             _deviceDefect = deviceDefect;
+            _sale = sale;
         }
 
 
@@ -56,10 +58,20 @@ namespace Web.Areas.UserPanel.Controllers
         }
 
 
+        public async Task<IActionResult> SaleList(string id)
+        {
+            var user = await _userManager.GetUserAsync(User);
+
+            var model = _sale.GetListCustomerBySale(user.Id);
+            return View(model);
+        }
+
         public IActionResult FollowOrder(string id,int receptionId)
         {
             //var model = _duty.GetDutiesByReceptionAndUser(id,);
             return View();
         }
+
+
     }
 }

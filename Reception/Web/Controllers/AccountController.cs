@@ -6,7 +6,7 @@ using Model.Entities;
 
 namespace Web.Controllers
 {
-   
+
     public class AccountController : Controller
     {
         private UserManager<ApplicationUser> _userManager;
@@ -22,7 +22,7 @@ namespace Web.Controllers
         }
         [HttpGet]
         //[Route("Login")]
-        public IActionResult Login(string returnUrl = "/Welcome")
+        public IActionResult Login(string returnUrl = "/Profile")
         {
             ViewBag.Return = returnUrl;
             return View();
@@ -34,15 +34,13 @@ namespace Web.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 var user = _userManager.FindByNameAsync(model.PhoneNumber).Result;
-
                 await _signInManager.SignOutAsync();
                 var result = await _signInManager.PasswordSignInAsync(model.PhoneNumber, model.Password, model.RememberMe,
                     lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    if (!string.IsNullOrEmpty(returnUrl) )
+                    if (!string.IsNullOrEmpty(returnUrl))
                     {
                         return LocalRedirect(returnUrl);
                     }
@@ -54,19 +52,11 @@ namespace Web.Controllers
                 }
                 ModelState.AddModelError(string.Empty, "Login  Error");
                 return View();
-
-
-
             }
             return View(model);
         }
 
-        [HttpGet]
-        [Route("Register")]
-        public IActionResult Register()
-        {
-            return View();
-        }
+
 
         [HttpPost]
         [Route("Register")]
@@ -78,8 +68,10 @@ namespace Web.Controllers
                 if (!roleExist)
                 {
 
-                    var role = new ApplicationRole();
-                    role.Name = "Users";
+                    var role = new ApplicationRole
+                    {
+                        Name = "Users"
+                    };
                     await _roleManager.CreateAsync(role);
                 }
                 ApplicationUser user = new ApplicationUser()
@@ -89,27 +81,18 @@ namespace Web.Controllers
                     EmailConfirmed = true
 
                 };
-                //if (_student.IsStudent(model.PersonId))
-                //{
-                    IdentityResult result = await _userManager.CreateAsync(user, model.Password);
-                    if (result.Succeeded)
-                    {
 
-                        var rolesResult = await _userManager.AddToRoleAsync(user, "Users");
-                        return Redirect("/Welcome");
-                    }
+                IdentityResult result = await _userManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    var rolesResult = await _userManager.AddToRoleAsync(user, "Users");
+                    return Redirect("/Profile");
+                }
 
-                    foreach (var error in result.Errors)
-                    {
-                        ModelState.AddModelError("", error.Description);
-                    }
-                //}
-                //else
-                //{
-                //    ModelState.AddModelError("PersonId", "این دانش آموز در مدرسه ثبت نام نشده است");
-                //}
-
-
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
 
             }
 
@@ -117,13 +100,12 @@ namespace Web.Controllers
         }
 
 
-
-        //[HttpPost]
-        
+        [HttpPost]
         public async Task<IActionResult> SignOut()
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Login", "Account");
         }
+
     }
 }

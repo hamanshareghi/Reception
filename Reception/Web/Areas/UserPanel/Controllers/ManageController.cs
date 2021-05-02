@@ -4,11 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Data.ViewModels.Customer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Model.Entities;
 
 namespace Web.Areas.UserPanel.Controllers
 {
+    [Authorize(Roles = "SuperAdmin,Admin,")]
     [Area("UserPanel")]
     public class ManageController : Controller
     {
@@ -20,7 +22,7 @@ namespace Web.Areas.UserPanel.Controllers
             _userManager = userManager;
             _signInManager = signInManager;
         }
-        [Route("Profile")]
+        [Route("/Profile")]
         public async Task<IActionResult> ShowInfo()
         {
             var user = await  _userManager.GetUserAsync(User);

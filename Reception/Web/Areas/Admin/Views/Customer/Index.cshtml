@@ -64,6 +64,7 @@
                 بروزرسانی
             </th>
 
+            <th>عملیات</th>
             <th>دستورات</th>
         </tr>
         </thead>
@@ -94,7 +95,10 @@
                         @item.UpDateTime?.ToShamsi()
                     </p>
                 </td>
+                <td>
+                    <a asp-action="Send" class="btn btn-icon btn-success btn-sm" title="پیامک" asp-route-id="@item.Id"><i class="fas fa-comment-alt"></i></a>
 
+                </td>
                 <td>
                     <a asp-action="EditCustomer" class="btn btn-icon btn-warning btn-sm" title="ویرایش" asp-route-id="@item.Id"><i class="far fa-edit"></i></a>
                     @*<a asp-action="Details" class="btn btn-info" asp-route-id="@item.Id"><i class="fas fa-info-circle"></i></a>*@

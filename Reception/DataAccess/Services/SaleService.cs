@@ -241,5 +241,17 @@ namespace DataAccess.Services
             }
             return query.ToList();
         }
+
+        public List<Sale> GetListCustomerBySale(string id)
+        {
+            return _context.Sales
+                .Include(s => s.User)
+                .Include(s => s.Product)
+                .ThenInclude(s => s.ProductGroup)
+                .Include(s => s.Product.Brand)
+                .Where(s => s.UserId == id)
+                .OrderByDescending(s => s.UpDateTime)
+                .ToList();
+        }
     }
 }

@@ -75,23 +75,7 @@ namespace Web.Areas.Admin.Controllers
                 debtor.CurrentUser = _userManager.GetUserId(User);
 
                 int newDebtor= _debtor.Add(debtor);
-                var model = _debtor.GetById(newDebtor);
-                string receptor = model.User.PhoneNumber;
-                string token = model.User.FullName.Replace(" ", "-");
-                string token2 = model.Price.ToString("#,0") + "-تومان";
-                AllMessage message = new AllMessage()
-                {
-                    InsertDate = DateTime.Now,
-                    UpDateTime = DateTime.Now,
-                    IsDelete = false,
-                    Kind = SmsKind.Debtor,
-                    SmsDate = DateTime.Now,
-                    CurrentUserId = _userManager.GetUserId(User),
-                    SmsStatus = "Sent",
-                    Description = $"کاربر: {token} مانده حساب: {token2} لطفا جهت تسویه اقدام بفرمایید",
-                    UserId = model.UserId
-                };
-                _allMessage.Add(message);
+                
                 return RedirectToAction(nameof(Index), "Debtor", new { area = "Admin" });
             }
             ViewData["UserId"] = new SelectList(_userManager.Users.ToList(), "Id", "FullName");
@@ -186,10 +170,23 @@ namespace Web.Areas.Admin.Controllers
             var model = _debtor.GetById(id);
             string receptor = model.User.PhoneNumber;
             string token = model.User.FullName.Replace(" ","-");
-            string token2 = model.Price.ToString("#,0") + "-تومان";
+            string token2 = model.Price.ToString("#,0") + "تومان";
 
             SendMessage.Send(receptor, token, token2, null, null, null, "Debtor");
 
+            AllMessage message = new AllMessage()
+            {
+                InsertDate = DateTime.Now,
+                UpDateTime = DateTime.Now,
+                IsDelete = false,
+                Kind = SmsKind.Debtor,
+                SmsDate = DateTime.Now,
+                CurrentUserId = _userManager.GetUserId(User),
+                SmsStatus = "Sent",
+                Description = $"کاربر: {token} مانده حساب: {token2} لطفا جهت تسویه اقدام بفرمایید",
+                UserId = model.UserId
+            };
+            _allMessage.Add(message);
 
             return RedirectToAction("Index", "Debtor", new { area = "Admin" });
         }

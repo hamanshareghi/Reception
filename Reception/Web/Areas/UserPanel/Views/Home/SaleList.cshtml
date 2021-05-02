@@ -1,0 +1,115 @@
+﻿@using Common.Library
+@model List<Model.Entities.Sale>
+@{
+    int row = 1;
+    string query = " ";
+    if (ViewBag.Search != null)
+    {
+        query = ViewBag.Search.ToString();
+    }
+}
+
+<div class="container">
+    <h1> خرید های شما از مجموعه بیت</h1>
+    <div class="mb-7">
+        <form asp-area="UserPanel" asp-controller="Home" asp-action="SaleList" method="get">
+            <div class="row align-items-center">
+
+                <div class="col-lg-10 col-xl-10">
+                    <div class="row align-items-center">
+                        <div class="col-md-10 my-2 my-md-0">
+                            <div class="input-icon">
+                                <input type="text" name="search" class="form-control" placeholder="جستجو..." id="kt_datatable_search_query">
+                                <span>
+                                    <i class="flaticon2-search-1 text-muted"></i>
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-2 col-xl-2 mt-5 mt-lg-0">
+                    <button type="submit" class="btn btn-light-primary px-6 font-weight-bold">
+                        جستجو
+                    </button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+    <hr />
+   
+    <table class="table table-striped table-responsive ">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    تاریخ
+                </th>
+                <th>
+                    مشتری
+                </th>
+                <th>
+                    محصول
+                </th>
+                <th>
+                    تعداد
+                </th>
+                <th>
+                    قیمت
+                </th>
+                <th>
+                    لینک
+                </th>
+
+                <th>
+                    شرح
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @row
+                    </td>
+                    <td>
+                        <p class="text-info font-weight-bold">
+                            @item.SaleDate.ToShamsi()
+                        </p>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.Name)
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Count)
+                    </td>
+                    <td>
+                        <p class="text-danger font-weight-bold">
+                            @item.SalePrice.ToString("#,0") تومان
+                        </p>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ShortKey)
+                    </td>
+
+                    <td>
+                        @Html.Raw(item.Description)
+                    </td>
+
+                   
+                </tr>
+                row++;
+            }
+        </tbody>
+    </table>
+
+</div>

@@ -22,5 +22,6 @@ namespace DataAccess.Interfaces
         int TodaySaleCount();
         int TodaySumSale();
         List<Sale> GetSaleFromToDate(string search, string strDate, string endDate);
+        List<Sale> GetListCustomerBySale(string id);
     }
 }
