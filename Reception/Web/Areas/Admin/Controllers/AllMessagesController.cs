@@ -13,7 +13,7 @@ using Model.Entities;
 
 namespace Web.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "SuperAdmin")]
+    [Authorize(Roles = "Admins,SuperAdmin,User")]
     [Area("Admin")]
     public class AllMessagesController : Controller
     {

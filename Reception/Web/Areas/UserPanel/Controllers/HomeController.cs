@@ -4,11 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DataAccess.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Model.Entities;
 
 namespace Web.Areas.UserPanel.Controllers
 {
+    [Authorize(Roles = "SuperAdmin")]
     [Area("UserPanel")]
     public class HomeController : Controller
     {
@@ -18,8 +20,9 @@ namespace Web.Areas.UserPanel.Controllers
         private IDuty _duty;
         private IDeviceDefect _deviceDefect;
         private ISale _sale;
+        private IRequestDevice _requestDevice;
 
-        public HomeController(UserManager<ApplicationUser> userManager, IAllMessage allMessage, IReception reception, IDuty duty, IDeviceDefect deviceDefect, ISale sale)
+        public HomeController(UserManager<ApplicationUser> userManager, IAllMessage allMessage, IReception reception, IDuty duty, IDeviceDefect deviceDefect, ISale sale, IRequestDevice requestDevice)
         {
             _userManager = userManager;
             _allMessage = allMessage;
@@ -27,6 +30,7 @@ namespace Web.Areas.UserPanel.Controllers
             _duty = duty;
             _deviceDefect = deviceDefect;
             _sale = sale;
+            _requestDevice = requestDevice;
         }
 
 
@@ -70,6 +74,12 @@ namespace Web.Areas.UserPanel.Controllers
         {
             //var model = _duty.GetDutiesByReceptionAndUser(id,);
             return View();
+        }
+
+        public IActionResult RequestCustomer(string id)
+        {
+            var model = _requestDevice.GetRequestByUserId(id);
+            return View(model);
         }
 
 

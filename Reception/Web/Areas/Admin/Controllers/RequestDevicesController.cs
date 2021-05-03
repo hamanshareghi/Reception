@@ -83,9 +83,10 @@ namespace Web.Areas.Admin.Controllers
                 string receptor = model.User.Contact;
                 string token = model.User.FullName.Replace(" ", "-");
                 string token2 = model.Product.Name.Replace(" ", "-");
+                string token3 = model.UpDateTime?.ToShamsi().Replace(" ", "-");
                 string customerId = model.CustomerId;
                 string template = "RequestDevice";
-                SendMessage.Send(receptor, token, token2, null, null, null, template);
+                SendMessage.Send(receptor, token, token2, token3, null, null, template);
                 AllMessage message = new AllMessage()
                 {
                     InsertDate = DateTime.Now,
@@ -207,18 +208,22 @@ namespace Web.Areas.Admin.Controllers
             string receptor = model.User.Contact;
             string token = model.User.FullName.Replace(" ", "-");
             string token2 = model.Product.Name.Replace(" ", "-");
+            string token3 = model.UpDateTime?.ToShamsi().Replace(" ", "-");
             string template = "";
             if (model.ViewStatus == false)
             {
                 template = "RequestDevice";
                 flag = false;
+                SendMessage.Send(receptor, token, token2, token3, null, null, template);
+
             }
             else
             {
                 template = "RequestDeviceComplete";
                 flag = true;
+                SendMessage.Send(receptor, token, token2, null, null, null, template);
+
             }
-            SendMessage.Send(receptor, token, token2, null, null, null, template);
             if (flag)
             {
                 AllMessage message = new AllMessage()

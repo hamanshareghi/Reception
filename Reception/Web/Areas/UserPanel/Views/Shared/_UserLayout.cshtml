@@ -198,9 +198,9 @@
                             <!--begin::User-->
                             <div class="topbar-item mr-4">
                                 <div class="btn btn-icon btn-sm btn-clean btn-text-dark-75" id="kt_quick_user_toggle">
-                                    <a asp-area="" asp-controller="Account" asp-action="Login">
-                                        <span class="svg-icon svg-icon-primary svg-icon-2x">
-                                            <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\عمومی\Lock.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                    <!--<a asp-area="" asp-controller="Account" asp-action="Login">
+                                        <span class="svg-icon svg-icon-primary svg-icon-2x">-->
+                                            <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\عمومی\Lock.svg--><!--<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                                     <mask fill="white">
                                                         <use xlink:href="#path-1" />
@@ -208,10 +208,22 @@
                                                     <g />
                                                     <path d="M7,10 L7,8 C7,5.23857625 9.23857625,3 12,3 C14.7614237,3 17,5.23857625 17,8 L17,10 L18,10 C19.1045695,10 20,10.8954305 20,12 L20,18 C20,19.1045695 19.1045695,20 18,20 L6,20 C4.8954305,20 4,19.1045695 4,18 L4,12 C4,10.8954305 4.8954305,10 6,10 L7,10 Z M12,5 C10.3431458,5 9,6.34314575 9,8 L9,10 L15,10 L15,8 C15,6.34314575 13.6568542,5 12,5 Z" fill="#000000" />
                                                 </g>
-                                            </svg><!--end::Svg Icon-->
-                                        </span>
-                                    </a>
-
+                                            </svg>--><!--end::Svg Icon-->
+                                        <!--</span>
+                                    </a>-->
+                                    <form asp-area="" asp-controller="Account" asp-action="SignOut" method="post">
+                                        <button type="submit" class="btn btn-sm btn-clean">
+                                            <span class="svg-icon svg-icon-primary svg-icon-2x">
+                                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                        <rect x="0" y="0" width="24" height="24" />
+                                                        <path d="M7.62302337,5.30262097 C8.08508802,5.000107 8.70490146,5.12944838 9.00741543,5.59151303 C9.3099294,6.05357769 9.18058801,6.67339112 8.71852336,6.97590509 C7.03468892,8.07831239 6,9.95030239 6,12 C6,15.3137085 8.6862915,18 12,18 C15.3137085,18 18,15.3137085 18,12 C18,9.99549229 17.0108275,8.15969002 15.3875704,7.04698597 C14.9320347,6.73472706 14.8158858,6.11230651 15.1281448,5.65677076 C15.4404037,5.20123501 16.0628242,5.08508618 16.51836,5.39734508 C18.6800181,6.87911023 20,9.32886071 20,12 C20,16.418278 16.418278,20 12,20 C7.581722,20 4,16.418278 4,12 C4,9.26852332 5.38056879,6.77075716 7.62302337,5.30262097 Z" fill="#000000" fill-rule="nonzero" />
+                                                        <rect fill="#000000" opacity="0.3" x="11" y="3" width="2" height="10" rx="1" />
+                                                    </g>
+                                                </svg><!--end::Svg Icon-->
+                                            </span>
+                                        </button>
+                                    </form>    
                                 </div>
                             </div>
                             <!--end::User-->

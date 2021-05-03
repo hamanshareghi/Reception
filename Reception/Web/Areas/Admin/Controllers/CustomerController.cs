@@ -73,6 +73,30 @@ namespace Web.Areas.Admin.Controllers
                 {
                     
                     var rolesResult = await _userManager.AddToRoleAsync(customer, "Users");
+
+                    var currentUser = await _customer.GetById(customer.Id);
+                    string receptor = currentUser.PhoneNumber;
+                    //var name = _userManager.FindByIdAsync(model.UserId);
+
+                    string token = currentUser.FullName.Replace(" ", "-");
+                    string token2 = currentUser.PhoneNumber;
+                    string token3 = "Password@1";
+
+                    SendMessage.Send(receptor, token, token2, token3, null, null, "CustomerInfo");
+                    AllMessage message = new AllMessage()
+                    {
+                        InsertDate = DateTime.Now,
+                        UpDateTime = DateTime.Now,
+                        IsDelete = false,
+                        Kind = SmsKind.Customer,
+                        SmsDate = DateTime.Now,
+                        CurrentUserId = _userManager.GetUserId(User),
+                        SmsStatus = "Sent",
+                        Description = $"کاربر: {token} نام کاربری: {token2} رمزعبور: {token3} ",
+                        UserId = currentUser.Id
+                    };
+                    _allMessage.Add(message);
+
                     return RedirectToAction("Index","Customer",new {area="Admin"});
                 }
 

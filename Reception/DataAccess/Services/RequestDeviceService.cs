@@ -127,5 +127,14 @@ namespace DataAccess.Services
         {
             return _context.RequestDevices.Count();
         }
+
+        public List<RequestDevice> GetRequestByUserId(string id)
+        {
+            return _context.RequestDevices
+                .Include(s => s.User)
+                .Include(s => s.Product)
+                .Where(s => s.UserId == id)
+                .ToList();
+        }
     }
 }

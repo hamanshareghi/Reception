@@ -1,0 +1,113 @@
+﻿@model List<Model.Entities.RequestDevice>
+@using Common.Library
+@{
+    ViewData["Title"] = "Index";
+    int row = 1;
+    string query = " ";
+    if (ViewBag.Search != null)
+    {
+        query = ViewBag.Search.ToString();
+    }
+}
+
+
+<div class="container">
+    <h1>لیست درخواست ها</h1>
+    <div class="mb-7">
+        <form asp-area="UserPanel" asp-controller="Home" asp-action="RequestCustomer" method="get">
+            <div class="row align-items-center">
+
+                <div class="col-lg-10 col-xl-10">
+                    <div class="row align-items-center">
+                        <div class="col-md-10 my-2 my-md-0">
+                            <div class="input-icon">
+                                <input type="text" name="search" class="form-control" placeholder="جستجو..." id="kt_datatable_search_query">
+                                <span>
+                                    <i class="flaticon2-search-1 text-muted"></i>
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-2 col-xl-2 mt-5 mt-lg-0">
+                    <button type="submit" class="btn btn-light-primary px-6 font-weight-bold">
+                        جستجو
+                    </button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+    <hr />
+
+    <table class="table  table-responsive ">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    مشتری
+                </th>
+                <th>
+                    شماره تماس
+                </th>
+                <th>
+                    بروزرسانی
+                </th>
+                <th>
+                    دستگاه
+                </th>
+                <th>
+                    کاربر
+                </th>
+                <th>
+                    شرح
+                </th>
+                <th>
+                    وضعیت
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @row
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.PhoneNumber)
+                    </td>
+                    <td>
+                        <p class="font-weight-bold text-success">
+                            @item.UpDateTime?.ToShamsi()
+                        </p>
+                        @*@Html.DisplayFor(modelItem => item.UpDateTime)*@
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.FullName)
+                    </td>
+                    <td>
+                        @Html.Raw(item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ViewStatus)
+                    </td>
+
+                </tr>
+                row++;
+            }
+        </tbody>
+    </table>
+    
+
+</div>
