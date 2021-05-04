@@ -200,6 +200,15 @@ namespace Web.Areas.Admin.Controllers
             return _requestDevice.Exist(id);
         }
 
+        public IActionResult Finish(int id)
+        {
+            RequestDevice model = _requestDevice.GetById(id);
+            model.ViewStatus = true;
+            model.UpDateTime=DateTime.Now;
+            _requestDevice.Update(model);
+            return RedirectToAction("Index", "RequestDevices", new {area = "Admin"});
+        }
+
         public IActionResult Send(int id)
         {
             bool flag = false;

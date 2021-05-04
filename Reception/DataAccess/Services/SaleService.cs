@@ -37,6 +37,7 @@ namespace DataAccess.Services
 
             var query = _context.Sales
                 .Include(s => s.User)
+                .Include(s=>s.PayTypes)
                 .Include(s => s.Product)
                 .ThenInclude(s => s.Brand)
                 .OrderByDescending(s => s.UpDateTime)
@@ -51,6 +52,8 @@ namespace DataAccess.Services
             int skip = (pageId - 1) * take;
             int pageCount = _context.Sales
                 .Include(s => s.User)
+                .Include(s => s.PayTypes)
+
                 .Include(s => s.Product)
                 .ThenInclude(s => s.Brand)
                 .Count(
@@ -62,6 +65,9 @@ namespace DataAccess.Services
                         || s.ShortKey.ToLower().Contains(search)
                         || s.Product.Name.ToLower().Contains(search)
                         || s.Product.Price.ToString().ToLower().Contains(search)
+                        || s.PayTypes.Account.ToLower().Contains(search)
+                        || s.PayTypes.Name.ToLower().Contains(search)
+                        || s.PayTypes.Description.ToLower().Contains(search)
 
                         );
             if (pageCount % take != 0)
@@ -76,6 +82,8 @@ namespace DataAccess.Services
 
             var query = _context.Sales
                 .Include(s => s.User)
+                .Include(s => s.PayTypes)
+
                 .Include(s => s.Product)
                 .ThenInclude(s => s.Brand)
                 .Where(
@@ -87,6 +95,9 @@ namespace DataAccess.Services
                         || s.ShortKey.ToLower().Contains(search)
                         || s.Product.Name.ToLower().Contains(search)
                         || s.Product.Price.ToString().ToLower().Contains(search)
+                        || s.PayTypes.Account.ToLower().Contains(search)
+                        || s.PayTypes.Name.ToLower().Contains(search)
+                        || s.PayTypes.Description.ToLower().Contains(search)
 
                 )
                 .OrderByDescending(s => s.UpDateTime)
@@ -123,6 +134,8 @@ namespace DataAccess.Services
         {
             return _context.Sales
                 .Include(s => s.User)
+                .Include(s => s.PayTypes)
+
                 .Include(s => s.Product)
                 .OrderByDescending(s => s.SaleDate)
                 .FirstOrDefault(s => s.SaleId == id);
@@ -215,6 +228,8 @@ namespace DataAccess.Services
 
             IQueryable<Sale> query = _context.Sales
                 .Include(s => s.User)
+                .Include(s => s.PayTypes)
+
                 .Include(s => s.Product)
                 .ThenInclude(s => s.ProductGroup)
                 .Include(s => s.Product.Brand);
@@ -229,6 +244,9 @@ namespace DataAccess.Services
                     || s.Product.ProductGroup.GroupName.ToLower().Contains(search)
                     || s.Description.ToLower().Contains(search)
                     || s.ShortKey.ToLower().Contains(search)
+                    || s.PayTypes.Account.ToLower().Contains(search)
+                    || s.PayTypes.Name.ToLower().Contains(search)
+                    || s.PayTypes.Description.ToLower().Contains(search)
 
                     )
                     .OrderByDescending(s => s.SaleDate);
@@ -246,6 +264,8 @@ namespace DataAccess.Services
         {
             return _context.Sales
                 .Include(s => s.User)
+                .Include(s => s.PayTypes)
+
                 .Include(s => s.Product)
                 .ThenInclude(s => s.ProductGroup)
                 .Include(s => s.Product.Brand)

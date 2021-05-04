@@ -65,6 +65,7 @@ namespace Web
             services.AddScoped<IPayment, PaymentService>();
             services.AddScoped<IAllMessage, AllMessageService>();
             services.AddScoped<ISale, SaleService>();
+            services.AddScoped<IPayType, PayTypeService>();
 
 
             #region Authorization

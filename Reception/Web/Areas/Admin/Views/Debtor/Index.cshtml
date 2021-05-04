@@ -41,7 +41,7 @@
     <p>
         <a asp-area="Admin" asp-controller="Debtor" asp-action="Create" class="btn btn-success">ثبت بدهی اشخاص</a>
     </p>
-    <table class="table table-bordered table-striped table-responsive">
+    <table class="table table-responsive">
         <thead>
             <tr>
                 <th>
@@ -65,7 +65,7 @@
                 <th>
                     شرح
                 </th>
-                <th>وضعیت</th>
+                @*<th>وضعیت</th>*@
                 <th>دستورات</th>
                 <th>عملیات</th>
             </tr>
@@ -99,7 +99,7 @@
                     <td>
                         @Html.Raw(item.Description)
                     </td>
-                    <td>
+                    @*<td>
                         @if (item.PayStatus == PayStatus.Paid)
                         {
                             <a class="btn btn-success btn-sm btn-icon" title="پرداخت شده"><i class="fas fa-check-square"></i></a>   
@@ -110,19 +110,19 @@
 
 
                         }
-                    </td>
+                    </td>*@
                     <td>
-                        <a asp-action="Edit" class="btn btn-icon btn-warning btn-sm" title="ویرایش" asp-route-id="@item.DebtorId"><i class="far fa-edit"></i></a>
-                        <a asp-action="Details" class="btn btn-icon btn-info btn-sm" title="شرح" asp-route-id="@item.DebtorId"><i class="fas fa-info-circle"></i></a>
+                        <a asp-action="Edit" class="btn btn-icon-warning font-weight-bold" title="ویرایش" asp-route-id="@item.DebtorId"><i class="far fa-edit"></i></a>
+                        <a asp-action="Details" class="btn btn-icon-info font-weight-bold" title="شرح" asp-route-id="@item.DebtorId"><i class="fas fa-info-circle"></i></a>
                        @if (User.IsInRole("SuperAdmin"))
                        {
-                           <a asp-action="Delete" class="btn btn-icon btn-danger btn-sm" title="حذف" asp-route-id="@item.DebtorId"><i class="fas fa-trash"></i></a>
+                           <a asp-action="Delete" class="btn btn-icon-danger font-weight-bold" title="حذف" asp-route-id="@item.DebtorId"><i class="fas fa-trash"></i></a>
 
                        }
 
                     </td>
                     <td>
-                        <a asp-action="Send" class="btn btn-icon btn-success btn-sm" title="پیامک" asp-route-id="@item.DebtorId"><i class="fas fa-comment-alt"></i></a>
+                        <a asp-action="Send" class="btn btn-icon-success font-weight-bold" title="پیامک" asp-route-id="@item.DebtorId"><i class="fas fa-comment-alt"></i></a>
 
                     </td>
                 </tr>

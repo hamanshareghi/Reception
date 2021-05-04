@@ -42,98 +42,109 @@
         <a asp-area="Admin" asp-controller="Sales" asp-action="Create" class="btn btn-success">فروش جدید</a>
         <a asp-area="Admin" asp-controller="Sales" asp-action="Index" class="btn btn-info">بروزرسانی</a>
     </p>
-    <table class="table table-striped table-responsive table-bordered">
+    <table class="table table-responsive">
         <thead>
-        <tr>
-            <th>
-                #
-            </th>
-            <th>
-                تاریخ
-            </th>
-            <th>
-                مشتری
-            </th>
-            <th>
-                محصول
-            </th>
-            <th>
-                تعداد
-            </th>
-            <th>
-                قیمت
-            </th>
-            <th>
-                لینک
-            </th>
-            @*<th>
-                کاربر
-            </th>*@
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    تاریخ
+                </th>
+                <th>
+                    مشتری
+                </th>
+                <th>
+                    محصول
+                </th>
+                <th>
+                    تعداد
+                </th>
+                <th>
+                    قیمت
+                </th>
+                <th>
+                    لینک
+                </th>
+                <th>
+                    پرداخت
+                </th>
 
-            <th>
-                شرح
-            </th>
+                @*<th>
+                    شرح
+                </th>*@
 
-            <th>عملیات</th>
-            <th>دستورات</th>
-        </tr>
+                <th>عملیات</th>
+                <th>دستورات</th>
+            </tr>
         </thead>
         <tbody>
-        @foreach (var item in Model.Item1)
-        {
-            <tr>
-                <td>
-                    @row
-                </td>
-                <td>
-                    <p class="text-info font-weight-bold">
-                        @item.SaleDate.ToShamsi()
-                    </p>
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.User.FullName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Product.Name)
+            @foreach (var item in Model.Item1)
+            {
+                <tr>
+                    <td>
+                        @row
+                    </td>
+                    <td>
+                        <p class="text-info font-weight-bold">
+                            @item.SaleDate.ToShamsi()
+                        </p>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.Name)
 
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Count)
-                </td>
-                <td>
-                    <p class="text-danger font-weight-bold">
-                        @item.SalePrice.ToString("#,0") تومان
-                    </p>
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ShortKey)
-                </td>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.CurrentId.FullName)
-                </td>*@
-                <td>
-                    @Html.Raw(item.Description)
-                </td>
-
-                <td>
-                    <a asp-action="Send" class="btn btn-icon btn-success btn-sm" title="پیامک" asp-route-id="@item.SaleId"><i class="fas fa-comment-alt"></i></a>
-                </td>
-
-                <td>
-                    <a asp-action="Edit" class="btn btn-icon btn-warning btn-sm" title="ویرایش" asp-route-id="@item.SaleId"><i class="far fa-edit"></i></a>
-                    <a asp-action="Details" class="btn btn-icon btn-info btn-sm" title="شرح" asp-route-id="@item.SaleId"><i class="fas fa-info-circle"></i></a>
-                    @{
-                        if (User.IsInRole("SuperAdmin"))
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Count)
+                    </td>
+                    <td>
+                        <p class="text-danger font-weight-bold">
+                            @item.SalePrice.ToString("#,0") تومان
+                        </p>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ShortKey)
+                    </td>
+                    <td>
+                        @if (item.PayTypeId == null)
                         {
-                            <a asp-action="Delete" class="btn btn-icon btn-danger btn-sm" title="حذف" asp-route-id="@item.SaleId"><i class="fas fa-trash"></i></a>
+                            <p class="text-danger font-weight-bold">
+                                <i class="fas fa-times"></i>
+                            </p>
                         }
-                    }
+                        else
+                        {
+                            <p class="text-success font-weight-bold">
+                                @item.PayTypes.Name
+                            </p>
+                        }
+                    </td>
+                    @*<td>
+                        @Html.Raw(item.Description)
+                    </td>*@
+
+                    <td>
+                        <a asp-action="Send" class="btn btn-icon-success font-weight-bold " title="پیامک" asp-route-id="@item.SaleId"><i class="fas fa-comment-alt"></i></a>
+                    </td>
+
+                    <td>
+                        <a asp-action="Edit" class="btn btn-icon-warning font-weight-bold" title="ویرایش" asp-route-id="@item.SaleId"><i class="far fa-edit"></i></a>
+                        <a asp-action="Details" class="btn btn-icon-info font-weight-bold" title="شرح" asp-route-id="@item.SaleId"><i class="fas fa-info-circle"></i></a>
+                        @{
+                            if (User.IsInRole("SuperAdmin"))
+                            {
+                                <a asp-action="Delete" class="btn btn-icon-danger font-weight-bold" title="حذف" asp-route-id="@item.SaleId"><i class="fas fa-trash"></i></a>
+                            }
+                        }
 
 
-                </td>
-            </tr>
-            row++;
-        }
+                    </td>
+                </tr>
+                row++;
+            }
         </tbody>
     </table>
 

@@ -123,7 +123,7 @@ namespace Web.Areas.Admin.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index),"Sales",new {area="Admin"});
+                return RedirectToAction(nameof(Index),"AllMessages",new {area="Admin"});
             }
             ViewData["UserId"] = new SelectList(_userManager.Users.ToList(), "Id", "FullName");
             return View(allMessage);
@@ -153,7 +153,7 @@ namespace Web.Areas.Admin.Controllers
         {
             var allMessage = _allMessage.GetById(id);
             _allMessage.Delete(allMessage);
-            return RedirectToAction(nameof(Index),"Sales",new {area="Admin"});
+            return RedirectToAction(nameof(Index),"PayType",new {area="Admin"});
         }
 
         private bool AllMessageExists(int id)

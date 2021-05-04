@@ -41,7 +41,7 @@
         <a asp-area="Admin" asp-controller="Defect" asp-action="Create" class="btn btn-success">ثبت ایراد جدید</a>
         <a asp-area="Admin" asp-controller="Defect" asp-action="Index" class="btn btn-info">بروزرسانی</a>
     </p>
-    <table class="table table-bordered table-striped table-responsive">
+    <table class="table table-responsive">
         <thead>
             <tr>
                 <th>
@@ -76,9 +76,9 @@
 
 
                     <td>
-                        <a asp-action="Edit" class="btn btn-icon btn-warning btn-sm" title="ویرایش" asp-route-id="@item.DefectId"><i class="far fa-edit"></i></a>
-                        <a asp-action="Details" class="btn btn-icon btn-info btn-sm" title="شرح" asp-route-id="@item.DefectId"><i class="fas fa-info-circle"></i></a>
-                        <a asp-action="Delete" class="btn btn-icon btn-danger btn-sm" title="حذف" asp-route-id="@item.DefectId"><i class="fas fa-trash"></i></a>
+                        <a asp-action="Edit" class="btn btn-icon-warning font-weight-bold" title="ویرایش" asp-route-id="@item.DefectId"><i class="far fa-edit"></i></a>
+                        <a asp-action="Details" class="btn btn-icon-info font-weight-bold" title="شرح" asp-route-id="@item.DefectId"><i class="fas fa-info-circle"></i></a>
+                        <a asp-action="Delete" class="btn btn-icon-danger font-weight-bold" title="حذف" asp-route-id="@item.DefectId"><i class="fas fa-trash"></i></a>
                         @*<a asp-action="Send" class="btn btn-icon btn-success btn-sm" title="پیامک" asp-route-id="@item.DefectId"><i class="fas fa-comment-alt"></i></a>*@
 
                     </td>

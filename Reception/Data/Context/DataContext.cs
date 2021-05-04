@@ -39,6 +39,7 @@ namespace Data.Context
         public DbSet<Payment> Payments { get; set; }
         public DbSet<AllMessage> AllMessages { get; set; }
         public DbSet<Sale> Sales { get; set; }
+        public DbSet<PayType> PayTypes { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -105,6 +106,8 @@ namespace Data.Context
             modelBuilder.Entity<AllMessage>()
                 .HasQueryFilter(u => !u.IsDelete);
             modelBuilder.Entity<Sale>()
+                .HasQueryFilter(u => !u.IsDelete);
+            modelBuilder.Entity<PayType>()
                 .HasQueryFilter(u => !u.IsDelete);
             base.OnModelCreating(modelBuilder);
         }

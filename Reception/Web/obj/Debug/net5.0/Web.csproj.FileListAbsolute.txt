@@ -217,6 +217,11 @@ D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admi
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\Payments\Details.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\Payments\Edit.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\Payments\Index.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\PayType\Create.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\PayType\Delete.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\PayType\Details.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\PayType\Edit.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\PayType\Index.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\ProductGroups\Create.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\ProductGroups\Delete.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\ProductGroups\Details.cshtml.g.cs
@@ -234,6 +239,7 @@ D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admi
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\Receptions\Index.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\Report\Costs.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\Report\Debtors.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\Report\Sale.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\RequestDevices\Create.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\RequestDevices\Delete.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\RequestDevices\Details.cshtml.g.cs
@@ -294,6 +300,8 @@ D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admi
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\UserPanel\Views\Home\FollowOrder.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\UserPanel\Views\Home\Index.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\UserPanel\Views\Home\OrderDetail.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\UserPanel\Views\Home\RequestCustomer.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\UserPanel\Views\Home\SaleList.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\UserPanel\Views\Home\ShowMessages.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\UserPanel\Views\Home\ShowOrder.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\UserPanel\Views\Manage\ChangePassword.cshtml.g.cs
@@ -336,6 +344,3 @@ D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Web.dll
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\ref\Web.dll
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Web.pdb
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Web.genruntimeconfig.cache
-D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\Report\Sale.cshtml.g.cs
-D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\UserPanel\Views\Home\SaleList.cshtml.g.cs
-D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\UserPanel\Views\Home\RequestCustomer.cshtml.g.cs

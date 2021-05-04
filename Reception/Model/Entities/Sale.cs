@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Model.Entities.Common;
 
 namespace Model.Entities
@@ -34,6 +35,9 @@ namespace Model.Entities
         [Display(Name = "فروش")]
         public int SalePrice { get; set; }
 
+        [Display(Name = "پرداخت")]
+        public int? PayTypeId { get; set; } 
+
         [Display(Name = "لینک")]
         [MaxLength(10, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
         public string ShortKey { get; set; }
@@ -42,6 +46,7 @@ namespace Model.Entities
         public string Description { get; set; }
 
         #region Relation
+
         [Display(Name = "محصول")]
         [ForeignKey(nameof(ProductId))]
         public Product Product { get; set; }
@@ -50,7 +55,11 @@ namespace Model.Entities
         [ForeignKey(nameof(UserId))]
         public ApplicationUser User { get; set; }
 
-        
+        [Display(Name = "پرداخت")]
+        [ForeignKey(nameof(PayTypeId))]
+        public PayType PayTypes { get; set; }
+
+
 
         #endregion
     }

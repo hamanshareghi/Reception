@@ -24,6 +24,7 @@ namespace DataAccess.Services
             return _context.RequestDevices
                 .Include(r => r.Product)
                 .Include(r => r.User)
+                .Where(s=>s.ViewStatus == false)
                 .OrderByDescending(s=>s.UpDateTime)
                 .ToList();
         }
@@ -77,6 +78,7 @@ namespace DataAccess.Services
             var query = _context.RequestDevices
                 .Include(r => r.Product)
                 .Include(r => r.User)
+                .Where(s => s.ViewStatus == false)
                 .OrderByDescending(s => s.UpDateTime)
                 .Skip(skip)
                 .Take(take);
@@ -116,6 +118,7 @@ namespace DataAccess.Services
                          || s.Product.Name.ToLower().Contains(search)
                          || s.Product.ProductGroup.GroupName.ToLower().Contains(search)
                          || s.InsertDate.ToShamsi().ToLower().Contains(search)
+                         && s.ViewStatus== false
                 )
                 .OrderByDescending(s => s.UpDateTime)
                 .Skip(skip)

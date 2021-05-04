@@ -27,7 +27,8 @@ namespace DataAccess.Services
                 .Include(s=>s.Duties)
                 .Include(s=>s.DeviceDefects)
                 .Include(s=>s.DeviceImages)
-                .OrderByDescending(s=>s.UpDateTime)
+                .OrderByDescending(s => s.ReceptionStatus == ReceptionStatus.NotYet)
+                .ThenByDescending(s=>s.UpDateTime)
                 .ToList();
 
         }
@@ -87,7 +88,8 @@ namespace DataAccess.Services
                 .Include(s => s.Duties)
                 .Include(s => s.DeviceDefects)
                 .Include(s => s.DeviceImages)
-                .OrderByDescending(s=>s.UpDateTime)
+                .OrderByDescending(s => s.ReceptionStatus == ReceptionStatus.NotYet)
+                .ThenByDescending(s => s.UpDateTime)
                 .Skip(skip)
                 .Take(take);
             return Tuple.Create(query.ToList(), pageCount);
@@ -140,6 +142,7 @@ namespace DataAccess.Services
 
                 )
                 .OrderByDescending(s => s.UpDateTime)
+                .ThenByDescending(s => s.ReceptionStatus == ReceptionStatus.NotYet)
                 .Skip(skip)
                 .Take(take);
             return Tuple.Create(query.ToList(), pageCount);
@@ -190,6 +193,7 @@ namespace DataAccess.Services
                 .Include(s => s.DeviceImages)
                 .Where(s => s.CustomerId== id)
                 .OrderByDescending(s => s.UpDateTime)
+                .ThenByDescending(s => s.ReceptionStatus == ReceptionStatus.NotYet)
                 .Skip(skip)
                 .Take(take);
             return Tuple.Create(query.ToList(), pageCount);

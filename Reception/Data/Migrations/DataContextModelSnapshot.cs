@@ -745,6 +745,45 @@ namespace Data.Migrations
                     b.ToTable("OneDatas");
                 });
 
+            modelBuilder.Entity("Model.Entities.PayType", b =>
+                {
+                    b.Property<int>("PayTypeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Account")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("InsertDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int?>("PayTypeId1")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("PayTypeId");
+
+                    b.HasIndex("PayTypeId1");
+
+                    b.ToTable("PayTypes");
+                });
+
             modelBuilder.Entity("Model.Entities.Payment", b =>
                 {
                     b.Property<int>("PaymentId")
@@ -1036,6 +1075,9 @@ namespace Data.Migrations
                     b.Property<bool>("IsDelete")
                         .HasColumnType("bit");
 
+                    b.Property<int>("PayTypeId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
@@ -1056,6 +1098,8 @@ namespace Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("SaleId");
+
+                    b.HasIndex("PayTypeId");
 
                     b.HasIndex("ProductId");
 
@@ -1399,6 +1443,13 @@ namespace Data.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Model.Entities.PayType", b =>
+                {
+                    b.HasOne("Model.Entities.PayType", null)
+                        .WithMany("PayTypes")
+                        .HasForeignKey("PayTypeId1");
+                });
+
             modelBuilder.Entity("Model.Entities.Payment", b =>
                 {
                     b.HasOne("Model.Entities.ApplicationUser", "User")
@@ -1474,6 +1525,12 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Model.Entities.Sale", b =>
                 {
+                    b.HasOne("Model.Entities.PayType", "PayTypes")
+                        .WithMany()
+                        .HasForeignKey("PayTypeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("Model.Entities.Product", "Product")
                         .WithMany("Sales")
                         .HasForeignKey("ProductId")
@@ -1483,6 +1540,8 @@ namespace Data.Migrations
                     b.HasOne("Model.Entities.ApplicationUser", "User")
                         .WithMany("Sales")
                         .HasForeignKey("UserId");
+
+                    b.Navigation("PayTypes");
 
                     b.Navigation("Product");
 
@@ -1532,6 +1591,11 @@ namespace Data.Migrations
             modelBuilder.Entity("Model.Entities.Defect", b =>
                 {
                     b.Navigation("DeviceDefects");
+                });
+
+            modelBuilder.Entity("Model.Entities.PayType", b =>
+                {
+                    b.Navigation("PayTypes");
                 });
 
             modelBuilder.Entity("Model.Entities.Product", b =>

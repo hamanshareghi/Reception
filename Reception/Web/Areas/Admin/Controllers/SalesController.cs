@@ -20,13 +20,15 @@ namespace Web.Areas.Admin.Controllers
         private UserManager<ApplicationUser> _userManager;
         private IProduct _product;
         private IAllMessage _allMessage;
+        private IPayType _payType;
 
-        public SalesController(ISale sale, UserManager<ApplicationUser> userManager, IProduct product, IAllMessage allMessage)
+        public SalesController(ISale sale, UserManager<ApplicationUser> userManager, IProduct product, IAllMessage allMessage, IPayType payType)
         {
             _sale = sale;
             _userManager = userManager;
             _product = product;
             _allMessage = allMessage;
+            _payType = payType;
         }
         public IActionResult Index(string search, int pageId = 1)
         {
@@ -58,12 +60,14 @@ namespace Web.Areas.Admin.Controllers
         {
             ViewData["CustomerId"] = new SelectList(_userManager.Users.ToList(), "Id", "FullName");
             ViewData["ProductId"] = new SelectList(_product.GetAll(), "ProductId", "Name");
+            ViewData["PayTypeId"] = new SelectList(_payType.GetAll(), "PayTypeId", "Name");
+
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("SaleId,UserId,CurrentId,SaleDate,ProductId,Count,SalePrice,ShortKey,Description")] Sale sale,string date)
+        public async Task<IActionResult> Create([Bind("SaleId,UserId,CurrentId,SaleDate,ProductId,Count,SalePrice,PayTypeId,ShortKey,Description")] Sale sale,string date)
         {
             if (ModelState.IsValid)
             {
@@ -98,6 +102,8 @@ namespace Web.Areas.Admin.Controllers
             }
             ViewData["CustomerId"] = new SelectList(_userManager.Users.ToList(), "Id", "FullName");
             ViewData["ProductId"] = new SelectList(_product.GetAll(), "ProductId", "Name");
+            ViewData["PayTypeId"] = new SelectList(_payType.GetAll(), "PayTypeId", "Name");
+
             return View(sale);
         }
 
@@ -116,6 +122,8 @@ namespace Web.Areas.Admin.Controllers
             }
             ViewData["CustomerId"] = new SelectList(_userManager.Users.ToList(), "Id", "FullName");
             ViewData["ProductId"] = new SelectList(_product.GetAll(), "ProductId", "Name");
+            ViewData["PayTypeId"] = new SelectList(_payType.GetAll(), "PayTypeId", "Name");
+
             return View(sale);
         }
         // POST: Admin/Carousels/Edit/5
@@ -123,7 +131,7 @@ namespace Web.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("SaleId,UserId,CurrentId,SaleDate,ProductId,Count,SalePrice,ShortKey,Description")] Sale sale,string date)
+        public async Task<IActionResult> Edit(int id, [Bind("SaleId,UserId,CurrentId,SaleDate,ProductId,Count,SalePrice,PayTypeId,ShortKey,Description")] Sale sale,string date)
         {
             if (id != sale.SaleId)
             {
@@ -166,6 +174,8 @@ namespace Web.Areas.Admin.Controllers
             }
             ViewData["CustomerId"] = new SelectList(_userManager.Users.ToList(), "Id", "FullName");
             ViewData["ProductId"] = new SelectList(_product.GetAll(), "ProductId", "Name");
+            ViewData["PayTypeId"] = new SelectList(_payType.GetAll(), "PayTypeId", "Name");
+
             return View(sale);
         }
 
