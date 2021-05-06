@@ -111,15 +111,12 @@
                     <td>
                         @if (item.PayTypeId == null)
                         {
-                            <p class="text-danger font-weight-bold">
-                                <i class="fas fa-times"></i>
-                            </p>
+                            <img src="~/img/PayType/NoPay.png" class="img-thumbnail w-25" alt="www.storebit.ir" />
                         }
                         else
                         {
-                            <p class="text-success font-weight-bold">
-                                @item.PayTypes.Name
-                            </p>
+                            <img src="~/img/PayType/@item.PayTypes.Image" class="img-thumbnail w-25" alt="www.storebit.ir" />
+
                         }
                     </td>
                     @*<td>

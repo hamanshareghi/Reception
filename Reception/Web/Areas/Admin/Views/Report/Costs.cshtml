@@ -45,65 +45,65 @@
             </div>
         </form>
     </div>
+    <table class="table table-bordered table-striped table-responsive">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    گروه هزینه
+                </th>
+                <th>
+                    مبلغ
+                </th>
+                <th>
+                    تاریخ
+                </th>
+                <th>
+                    کاربر
+                </th>
 
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @row
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CostDefine.Name)
+                    </td>
+                    <td>
+                        <p class="font-weight-bold text-dark">
+                            @item.Price.ToString("#,0") تومان
+                        </p>
+                    </td>
+                    <td>
+                        <p class="text-info font-weight-bold">
+                            @item.InsertDate.ToShamsiDot()
+                        </p>
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.FullName)
+                    </td>
+
+
+                </tr>
+                row++;
+            }
+            <tr>
+                <td colspan="2" class="text-black-50 font-weight-bold">مجموع</td>
+                <td colspan="1" class="text-center font-weight-bold text-primary">@Model.Sum(c => c.Price).ToString("#,0") تومان</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
-<table class="table table-bordered table-striped table-responsive">
-    <thead>
-    <tr>
-        <th>
-            #
-        </th>
-        <th>
-            گروه هزینه
-        </th>
-        <th>
-            مبلغ
-        </th>
-        <th>
-            تاریخ
-        </th>
-        <th>
-            کاربر
-        </th>
 
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @row
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CostDefine.Name)
-            </td>
-            <td>
-                <p class="font-weight-bold text-dark">
-                    @item.Price.ToString("#,0") تومان
-                </p>
-            </td>
-            <td>
-                <p class="text-info font-weight-bold">
-                    @item.InsertDate.ToShamsiDot()
-                </p>
-
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.FullName)
-            </td>
-
-           
-        </tr>
-        row++;
-    }
-    <tr>
-        <td colspan="2" class="text-black-50 font-weight-bold">مجموع</td>
-        <td colspan="1" class="text-center font-weight-bold text-primary">@Model.Sum(c => c.Price).ToString("#,0") تومان</td>
-    </tr>
-    </tbody>
-</table>
 
 
 @section Scripts {

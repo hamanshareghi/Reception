@@ -45,7 +45,7 @@
         <a asp-area="Admin" asp-controller="Payments" asp-action="Create" class="btn btn-success">ثبت پرداختی جدید</a>
         <a asp-area="Admin" asp-controller="Payments" asp-action="Index" class="btn btn-info">بروزرسانی</a>
     </p>
-    <table class="table table-bordered">
+    <table class="table table-responsive">
         <thead>
             <tr>
                 <th>
@@ -132,6 +132,10 @@
                 </tr>
                 row++;
             }
+        <tr>
+            <td colspan="2" class="text-black-50 font-weight-bold">مجموع</td>
+            <td colspan="1" class="text-center font-weight-bold text-primary">@Model.Item1.Sum(c => c.Price).ToString("#,0") تومان</td>
+        </tr>
         </tbody>
     </table>
 </div>

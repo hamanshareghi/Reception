@@ -5,6 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using DataAccess.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Model.Entities;
 
 namespace Web.Areas.Admin.Controllers
 {
@@ -15,12 +18,18 @@ namespace Web.Areas.Admin.Controllers
         private IDebtor _debtor;
         private ICost _cost;
         private ISale _sale;
+        private IPayType _payType;
+        private IPayment _payment;
+        private UserManager<ApplicationUser> _userManager;
 
-        public ReportController(IDebtor debtor, ICost cost, ISale sale)
+        public ReportController(IDebtor debtor, ICost cost, ISale sale, IPayType payType, IPayment payment, UserManager<ApplicationUser> userManager)
         {
             _debtor = debtor;
             _cost = cost;
             _sale = sale;
+            _payType = payType;
+            _payment = payment;
+            _userManager = userManager;
         }
  
         [HttpGet]
@@ -60,5 +69,34 @@ namespace Web.Areas.Admin.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public IActionResult PayType(int payTypeId, string strDate, string endDate)
+        {
+            ViewData["PayTypeId"] = new SelectList(_payType.GetAll(), "PayTypeId", "Name");
+            var model = _sale.GetSaleFromToDateByPayType(payTypeId, strDate, endDate);
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult PayType()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Payment(string id, string strDate, string endDate)
+        {
+            ViewData["CustomerId"] = new SelectList(_userManager.Users.ToList(), "Id", "FullName");
+            var model = _payment.GetPaymentFromToDate(id, strDate, endDate);
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Payment()
+        {
+            return View();
+        }
     }
+
 }

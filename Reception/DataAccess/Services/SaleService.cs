@@ -53,7 +53,6 @@ namespace DataAccess.Services
             int pageCount = _context.Sales
                 .Include(s => s.User)
                 .Include(s => s.PayTypes)
-
                 .Include(s => s.Product)
                 .ThenInclude(s => s.Brand)
                 .Count(
@@ -83,7 +82,6 @@ namespace DataAccess.Services
             var query = _context.Sales
                 .Include(s => s.User)
                 .Include(s => s.PayTypes)
-
                 .Include(s => s.Product)
                 .ThenInclude(s => s.Brand)
                 .Where(
@@ -237,20 +235,66 @@ namespace DataAccess.Services
             if (!string.IsNullOrEmpty(search))
             {
                 query = query.Where(
-                    s => s.User.PhoneNumber.ToLower().Contains(search)
-                    || s.User.FullName.ToLower().Contains(search)
-                    || s.Product.Brand.Title.ToLower().Contains(search)
-                    || s.Product.Name.ToLower().Contains(search)
-                    || s.Product.ProductGroup.GroupName.ToLower().Contains(search)
-                    || s.Description.ToLower().Contains(search)
-                    || s.ShortKey.ToLower().Contains(search)
-                    || s.PayTypes.Account.ToLower().Contains(search)
-                    || s.PayTypes.Name.ToLower().Contains(search)
-                    || s.PayTypes.Description.ToLower().Contains(search)
+                        s => s.User.PhoneNumber.ToLower().Contains(search)
+                             || s.User.FullName.ToLower().Contains(search)
+                             || s.Product.Brand.Title.ToLower().Contains(search)
+                             || s.Product.Name.ToLower().Contains(search)
+                             || s.Product.ProductGroup.GroupName.ToLower().Contains(search)
+                             || s.Description.ToLower().Contains(search)
+                             || s.ShortKey.ToLower().Contains(search)
+                             || s.PayTypes.Account.ToLower().Contains(search)
+                             || s.PayTypes.Name.ToLower().Contains(search)
+                             || s.PayTypes.Description.ToLower().Contains(search)
 
                     )
                     .OrderByDescending(s => s.SaleDate);
             }
+
+            if (fromDate != null && toDate != null)
+            {
+                query = query.Where(s => s.SaleDate >= fromDate && s.SaleDate <= toDate);
+
+            }
+            return query.ToList();
+        }
+
+        public List<Sale> GetSaleFromToDateByPayType(int payTypeId, string strDate, string endDate)
+        {
+            DateTime fromDate = DateTime.Now;
+            DateTime toDate = DateTime.Now.AddDays(1);
+
+            if (!string.IsNullOrEmpty(strDate))
+            {
+                string[] std = strDate.Split("/");
+                fromDate = new DateTime(int.Parse(std[0]),
+                    int.Parse(std[1]),
+                    int.Parse(std[2]),
+                    new PersianCalendar()
+                );
+            }
+
+            if (!string.IsNullOrEmpty(endDate))
+            {
+                string[] std1 = endDate.Split("/");
+                toDate = new DateTime(
+                    int.Parse(std1[0]),
+                    int.Parse(std1[1]),
+                    int.Parse(std1[2]),
+                    new PersianCalendar()
+                );
+            }
+
+            IQueryable<Sale> query = _context.Sales
+                .Include(s => s.User)
+                .Include(s => s.PayTypes)
+                .Include(s => s.Product)
+                .ThenInclude(s => s.ProductGroup)
+                .Include(s => s.Product.Brand);
+
+                query = query.Where(
+                        s => s.PayTypes.PayTypeId == payTypeId)
+                    .OrderByDescending(s => s.SaleDate);
+           
 
             if (fromDate != null && toDate != null)
             {

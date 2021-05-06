@@ -1,0 +1,159 @@
+﻿@using Common.Library
+@model List<Model.Entities.Payment>
+
+@{
+    ViewData["Title"] = "Index";
+    int row = 1;
+    string query = " ";
+    if (ViewBag.Search != null)
+    {
+        query = ViewBag.Search.ToString();
+    }
+}
+
+<link href="~/lib/Kendo/css/kendo.common.min.css" rel="stylesheet" />
+<link href="~/lib/Kendo/css/kendo.default.min.css" rel="stylesheet" />
+<div class="container">
+    <h1>گزارشات دوره ای پرداخت ها</h1>
+    <hr />
+    <div class="mb-7">
+        <form asp-area="Admin" asp-controller="Report" asp-action="Payment" method="get">
+            <div class="row align-items-center">
+
+                <div class="col-lg-4 col-xl-4">
+                    <div class="row align-items-center">
+                        <div class="col-md-10 my-2 my-md-0">
+                                <select class="form-control selectpicker" name="id" id="id" data-live-search="true" tabindex="null" asp-items="ViewBag.CustomerId">
+                                </select>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-3 col-xl-3">
+                    <div class="col-md-11 my-2 my-md-0">
+                        <input type="text" id="strDate" name="strDate" class="form-control w-100">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-xl-3">
+                    <div class="col-md-12 my-2 my-md-0">
+                        <input type="text" id="endDate" name="endDate" class="form-control w-100">
+                    </div>
+                </div>
+                <div class="col-lg-2 col-xl-2 mt-5 mt-lg-0">
+                    <button type="submit" class="btn btn-light-primary px-6 font-weight-bold">
+                        جستجو
+                    </button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+    <hr />
+
+    <table class="table table-responsive">
+        <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                تاریخ
+            </th>
+            <th>
+                مبلغ
+            </th>
+            <th>
+                از حساب
+            </th>
+            <th>
+                به حساب
+            </th>
+            <th>
+                فیش
+            </th>
+            <th>
+                شرح
+            </th>
+            <th>
+                کاربر
+            </th>
+
+            <th>
+                بروزرسانی
+            </th>
+
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @row
+                </td>
+                <td>
+                    <p class="text-primary font-weight-bold">
+                        @item.PaymentDate.ToShamsi()
+                    </p>
+                </td>
+                <td>
+                    <p class="text-info font-weight-bold">
+                        @item.Price.ToString("#,0") تومان
+                    </p>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Source)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Destination)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Recipt)
+                </td>
+                <td>
+                    @Html.Raw(item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.FullName)
+                </td>
+
+                <td>
+                    <p class="text-primary font-weight-bold">
+                        @item.UpDateTime?.ToShamsi()
+                    </p>
+                </td>
+
+            </tr>
+            row++;
+        }
+        <tr>
+            <td colspan="2" class="text-black-50 font-weight-bold">مجموع</td>
+            <td colspan="1" class="text-center font-weight-bold text-primary">@Model.Sum(c => c.Price).ToString("#,0") تومان</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/lib/Kendo/js/jquery-1.12.4.min.js"></script>
+
+    <script src="~/lib/Kendo/js/JalaliDate.js"></script>
+    <script src="~/lib/Kendo/js/kendo.web.js"></script>
+    <script src="~/lib/Kendo/js/fa-IR.js"></script>
+    <script src="~/lib/Kendo/js/kendo.calendar.fa.js"></script>
+    <script src="~/lib/Kendo/js/kendo.datepicker.fa.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            // create DatePicker from input HTML element
+            //$("#datepicker").kendoDatePicker({ culture: "en-US" });
+            $("#strDate").kendoDatePickerShamsi({ culture: "fa-IR" });
+            $("#endDate").kendoDatePickerShamsi({ culture: "fa-IR" });
+
+            //$("#calendar").kendoCalendar({ culture: "en-US" });
+            //$("#calendarShamsi").kendoCalendarShamsi({ culture: "fa-IR" });
+
+            //$("#timepicker").kendoTimePicker();
+        });
+    </script>
+}

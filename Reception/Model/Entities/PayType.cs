@@ -24,6 +24,11 @@ namespace Model.Entities
         [MaxLength(100, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
         public string Account { get; set; }
 
+        [Display(Name = "تصویر")]
+        [MaxLength(150, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
+        public string Image { get; set; }
+
+
         [Display(Name = "شرح")]
         public string Description { get; set; }
 

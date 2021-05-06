@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -124,6 +125,47 @@ namespace DataAccess.Services
         public int SumPay()
         {
             return _context.Payments.Sum(s => s.Price);
+        }
+
+        public List<Payment> GetPaymentFromToDate(string id, string strDate, string endDate)
+        {
+            DateTime fromDate = DateTime.Now;
+            DateTime toDate = DateTime.Now.AddDays(1);
+
+            if (!string.IsNullOrEmpty(strDate))
+            {
+                string[] std = strDate.Split("/");
+                fromDate = new DateTime(int.Parse(std[0]),
+                    int.Parse(std[1]),
+                    int.Parse(std[2]),
+                    new PersianCalendar()
+                );
+            }
+
+            if (!string.IsNullOrEmpty(endDate))
+            {
+                string[] std1 = endDate.Split("/");
+                toDate = new DateTime(
+                    int.Parse(std1[0]),
+                    int.Parse(std1[1]),
+                    int.Parse(std1[2]),
+                    new PersianCalendar()
+                );
+            }
+
+            IQueryable<Payment> query = _context.Payments
+                .Include(s => s.User);
+
+            query = query.Where(
+                s => s.User.Id == id);
+                
+
+            if (fromDate != null && toDate != null)
+            {
+                query = query.Where(s => s.PaymentDate >= fromDate && s.PaymentDate <= toDate);
+
+            }
+            return query.ToList();
         }
     }
 }

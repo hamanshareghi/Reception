@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210504150526_mig_changenull2")]
-    partial class mig_changenull2
+    [Migration("20210505145851_mig_AddImagePayType")]
+    partial class mig_AddImagePayType
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -762,6 +762,10 @@ namespace Data.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Image")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
                     b.Property<DateTime>("InsertDate")
                         .HasColumnType("datetime2");
 
@@ -1077,7 +1081,7 @@ namespace Data.Migrations
                     b.Property<bool>("IsDelete")
                         .HasColumnType("bit");
 
-                    b.Property<int>("PayTypeId")
+                    b.Property<int?>("PayTypeId")
                         .HasColumnType("int");
 
                     b.Property<int>("ProductId")
@@ -1529,9 +1533,7 @@ namespace Data.Migrations
                 {
                     b.HasOne("Model.Entities.PayType", "PayTypes")
                         .WithMany()
-                        .HasForeignKey("PayTypeId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .HasForeignKey("PayTypeId");
 
                     b.HasOne("Model.Entities.Product", "Product")
                         .WithMany("Sales")

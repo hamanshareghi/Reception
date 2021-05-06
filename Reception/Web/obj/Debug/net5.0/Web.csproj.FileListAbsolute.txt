@@ -239,6 +239,8 @@ D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admi
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\Receptions\Index.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\Report\Costs.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\Report\Debtors.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\Report\Payment.cshtml.g.cs
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\Report\PayType.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\Report\Sale.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\RequestDevices\Create.cshtml.g.cs
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\RequestDevices\Delete.cshtml.g.cs

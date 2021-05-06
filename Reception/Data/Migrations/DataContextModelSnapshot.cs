@@ -760,6 +760,10 @@ namespace Data.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Image")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
                     b.Property<DateTime>("InsertDate")
                         .HasColumnType("datetime2");
 
@@ -1075,7 +1079,7 @@ namespace Data.Migrations
                     b.Property<bool>("IsDelete")
                         .HasColumnType("bit");
 
-                    b.Property<int>("PayTypeId")
+                    b.Property<int?>("PayTypeId")
                         .HasColumnType("int");
 
                     b.Property<int>("ProductId")
@@ -1527,9 +1531,7 @@ namespace Data.Migrations
                 {
                     b.HasOne("Model.Entities.PayType", "PayTypes")
                         .WithMany()
-                        .HasForeignKey("PayTypeId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .HasForeignKey("PayTypeId");
 
                     b.HasOne("Model.Entities.Product", "Product")
                         .WithMany("Sales")

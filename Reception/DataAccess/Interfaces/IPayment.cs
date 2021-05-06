@@ -19,5 +19,7 @@ namespace DataAccess.Interfaces
         bool Exist(int id);
         int SumPay();
 
+        List<Payment> GetPaymentFromToDate(string id, string strDate, string endDate);
+
     }
 }

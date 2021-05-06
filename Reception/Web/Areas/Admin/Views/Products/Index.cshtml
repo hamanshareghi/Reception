@@ -60,9 +60,9 @@
                 <th>
                     قیمت
                 </th>
-                <th>
+                @*<th>
                     تصویر
-                </th>
+                </th>*@
 
                 <th>دستورات</th>
             </tr>
@@ -88,9 +88,9 @@
                             @item.Price.ToString("#,0") تومان
                         </p>
                     </td>
-                    <td>
+                    @*<td>
                         <img src="~/img/Products/@item.Image" class="img-thumbnail w-25" alt="@item.ProductGroup.GroupName" />
-                    </td>
+                    </td>*@
                     <td>
                         <a asp-action="Edit" class="btn btn-icon-warning font-weight-bold" title="ویرایش" asp-route-id="@item.ProductId"><i class="far fa-edit"></i></a>
                         <a asp-action="Details" class="btn btn-icon-info font-weight-bold" title="شرح" asp-route-id="@item.ProductId"><i class="fas fa-info-circle"></i></a>

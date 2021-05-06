@@ -72,32 +72,34 @@ namespace Web.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
 
-                sale.InsertDate = DateTime.Now;
-                sale.UpDateTime = DateTime.Now;
-                sale.CurrentId =  _userManager.GetUserId(User);
-                sale.Count = 1;
-                sale.ShortKey = GenerateShortKey(5);
 
-                if (date != "")
-                {
-                    string[] std = date.Split('/');
-                    sale.SaleDate = new DateTime(int.Parse(std[0]),
-                        int.Parse(std[1]),
-                        int.Parse(std[2]),
-                        new PersianCalendar()
-                    );
-                }
+                    sale.InsertDate = DateTime.Now;
+                    sale.UpDateTime = DateTime.Now;
+                    sale.CurrentId = _userManager.GetUserId(User);
+                    sale.Count = 1;
+                    sale.ShortKey = GenerateShortKey(5);
 
-                int saleId= _sale.Add(sale);
-                Sale model = _sale.GetById(saleId);
-                string receptor = "09121950430";
-                string token = model.User.FullName.Replace(" ", "-");
-                string token2 = model.Product.Name.Replace(" ", "-");
-                string token3 = model.SalePrice.ToString("#,0").Replace(" ","-") + "تومان";
-                string token10 = model.SaleDate.ToShamsi().Replace(" ", "-");
-                string template = "SaleInfo";
-                SendMessage.Send(receptor, token, token2, token3, token10, null, template);
+                    if (date != "")
+                    {
+                        string[] std = date.Split('/');
+                        sale.SaleDate = new DateTime(int.Parse(std[0]),
+                            int.Parse(std[1]),
+                            int.Parse(std[2]),
+                            new PersianCalendar()
+                        );
+                    }
 
+                    int saleId = _sale.Add(sale);
+                    Sale model = _sale.GetById(saleId);
+                    string receptor = "09121950430";
+                    string token = model.User.FullName.Replace(" ", "-");
+                    string token2 = model.Product.Name.Replace(" ", "-");
+                    string token3 = model.SalePrice.ToString("#,0").Replace(" ", "-") + "تومان";
+                    string token10 = model.SaleDate.ToShamsi().Replace(" ", "-");
+                    string template = "SaleInfo";
+                    SendMessage.Send(receptor, token, token2, token3, token10, null, template);
+
+   
                 return RedirectToAction(nameof(Index), "Sales", new { area = "Admin" });
             }
             ViewData["CustomerId"] = new SelectList(_userManager.Users.ToList(), "Id", "FullName");

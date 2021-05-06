@@ -2,6 +2,13 @@ D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\Web
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\css\site.css
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\favicon.ico
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\img\Logo\Logo.png
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\img\PayType\1f4a1907bc864bfc97b273b057ee4157.png
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\img\PayType\312aba05053b48c79214a6aa9e431568.png
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\img\PayType\6bdd5673aaec45a5adcfecd725669f72.png
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\img\PayType\ab454e1260f14293b49f043c1d5d3614.png
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\img\PayType\d82cef57586e40d2bda000e7a0512e28.png
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\img\PayType\e38d0a30c3c64d978af232a4bc4b386b.png
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\img\PayType\NoPay.png
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\js\site.js
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
