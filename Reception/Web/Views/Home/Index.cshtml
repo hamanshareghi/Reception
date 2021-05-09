@@ -2,8 +2,18 @@
     ViewData["Title"] = "Home Page";
 }
 
-@section Header
+@*@section Header
 {
     <partial name="_Header"/>
-}
+}*@
 
+@section Carousel
+{
+    <partial name="_Carousel"/>
+}
+@section Scripts
+{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

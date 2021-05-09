@@ -3,38 +3,47 @@
 
 @{
     ViewData["Title"] = "Index";
+    int row = 1;
 }
 
+<div class="container">
 
     <h1 class="card-title">اسلایدرها</h1>
     <hr />
     <p>
-        <a asp-action="Create" class="btn btn-success">اسلایدر جدید</a>
+        <a asp-area="Admin" asp-controller="Carousels" asp-action="Create" class="btn btn-success">اسلایدر جدید</a>
+        <a asp-area="Admin" asp-controller="Carousels" asp-action="Index" class="btn btn-info">بروزرسانی</a>
     </p>
-    <table class="table table-bordered table-responsive table-striped">
+    <table class="table  table-responsive table-striped">
         <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.InsertDate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Caption)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ImageName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.LinkPage)
-                </th>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InsertDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Caption)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LinkPage)
+            </th>
 
 
-                <th>دستورات</th>
-            </tr>
+            <th>دستورات</th>
+        </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
                 <tr>
+                    <td>
+                        @row
+                    </td>
                     <td>
                         @item.InsertDate.ToShamsi()
                     </td>
@@ -50,17 +59,20 @@
 
 
                     <td>
-                        <td>
-                            <a asp-action="Edit" class="btn btn-icon btn-warning btn-sm" title="ویرایش" asp-route-id="@item.Id"><i class="far fa-edit"></i></a>
-                            <a asp-action="Details" class="btn btn-icon btn-info btn-sm" title="شرح" asp-route-id="@item.Id"><i class="fas fa-info-circle"></i></a>
-                            <a asp-action="Delete" class="btn btn-icon btn-danger btn-sm" title="حذف" asp-route-id="@item.Id"><i class="fas fa-trash"></i></a>
-                            @*<a asp-action="Send" class="btn btn-icon btn-success btn-sm" title="پیامک" asp-route-id="@item.Id"><i class="fas fa-comment-alt"></i></a>*@
+                    <td>
+                        <a asp-action="Edit" class="btn btn-icon btn-warning btn-sm" title="ویرایش" asp-route-id="@item.Id"><i class="far fa-edit"></i></a>
+                        <a asp-action="Details" class="btn btn-icon btn-info btn-sm" title="شرح" asp-route-id="@item.Id"><i class="fas fa-info-circle"></i></a>
+                        <a asp-action="Delete" class="btn btn-icon btn-danger btn-sm" title="حذف" asp-route-id="@item.Id"><i class="fas fa-trash"></i></a>
+                        @*<a asp-action="Send" class="btn btn-icon btn-success btn-sm" title="پیامک" asp-route-id="@item.Id"><i class="fas fa-comment-alt"></i></a>*@
 
-                        </td>
                     </td>
+
                 </tr>
+                row++;
             }
         </tbody>
     </table>
 
+
+</div>
 

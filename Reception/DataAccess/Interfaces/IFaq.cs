@@ -19,6 +19,7 @@ namespace DataAccess.Interfaces
         Faq GetFirst();
         List<Faq> GetAllWithOutFirst();
         int GetAllFaqCount();
+        Tuple<List<Faq>, int> GetAll(int take, int pageId = 1);
 
     }
 }

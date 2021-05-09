@@ -1,7 +1,80 @@
-﻿
+﻿@model Tuple<List<Model.Entities.Faq>,int>
 @{
     ViewData["Title"] = "Faqs";
 }
 
-<h1>Faqs</h1>
+<div class="content   flex-column-fluid" id="kt_content">
+    <!--begin::زیر هدر-->
+    <div class="subheader py-3 py-lg-2  subheader-transparent " id="kt_subheader" kt-hidden-height="90" style="">
+        <div class=" container  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <!--begin::اطلاعات-->
+            <div class="d-flex align-items-center flex-wrap mr-1">
+
+                <!--begin::Page Heading-->
+                <div class="d-flex align-items-baseline flex-wrap mr-5">
+                    <!--begin::Page Title-->
+                    <h2 class="subheader-title text-dark font-weight-bold my-1 mr-3">
+                        فروشگاه بیت
+                    </h2>
+                    <!--end::Page Title-->
+                    <!--begin::Breadcrumb-->
+                    <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold my-2 p-0">
+                        <li class="breadcrumb-item">
+                            <a asp-area="" asp-controller="Home" asp-action="Index" class="text-muted">
+                                خانه
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a asp-area="" asp-controller="Learn" asp-action="Faqs" class="text-muted">
+                                سوالات متداول
+                            </a>
+                        </li>
+                    </ul>
+                    <!--end::Breadcrumb-->
+                </div>
+                <!--end::Page Heading-->
+            </div>
+            <!--end::اطلاعات-->
+
+        </div>
+    </div>
+    <!--end::زیر هدر-->
+    <!--begin::Entry-->
+    <div class="d-flex flex-column-fluid">
+        <!--begin::Container-->
+        <div class=" container ">
+
+            @foreach (var item in Model.Item1)
+            {
+                <!--begin::کارت-->
+                <div class="card card-custom card-stretch example example-compact" id="kt_page_stretched_card">
+                    <div class="card-header ribbon ribbon-clip ribbon-left">
+                        <div class="ribbon-target" style="top: 12px;">
+                            <span class="ribbon-inner bg-success"></span>@item.FaqTitle
+                        </div>
+                        <div class="card-title">
+                            <h3 class="card-label">
+                            </h3>
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+                        @*<div class="card-scroll" >*@
+                            <!--begin::کد example-->
+                            <p>
+                                @Html.Raw(item.FaqAnswer)
+                            </p>
+                            <!--end::کد example-->
+
+                        @*</div>*@
+                    </div>
+                </div>
+                <!--end::کارت-->
+            }
+
+        </div>
+        <!--end::Container-->
+    </div>
+    <!--end::Entry-->
+</div>
 

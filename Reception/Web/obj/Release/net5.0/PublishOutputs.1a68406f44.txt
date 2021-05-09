@@ -1,6 +1,9 @@
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\Web.exe
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\css\site.css
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\favicon.ico
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\img\Carousel\2286f09c48074d329fafcb52739a8cad.jpg
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\img\Carousel\39d5deecafcd4d72b34b8d16adcf1da1.jpg
+D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\img\Carousel\5f05fdefbc8441c8aba87f4f5e05c14b.jpg
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\img\Logo\Logo.png
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\img\PayType\1f4a1907bc864bfc97b273b057ee4157.png
 D:\Asp.Net Core\MyCode\Reception\Reception\Web\obj\Release\net5.0\PubTmp\Out\wwwroot\img\PayType\312aba05053b48c79214a6aa9e431568.png

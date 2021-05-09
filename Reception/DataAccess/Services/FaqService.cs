@@ -81,5 +81,26 @@ namespace DataAccess.Services
         {
             return _context.Faqs.Count();
         }
+
+        public Tuple<List<Faq>, int> GetAll(int take, int pageId = 1)
+        {
+            int skip = (pageId - 1) * take;
+            int pageCount = _context.Faqs.Count();
+            if (pageCount % take != 0)
+            {
+                pageCount = pageCount / take;
+                pageCount++;
+            }
+            else
+            {
+                pageCount = pageCount / take;
+            }
+
+            var query = _context.Faqs
+                .Skip(skip)
+                .Take(take);
+
+            return Tuple.Create(query.ToList(), pageCount);
+        }
     }
 }

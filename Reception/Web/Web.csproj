@@ -52,6 +52,7 @@
   <ItemGroup>
     <Folder Include="wwwroot\img\Brand\" />
     <Folder Include="wwwroot\img\Messages\" />
+    <Folder Include="wwwroot\img\Carousel\" />
     <Folder Include="wwwroot\img\Products\" />
   </ItemGroup>
 
