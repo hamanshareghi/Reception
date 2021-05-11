@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DataAccess.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Web.Areas.Admin.Controllers
 {
 
+    [Authorize(Roles="SuperAdmin,Admins")]
     [Area("Admin")]
 
 
@@ -45,6 +47,7 @@ namespace Web.Areas.Admin.Controllers
             ViewData["ReceptionNotYet"] = _reception.GetReceptionCountNotFinish();
 
             ViewData["Request"] = _requestDevice.RequestCount();
+            ViewData["NotCompleteRequest"] = _requestDevice.SumRequestNotComplete();
 
             ViewData["Sms"] = _allMessage.GetAllMessageCount();
 

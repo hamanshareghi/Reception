@@ -24,8 +24,8 @@ namespace DataAccess.Services
             return _context.RequestDevices
                 .Include(r => r.Product)
                 .Include(r => r.User)
-                .Where(s=>s.ViewStatus == false)
-                .OrderByDescending(s=>s.UpDateTime)
+                .OrderByDescending(s=>s.ViewStatus == false)
+                .ThenByDescending(s=>s.UpDateTime)
                 .ToList();
         }
 
@@ -78,8 +78,8 @@ namespace DataAccess.Services
             var query = _context.RequestDevices
                 .Include(r => r.Product)
                 .Include(r => r.User)
-                .Where(s => s.ViewStatus == false)
-                .OrderByDescending(s => s.UpDateTime)
+                .OrderByDescending(s => s.ViewStatus == false)
+                .ThenByDescending(s => s.UpDateTime)
                 .Skip(skip)
                 .Take(take);
             return Tuple.Create(query.ToList(), pageCount);
@@ -97,7 +97,7 @@ namespace DataAccess.Services
                 || s.User.PhoneNumber.ToLower().Contains(search)
                 || s.Product.Name.ToLower().Contains(search)
                 || s.Product.ProductGroup.GroupName.ToLower().Contains(search)
-                || s.InsertDate.ToShamsi().ToLower().Contains(search)
+                
                 );
             if (pageCount % take != 0)
             {
@@ -117,7 +117,6 @@ namespace DataAccess.Services
                          || s.User.PhoneNumber.ToLower().Contains(search)
                          || s.Product.Name.ToLower().Contains(search)
                          || s.Product.ProductGroup.GroupName.ToLower().Contains(search)
-                         || s.InsertDate.ToShamsi().ToLower().Contains(search)
                          && s.ViewStatus== false
                 )
                 .OrderByDescending(s => s.UpDateTime)
@@ -138,6 +137,12 @@ namespace DataAccess.Services
                 .Include(s => s.Product)
                 .Where(s => s.UserId == id)
                 .ToList();
+        }
+
+        public int SumRequestNotComplete()
+        {
+            return _context.RequestDevices
+                .Count(s => s.ViewStatus == false);
         }
     }
 }

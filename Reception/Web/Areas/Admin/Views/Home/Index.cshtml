@@ -81,6 +81,9 @@
                             درخواست ها
                         </a>
                         <p class="text-dark font-weight-bold">
+                            تعداد کل درخواست تکمیل نشده : <span class="text-info">@ViewData["NotCompleteRequest"].ToString()</span> 
+                        </p>
+                        <p class="text-dark font-weight-bold">
                             تعداد کل درخواست ثبت شده : @ViewData["Request"].ToString()
                         </p>
                     </div>
@@ -123,30 +126,7 @@
 
     </div>
     
-    <!--<div class="col-lg-4 col-md-4 col-sm-12 mb-10">-->
-        <!--begin::کال اوت-->
-        <!--<div class="card card-custom mb-2 bg-diagonal">
-            <div class="card-body">
-                <div class="d-flex align-items-center justify-content-between p-4 flex-lg-wrap flex-xl-nowrap">
-                    <div class="d-flex flex-column mr-5">
-                        <a href="" class="h4 text-dark text-hover-primary mb-5">
-                            فروش @DateTime.Now.ToShamsi()
-                        </a>
-                        <p class="text-dark">
-                            جمع مبلغ فروش روز  : @todaySale.ToString("#,0") تومان
-                        </p>
-                    </div>
-                    <div class="ml-6 ml-lg-0 ml-xxl-6 flex-shrink-0">
-                        <a asp-area="Admin" asp-controller="Sales" asp-action="Index" class="btn font-weight-bolder text-uppercase btn-light-warning py-4 px-6">
-                            فروش
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>-->
-        <!--end::کال اوت-->
-
-    <!--</div>-->
+   
 
 </div>
 @if (User.IsInRole("SuperAdmin"))

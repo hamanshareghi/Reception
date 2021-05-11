@@ -10,7 +10,8 @@ using Model.Entities;
 
 namespace Web.Areas.UserPanel.Controllers
 {
-    [Authorize(Roles = "Admins,SuperAdmin,User")]
+    //[Authorize(Roles = "Admins,SuperAdmin,User")]
+    [Authorize]
     [Area("UserPanel")]
     public class ManageController : Controller
     {

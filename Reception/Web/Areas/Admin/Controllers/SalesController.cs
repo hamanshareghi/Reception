@@ -224,6 +224,20 @@ namespace Web.Areas.Admin.Controllers
             return shortKey;
         }
 
+        //private string CreateRandom(int min,int max)
+        //{
+            
+        //        Random random = new Random();
+        //        var model= random.Next(min, max);
+        //        if (model <= 5)
+        //        {
+        //            return "bg_danger";
+        //        }
+        //        else
+        //        {
+        //            return "bg_success";
+        //        }
+        //}
         public IActionResult Send(int id)
         {
             Sale model = _sale.GetById(id);

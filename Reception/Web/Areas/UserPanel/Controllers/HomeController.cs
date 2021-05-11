@@ -10,7 +10,7 @@ using Model.Entities;
 
 namespace Web.Areas.UserPanel.Controllers
 {
-    [Authorize(Roles = "SuperAdmin")]
+    [Authorize(Roles = "SuperAdmin,Admins,Users")]
     [Area("UserPanel")]
     public class HomeController : Controller
     {
@@ -70,10 +70,11 @@ namespace Web.Areas.UserPanel.Controllers
             return View(model);
         }
 
-        public IActionResult FollowOrder(string id,int receptionId)
+        public async Task<IActionResult> FollowOrder()
         {
-            //var model = _duty.GetDutiesByReceptionAndUser(id,);
-            return View();
+            var user = await _userManager.GetUserAsync(User);
+            var model = _sale.GetListCustomerBySale(user.Id);
+            return View(model);
         }
 
         public IActionResult RequestCustomer(string id)

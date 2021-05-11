@@ -19,5 +19,6 @@ namespace DataAccess.Interfaces
         Tuple<List<RequestDevice>, int> GetRequestDeViceBySearch(string search,int take, int pageId = 1);
         int RequestCount();
         List<RequestDevice> GetRequestByUserId(string id);
+        int SumRequestNotComplete();
     }
 }

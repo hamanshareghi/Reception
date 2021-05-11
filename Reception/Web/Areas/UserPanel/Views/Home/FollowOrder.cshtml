@@ -1,55 +1,91 @@
-﻿@model List<Duty>
+﻿@using Common.Library
+@model List<Sale>
 @{
     ViewData["Title"] = "FollowOrder";
+    int row = 1;
 }
 
-@*<div class="container">
+<div class="container">
+    <h1>گزارش لیست پرداخت های شما</h1>
+    <hr />
 
-    <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12">
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    تاریخ
+                </th>
 
-            <div class="card card-custom gutter-b">
-                <div class="card-header ribbon ribbon-clip ribbon-right">
-                    <div class="ribbon-target" style="top: 12px;">
-                        <span class="ribbon-inner bg-info"></span>خدمات
-                    </div>
-                    <div class="card-title">
-                        <h3 class="card-label">لیست خدمات پذیرش :@Model.ReceptionId </h3>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="example example-basic">
-                        <div class="example-preview">
-                            <div class="timeline timeline-justified timeline-4">
-                                <div class="timeline-bar"></div>
-                                <div class="timeline-items">
-                                    @foreach (var item in listDuty)
-                                    {
-                                        <div class="timeline-item">
-                                            <div class="timeline-badge">
-                                                <div class="bg-danger"></div>
-                                            </div>
+                <th>
+                    محصول
+                </th>
+                <th>
+                    تعداد
+                </th>
+                <th>
+                    قیمت
+                </th>
+                <th>
+                    پرداخت
+                </th>
+                <th>
+                    لینک
+                </th>
 
-                                            <div class="timeline-label">
-                                                <span class="text-primary font-weight-bold">@item.ActionDate.ToShamsiDot()</span>
-                                            </div>
+                <th>
+                    شرح
+                </th>
 
-                                            <div class="timeline-content">
-                                                @item.Service.Name - @item.Price.ToString("#,0") تومان  - @Html.Raw(item.Description)
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @row
+                    </td>
+                    <td>
+                        <p class="text-info font-weight-bold">
+                            @item.SaleDate.ToShamsi()
+                        </p>
+                    </td>
+                   
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.Name)
 
-                                            </div>
-                                        </div>
-                                    }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Count)
+                    </td>
+
+                    <td>
+                        <p class="text-success font-weight-bold">
+                            @item.SalePrice.ToString("#,0") تومان
+                        </p>
+                    </td>
+                    <td>
+                        <img src="~/img/PayType/@item.PayTypes.Image" class="img-thumbnail w-25" alt="www.storebit.ir" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ShortKey)
+                    </td>
+
+                    <td>
+                        @Html.Raw(item.Description)
+                    </td>
 
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>*@
-
+                </tr>
+                row++;
+            }
+            <tr>
+                <td colspan="4" class="text-black-50 font-weight-bold">مجموع</td>
+                <td colspan="1" class="text-center font-weight-bold text-primary">@Model.Sum(c => c.SalePrice).ToString("#,0") تومان</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,4 +1,4 @@
-﻿@model Tuple<List<Model.Entities.RequestDevice>,int>
+﻿@model Tuple<List<Model.Entities.RequestDevice>, int>
 @using Common.Library
 @{
     ViewData["Title"] = "Index";
@@ -65,11 +65,14 @@
                 <th>
                     کاربر
                 </th>
-                <th>
+                @*<th>
                     شرح
-                </th>
+                </th>*@
                 <th>
                     وضعیت
+                </th>
+                <th>
+                    اتمام
                 </th>
                 <th>دستورات</th>
                 <th>عملیات</th>
@@ -100,8 +103,22 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.User.FullName)
                     </td>
-                    <td>
+                    @*<td>
                         @Html.Raw(item.Description)
+                    </td>*@
+                    <td>
+                        @if (item.ViewStatus == false)
+                        {
+                            <span class="btn btn-icon-danger font-weight-bold">
+                                <i class="fas fa-times-circle"></i>
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="btn btn-icon-success font-weight-bold">
+                                <i class="fas fa-check-square"></i>
+                            </span>
+                        }
                     </td>
                     <td>
                         <a asp-action="Finish" class="btn btn-icon-dark font-weight-bold" title="اتمام" asp-route-id="@item.RequestDeviceId"><i class="fas fa-clipboard-list"></i></a>
@@ -116,7 +133,7 @@
                     </td>
                     <td>
                         <a asp-action="Send" class="btn btn-icon-success font-weight-bold" title="پیامک" asp-route-id="@item.RequestDeviceId"><i class="fas fa-comment-alt"></i></a>
-                      @*  <a asp-action="Send" class="btn btn-icon btn-success btn-sm" title="پیامک" asp-route-id="@item.RequestDeviceId"><i class="fas fa-comment-alt"></i></a>*@
+                        @*  <a asp-action="Send" class="btn btn-icon btn-success btn-sm" title="پیامک" asp-route-id="@item.RequestDeviceId"><i class="fas fa-comment-alt"></i></a>*@
                     </td>
                 </tr>
                 row++;
