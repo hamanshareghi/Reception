@@ -137,7 +137,8 @@ namespace Web.Areas.Admin.Controllers
                 FullName = model.FullName,
                 Address = model.Address,
                 Email = model.Email,
-               
+                InsertDate = DateTime.Now,
+                UpDateTime = DateTime.Now
             };
             return View(result);
         }
@@ -158,7 +159,7 @@ namespace Web.Areas.Admin.Controllers
                 result.Email = model.Email;
                 result.PhoneNumber = model.Contact;
                 result.UpDateTime=DateTime.Now;
-                
+                result.InsertDate =DateTime.Now;
                 var editResult =await _userManager.UpdateAsync(result);
                 //string message = $"کاربر {model.FullName} خوش آمدید نام کاربری {model.Contact} و رمز عبور : Password@1 برای پیگیری به سایت www.storebit.ir مراجعه کنید";
                 //SendMessage.SendSMS(result.PhoneNumber, message);

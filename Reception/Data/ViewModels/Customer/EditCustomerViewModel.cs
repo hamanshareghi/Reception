@@ -33,5 +33,12 @@ namespace Data.ViewModels.Customer
 
         [Display(Name = "شرح")]
         public string Description { get; set; }
+        [Display(Name = "ثبت")]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
+        public DateTime InsertDate { get; set; }
+
+        [Display(Name = "بروزرسانی")]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
+        public DateTime? UpDateTime { get; set; }
     }
 }
