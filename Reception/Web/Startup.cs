@@ -16,6 +16,8 @@ using Microsoft.EntityFrameworkCore;
 using Model.Entities;
 using Infrastructure.Helper;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.ResponseCompression;
+using WebMarkupMin.AspNetCore5;
 
 namespace Web
 {
@@ -31,6 +33,62 @@ namespace Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            #region GZip
+
+            services.Configure<GzipCompressionProviderOptions>(options =>
+            {
+                options.Level = System.IO.Compression.CompressionLevel.Optimal;
+            });
+
+            services.AddResponseCompression(options =>
+            {
+                options.EnableForHttps = true;
+                options.Providers.Add<GzipCompressionProvider>();
+                options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[]
+                {
+                    "image/svg+xml",
+                    "application/atom+xml",
+                    // General
+                    "text/plain",
+                    // Static files
+                    "text/css",
+                    "application/javascript",
+                    // MVC
+                    "text/html",
+                    "application/xml",
+                    "text/xml",
+                    "application/json",
+                    "text/json",
+                });
+            });
+
+            #endregion
+
+
+            #region WebmarkupMin
+            services.AddWebMarkupMin(options =>
+            {
+                //options.AllowCompressionInDevelopmentEnvironment = true;
+                options.AllowMinificationInDevelopmentEnvironment = true;
+
+            }).AddHtmlMinification(options =>
+            {
+                options.MinificationSettings.RemoveHtmlComments = true;
+                options.MinificationSettings.RemoveHtmlCommentsFromScriptsAndStyles = true;
+                options.MinificationSettings.RemoveHttpProtocolFromAttributes = true;
+                options.MinificationSettings.RemoveHttpsProtocolFromAttributes = true;
+                options.MinificationSettings.RemoveOptionalEndTags = true;
+                options.MinificationSettings.RemoveTagsWithoutContent = true;
+                options.MinificationSettings.MinifyEmbeddedCssCode = true;
+                options.MinificationSettings.MinifyEmbeddedJsCode = true;
+                options.MinificationSettings.MinifyInlineCssCode = true;
+                options.MinificationSettings.MinifyInlineJsCode = true;
+                options.MinificationSettings.MinifyInlineJsCode = true;
+            });
+
+
+            #endregion
             services.AddControllersWithViews();
 
             services.AddDbContext<DataContext>(option =>
@@ -107,7 +165,9 @@ namespace Web
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-
+          
+            app.UseResponseCompression();
+  app.UseWebMarkupMin();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

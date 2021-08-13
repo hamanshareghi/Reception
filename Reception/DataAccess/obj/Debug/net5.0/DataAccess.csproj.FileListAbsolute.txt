@@ -20,3 +20,25 @@ D:\Asp.Net Core\MyCode\Reception\Reception\DataAccess\obj\Debug\net5.0\DataAcces
 D:\Asp.Net Core\MyCode\Reception\Reception\DataAccess\obj\Debug\net5.0\ref\DataAccess.dll
 D:\Asp.Net Core\MyCode\Reception\Reception\DataAccess\obj\Debug\net5.0\DataAccess.pdb
 D:\Asp.Net Core\MyCode\Reception\Reception\DataAccess\obj\Debug\net5.0\DataAccess.genruntimeconfig.cache
+D:\Code\Receptions\Reception\DataAccess\bin\Debug\net5.0\DataAccess.deps.json
+D:\Code\Receptions\Reception\DataAccess\bin\Debug\net5.0\DataAccess.runtimeconfig.json
+D:\Code\Receptions\Reception\DataAccess\bin\Debug\net5.0\DataAccess.runtimeconfig.dev.json
+D:\Code\Receptions\Reception\DataAccess\bin\Debug\net5.0\DataAccess.dll
+D:\Code\Receptions\Reception\DataAccess\bin\Debug\net5.0\ref\DataAccess.dll
+D:\Code\Receptions\Reception\DataAccess\bin\Debug\net5.0\DataAccess.pdb
+D:\Code\Receptions\Reception\DataAccess\bin\Debug\net5.0\Common.dll
+D:\Code\Receptions\Reception\DataAccess\bin\Debug\net5.0\Data.dll
+D:\Code\Receptions\Reception\DataAccess\bin\Debug\net5.0\Model.dll
+D:\Code\Receptions\Reception\DataAccess\bin\Debug\net5.0\Common.pdb
+D:\Code\Receptions\Reception\DataAccess\bin\Debug\net5.0\Data.pdb
+D:\Code\Receptions\Reception\DataAccess\bin\Debug\net5.0\Model.pdb
+D:\Code\Receptions\Reception\DataAccess\obj\Debug\net5.0\DataAccess.csproj.AssemblyReference.cache
+D:\Code\Receptions\Reception\DataAccess\obj\Debug\net5.0\DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+D:\Code\Receptions\Reception\DataAccess\obj\Debug\net5.0\DataAccess.AssemblyInfoInputs.cache
+D:\Code\Receptions\Reception\DataAccess\obj\Debug\net5.0\DataAccess.AssemblyInfo.cs
+D:\Code\Receptions\Reception\DataAccess\obj\Debug\net5.0\DataAccess.csproj.CoreCompileInputs.cache
+D:\Code\Receptions\Reception\DataAccess\obj\Debug\net5.0\DataAccess.csproj.CopyComplete
+D:\Code\Receptions\Reception\DataAccess\obj\Debug\net5.0\DataAccess.dll
+D:\Code\Receptions\Reception\DataAccess\obj\Debug\net5.0\ref\DataAccess.dll
+D:\Code\Receptions\Reception\DataAccess\obj\Debug\net5.0\DataAccess.pdb
+D:\Code\Receptions\Reception\DataAccess\obj\Debug\net5.0\DataAccess.genruntimeconfig.cache

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Asp.Net Core\\MyCode\\Reception\\Reception\\Common\\Common.csproj": {}
+    "D:\\Code\\Receptions\\Reception\\Common\\Common.csproj": {}
   },
   "projects": {
-    "D:\\Asp.Net Core\\MyCode\\Reception\\Reception\\Common\\Common.csproj": {
+    "D:\\Code\\Receptions\\Reception\\Common\\Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Asp.Net Core\\MyCode\\Reception\\Reception\\Common\\Common.csproj",
+        "projectUniqueName": "D:\\Code\\Receptions\\Reception\\Common\\Common.csproj",
         "projectName": "Common",
-        "projectPath": "D:\\Asp.Net Core\\MyCode\\Reception\\Reception\\Common\\Common.csproj",
-        "packagesPath": "C:\\Users\\Swan\\.nuget\\packages\\",
-        "outputPath": "D:\\Asp.Net Core\\MyCode\\Reception\\Reception\\Common\\obj\\",
+        "projectPath": "D:\\Code\\Receptions\\Reception\\Common\\Common.csproj",
+        "packagesPath": "C:\\Users\\Haman\\.nuget\\packages\\",
+        "outputPath": "D:\\Code\\Receptions\\Reception\\Common\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Swan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Haman\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -46,7 +46,7 @@
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[5.0.6, )"
+              "version": "[5.0.9, )"
             }
           },
           "imports": [
@@ -64,7 +64,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

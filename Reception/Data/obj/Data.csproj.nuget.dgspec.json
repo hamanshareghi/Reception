@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Asp.Net Core\\MyCode\\Reception\\Reception\\Data\\Data.csproj": {}
+    "D:\\Code\\Receptions\\Reception\\Data\\Data.csproj": {}
   },
   "projects": {
-    "D:\\Asp.Net Core\\MyCode\\Reception\\Reception\\Data\\Data.csproj": {
+    "D:\\Code\\Receptions\\Reception\\Data\\Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Asp.Net Core\\MyCode\\Reception\\Reception\\Data\\Data.csproj",
+        "projectUniqueName": "D:\\Code\\Receptions\\Reception\\Data\\Data.csproj",
         "projectName": "Data",
-        "projectPath": "D:\\Asp.Net Core\\MyCode\\Reception\\Reception\\Data\\Data.csproj",
-        "packagesPath": "C:\\Users\\Swan\\.nuget\\packages\\",
-        "outputPath": "D:\\Asp.Net Core\\MyCode\\Reception\\Reception\\Data\\obj\\",
+        "projectPath": "D:\\Code\\Receptions\\Reception\\Data\\Data.csproj",
+        "packagesPath": "C:\\Users\\Haman\\.nuget\\packages\\",
+        "outputPath": "D:\\Code\\Receptions\\Reception\\Data\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Swan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Haman\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,8 +28,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "D:\\Asp.Net Core\\MyCode\\Reception\\Reception\\Model\\Model.csproj": {
-                "projectPath": "D:\\Asp.Net Core\\MyCode\\Reception\\Reception\\Model\\Model.csproj"
+              "D:\\Code\\Receptions\\Reception\\Model\\Model.csproj": {
+                "projectPath": "D:\\Code\\Receptions\\Reception\\Model\\Model.csproj"
               }
             }
           }
@@ -46,27 +46,27 @@
           "dependencies": {
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[5.0.6, )"
+              "version": "[5.0.9, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[5.0.6, )"
+              "version": "[5.0.9, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[5.0.6, )"
+              "version": "[5.0.9, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[5.0.6, )"
+              "version": "[5.0.9, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[5.0.6, )"
+              "version": "[5.0.9, )"
             }
           },
           "imports": [
@@ -84,21 +84,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Asp.Net Core\\MyCode\\Reception\\Reception\\Model\\Model.csproj": {
+    "D:\\Code\\Receptions\\Reception\\Model\\Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Asp.Net Core\\MyCode\\Reception\\Reception\\Model\\Model.csproj",
+        "projectUniqueName": "D:\\Code\\Receptions\\Reception\\Model\\Model.csproj",
         "projectName": "Model",
-        "projectPath": "D:\\Asp.Net Core\\MyCode\\Reception\\Reception\\Model\\Model.csproj",
-        "packagesPath": "C:\\Users\\Swan\\.nuget\\packages\\",
-        "outputPath": "D:\\Asp.Net Core\\MyCode\\Reception\\Reception\\Model\\obj\\",
+        "projectPath": "D:\\Code\\Receptions\\Reception\\Model\\Model.csproj",
+        "packagesPath": "C:\\Users\\Haman\\.nuget\\packages\\",
+        "outputPath": "D:\\Code\\Receptions\\Reception\\Model\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Swan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Haman\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -126,11 +126,11 @@
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[5.0.6, )"
+              "version": "[5.0.9, )"
             },
             "Microsoft.Extensions.Identity.Stores": {
               "target": "Package",
-              "version": "[5.0.6, )"
+              "version": "[5.0.9, )"
             }
           },
           "imports": [
@@ -148,7 +148,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }
