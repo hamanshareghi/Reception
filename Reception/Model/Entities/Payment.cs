@@ -27,7 +27,7 @@ namespace Model.Entities
         [Display(Name = "مبلغ")]
         [DataType(DataType.Currency)]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
-        public int Price { get; set; }
+        public Double Price { get; set; }
 
         [Display(Name = "مبدا")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]

@@ -122,9 +122,13 @@ namespace DataAccess.Services
             return _context.Payments.Any(s => s.PaymentId == id);
         }
 
-        public int SumPay()
-        {
-            return _context.Payments.Sum(s => s.Price);
+        public Double SumPay()
+        { 
+            var data =Convert.ToDouble( _context
+                .Payments
+                .Sum(s=>s.Price));
+            
+            return data;
         }
 
         public List<Payment> GetPaymentFromToDate(string id, string strDate, string endDate)

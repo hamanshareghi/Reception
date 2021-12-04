@@ -17,7 +17,7 @@ namespace DataAccess.Interfaces
         void Update(Payment payment);
         void Delete(Payment payment);
         bool Exist(int id);
-        int SumPay();
+        double SumPay();
 
         List<Payment> GetPaymentFromToDate(string id, string strDate, string endDate);
 

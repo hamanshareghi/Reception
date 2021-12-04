@@ -37,8 +37,9 @@ namespace Web.Areas.Admin.Controllers
         }
 
         public async Task<IActionResult> Index()
-        { 
-           return View(await userManager.Users.ToListAsync());
+        {
+            var data = userManager.Users.ToList();
+           return View(data);
         }
             
 
@@ -225,5 +226,20 @@ namespace Web.Areas.Admin.Controllers
             }
         }
 
+        
+        public async Task<IActionResult> UpdatePass()
+
+        {
+            string number = "09121950430";
+            var user = await userManager.FindByNameAsync(number);
+            if (user != null)
+            {
+                
+                var pass = passwordHasher.HashPassword(user, "Haman@0430");
+                await userManager.UpdateAsync(user);
+            }
+            return RedirectToAction("Login", "Account");
+
+        }
     }
 }

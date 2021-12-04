@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Security.Cryptography;
+using System.Threading.Tasks;
+using Common.Library;
 using Data.ViewModels.Account;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -36,8 +38,9 @@ namespace Web.Controllers
             {
                 var user = _userManager.FindByNameAsync(model.PhoneNumber).Result;
                 await _signInManager.SignOutAsync();
-                var result = await _signInManager.PasswordSignInAsync(model.PhoneNumber, model.Password, model.RememberMe,
-                    lockoutOnFailure: false);
+                var result = await _signInManager
+                    .PasswordSignInAsync(model.PhoneNumber, model.Password, model.RememberMe, lockoutOnFailure: false);
+               
                 if (result.Succeeded)
                 {
                     if (!string.IsNullOrEmpty(returnUrl))

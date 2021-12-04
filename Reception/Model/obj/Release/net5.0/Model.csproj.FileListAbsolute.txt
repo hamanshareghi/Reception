@@ -22,3 +22,15 @@ D:\Code\Receptions\Reception\Model\obj\Release\net5.0\Model.csproj.CoreCompileIn
 D:\Code\Receptions\Reception\Model\obj\Release\net5.0\Model.dll
 D:\Code\Receptions\Reception\Model\obj\Release\net5.0\ref\Model.dll
 D:\Code\Receptions\Reception\Model\obj\Release\net5.0\Model.pdb
+E:\Code\Reception\Reception\Model\bin\Release\net5.0\Model.deps.json
+E:\Code\Reception\Reception\Model\bin\Release\net5.0\Model.dll
+E:\Code\Reception\Reception\Model\bin\Release\net5.0\ref\Model.dll
+E:\Code\Reception\Reception\Model\bin\Release\net5.0\Model.pdb
+E:\Code\Reception\Reception\Model\obj\Release\net5.0\Model.csproj.AssemblyReference.cache
+E:\Code\Reception\Reception\Model\obj\Release\net5.0\Model.GeneratedMSBuildEditorConfig.editorconfig
+E:\Code\Reception\Reception\Model\obj\Release\net5.0\Model.AssemblyInfoInputs.cache
+E:\Code\Reception\Reception\Model\obj\Release\net5.0\Model.AssemblyInfo.cs
+E:\Code\Reception\Reception\Model\obj\Release\net5.0\Model.csproj.CoreCompileInputs.cache
+E:\Code\Reception\Reception\Model\obj\Release\net5.0\Model.dll
+E:\Code\Reception\Reception\Model\obj\Release\net5.0\ref\Model.dll
+E:\Code\Reception\Reception\Model\obj\Release\net5.0\Model.pdb

@@ -22,3 +22,15 @@ D:\Code\Receptions\Reception\Common\obj\Release\net5.0\Common.csproj.CoreCompile
 D:\Code\Receptions\Reception\Common\obj\Release\net5.0\Common.dll
 D:\Code\Receptions\Reception\Common\obj\Release\net5.0\ref\Common.dll
 D:\Code\Receptions\Reception\Common\obj\Release\net5.0\Common.pdb
+E:\Code\Reception\Reception\Common\bin\Release\net5.0\Common.deps.json
+E:\Code\Reception\Reception\Common\bin\Release\net5.0\Common.dll
+E:\Code\Reception\Reception\Common\bin\Release\net5.0\ref\Common.dll
+E:\Code\Reception\Reception\Common\bin\Release\net5.0\Common.pdb
+E:\Code\Reception\Reception\Common\obj\Release\net5.0\Common.csproj.AssemblyReference.cache
+E:\Code\Reception\Reception\Common\obj\Release\net5.0\Common.GeneratedMSBuildEditorConfig.editorconfig
+E:\Code\Reception\Reception\Common\obj\Release\net5.0\Common.AssemblyInfoInputs.cache
+E:\Code\Reception\Reception\Common\obj\Release\net5.0\Common.AssemblyInfo.cs
+E:\Code\Reception\Reception\Common\obj\Release\net5.0\Common.csproj.CoreCompileInputs.cache
+E:\Code\Reception\Reception\Common\obj\Release\net5.0\Common.dll
+E:\Code\Reception\Reception\Common\obj\Release\net5.0\ref\Common.dll
+E:\Code\Reception\Reception\Common\obj\Release\net5.0\Common.pdb

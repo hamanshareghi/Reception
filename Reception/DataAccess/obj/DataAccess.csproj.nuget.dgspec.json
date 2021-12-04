@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Code\\Receptions\\Reception\\DataAccess\\DataAccess.csproj": {}
+    "E:\\Code\\Reception\\Reception\\DataAccess\\DataAccess.csproj": {}
   },
   "projects": {
-    "D:\\Code\\Receptions\\Reception\\Common\\Common.csproj": {
+    "E:\\Code\\Reception\\Reception\\Common\\Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Code\\Receptions\\Reception\\Common\\Common.csproj",
+        "projectUniqueName": "E:\\Code\\Reception\\Reception\\Common\\Common.csproj",
         "projectName": "Common",
-        "projectPath": "D:\\Code\\Receptions\\Reception\\Common\\Common.csproj",
-        "packagesPath": "C:\\Users\\Haman\\.nuget\\packages\\",
-        "outputPath": "D:\\Code\\Receptions\\Reception\\Common\\obj\\",
+        "projectPath": "E:\\Code\\Reception\\Reception\\Common\\Common.csproj",
+        "packagesPath": "C:\\Users\\Hamta\\.nuget\\packages\\",
+        "outputPath": "E:\\Code\\Reception\\Reception\\Common\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Haman\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Hamta\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -64,21 +64,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Code\\Receptions\\Reception\\DataAccess\\DataAccess.csproj": {
+    "E:\\Code\\Reception\\Reception\\DataAccess\\DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Code\\Receptions\\Reception\\DataAccess\\DataAccess.csproj",
+        "projectUniqueName": "E:\\Code\\Reception\\Reception\\DataAccess\\DataAccess.csproj",
         "projectName": "DataAccess",
-        "projectPath": "D:\\Code\\Receptions\\Reception\\DataAccess\\DataAccess.csproj",
-        "packagesPath": "C:\\Users\\Haman\\.nuget\\packages\\",
-        "outputPath": "D:\\Code\\Receptions\\Reception\\DataAccess\\obj\\",
+        "projectPath": "E:\\Code\\Reception\\Reception\\DataAccess\\DataAccess.csproj",
+        "packagesPath": "C:\\Users\\Hamta\\.nuget\\packages\\",
+        "outputPath": "E:\\Code\\Reception\\Reception\\DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Haman\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Hamta\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -92,11 +92,11 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "D:\\Code\\Receptions\\Reception\\Common\\Common.csproj": {
-                "projectPath": "D:\\Code\\Receptions\\Reception\\Common\\Common.csproj"
+              "E:\\Code\\Reception\\Reception\\Common\\Common.csproj": {
+                "projectPath": "E:\\Code\\Reception\\Reception\\Common\\Common.csproj"
               },
-              "D:\\Code\\Receptions\\Reception\\Data\\Data.csproj": {
-                "projectPath": "D:\\Code\\Receptions\\Reception\\Data\\Data.csproj"
+              "E:\\Code\\Reception\\Reception\\Data\\Data.csproj": {
+                "projectPath": "E:\\Code\\Reception\\Reception\\Data\\Data.csproj"
               }
             }
           }
@@ -155,21 +155,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Code\\Receptions\\Reception\\Data\\Data.csproj": {
+    "E:\\Code\\Reception\\Reception\\Data\\Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Code\\Receptions\\Reception\\Data\\Data.csproj",
+        "projectUniqueName": "E:\\Code\\Reception\\Reception\\Data\\Data.csproj",
         "projectName": "Data",
-        "projectPath": "D:\\Code\\Receptions\\Reception\\Data\\Data.csproj",
-        "packagesPath": "C:\\Users\\Haman\\.nuget\\packages\\",
-        "outputPath": "D:\\Code\\Receptions\\Reception\\Data\\obj\\",
+        "projectPath": "E:\\Code\\Reception\\Reception\\Data\\Data.csproj",
+        "packagesPath": "C:\\Users\\Hamta\\.nuget\\packages\\",
+        "outputPath": "E:\\Code\\Reception\\Reception\\Data\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Haman\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Hamta\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -183,8 +183,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "D:\\Code\\Receptions\\Reception\\Model\\Model.csproj": {
-                "projectPath": "D:\\Code\\Receptions\\Reception\\Model\\Model.csproj"
+              "E:\\Code\\Reception\\Reception\\Model\\Model.csproj": {
+                "projectPath": "E:\\Code\\Reception\\Reception\\Model\\Model.csproj"
               }
             }
           }
@@ -239,21 +239,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Code\\Receptions\\Reception\\Model\\Model.csproj": {
+    "E:\\Code\\Reception\\Reception\\Model\\Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Code\\Receptions\\Reception\\Model\\Model.csproj",
+        "projectUniqueName": "E:\\Code\\Reception\\Reception\\Model\\Model.csproj",
         "projectName": "Model",
-        "projectPath": "D:\\Code\\Receptions\\Reception\\Model\\Model.csproj",
-        "packagesPath": "C:\\Users\\Haman\\.nuget\\packages\\",
-        "outputPath": "D:\\Code\\Receptions\\Reception\\Model\\obj\\",
+        "projectPath": "E:\\Code\\Reception\\Reception\\Model\\Model.csproj",
+        "packagesPath": "C:\\Users\\Hamta\\.nuget\\packages\\",
+        "outputPath": "E:\\Code\\Reception\\Reception\\Model\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Haman\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Hamta\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -303,7 +303,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
