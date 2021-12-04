@@ -54,10 +54,11 @@ namespace Data.Context
             foreach (var fk in cascadeFKs)
                 fk.DeleteBehavior = DeleteBehavior.Restrict;
 
-            modelBuilder.HasDefaultSchema("bituser");
 
+            modelBuilder.HasDefaultSchema("bituser");
             modelBuilder.Entity<Duty>()
                 .HasQueryFilter(u => !u.IsDelete);
+            //modelBuilder.HasDefaultSchema("bituser");
             modelBuilder.Entity<Brand>()
                 .HasQueryFilter(u => !u.IsDelete);
             modelBuilder.Entity<Carousel>()

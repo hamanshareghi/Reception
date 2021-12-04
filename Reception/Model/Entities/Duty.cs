@@ -9,6 +9,7 @@ using Model.Entities.Common;
 
 namespace Model.Entities
 {
+    [Table("Duties", Schema = "dbo")]
     public class Duty : BaseEntityNotId
     {
         [Key]
