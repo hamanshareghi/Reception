@@ -1,8 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "C:\\Users\\Hamta\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\Hamta\\.nuget\\packages"
+      "C:\\Users\\khoda\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\khoda\\.nuget\\packages"
     ]
   }
 }

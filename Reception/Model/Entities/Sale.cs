@@ -33,7 +33,7 @@ namespace Model.Entities
         public int Count { get; set; }
 
         [Display(Name = "فروش")]
-        public int SalePrice { get; set; }
+        public long SalePrice { get; set; }
 
         [Display(Name = "پرداخت")]
         public int? PayTypeId { get; set; } 

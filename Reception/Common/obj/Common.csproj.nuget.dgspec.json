@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Code\\Reception\\Reception\\Common\\Common.csproj": {}
+    "D:\\1Haman\\Code\\Asp.Net Core\\Reception\\Reception\\Common\\Common.csproj": {}
   },
   "projects": {
-    "E:\\Code\\Reception\\Reception\\Common\\Common.csproj": {
+    "D:\\1Haman\\Code\\Asp.Net Core\\Reception\\Reception\\Common\\Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Code\\Reception\\Reception\\Common\\Common.csproj",
+        "projectUniqueName": "D:\\1Haman\\Code\\Asp.Net Core\\Reception\\Reception\\Common\\Common.csproj",
         "projectName": "Common",
-        "projectPath": "E:\\Code\\Reception\\Reception\\Common\\Common.csproj",
-        "packagesPath": "C:\\Users\\Hamta\\.nuget\\packages\\",
-        "outputPath": "E:\\Code\\Reception\\Reception\\Common\\obj\\",
+        "projectPath": "D:\\1Haman\\Code\\Asp.Net Core\\Reception\\Reception\\Common\\Common.csproj",
+        "packagesPath": "C:\\Users\\khoda\\.nuget\\packages\\",
+        "outputPath": "D:\\1Haman\\Code\\Asp.Net Core\\Reception\\Reception\\Common\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Hamta\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\khoda\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -64,7 +64,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -5718,19 +5718,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Hamta\\.nuget\\packages\\": {}
+    "C:\\Users\\khoda\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Code\\Reception\\Reception\\DataAccess\\DataAccess.csproj",
+      "projectUniqueName": "D:\\1Haman\\Code\\Asp.Net Core\\Reception\\Reception\\DataAccess\\DataAccess.csproj",
       "projectName": "DataAccess",
-      "projectPath": "E:\\Code\\Reception\\Reception\\DataAccess\\DataAccess.csproj",
-      "packagesPath": "C:\\Users\\Hamta\\.nuget\\packages\\",
-      "outputPath": "E:\\Code\\Reception\\Reception\\DataAccess\\obj\\",
+      "projectPath": "D:\\1Haman\\Code\\Asp.Net Core\\Reception\\Reception\\DataAccess\\DataAccess.csproj",
+      "packagesPath": "C:\\Users\\khoda\\.nuget\\packages\\",
+      "outputPath": "D:\\1Haman\\Code\\Asp.Net Core\\Reception\\Reception\\DataAccess\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Hamta\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\khoda\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5744,11 +5744,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "E:\\Code\\Reception\\Reception\\Common\\Common.csproj": {
-              "projectPath": "E:\\Code\\Reception\\Reception\\Common\\Common.csproj"
+            "D:\\1Haman\\Code\\Asp.Net Core\\Reception\\Reception\\Common\\Common.csproj": {
+              "projectPath": "D:\\1Haman\\Code\\Asp.Net Core\\Reception\\Reception\\Common\\Common.csproj"
             },
-            "E:\\Code\\Reception\\Reception\\Data\\Data.csproj": {
-              "projectPath": "E:\\Code\\Reception\\Reception\\Data\\Data.csproj"
+            "D:\\1Haman\\Code\\Asp.Net Core\\Reception\\Reception\\Data\\Data.csproj": {
+              "projectPath": "D:\\1Haman\\Code\\Asp.Net Core\\Reception\\Reception\\Data\\Data.csproj"
             }
           }
         }
@@ -5807,7 +5807,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

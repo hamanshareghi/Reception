@@ -17,10 +17,10 @@ namespace DataAccess.Interfaces
         bool Exist(int id);
         Sale GetById(int id);
         bool ExitsShortKey(string shortKey);
-        int SumSale();
+        long SumSale();
         int SaleCount();
         int TodaySaleCount();
-        int TodaySumSale();
+        long TodaySumSale();
         List<Sale> GetSaleFromToDate(string search, string strDate, string endDate);
         List<Sale> GetSaleFromToDateByPayType(int payTypeId, string strDate, string endDate);
         List<Sale> GetListCustomerBySale(string id);

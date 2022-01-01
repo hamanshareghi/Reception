@@ -145,7 +145,7 @@ namespace DataAccess.Services
             return _context.Sales.Any(s => s.ShortKey == shortKey);
         }
 
-        public int SumSale()
+        public long SumSale()
         {
             return _context.Sales.Sum(s => s.SalePrice);
         }
@@ -176,7 +176,7 @@ namespace DataAccess.Services
              ;
         }
 
-        public int TodaySumSale()
+        public long TodaySumSale()
         {
             string strDate = DateTime.Now.ToShamsi();
             DateTime today = default;

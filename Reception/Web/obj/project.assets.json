@@ -7793,19 +7793,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Hamta\\.nuget\\packages\\": {}
+    "C:\\Users\\khoda\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Code\\Reception\\Reception\\Web\\Web.csproj",
+      "projectUniqueName": "D:\\1Haman\\Code\\Asp.Net Core\\Reception\\Reception\\Web\\Web.csproj",
       "projectName": "Web",
-      "projectPath": "E:\\Code\\Reception\\Reception\\Web\\Web.csproj",
-      "packagesPath": "C:\\Users\\Hamta\\.nuget\\packages\\",
-      "outputPath": "E:\\Code\\Reception\\Reception\\Web\\obj\\",
+      "projectPath": "D:\\1Haman\\Code\\Asp.Net Core\\Reception\\Reception\\Web\\Web.csproj",
+      "packagesPath": "C:\\Users\\khoda\\.nuget\\packages\\",
+      "outputPath": "D:\\1Haman\\Code\\Asp.Net Core\\Reception\\Reception\\Web\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Hamta\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\khoda\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7819,8 +7819,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "E:\\Code\\Reception\\Reception\\DataAccess\\DataAccess.csproj": {
-              "projectPath": "E:\\Code\\Reception\\Reception\\DataAccess\\DataAccess.csproj"
+            "D:\\1Haman\\Code\\Asp.Net Core\\Reception\\Reception\\DataAccess\\DataAccess.csproj": {
+              "projectPath": "D:\\1Haman\\Code\\Asp.Net Core\\Reception\\Reception\\DataAccess\\DataAccess.csproj"
             }
           }
         }
@@ -7886,6 +7886,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[5.0.13, 5.0.13]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -7894,7 +7900,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -34,3 +34,15 @@ E:\Code\Reception\Reception\Common\obj\Release\net5.0\Common.csproj.CoreCompileI
 E:\Code\Reception\Reception\Common\obj\Release\net5.0\Common.dll
 E:\Code\Reception\Reception\Common\obj\Release\net5.0\ref\Common.dll
 E:\Code\Reception\Reception\Common\obj\Release\net5.0\Common.pdb
+D:\1Haman\Code\Asp.Net Core\Reception\Reception\Common\bin\Release\net5.0\Common.deps.json
+D:\1Haman\Code\Asp.Net Core\Reception\Reception\Common\bin\Release\net5.0\Common.dll
+D:\1Haman\Code\Asp.Net Core\Reception\Reception\Common\bin\Release\net5.0\ref\Common.dll
+D:\1Haman\Code\Asp.Net Core\Reception\Reception\Common\bin\Release\net5.0\Common.pdb
+D:\1Haman\Code\Asp.Net Core\Reception\Reception\Common\obj\Release\net5.0\Common.csproj.AssemblyReference.cache
+D:\1Haman\Code\Asp.Net Core\Reception\Reception\Common\obj\Release\net5.0\Common.GeneratedMSBuildEditorConfig.editorconfig
+D:\1Haman\Code\Asp.Net Core\Reception\Reception\Common\obj\Release\net5.0\Common.AssemblyInfoInputs.cache
+D:\1Haman\Code\Asp.Net Core\Reception\Reception\Common\obj\Release\net5.0\Common.AssemblyInfo.cs
+D:\1Haman\Code\Asp.Net Core\Reception\Reception\Common\obj\Release\net5.0\Common.csproj.CoreCompileInputs.cache
+D:\1Haman\Code\Asp.Net Core\Reception\Reception\Common\obj\Release\net5.0\Common.dll
+D:\1Haman\Code\Asp.Net Core\Reception\Reception\Common\obj\Release\net5.0\ref\Common.dll
+D:\1Haman\Code\Asp.Net Core\Reception\Reception\Common\obj\Release\net5.0\Common.pdb
